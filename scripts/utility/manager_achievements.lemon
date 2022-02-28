@@ -1,0 +1,336 @@
+//? Checks for matches of values/events, and sets the status Completed for the specified achievement ID's.
+function void BlueSpheresTimer.Achievements.setup()
+{
+	// Only if Achievements unlocked 
+	if (!BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
+		return
+	
+	// Ignore Rolling Demo or BS Game
+	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Main function
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) >= 100)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) 
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) >= 300)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) 
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) >= 600)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) 
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) >= 1200)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) 
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) >= 2048)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) 
+		
+	if (bluespheres.gameOver == 0x01 && bluespheres.blue_remaining == 0x01)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
+	if (bluespheres.gameOver == 0x01 && bluespheres.timer.currentTime == 30)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
+		
+	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+	{
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION)
+		
+		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GREEN_SPHERE) >= 0x01)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GREEN_SPHERE) 
+		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) >= 50)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) 
+		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) >= 150)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) 
+			if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) >= 400)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) 
+		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) >= 720)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES)
+		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES ) >= 1200)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)  
+	}
+	
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) >= 15)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES) >= 50)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) >= 150)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES)
+		
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES) >= 20)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) >= 45)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) >= 110)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
+		
+	if (Mods.isModActive("No Blue Spheres Slowdown") && global.game_mode == 0x87)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_YOU_ARE_2_SLOW)
+}
+
+//? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
+function void BlueSpheresTimer.Achievements.spheresChecks()
+{
+	// Only if Achievements unlocked 
+	if (!BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
+		return
+	
+	// Main function
+	A1 = 0xfffff100
+	D0.u16 = ((bluespheres.position.x + 0x80) >> 0x08) & 0x1f
+	D1.u16 = ((bluespheres.position.y + 0x80) >> 0x08) & 0x1f
+	D1.u16 <<= 0x05
+	D1.u8 |= D0.u8
+	A1 += D1.s16
+	D2.u8 = u8[A1]
+	
+	// Bumper achievements checks
+	if (D2.u8 == 0x03 && u8[0xffffe42b] == 0x00)
+	{
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) + 0x01)
+	}
+	
+	// Yellow sphere achievements checks
+	if (D2.u8 == 0x05 && (u8[0xffffe44c] == 0x00 && (u8[0xffffe432] & 0x80) == 0x00) && ((bluespheres.direction & 0x3f) == 0x00))
+	{
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) + 0x01)
+	}
+	
+	// D.A Garden Green sphere achievements checks
+	if (D2.u8 == 0x05 && (u8[0xffffef7c] && 0x01) == 0x01) // && check D.A Garden Green sphere
+	{
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GREEN_SPHERE, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) + 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES))
+			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) + 0x01)
+	}
+}
+
+//? Returns the title of the specified achievement ID.
+function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
+{
+	u64 achievementTitle
+	
+	u64 locked_text = "Locked"
+	u64 needmod_text = "Need a mod"
+	
+	if (achievementId == ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) >= 0x01) ? "Collect 100 blue spheres" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_300_BLUE_SPHERES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) ? "Collect 300 blue spheres" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_600_BLUE_SPHERES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) ? "Collect 600 blue spheres" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) ? "Collect 1200 blue spheres" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) ? "Collect 2048 blue spheres" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE) ? "Getting lost in the crowd" : locked_text // "Find a way out"
+	} 
+	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2) ? "Losing at the start" : locked_text
+	}
+	else if (achievementId >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && achievementId <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
+	{
+		bool targetMod_active = Mods.isModActive("Sonic 3: D.A. Garden Edition")
+		if (achievementId == ACHIEVEMENT_BS_DA_GARDEN_EDITION)
+		{
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION) ? "D.A Garden Edition" : (targetMod_active ? locked_text : needmod_text)
+		}
+		else if (achievementId == ACHIEVEMENT_BS_GREEN_SPHERE)
+		{
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) ? "Got Green sphere!" : (targetMod_active ? locked_text : needmod_text) 
+		}
+		else if (achievementId == ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES)
+		{
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) ? "Convert 50 Green spheres" : (targetMod_active ? locked_text : needmod_text)
+		}
+		else if (achievementId == ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES)
+		 {
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) ? "Convert 150 Green spheres" : (targetMod_active ? locked_text : needmod_text)
+		}
+		else if (achievementId == ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES)
+		{
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) ? "Convert 400 Green spheres" : (targetMod_active ? locked_text : needmod_text)
+		}
+		else if (achievementId == ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES)
+		{
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) ? "Convert 720 Green spheres" : (targetMod_active ? locked_text : needmod_text)
+		}
+		else if (achievementId == ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
+		{
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) ? "Convert 1200 Green spheres" : (targetMod_active ? locked_text : needmod_text)
+		}
+	}
+	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) >= 0x01) ? "Jump away 15 times" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) ? "Jump away 50 times" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES) ? "Jump away 150 times" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES) >= 0x01) ? "Jumper" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES) ? "Jumper" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) ? "Jumper" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_YOU_ARE_2_SLOW)
+	{
+		bool targetMod_active = Mods.isModActive("No Blue Spheres Slowdown")
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_2_SLOW) ? "You are 2 slow!" : (targetMod_active ? locked_text : needmod_text)
+	}
+	else
+	{
+		achievementTitle = "Unknown achievement"
+	}
+	
+	return achievementTitle
+}
+
+//? Returns the address of the specified achievement ID. 
+function u32 BlueSpheresTimer.Achievements.getAddress(u32 achievementId)
+{
+	u32 achievementID = 0x16 * (achievementId + 0x01)
+	return bluespheres.achievementsDataAddress + achievementID
+}
+
+//? Returns the value of the specified achievement ID. 
+function s32 BlueSpheresTimer.Achievements.getValue(u32 achievementId)
+{
+	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
+	System.loadPersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), bluespheres.achievementsDataSize)
+	
+	return s32[achievementOffset]
+}
+
+//? Sets a new value for the specified achievement ID. 
+function void BlueSpheresTimer.Achievements.setValue(u32 achievementId, s32 value) 
+{
+	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
+	s32[achievementOffset] = value
+	
+	System.savePersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), bluespheres.achievementsDataSize)
+	
+	//System.writeDisplayLine(stringformat("Set new value to Achievement 0x%04x and saved in 0x%06x RAM", achievementId, achievementOffset))
+}
+
+//? Returns true when the specified achievement ID has the status Completed. 
+function bool BlueSpheresTimer.Achievements.isComplete(u32 achievementId)
+{
+	bool isComplete
+	
+	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa1 || BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2)
+		isComplete = true
+	else
+		isComplete = false
+	
+	return isComplete
+}
+
+//? Assigns the status Completed to the specified achievement ID, and toast. 
+function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId) 
+{
+	if (BlueSpheresTimer.Achievements.isComplete(achievementId))
+	{
+		BlueSpheresTimer.Achievements.toast(achievementId) 
+		return
+	}
+	
+	BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa1)
+	//System.writeDisplayLine(stringformat("Achievement 0x%04x complete and saved in 0x%06x RAM", achievementId, BlueSpheresTimer.Achievements.getAddress( achievementId)))
+}
+
+//? A rather dubious solution to the infinite toast problem when achievement is complete. 
+function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
+{
+	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2 && bluespheres.toast.state == 0x00) 
+		return
+	
+	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa1)
+	{
+		u64 achievementTitle = (bluespheres.toast.timeout >= 98) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : "Achievement complete!"
+		BlueSpheresTimer.Menu.toast.setup(achievementTitle)
+	}
+	
+	if (bluespheres.toast.state == 0x04)
+	{
+		if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2)
+			bluespheres.toast.state = 0x00
+		else
+			BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa2)
+	}
+}
+
+//? Sets the value to 0 for all recorded achievements memory addresses. 
+function void BlueSpheresTimer.Achievements.reset()
+{
+	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
+	{
+		if (BlueSpheresTimer.Achievements.getValue(i) != 0x00)
+		{
+			BlueSpheresTimer.Achievements.setValue(i, 0x00)
+			//debugLog(stringformat("Reset RAM 0x%06x", BlueSpheresTimer.Achievements.getAddress(i)))
+		}
+	}
+}
+
+//? Returns the number of memory addresses that are not equal to 0, within the achievement addresses. 
+function s32 BlueSpheresTimer.Achievements.writed()
+{
+	s32 writed_address
+	
+	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
+	{
+		if (BlueSpheresTimer.Achievements.getValue(i) > 0x00)
+		{
+			writed_address += 0x01
+		}
+	}
+	
+	return writed_address
+}
+
+//? Sets the status Completed for all achievement IDs.
+function void BlueSpheresTimer.Achievements.cheat()
+{
+	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
+	{
+		BlueSpheresTimer.Achievements.setValue(i, 0xfa2)
+	}
+}

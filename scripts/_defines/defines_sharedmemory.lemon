@@ -1,0 +1,24 @@
+// Achievements
+// Addresses - from 0x8a1016 to 
+define u32 bluespheres.achievementsDataAddress	= 0x8a1000	// Address in Shared Memory save data's to save achievements
+define u8 bluespheres.achievementsDataSize	= 0x04	// Size of saved data in bytes 
+
+// Records
+// Addresses - from 0x8c2162 to 0x8c55e8
+// D.A Garden active - from 0x8d2162 to 0x8d55e8
+define u32 bluespheres.recordDataAddress	= 0x8c1000	// Address in Shared Memory save data's to save records
+define u8 bluespheres.recordDataSize	= 0x04	// Size of saved data in bytes
+
+// Emeralds
+// Addresses - from 0x8e1016 to 0x8e10b0
+// D.A Garden active - from 0x8e1116 to 0x8e11b0
+define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memory save data's to save emeralds
+define u8 bluespheres.emeraldsDataSize	= 0x04	// Size of saved data in bytes
+
+// Events 
+define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
+
+// Data
+define u32 bluespheres.achievementsUnlocked	= 0x8e11d8	// Set to 0x01 when
+define u32 bluespheres.stage8Unlocked	= 0x8e11ee	// Set to 0x01 when 7 Chaos emeralds are received
+define u32 bluespheres.skUnlocked	= 0x8e11fe	// Set to 0x01 when the 8 Chaos emerald is received

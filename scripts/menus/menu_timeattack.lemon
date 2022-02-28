@@ -1,0 +1,165 @@
+function void BlueSpheresTimer.Menu.timeattack.setup()
+{
+	// Screen fades
+	if (bluespheres.timeattack.active)
+		SetPaletteToWhite()
+	else
+		FadeOutScreenBlocking()
+		
+	// Global variables setup
+	bluespheres.buttons.setup = 0x02
+	
+	// Menu variables
+	s32 menu.headlinecounter
+	
+	// Play Blue Sphere game music
+	playMusic(0x28) 
+	
+	// Sounds
+	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+		playMusic(0xac) // Play Continue song when 8 stage unlocked
+	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+		playMusic(0xac) // Play Continue song when S&K stages unlocked
+	
+	// VRAM stuff
+	waitForNextFrame()
+	fn0011ca()
+	fn04c8e4()
+	
+	// Main loop
+	while (true)
+	{
+		FadeInFromWhite()
+		waitForNextFrame()
+		
+		// Button selection
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT))) 
+		{
+			playSound(0x5b)
+			if (control.pad1.pressed & CONTROL_LEFT)
+			{
+				if (bluespheres.timeattack.buttonselected != 0x00)
+					--bluespheres.timeattack.buttonselected
+				else 
+					bluespheres.timeattack.buttonselected = bluespheres.buttons.setup
+			}
+			else if (control.pad1.pressed & CONTROL_RIGHT)
+			{
+				if (bluespheres.timeattack.buttonselected < bluespheres.buttons.setup)
+					++bluespheres.timeattack.buttonselected
+				else
+					bluespheres.timeattack.buttonselected = 0x00 
+			}
+		}
+		
+		// Let's make the headline run across the screen from right to left
+		++menu.headlinecounter
+		if (menu.headlinecounter > 216)
+			menu.headlinecounter = 0x00
+		
+		// Switch stages
+		u8 maxStages = BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x07 : 0x06
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))) 
+		{
+			playSound(0x5b)
+			if (control.pad1.pressed & CONTROL_UP)
+			{
+				if (bluespheres.timeattack.levelselected < maxStages)
+					++bluespheres.timeattack.levelselected 
+				else
+					bluespheres.timeattack.levelselected = 0x00 
+			}
+			if (control.pad1.pressed & CONTROL_DOWN)
+			{
+				if (bluespheres.timeattack.levelselected != 0x00)
+					--bluespheres.timeattack.levelselected
+				else 
+					bluespheres.timeattack.levelselected = maxStages
+			}
+		}
+		
+		// Change the character
+		u8 maxCharacters = Mods.isModActive("Extra Slot Mighty") ? 0x03 : 0x02
+		if (bluespheres.popup.show == 0x00 && Input.buttonPressed(BUTTON_Y))
+		{
+			playSound(0x5b)
+			++bluespheres.timeattack.characterselected
+			
+			if (bluespheres.timeattack.characterselected > maxCharacters)
+				bluespheres.timeattack.characterselected = 0x00
+		}
+		
+		// Change the levels layout from S3 to SK
+		if (bluespheres.popup.show == 0x00 && Input.buttonPressed(BUTTON_X))
+		{
+			if (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+			{
+				playSound(0x5b)
+				++bluespheres.timeattack.layoutselected
+				if (bluespheres.timeattack.layoutselected > 0x01)
+					bluespheres.timeattack.layoutselected = 0x00
+			}
+			else
+			{
+				playSound(0x7b)
+			}
+		}
+		
+		// Perform the action of selected button when start pressed
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_START)) 
+		{
+			if (bluespheres.timeattack.buttonselected == 0x00) 
+			{
+				playSound(0x63)
+				bluespheres.timeattack.active = 0x00
+				BlueSpheresTimer.EntryFunctions.Menu.options()
+			}
+			if (bluespheres.timeattack.buttonselected == 0x01) 
+			{
+				playSound(0xaf)
+				bluespheres.timeattack.active = 0x01
+				BlueSpheresTimer.EntryFunctions.startSpecialStage()
+			}
+			if (bluespheres.timeattack.buttonselected == 0x02) 
+			{
+				if (BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
+				{
+					playSound(0x63)
+					bluespheres.timeattack.active = 0x00
+					BlueSpheresTimer.EntryFunctions.Menu.achievements()
+				}
+				else
+				{
+					playSound(0x7b)
+				}
+			}
+		}
+		
+		// Unlocks check
+		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+			bluespheres.popup.show = 0x01
+		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+			bluespheres.popup.show = 0x01
+		
+		// Checking the activity of achievements
+		BlueSpheresTimer.Achievements.setup()
+		
+		// Screen items
+		BlueSpheresTimer.Menu.timeattack.popups()
+		BlueSpheresTimer.Menu.timeattack.headline(menu.headlinecounter)
+		BlueSpheresTimer.Menu.timeattack.items()
+		BlueSpheresTimer.Menu.timeattack.background()
+		
+		// Go back to the main menu
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_B)) 
+		{
+			playSound(0xad)
+			FadeOutScreenBlocking()
+			
+			Game.returnToMainMenu()
+		}
+		
+		// Clear sprites every frame
+		Renderer.resetSprites() 
+	}
+}

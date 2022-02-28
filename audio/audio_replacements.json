@@ -1,0 +1,6 @@
+{
+	// Pause menu shutup
+	"shutup": { "File": "music/PauseMenu.ogg", "Type": "Jingle" },
+	// Menu woosh
+	"menuwoosh":	{ "File": "sounds/MenuWoosh.ogg", "Type": "Sound"}
+}

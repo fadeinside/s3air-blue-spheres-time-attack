@@ -1,0 +1,53 @@
+{
+	"Metadata":
+	{
+		"Name": "Blue Sphere Time Attack",
+		"Author": "FadeInside" ,
+		"Description": "Adds timer on Special stages and Blue Sphere game. Including time limit (can be configurable) and bonuses on the results screen of special stages. How fast can you complete the stage?",
+		"URL": "https://gamebanana.com/members/2008527",
+		"ModVersion": "1.0.0",
+		"GameVersion": "21.09.28.0"
+	},
+	"Settings":
+	{
+		"List":
+		[
+			{
+				"Category": "",
+				"InternalName": "SETTING_BS_TIME_ATTACK_MODE",
+				"DisplayName": "Time Attack:",
+				"Variable": "SETTING_BS_TIME_ATTACK_MODE",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Disabled (Default)",
+					"1": "Enable"
+				}
+			}, 
+			{
+				"Category": "",
+				"InternalName": "SETTING_BS_ACHIEVEMENTS_ENABLE",
+				"DisplayName": "Achievement:",
+				"Variable": "SETTING_BS_ACHIEVEMENTS_ENABLE",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Disabled (Default)",
+					"1": "Enable"
+				}
+			}, 
+			{
+				"Category": "",
+				"InternalName": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
+				"DisplayName": "Time Bonuses:",
+				"Variable": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Disabled (Default)",
+					"1": "Enable"
+				}
+			}  
+		] 
+	}
+}

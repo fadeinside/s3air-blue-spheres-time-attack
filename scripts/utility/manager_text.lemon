@@ -1,0 +1,138 @@
+//? Simplified BlueSpheresTimer.TextManager.DrawText() function without configurable transparency.
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font)
+{
+	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, text, font, 255)
+}
+
+//? The full text rendering code with text alignment.
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font, u8 alpha)
+{
+	s32 character_space
+	for (s32 i = 0x00; i < strlen(text); i++)
+	{
+		u8 character = getchar(text, i)
+		
+		if (character >= getChar("a") && character <= getChar("z"))
+			character -= 32
+		
+		if (character == getChar("^"))
+			 character_space = 0x00
+		
+		u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
+		if (Renderer.hasCustomSprite(key))
+		{
+			if !(align == 0x01 && (character == getChar(".") || character == getChar(",")))
+				character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
+		}
+	}
+	
+	s32 left
+	if (align == 0x00)
+		left = character_space
+	else if (align == 0x01)
+		left = character_space / 0x02
+	else if (align == 0x02)
+		left = 0x00
+	
+	BlueSpheresTimer.TextManager.basic(px - left, py, renderQueue, text, font, alpha)
+}
+
+//? The basic code for rendering text.
+function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u32 renderQueue, u64 text, u8 font, u8 alpha)
+{
+	s32 character_space
+	for (s32 i = 0x00; i < strlen(text); i++)
+	{
+		s32 character = getchar(text, i)
+		
+		if (character >= getChar("a") && character <= getChar("z"))
+			character -= 32
+			
+		if (character == getChar("^"))
+		{
+			character_space = 0x00
+			py += 16
+		}
+		
+		BlueSpheresTimer.TextManager.renderCharacter(px, py, renderQueue, character, character_space, text, font, alpha) 
+		character_space += BlueSpheresTimer.TextManager.getSpacing(font, character) 
+	}
+}
+
+//? Single character rendering function. Some optimizations are also used here to fasted rendering.
+function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u32 renderQueue, s32 character, s32 character_space, u64 text, u8 font, u8 alpha) 
+{
+	if ((px + character_space) > getScreenWidth() || (px + character_space) < -0x12)
+		return
+	if (py > getScreenHeight() || py < 0x00)
+		return
+	
+	u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
+	if (Renderer.hasCustomSprite(key))
+		Renderer.drawCustomSprite(key, px + character_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+}
+
+//? Returns the font name.
+function u64 BlueSpheresTimer.TextManager.getFont(u8 font)
+{
+	u64 font_name
+	
+	if (font == 0x00) 
+		font_name = "font.headline"
+	else if (font == 0x01) 
+		font_name = "font.regular"
+	else if (font == 0x02) 
+		font_name = "font.thin"
+		
+	return font_name
+}
+
+//? Returns the width of the character of the specified parameters.
+function s32 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
+{
+	s32 character_space
+	
+	if (font == 0x00) // Headline font
+	{
+		if (character == getChar("A") || character == getChar("Q"))
+			character_space = 18
+		else if (character == getChar("M"))
+			character_space = 17
+		else if (character == getChar("B") || character == getChar("E") || character == getChar("F") || character == getChar("H") || character == getChar("K") || character == getChar("N") || character == getChar("O") || character == getChar("X"))
+			character_space = 16
+		else if (character == getChar("C") || character == getChar("D") || character == getChar("G") || character == getChar("I") || character == getChar("P") || character == getChar("R") || character == getChar("T") || character == getChar("W") || character == getChar("Y") || character == getChar(":") || character == getChar("'")  || character == getChar("`") || character == getChar("!") || character == getChar("?"))
+			character_space = 15
+		else
+			character_space = 14
+	}
+	else if (font == 0x01) // Regular font
+	{
+		if (character == getChar("*"))
+			character_space = 15
+		else if (character == getChar("M") || character == getChar("W"))
+			character_space = 11
+		else if (character == getChar("N"))
+			character_space = 10
+		else if (character == getChar("K") || character == getChar("Q") || character == getChar("X") || character == getChar("Z"))
+			character_space = 9
+		else
+			character_space = 8 
+	} 
+	else if (font == 0x02) // Thin font
+	{
+		if (character == getChar("*"))
+			character_space = 15
+		else if (character == getChar("'") || character == getChar("`"))
+			character_space = 6
+		else
+			character_space = 8 
+	}
+	
+	return character_space
+}
+
+//? Simplified view of the getchar() function without the second parameter.
+function u8 getChar(u64 character)
+{
+	return getchar(character, 0x00)
+}

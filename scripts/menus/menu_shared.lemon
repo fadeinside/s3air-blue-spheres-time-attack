@@ -1,0 +1,96 @@
+function void BlueSpheresTimer.Menu.shared.setup()
+{
+	// Screen fade
+	SetPaletteToWhite()
+	
+	// Global variables setup
+	bluespheres.buttons.setup = 0x01
+	bluespheres.shared.buttonselected = 0x00
+	
+	// Menu variables
+	s32 menu.headlinecounter
+	u8 menu.headline.stopblink
+	
+	// Sounds
+	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
+		playMusic(0xac) // Play Continue song when a new record
+	
+	// VRAM stuff
+	waitForNextFrame()
+	fn0011ca()
+	fn04c8e4()
+	
+	// Main loop
+	while (true)
+	{
+		FadeInFromWhite()
+		waitForNextFrame()
+		
+		// Button selection
+		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+		{
+			playSound(0x5b)
+			if (control.pad1.pressed & CONTROL_UP)
+			{
+				if (bluespheres.shared.buttonselected != 0x00)
+					--bluespheres.shared.buttonselected
+				else 
+					bluespheres.shared.buttonselected = bluespheres.buttons.setup
+			}
+			else if (control.pad1.pressed & CONTROL_DOWN)
+			{
+				if (bluespheres.shared.buttonselected < bluespheres.buttons.setup)
+					++bluespheres.shared.buttonselected
+				else
+					bluespheres.shared.buttonselected = 0x00 
+			}
+		}
+		
+		// Let's make the headline run across the screen from right to left
+		++menu.headlinecounter
+		s32 offset = (bluespheres.timer.currentTime >= 100000) ? 424 : 200
+		if (menu.headlinecounter > offset)
+			menu.headlinecounter = 0x00
+		
+		// Stop flashing the header
+		if (menu.headlinecounter == 200)
+			menu.headline.stopblink = 0x01
+			
+		// Start the selected stage
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			if (bluespheres.shared.buttonselected == 0x00) 
+			{
+				playSound(0xaf)
+				bluespheres.timeattack.active = 0x01 
+				BlueSpheresTimer.EntryFunctions.startSpecialStage()
+			}
+			if (bluespheres.shared.buttonselected == 0x01) 
+			{
+				playSound(0x63)
+				bluespheres.timeattack.active = 0x00
+				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+			}
+		}
+		
+		// Checking the activity of achievements
+		BlueSpheresTimer.Achievements.setup()
+		
+		// Screen items
+		BlueSpheresTimer.Menu.shared.headline(menu.headlinecounter, menu.headline.stopblink)
+		BlueSpheresTimer.Menu.shared.items()
+		
+		BlueSpheresTimer.Menu.timeattack.background()
+		
+		// Go back to the time attack menu
+		if (control.pad1.pressed & CONTROL_B)
+		{
+			playSound(0xad)
+			bluespheres.timeattack.active = 0x00
+			BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+		}
+		
+		// Clear sprites every frame
+		Renderer.resetSprites() 
+	}
+}

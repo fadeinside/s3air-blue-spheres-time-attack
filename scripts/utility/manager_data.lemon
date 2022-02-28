@@ -1,0 +1,43 @@
+//? Returns the dunamic address of the specified address 
+function u32 BlueSpheresTimer.Data.getAddress(u32 address)
+{
+	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x100 : 0x00
+	
+	return address + mods
+}
+
+//? Returns the value of the specified address.
+function u8 BlueSpheresTimer.Data.getValue(u32 address)
+{
+	// Achievements are unlocked globally, and do not depend on D.A Garden
+	if (address != bluespheres.achievementsUnlocked)
+	{
+		u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
+		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+	
+		return u8[addressOffset]
+	}
+	else
+	{
+		System.loadPersistentData(address, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", address), 0x04)
+	
+		return u8[address]
+	}
+}
+
+//? Sets a new value for the specified address.
+function void BlueSpheresTimer.Data.setValue(u32 address, u8 value) 
+{
+	// Achievements are unlocked globally, and do not depend on D.A Garden
+	if (address != bluespheres.achievementsUnlocked)
+	{
+		u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
+		u8[addressOffset] = value
+		System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+	}
+	else
+	{
+		u8[address] = value
+		System.savePersistentData(address, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", address), 0x04)
+	}
+}

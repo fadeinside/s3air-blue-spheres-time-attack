@@ -1,0 +1,92 @@
+function void BlueSpheresTimer.Menu.options.popups()
+{
+	if (bluespheres.popup.show == 0x00)
+		return
+		
+	u64 accept_text = "Reset"
+	u64 deny_text = "Cancel"
+	
+	if (bluespheres.options.buttonselected == 0x00)
+	{
+		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "", "", deny_text, accept_text)
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			if (bluespheres.popup.buttonselected == 0x00)
+				bluespheres.popup.show = 0x00
+			
+			if (bluespheres.popup.buttonselected == 0x01) 
+			{
+				playSound(0x68)
+				BlueSpheresTimer.Records.reset()
+				
+				bluespheres.popup.show = 0x00
+				bluespheres.popup.buttonselected = 0x00
+			}
+		}
+	}
+	else if (bluespheres.options.buttonselected == 0x01)
+	{
+		// A reset is needed here, because if there is no reset, then the saved values in the variables will activate BlueSpheresTimer.achievementsSetup() again
+		bluespheres.blue_collected = 0x00
+		BlueSpheresTimer.resetTimer()
+		
+		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "", "", deny_text, accept_text) 
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			if (bluespheres.popup.buttonselected == 0x00)
+				bluespheres.popup.show = 0x00
+			
+			if (bluespheres.popup.buttonselected == 0x01) 
+			{
+				playSound(0x68)
+				BlueSpheresTimer.Achievements.reset()
+				
+				bluespheres.popup.show = 0x00
+				bluespheres.popup.buttonselected = 0x00
+			}
+		}
+	}
+}
+
+function void BlueSpheresTimer.Menu.options.headline(s32 counter)
+{
+	s32 px = getScreenWidth() / 0x02 - 185
+	
+	for (s32 i = 0x00; i < 0x08; i++)
+		BlueSpheresTimer.TextManager.drawText(px + (185 * i) - counter * 0x02, 25, 0xf000, 0x01, "OPTIONS!", 0x00)
+}
+
+function void BlueSpheresTimer.Menu.options.items()
+{
+	s32 px = getScreenWidth() / 0x02
+	s32 py = 46
+	
+	BlueSpheresTimer.Menu.options.items.menu(px, py)
+	BlueSpheresTimer.Menu.options.items.list(px, py)
+}
+
+function void BlueSpheresTimer.Menu.options.items.menu(s32 px, s32 py)
+{
+	u64 button_back = (bluespheres.options.buttonselected == bluespheres.buttons.setup) ? "* Back *" : "Back"
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+}
+
+function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
+{
+	BlueSpheresTimer.Menu.options.items.list.data(px, py)
+}
+
+function void BlueSpheresTimer.Menu.options.items.list.data(s32 px, s32 py)
+{
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Data", 0x01)
+	
+	py += 16
+	u64 button_reset = (bluespheres.options.buttonselected == 0x00) ? "* Reset all records *" : "Reset all records"
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_reset, 0x01, (BlueSpheresTimer.Records.writed() > 0x00) ? 0xff : 0x90)
+	
+	py += 16
+	u64 button_achievements = (bluespheres.options.buttonselected == 0x01) ? "* Reset all Achievements *" : "Reset all Achievements"
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_achievements, 0x01, (BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
+} 

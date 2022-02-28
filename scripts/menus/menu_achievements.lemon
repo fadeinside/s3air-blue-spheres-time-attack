@@ -1,0 +1,87 @@
+function void BlueSpheresTimer.Menu.achievements.setup()
+{
+	// Screen fades
+	FadeOutScreenBlocking()
+		
+	// Global variables setup
+	bluespheres.buttons.setup = bluespheres.achievements.total + 0x01
+	bluespheres.achievements.buttonselected = bluespheres.buttons.setup
+	
+	// Menu variables
+	s32 menu.headlinecounter
+	
+	// VRAM stuff
+	waitForNextFrame()
+	fn0011ca()
+	fn04c8e4()
+	
+	// Main loop
+	while (true)
+	{
+		FadeInFromWhite()
+		waitForNextFrame()
+		
+		// Button selection
+		if (bluespheres.popup.show == 0x00 && control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+		{
+			playSound(0x5b)
+			if (control.pad1.pressed & CONTROL_UP)
+			{
+				if (bluespheres.achievements.buttonselected != 0x00)
+					--bluespheres.achievements.buttonselected
+				else 
+					bluespheres.achievements.buttonselected = bluespheres.buttons.setup
+			}
+			else if (control.pad1.pressed & CONTROL_DOWN)
+			{
+				if (bluespheres.achievements.buttonselected < bluespheres.buttons.setup)
+					++bluespheres.achievements.buttonselected
+				else
+					bluespheres.achievements.buttonselected = 0x00 
+			}
+		}
+		
+		// Let's make the headline run across the screen from right to left
+		++menu.headlinecounter
+		if (menu.headlinecounter > 243)
+			menu.headlinecounter = 0x00
+		
+		// Perform the action of selected button when start pressed 
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_START))
+		{
+			for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
+			{
+				if (bluespheres.achievements.buttonselected == i)
+				{
+					playSound(0x63)
+					bluespheres.popup.show = 0x01
+					waitForNextFrame()
+				}
+			}
+			if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup) 
+			{
+				playSound(0x63)
+				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+			}
+		}
+		
+		// Checking the activity of achievements
+		BlueSpheresTimer.Achievements.setup()
+		
+		// Screen items
+		BlueSpheresTimer.Menu.achievements.popups()
+		BlueSpheresTimer.Menu.achievements.headline(menu.headlinecounter)
+		BlueSpheresTimer.Menu.achievements.items()
+		BlueSpheresTimer.Menu.timeattack.background()
+		
+		// Go back to the time attack menu
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_B))
+		{
+			playSound(0xad)
+			BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+		}
+		
+		// Clear sprites every frame
+		Renderer.resetSprites() 
+	}
+}

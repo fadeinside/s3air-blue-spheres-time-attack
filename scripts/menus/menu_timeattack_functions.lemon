@@ -1,0 +1,312 @@
+function void BlueSpheresTimer.Menu.timeattack.popups()
+{
+	if (bluespheres.popup.show == 0x00)
+		return
+		
+	u64 accept_text = "Okay"
+	
+	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+	{
+		BlueSpheresTimer.Menu.popup.show("now unlocked!", "Secret 8 stage", "", "", accept_text)
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			BlueSpheresTimer.Data.setValue(bluespheres.stage8Unlocked, 0x01)
+			
+			bluespheres.popup.show = 0x00
+		}
+	}
+	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+	{
+		BlueSpheresTimer.Menu.popup.show("now unlocked!", "`Sonic and Knuckles` stages", "", "", accept_text)
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			BlueSpheresTimer.Data.setValue(bluespheres.skUnlocked, 0x01)
+			BlueSpheresTimer.Emeralds.replaceAll(0x02)
+			
+			bluespheres.popup.show = 0x00
+		}
+	}
+}
+
+
+function void BlueSpheresTimer.Menu.timeattack.background()
+{
+	// SK Blue Sphere logo
+	Renderer.drawCustomSprite("sklogo", getScreenWidth() / 0x02, 40, 0x40, 0x00, 0xF000)
+	
+	// Copyright
+	Renderer.drawCustomSprite("title_screen_cr", getScreenWidth() - 92, 206, 0x40, 0x00, 0xf000)
+	
+	// Draw a gradient so that the objects are more clearly visible on the background
+	for (s32 i = 0x00; i < 0x02 + (getScreenWidth() / 0x10); i++)
+		Renderer.drawCustomSprite("background_menu", 0x10 * i, 0x00, 0x00, 0x40, 0xf000)
+	
+	// Cool details with active Mania BS
+	if (Mods.isModActive("Mania-Styled Blue Spheres"))
+	{
+		// Timer for animate characters
+		s32 timer = global.framecounter >> 0x02
+		
+		u64 key // Get characters sprites
+		// Ultimate Mighty by Sotaknuck, https://gamebanana.com/mods/54268
+		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || bluespheres.timeattack.characterselected == 0x03) 
+		{
+			key = stringformat("CharacterMighty_walk_%d", timer % 0x0c)
+		}
+		// Ray the Flying Squirrel by campbellsonic, https://gamebanana.com/mods/54261
+		else if (bluespheres.timeattack.characterselected == 0x01 && Mods.isModActive("Ray the Flying Squirrel"))
+		{
+			key = stringformat("CharacterRay_walk_%d", timer % 0x0c)
+			u64 key2 = stringformat("CharacterRay_tail_%d", timer % 0x0b)
+			Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+		}
+		else if (bluespheres.timeattack.characterselected == 0x00)
+		{
+			key = stringformat("CharacterSonic_walk_%d", timer % 0x0c)
+		}
+		else if (bluespheres.timeattack.characterselected == 0x01)
+		{
+			key = stringformat("CharacterMiles_walk_%d", timer % 0x0c)
+			u64 key2 = stringformat("CharacterMiles_tails_%d", timer % 0x15)
+			Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+		}
+		else if (bluespheres.timeattack.characterselected == 0x02)
+		{
+			key = stringformat("CharacterKnuckles_walk_%d", timer % 0x0c)
+		}
+		
+		// Render character
+		Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+		
+		// Render character shadow
+		BlueSpheres.renderCustomCharacterShadows()
+		
+		// Some things to make the ground animate
+		u8[0xffffe433] = 0x00
+		bluespheres.direction = 0x40
+		bluespheres.movement_speed = 1100
+		
+		D2.s16 = bluespheres.movement_speed
+		D0.u8 = bluespheres.direction
+	
+		LookupSinCos()
+		D0.s32 = s32(D0.s16) * D2.s16
+		D1.s32 = s32(D1.s16) * D2.s16
+		bluespheres.position.x -= D0 >> 0x10
+		bluespheres.position.y -= D1 >> 0x10
+	}
+	else
+	{
+		// If the mod is inactive, then just turn off the ground so that it looks so boring
+		bluespheres.position.x = 1024
+		bluespheres.position.y = 1024
+		bluespheres.direction = 96
+	}
+	
+	// Load ground colors
+	A1 = u32[0x0088ba + bluespheres.timeattack.levelselected * 0x10]
+	if (bluespheres.timeattack.layoutselected)
+		A1 += 0x0130
+	
+	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+		A1 += 0x2cb80e
+	
+	u32[0xffffe446] = A1
+	A2 = 0xfffffc80
+	
+	copyMemory(A2 + 0x70, A1, 0x10)
+	
+	// Render ground
+	BlueSpheres.renderCustomGround() 
+}
+
+function void BlueSpheresTimer.Menu.timeattack.headline(s32 counter)
+{
+	s32 px = getScreenWidth() / 0x02 - 216
+	
+	for (s32 i = 0x00; i < 0x06; i++)
+		BlueSpheresTimer.TextManager.drawText(px + (216 * i) - counter * 0x02, 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items()
+{
+	s32 px = getScreenWidth() / 0x02
+	s32 py = 46
+	
+	BlueSpheresTimer.Menu.timeattack.items.menu(px, py)
+	
+	BlueSpheresTimer.Menu.timeattack.items.total(px, py)
+	BlueSpheresTimer.Menu.timeattack.items.recordslist(px, py)
+	
+	BlueSpheresTimer.Menu.timeattack.items.playerselect(px, py)
+	BlueSpheresTimer.Menu.timeattack.items.emeralds(px, py) 
+	
+	BlueSpheresTimer.Menu.timeattack.items.levelselect(px, py)
+	BlueSpheresTimer.Menu.timeattack.items.levelslayout(px, py)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
+{
+	px -= 128
+	u64 button_options = (bluespheres.timeattack.buttonselected == 0x00) ? "* Options *" : "Options"
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_options, 0x01)
+	
+	px += 128
+	u64 button_start = (bluespheres.timeattack.buttonselected == 0x01) ? "* Start *" : "Start"
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_start, 0x01)
+	
+	px += 128
+	u64 button_achievements = (bluespheres.timeattack.buttonselected == 0x02) ? "* Achievements *" : "Achievements" 
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01, BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked) ? 0xff : 0x90)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
+{
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Total", 0x01) 
+	
+	s32 minutes_total
+	s32 seconds_total
+	s32 centiseconds_total
+	
+	for (u8 i = 0x00; i <= 0x07; i++)
+	{
+		for (u8 x = 0x01; x <= 0x04; x++) 
+		{
+			u32 recordplace = 0x1024 * x
+			u32 character = 0x128 * (bluespheres.timeattack.characterselected + 0x01)
+			u32 stage = 0x16 * (i + 0x01)
+			u32 layout = bluespheres.timeattack.layoutselected * 0x08
+			u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
+			
+			u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+			
+			System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), bluespheres.recordDataSize)
+			
+			s32 minutes = s32[recordOffset] / 10000
+			s32 seconds = (s32[recordOffset] - (minutes * 10000)) / 100
+			s32 centiseconds = (s32[recordOffset] - (minutes * 10000)) - (seconds * 100)
+			
+			//debugLog(stringformat("Loaded RAM 0x%06x: %s", recordOffset, BlueSpheresTimer.getFormatTime(minutes, seconds, centiseconds))) 
+			
+			if (s32[recordOffset] == 0)
+			{
+				minutes_total += 10
+				//seconds_total += 00
+				//centiseconds_total += 00
+			}
+			else 
+			{
+				minutes_total += minutes
+				seconds_total += seconds
+				centiseconds_total += centiseconds
+			}
+		}
+	}
+	
+	seconds_total += centiseconds_total / 60
+	minutes_total += seconds_total / 60
+	centiseconds_total %= 99
+	seconds_total %= 60
+	
+	py += 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", BlueSpheresTimer.getFormatTime(minutes_total, seconds_total, centiseconds_total)), 0x02)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
+{
+	py += 44
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Records", 0x01)
+	
+	for (u8 i = 0x01; i <= 0x04; i++)
+	{
+		py += 16
+		u64 name = (i == 0x01) ? "st" : ((i == 0x02) ? "nd" : ((i == 0x03) ? "rd" : ((i == 0x04) ? "th" : "")))
+		BlueSpheresTimer.Menu.timeattack.items.table(px, py, 0xf000, 0x02, stringformat("%d%s", i, name), BlueSpheresTimer.Records.getRecordTime(i))
+	}
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py)
+{
+	px -= 128
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Character", 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py + 16, 0xf000, 0x01, "*    *", 0x02)
+	
+	u64 key
+	if (bluespheres.timeattack.characterselected == 0x00)
+		key = "continue_icon_sonic"
+	else if (bluespheres.timeattack.characterselected == 0x01)
+		key = "continue_icon_tails"
+	else if (bluespheres.timeattack.characterselected == 0x02)
+		key = "continue_icon_knuckles"
+	else if (bluespheres.timeattack.characterselected == 0x03)
+		key = "continue_icon_mighty"
+	
+	Renderer.drawCustomSprite(key, px, py + 28, 0x40, 0x00, 0xf000)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
+{
+	px -= 128
+	py += 44
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Emeralds", 0x01)
+	
+	px -= BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 26 : 22
+	py += 16
+	for (u8 x = 0x00; x < 0x04; x++)
+	{
+		s32 width = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 16 : 14
+		Renderer.drawCustomSprite(BlueSpheresTimer.Emeralds.getEmerald(x), px + (width * x), py, 0x00, 0x40, 0xf000)
+		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x",BlueSpheresTimer.Emeralds.getAddress(x), BlueSpheresTimer.Emeralds.getStatus(x)))
+	}
+	
+	if (!BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+		px += 7
+	
+	py += 15
+	for (u8 y = 0x00; y < (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x04 : 0x03); y++)
+	{
+		s32 width = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 16 : 14
+		Renderer.drawCustomSprite(BlueSpheresTimer.Emeralds.getEmerald(y + 0x04), px + (width * y), py, 0x00, 0x40, 0xf000)
+		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x",BlueSpheresTimer.Emeralds.getAddress(y + 0x04), BlueSpheresTimer.Emeralds.getStatus(y + 0x04)))
+	}
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.levelselect(s32 px, s32 py)
+{
+	px += 128
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Level", 0x01)
+	
+	py += 16
+	if (bluespheres.timeattack.levelselected == 0x07)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "* Secret *", 0x01)
+	else
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* 0%d *", bluespheres.timeattack.levelselected + 0x01), 0x02)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py)
+{
+	px += 128
+	u8 alpha = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 0xff : 0x90
+	
+	py +=  44
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Levels layout", 0x01, alpha)
+	
+	py += 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? "SK" : "S3"), 0x01, alpha)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 renderQueue, u8 align, u64 text, s32 data)
+{
+	px -= 12
+	BlueSpheresTimer.TextManager.drawText(px - 38, py, renderQueue, align, text, 0x01)
+	
+	if (data == 0x00)
+	{
+		BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, "--'--`--", 0x02)
+		return
+	}
+	
+	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, BlueSpheresTimer.getFormatTime(data), 0x02)
+}
