@@ -9,7 +9,7 @@ function u32 BlueSpheresTimer.Data.getAddress(u32 address)
 //? Returns the value of the specified address.
 function u8 BlueSpheresTimer.Data.getValue(u32 address)
 {
-	// Achievements are unlocked globally, and do not depend on D.A Garden
+	// Achievements are unlocked globally, and do not depend on D.A Garden or something else
 	if (address != bluespheres.achievementsUnlocked)
 	{
 		u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
@@ -28,7 +28,7 @@ function u8 BlueSpheresTimer.Data.getValue(u32 address)
 //? Sets a new value for the specified address.
 function void BlueSpheresTimer.Data.setValue(u32 address, u8 value)
 {
-	// Achievements are unlocked globally, and do not depend on D.A Garden
+	// Achievements are unlocked globally, and do not depend on D.A Garden or something else
 	if (address != bluespheres.achievementsUnlocked)
 	{
 		u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)

@@ -18,10 +18,11 @@ function void BlueSpheresTimer.resetTimer()
 //? Updates the timer counter, and determines when the time is up, when unlimited time is not active.
 function void BlueSpheresTimer.updateTimer()
 {
+	// Ignore for Main Special stages if this disabled
 	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && bluespheres.timeattack.active == 0x00)
 		return
 	
-	// Ignore Rolling Demo or BS Game
+	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
 	

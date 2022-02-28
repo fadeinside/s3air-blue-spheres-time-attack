@@ -28,6 +28,19 @@ function void BlueSpheresTimer.Menu.timeattack.popups()
 			bluespheres.popup.show = 0x00
 		}
 	}
+	/*
+	if ()
+	{
+		BlueSpheresTimer.Menu.popup.show("now unlocked!", "Achievements", "", "", accept_text)
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			BlueSpheresTimer.Data.setValue(bluespheres.achievementsUnlocked, 0x01)
+			
+			bluespheres.popup.show = 0x00
+		}
+	}
+	*/
 }
 
 
@@ -81,6 +94,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 		Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
 		
 		// Render character shadow
+		global.characters = 0x00
 		BlueSpheres.renderCustomCharacterShadows()
 		
 		// Some things to make the ground animate

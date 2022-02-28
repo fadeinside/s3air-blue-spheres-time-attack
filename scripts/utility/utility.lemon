@@ -3,9 +3,9 @@
 function void GiantRing.BaseUpdate()
 {
 	// Targets:
-	//  - 0x06169a	-> objA0.base_state = 0x00  -> Initialization
-	//  - 0x0616e6	-> objA0.base_state = 0x02  -> Regular update
-	//  - 0x0617b8	-> objA0.base_state = 0x04  -> Character jumped in
+	// - 0x06169a	-> objA0.base_state = 0x00  -> Initialization
+	// - 0x0616e6	-> objA0.base_state = 0x02  -> Regular update
+	// - 0x0617b8	-> objA0.base_state = 0x04  -> Character jumped in
 	
 	if (objA0.base_state == 0x04)
 		BlueSpheresTimer.resetTimer()
@@ -29,20 +29,7 @@ function void loadupDataSelect()
 function void BlueSpheres.OnBlueSphereCollected()
 {
 	++bluespheres.blue_collected
-	
-	if (BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-	{
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) + 0x01)
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) + 0x01)
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) + 0x01)
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) + 0x01)
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) + 0x01)
-	}
+	BlueSpheresTimer.Achievements.blueCollectedChecks()
 	
 	base.BlueSpheres.OnBlueSphereCollected()
 }
@@ -51,10 +38,11 @@ function void BlueSpheres.OnBlueSphereCollected()
 //# address-hook(0x009ea0) end(0x009eba)
 function void fn009ea0()
 {
-	base.fn009ea0()
-	//bluespheres.rings_remaining = 0x00
-	//bluespheres.blue_remaining = 1
 	bluespheres.blue_collected = 0x00
+	bluespheres.rings_remaining = 0x00
+	//bluespheres.blue_remaining = 0x01
+	//return
+	base.fn009ea0()
 }
 
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
@@ -87,7 +75,7 @@ function void fn009b62()
 		zeroMemory(0xfffff100, 0x400)
 		++bluespheres.timeOver.timeout
 		
-		// Make Sonic slow down
+		// Make character slow down
 		D0.u8 = bluespheres.direction
 		LookupSinCos()
 		D2.u16 = bluespheres.position.x
@@ -148,7 +136,7 @@ function void fn009b62()
 			// Update records
 			BlueSpheresTimer.Records.update()
 			
-			// Make Sonic slow down
+			// Make character slow down
 			D0.u8 = bluespheres.direction
 			LookupSinCos()
 			D2.u16 = bluespheres.position.x
@@ -167,7 +155,7 @@ function void fn009b62()
 			u8[0xffffe44d] = 0x78
 			
 			// Skip the emerald if it has already been received
-			if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x01 || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x03)
+			if ((BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x01 || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x03) || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && !bluespheres.timeattack.layoutselected) 
 			{
 				// Go to the shared menu
 				global.game_mode = 0x87
@@ -417,7 +405,7 @@ function void UpdateGamePause()
 //# address-hook(0x02e3da) end(0x02e40e)
 function void fn02e3da()
 {
-	if (!SETTING_BS_TIME_BONUSES_ON_SPECIALS)
+	if !(SETTING_BS_TIME_BONUSES_ON_SPECIALS)
 	{
 		base.fn02e3da()
 		return
@@ -485,7 +473,7 @@ function void fn02e3da()
 //# address-hook(0x02e410) end(0x02e4d2)
 function void fn02e410()
 {
-	if (!SETTING_BS_TIME_BONUSES_ON_SPECIALS)
+	if !(SETTING_BS_TIME_BONUSES_ON_SPECIALS)
 	{
 		base.fn02e410()
 		return

@@ -1,9 +1,10 @@
 function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 {
-	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && bluespheres.timeattack.active == 0x00)
+	// Ignore for Main Special stages if this disabled
+	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
 		return
 	
-	// Ignore Rolling Demo or BS Game
+	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
 	
@@ -19,7 +20,7 @@ function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 	s32 centiseconds = (bluespheres.timer.currentTime - (minutes * 10000)) - (seconds * 100)
 	
 	py -= 0x06
-	if (Game.getSetting(SETTING_EXTENDED_HUD))
+	if (Game.getSetting(SETTING_EXTENDED_HUD) || bluespheres.timeattack.active) // || Use extended HUD in Time Attack mode
 	{
 		px -= 0x13
 		HUD.drawNumber("hud_digit_%d", minutes / 0x0a, px - 0x10, py, renderQueue)

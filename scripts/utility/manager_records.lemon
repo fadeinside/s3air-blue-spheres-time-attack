@@ -1,11 +1,13 @@
 //? Checks for matches of values/events.
 function void BlueSpheresTimer.Records.update()
 {
+	// Do not perform any actions if the level was not successful
 	if (u8[0xffffe44c] == 0x00)
-		return // Do not perform any actions if the level was not successful
+		return
 	
+	// Do not perform any actions if the record and time same, also, this can fixes copying 2 record place to 3 and 4 in some cases. I'm cry
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime || BlueSpheresTimer.Records.getRecordTime(0x02) == bluespheres.timer.currentTime || BlueSpheresTimer.Records.getRecordTime(0x03) == bluespheres.timer.currentTime || BlueSpheresTimer.Records.getRecordTime(0x04) == bluespheres.timer.currentTime)
-		return // Do not perform any actions if the record and time same, also, this can fixes copying 2 record place to 3 and 4 in some cases. I'm cry
+		return
 	
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x01) > bluespheres.timer.currentTime)
 	{

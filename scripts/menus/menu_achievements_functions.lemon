@@ -87,8 +87,8 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	{
 		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES)
 			target = 15
-		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_BOUNCE_OFF_50_TIMES)
-			target = 50
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES)
+			target = 55
 		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES)
 			target = 150
 		
@@ -98,10 +98,10 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 		else
 			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 	}
-	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
+	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
 	{
-		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_20_TIMES)
-			target = 20
+		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES)
+			target = 15
 		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES)
 			target = 45
 		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
@@ -113,13 +113,13 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 		else
 			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 	}
-	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_YOU_ARE_2_SLOW)
+	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 	{
 		if (Mods.isModActive("No Blue Spheres Slowdown"))
 		{
 			BlueSpheresTimer.Menu.achievements.status()
 			if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-				BlueSpheresTimer.Menu.popup.show("`No Blue Spheres Slowdown` mod.", "Complete any stage with the", "", "", accept_text)
+				BlueSpheresTimer.Menu.popup.show("`No Blue Spheres Slowdown` mod.", "Complete any 7 stages with the", "", "", accept_text)
 			else
 				BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 		}

@@ -13,7 +13,7 @@
 		"List":
 		[
 			{
-				"Category": "",
+				"Category": "General",
 				"InternalName": "SETTING_BS_TIME_ATTACK_MODE",
 				"DisplayName": "Time Attack:",
 				"Variable": "SETTING_BS_TIME_ATTACK_MODE",
@@ -25,9 +25,9 @@
 				}
 			},
 			{
-				"Category": "",
+				"Category": "Tweaks",
 				"InternalName": "SETTING_BS_ACHIEVEMENTS_ENABLE",
-				"DisplayName": "Achievement:",
+				"DisplayName": "Achievements in Main stages:",
 				"Variable": "SETTING_BS_ACHIEVEMENTS_ENABLE",
 				"DefaultValue": "0",
 				"Options":
@@ -37,9 +37,9 @@
 				}
 			},
 			{
-				"Category": "",
+				"Category": "Tweaks",
 				"InternalName": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
-				"DisplayName": "Time Bonuses:",
+				"DisplayName": "Time bonus in Main stages:",
 				"Variable": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
 				"DefaultValue": "0",
 				"Options":

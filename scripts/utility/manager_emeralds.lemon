@@ -1,23 +1,21 @@
 //? Checks for matches of values/events.
 function void BlueSpheresTimer.Emeralds.update()
 {
+	// Do not perform any actions if the level was not successful
 	if (u8[0xffffe44c] == 0x00)
-		return // Do not perform any actions if the level was not successful
-		
+		return
+	
+	// Do not perform any actions if all the rings are not collected at the stage
 	if (bluespheres.rings_remaining != 0x00)
-		return // Do not perform any actions if all the rings are not collected at the stage
+		return
 	
 	// Get an emerald for the currently selected level, if it is not received, and if these are S3 stages
 	if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x00 && bluespheres.timeattack.layoutselected == 0x00)
-	{
 		BlueSpheresTimer.Emeralds.setStatus(bluespheres.timeattack.levelselected, 0x01)
-	}
 	
 	// Get a super emerald for the currently selected level if it is inactive, and if these stages S&K
 	if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && bluespheres.timeattack.layoutselected == 0x01)
-	{
 		BlueSpheresTimer.Emeralds.setStatus(bluespheres.timeattack.levelselected, 0x03)
-	}
 }
 
 function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
