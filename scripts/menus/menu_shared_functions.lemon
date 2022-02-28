@@ -9,7 +9,7 @@ function void BlueSpheresTimer.Menu.shared.headline(s32 counter, u8 check)
 	u64 headline
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
 		headline = "BEST TIME!"
-	else if (BlueSpheresTimer.Records.getRecordTime(0x02) == bluespheres.timer.currentTime) 
+	else if (BlueSpheresTimer.Records.getRecordTime(0x02) == bluespheres.timer.currentTime)
 		headline = "GOOD GAME!"
 	else if (BlueSpheresTimer.Records.getRecordTime(0x03) == bluespheres.timer.currentTime)
 		headline = "CAN BETTER!"

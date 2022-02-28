@@ -23,7 +23,7 @@
 					"0": "Disabled (Default)",
 					"1": "Enable"
 				}
-			}, 
+			},
 			{
 				"Category": "",
 				"InternalName": "SETTING_BS_ACHIEVEMENTS_ENABLE",
@@ -35,7 +35,7 @@
 					"0": "Disabled (Default)",
 					"1": "Enable"
 				}
-			}, 
+			},
 			{
 				"Category": "",
 				"InternalName": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
@@ -47,7 +47,7 @@
 					"0": "Disabled (Default)",
 					"1": "Enable"
 				}
-			}  
-		] 
+			}
+		]
 	}
 }

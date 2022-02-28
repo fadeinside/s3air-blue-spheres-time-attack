@@ -13,7 +13,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 	s32 menu.headlinecounter
 	
 	// Play Blue Sphere game music
-	playMusic(0x28) 
+	playMusic(0x28)
 	
 	// Sounds
 	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
@@ -33,14 +33,14 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		waitForNextFrame()
 		
 		// Button selection
-		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT))) 
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT)))
 		{
 			playSound(0x5b)
 			if (control.pad1.pressed & CONTROL_LEFT)
 			{
 				if (bluespheres.timeattack.buttonselected != 0x00)
 					--bluespheres.timeattack.buttonselected
-				else 
+				else
 					bluespheres.timeattack.buttonselected = bluespheres.buttons.setup
 			}
 			else if (control.pad1.pressed & CONTROL_RIGHT)
@@ -48,7 +48,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 				if (bluespheres.timeattack.buttonselected < bluespheres.buttons.setup)
 					++bluespheres.timeattack.buttonselected
 				else
-					bluespheres.timeattack.buttonselected = 0x00 
+					bluespheres.timeattack.buttonselected = 0x00
 			}
 		}
 		
@@ -59,21 +59,21 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		
 		// Switch stages
 		u8 maxStages = BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x07 : 0x06
-		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))) 
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
 		{
 			playSound(0x5b)
 			if (control.pad1.pressed & CONTROL_UP)
 			{
 				if (bluespheres.timeattack.levelselected < maxStages)
-					++bluespheres.timeattack.levelselected 
+					++bluespheres.timeattack.levelselected
 				else
-					bluespheres.timeattack.levelselected = 0x00 
+					bluespheres.timeattack.levelselected = 0x00
 			}
 			if (control.pad1.pressed & CONTROL_DOWN)
 			{
 				if (bluespheres.timeattack.levelselected != 0x00)
 					--bluespheres.timeattack.levelselected
-				else 
+				else
 					bluespheres.timeattack.levelselected = maxStages
 			}
 		}
@@ -106,21 +106,21 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		}
 		
 		// Perform the action of selected button when start pressed
-		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_START)) 
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_START))
 		{
-			if (bluespheres.timeattack.buttonselected == 0x00) 
+			if (bluespheres.timeattack.buttonselected == 0x00)
 			{
 				playSound(0x63)
 				bluespheres.timeattack.active = 0x00
 				BlueSpheresTimer.EntryFunctions.Menu.options()
 			}
-			if (bluespheres.timeattack.buttonselected == 0x01) 
+			if (bluespheres.timeattack.buttonselected == 0x01)
 			{
 				playSound(0xaf)
 				bluespheres.timeattack.active = 0x01
 				BlueSpheresTimer.EntryFunctions.startSpecialStage()
 			}
-			if (bluespheres.timeattack.buttonselected == 0x02) 
+			if (bluespheres.timeattack.buttonselected == 0x02)
 			{
 				if (BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
 				{
@@ -151,7 +151,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		BlueSpheresTimer.Menu.timeattack.background()
 		
 		// Go back to the main menu
-		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_B)) 
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_B))
 		{
 			playSound(0xad)
 			FadeOutScreenBlocking()
@@ -160,6 +160,6 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		}
 		
 		// Clear sprites every frame
-		Renderer.resetSprites() 
+		Renderer.resetSprites()
 	}
 }

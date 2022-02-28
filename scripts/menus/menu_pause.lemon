@@ -9,7 +9,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 	u8 menu.clearView
 	
 	// Main loop
-	while (global.game.paused) 
+	while (global.game.paused)
 	{
 		FadeInFromWhite()
 		waitForNextFrame()
@@ -25,7 +25,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 			{
 				if (bluespheres.pause.buttonselected != 0x00)
 					--bluespheres.pause.buttonselected
-				else 
+				else
 					bluespheres.pause.buttonselected = bluespheres.buttons.setup
 			}
 			else if (control.pad1.pressed & CONTROL_DOWN)
@@ -33,7 +33,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 				if (bluespheres.pause.buttonselected < bluespheres.buttons.setup)
 					++bluespheres.pause.buttonselected
 				else
-					bluespheres.pause.buttonselected = 0x00 
+					bluespheres.pause.buttonselected = 0x00
 			}
 		}
 		
@@ -57,12 +57,12 @@ function void BlueSpheresTimer.Menu.pause.setup()
 			{
 				menu.clearView = 0x00
 			}
-			else if (bluespheres.pause.buttonselected == 0x00) 
+			else if (bluespheres.pause.buttonselected == 0x00)
 			{
 				playSound(0x63)
 				break
 			}
-			else if (bluespheres.pause.buttonselected == 0x01) 
+			else if (bluespheres.pause.buttonselected == 0x01)
 			{
 				playSound(0xaf)
 				playMusic(MUSIC_CTRL_STOP)
@@ -72,14 +72,14 @@ function void BlueSpheresTimer.Menu.pause.setup()
 				
 				BlueSpheresTimer.EntryFunctions.startSpecialStage()
 			}
-			else if (bluespheres.pause.buttonselected == 0x02) 
+			else if (bluespheres.pause.buttonselected == 0x02)
 			{
 				playSound(0x63)
 				playMusic(MUSIC_CTRL_STOP)
 				
 				bluespheres.timeattack.active = 0x00
 				
-				Renderer.enableDefaultPlane(0x03, false) 
+				Renderer.enableDefaultPlane(0x03, false)
 				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
 			}
 		}

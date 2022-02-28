@@ -1,7 +1,7 @@
 //? Checks for matches of values/events, and sets the status Completed for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.setup()
 {
-	// Only if Achievements unlocked 
+	// Only if Achievements unlocked
 	if (!BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
 		return
 	
@@ -11,15 +11,15 @@ function void BlueSpheresTimer.Achievements.setup()
 	
 	// Main function
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) >= 100)
-		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) 
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) >= 300)
-		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) 
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) >= 600)
-		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) 
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) >= 1200)
-		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) 
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) >= 2048)
-		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) 
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES)
 		
 	if (bluespheres.gameOver == 0x01 && bluespheres.blue_remaining == 0x01)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
@@ -31,17 +31,17 @@ function void BlueSpheresTimer.Achievements.setup()
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION)
 		
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GREEN_SPHERE) >= 0x01)
-			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GREEN_SPHERE) 
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GREEN_SPHERE)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) >= 50)
-			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) 
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) >= 150)
-			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) 
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES)
 			if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) >= 400)
-			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) 
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) >= 720)
 			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES ) >= 1200)
-			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)  
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	}
 	
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) >= 15)
@@ -65,7 +65,7 @@ function void BlueSpheresTimer.Achievements.setup()
 //? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.spheresChecks()
 {
-	// Only if Achievements unlocked 
+	// Only if Achievements unlocked
 	if (!BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
 		return
 	
@@ -149,7 +149,7 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
 	{
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE) ? "Getting lost in the crowd" : locked_text // "Find a way out"
-	} 
+	}
 	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
 	{
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2) ? "Losing at the start" : locked_text
@@ -163,7 +163,7 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 		}
 		else if (achievementId == ACHIEVEMENT_BS_GREEN_SPHERE)
 		{
-			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) ? "Got Green sphere!" : (targetMod_active ? locked_text : needmod_text) 
+			achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) ? "Got Green sphere!" : (targetMod_active ? locked_text : needmod_text)
 		}
 		else if (achievementId == ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES)
 		{
@@ -223,14 +223,14 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	return achievementTitle
 }
 
-//? Returns the address of the specified achievement ID. 
+//? Returns the address of the specified achievement ID.
 function u32 BlueSpheresTimer.Achievements.getAddress(u32 achievementId)
 {
 	u32 achievementID = 0x16 * (achievementId + 0x01)
 	return bluespheres.achievementsDataAddress + achievementID
 }
 
-//? Returns the value of the specified achievement ID. 
+//? Returns the value of the specified achievement ID.
 function s32 BlueSpheresTimer.Achievements.getValue(u32 achievementId)
 {
 	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
@@ -239,8 +239,8 @@ function s32 BlueSpheresTimer.Achievements.getValue(u32 achievementId)
 	return s32[achievementOffset]
 }
 
-//? Sets a new value for the specified achievement ID. 
-function void BlueSpheresTimer.Achievements.setValue(u32 achievementId, s32 value) 
+//? Sets a new value for the specified achievement ID.
+function void BlueSpheresTimer.Achievements.setValue(u32 achievementId, s32 value)
 {
 	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
 	s32[achievementOffset] = value
@@ -250,7 +250,7 @@ function void BlueSpheresTimer.Achievements.setValue(u32 achievementId, s32 valu
 	//System.writeDisplayLine(stringformat("Set new value to Achievement 0x%04x and saved in 0x%06x RAM", achievementId, achievementOffset))
 }
 
-//? Returns true when the specified achievement ID has the status Completed. 
+//? Returns true when the specified achievement ID has the status Completed.
 function bool BlueSpheresTimer.Achievements.isComplete(u32 achievementId)
 {
 	bool isComplete
@@ -263,12 +263,12 @@ function bool BlueSpheresTimer.Achievements.isComplete(u32 achievementId)
 	return isComplete
 }
 
-//? Assigns the status Completed to the specified achievement ID, and toast. 
-function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId) 
+//? Assigns the status Completed to the specified achievement ID, and toast.
+function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 {
 	if (BlueSpheresTimer.Achievements.isComplete(achievementId))
 	{
-		BlueSpheresTimer.Achievements.toast(achievementId) 
+		BlueSpheresTimer.Achievements.toast(achievementId)
 		return
 	}
 	
@@ -276,10 +276,10 @@ function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 	//System.writeDisplayLine(stringformat("Achievement 0x%04x complete and saved in 0x%06x RAM", achievementId, BlueSpheresTimer.Achievements.getAddress( achievementId)))
 }
 
-//? A rather dubious solution to the infinite toast problem when achievement is complete. 
+//? A rather dubious solution to the infinite toast problem when achievement is complete.
 function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 {
-	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2 && bluespheres.toast.state == 0x00) 
+	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2 && bluespheres.toast.state == 0x00)
 		return
 	
 	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa1)
@@ -297,7 +297,7 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 	}
 }
 
-//? Sets the value to 0 for all recorded achievements memory addresses. 
+//? Sets the value to 0 for all recorded achievements memory addresses.
 function void BlueSpheresTimer.Achievements.reset()
 {
 	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
@@ -310,7 +310,7 @@ function void BlueSpheresTimer.Achievements.reset()
 	}
 }
 
-//? Returns the number of memory addresses that are not equal to 0, within the achievement addresses. 
+//? Returns the number of memory addresses that are not equal to 0, within the achievement addresses.
 function s32 BlueSpheresTimer.Achievements.writed()
 {
 	s32 writed_address

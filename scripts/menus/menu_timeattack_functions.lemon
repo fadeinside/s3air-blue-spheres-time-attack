@@ -51,7 +51,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 		
 		u64 key // Get characters sprites
 		// Ultimate Mighty by Sotaknuck, https://gamebanana.com/mods/54268
-		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || bluespheres.timeattack.characterselected == 0x03) 
+		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || bluespheres.timeattack.characterselected == 0x03)
 		{
 			key = stringformat("CharacterMighty_walk_%d", timer % 0x0c)
 		}
@@ -119,7 +119,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	copyMemory(A2 + 0x70, A1, 0x10)
 	
 	// Render ground
-	BlueSpheres.renderCustomGround() 
+	BlueSpheres.renderCustomGround()
 }
 
 function void BlueSpheresTimer.Menu.timeattack.headline(s32 counter)
@@ -141,7 +141,7 @@ function void BlueSpheresTimer.Menu.timeattack.items()
 	BlueSpheresTimer.Menu.timeattack.items.recordslist(px, py)
 	
 	BlueSpheresTimer.Menu.timeattack.items.playerselect(px, py)
-	BlueSpheresTimer.Menu.timeattack.items.emeralds(px, py) 
+	BlueSpheresTimer.Menu.timeattack.items.emeralds(px, py)
 	
 	BlueSpheresTimer.Menu.timeattack.items.levelselect(px, py)
 	BlueSpheresTimer.Menu.timeattack.items.levelslayout(px, py)
@@ -158,13 +158,13 @@ function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_start, 0x01)
 	
 	px += 128
-	u64 button_achievements = (bluespheres.timeattack.buttonselected == 0x02) ? "* Achievements *" : "Achievements" 
+	u64 button_achievements = (bluespheres.timeattack.buttonselected == 0x02) ? "* Achievements *" : "Achievements"
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01, BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked) ? 0xff : 0x90)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Total", 0x01) 
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Total", 0x01)
 	
 	s32 minutes_total
 	s32 seconds_total
@@ -172,7 +172,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 	
 	for (u8 i = 0x00; i <= 0x07; i++)
 	{
-		for (u8 x = 0x01; x <= 0x04; x++) 
+		for (u8 x = 0x01; x <= 0x04; x++)
 		{
 			u32 recordplace = 0x1024 * x
 			u32 character = 0x128 * (bluespheres.timeattack.characterselected + 0x01)
@@ -188,7 +188,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 			s32 seconds = (s32[recordOffset] - (minutes * 10000)) / 100
 			s32 centiseconds = (s32[recordOffset] - (minutes * 10000)) - (seconds * 100)
 			
-			//debugLog(stringformat("Loaded RAM 0x%06x: %s", recordOffset, BlueSpheresTimer.getFormatTime(minutes, seconds, centiseconds))) 
+			//debugLog(stringformat("Loaded RAM 0x%06x: %s", recordOffset, BlueSpheresTimer.getFormatTime(minutes, seconds, centiseconds)))
 			
 			if (s32[recordOffset] == 0)
 			{
@@ -196,7 +196,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 				//seconds_total += 00
 				//centiseconds_total += 00
 			}
-			else 
+			else
 			{
 				minutes_total += minutes
 				seconds_total += seconds

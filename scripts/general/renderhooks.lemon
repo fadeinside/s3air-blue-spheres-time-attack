@@ -15,7 +15,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 				u64 key
 				if (!Mods.isModActive("Sonic Mania HUD"))
 					key = isSKStage ? "hud_text_time_superstage" : "hud_text_time_chaosstage"
-				else 
+				else
 					key = "hud_text_time"
 				
 				Renderer.drawCustomSprite(key, px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
@@ -56,14 +56,14 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 				Renderer.drawCustomSprite("Text_NotEnou", px, py, 0x00, 0x00, renderQueue)
 			if (objA0.animation.sprite == 0x03) // Part 2
 				Renderer.drawCustomSprite("Text_ghRings", px, py, 0x00, 0x00, renderQueue)
-			return true 
+			return true
 		}
 		
 		if (objA0.animation.sprite == 0x02) // Part 1
 			Renderer.drawCustomSprite("Text_Time", px, py, 0x00, 0x00, renderQueue)
 		if (objA0.animation.sprite == 0x03) // Part 2
 			Renderer.drawCustomSprite("Text_Over", px, py, 0x00, 0x00, renderQueue)
-		return true 
+		return true
 	}
 	
 	return base.Standalone.onWriteToSpriteTable(px, py, renderQueue)

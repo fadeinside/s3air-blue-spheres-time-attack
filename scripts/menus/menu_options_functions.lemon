@@ -15,7 +15,7 @@ function void BlueSpheresTimer.Menu.options.popups()
 			if (bluespheres.popup.buttonselected == 0x00)
 				bluespheres.popup.show = 0x00
 			
-			if (bluespheres.popup.buttonselected == 0x01) 
+			if (bluespheres.popup.buttonselected == 0x01)
 			{
 				playSound(0x68)
 				BlueSpheresTimer.Records.reset()
@@ -31,14 +31,14 @@ function void BlueSpheresTimer.Menu.options.popups()
 		bluespheres.blue_collected = 0x00
 		BlueSpheresTimer.resetTimer()
 		
-		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "", "", deny_text, accept_text) 
+		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "", "", deny_text, accept_text)
 		if (control.pad1.pressed & CONTROL_START)
 		{
 			playSound(0x63)
 			if (bluespheres.popup.buttonselected == 0x00)
 				bluespheres.popup.show = 0x00
 			
-			if (bluespheres.popup.buttonselected == 0x01) 
+			if (bluespheres.popup.buttonselected == 0x01)
 			{
 				playSound(0x68)
 				BlueSpheresTimer.Achievements.reset()

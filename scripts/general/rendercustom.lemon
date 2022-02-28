@@ -30,7 +30,7 @@ function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 		HUD.drawSprite("hud_char_seconds", px + 0x18, py, renderQueue)
 		HUD.drawNumber("hud_digit_%d", centiseconds / 0x0a, px + 0x20, py, renderQueue)
 		HUD.drawNumber("hud_digit_%d", centiseconds % 0x0a, px + 0x28, py, renderQueue)
-	} 
+	}
 	else
 	{
 		px -= 0x03
@@ -38,6 +38,6 @@ function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 		HUD.drawNumber("hud_digit_%d", minutes % 0x0a, px - 0x08, py, renderQueue)
 		HUD.drawSprite("hud_char_colon", px, py, renderQueue)
 		HUD.drawNumber("hud_digit_%d", seconds / 0x0a, px + 0x08, py, renderQueue)
-		HUD.drawNumber("hud_digit_%d", seconds % 0x0a, px + 0x10, py, renderQueue) 
+		HUD.drawNumber("hud_digit_%d", seconds % 0x0a, px + 0x10, py, renderQueue)
 	}
 }

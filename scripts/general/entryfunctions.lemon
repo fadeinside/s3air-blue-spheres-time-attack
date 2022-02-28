@@ -7,7 +7,7 @@ function void BlueSpheresTimer.EntryFunctions.startSpecialStage()
 
 function void BlueSpheresTimer.EntryFunctions.setupSpecialStage()
 {
-	BlueSpheresTimer.resetTimer() 
+	BlueSpheresTimer.resetTimer()
 	
 	lives_counter = 0x03
 	global.game.paused = false

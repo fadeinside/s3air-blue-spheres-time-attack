@@ -29,7 +29,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 			{
 				if (bluespheres.achievements.buttonselected != 0x00)
 					--bluespheres.achievements.buttonselected
-				else 
+				else
 					bluespheres.achievements.buttonselected = bluespheres.buttons.setup
 			}
 			else if (control.pad1.pressed & CONTROL_DOWN)
@@ -37,7 +37,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 				if (bluespheres.achievements.buttonselected < bluespheres.buttons.setup)
 					++bluespheres.achievements.buttonselected
 				else
-					bluespheres.achievements.buttonselected = 0x00 
+					bluespheres.achievements.buttonselected = 0x00
 			}
 		}
 		
@@ -46,7 +46,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		if (menu.headlinecounter > 243)
 			menu.headlinecounter = 0x00
 		
-		// Perform the action of selected button when start pressed 
+		// Perform the action of selected button when start pressed
 		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_START))
 		{
 			for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
@@ -58,7 +58,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 					waitForNextFrame()
 				}
 			}
-			if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup) 
+			if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup)
 			{
 				playSound(0x63)
 				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
@@ -82,6 +82,6 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		}
 		
 		// Clear sprites every frame
-		Renderer.resetSprites() 
+		Renderer.resetSprites()
 	}
 }

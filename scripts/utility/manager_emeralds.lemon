@@ -8,13 +8,13 @@ function void BlueSpheresTimer.Emeralds.update()
 		return // Do not perform any actions if all the rings are not collected at the stage
 	
 	// Get an emerald for the currently selected level, if it is not received, and if these are S3 stages
-	if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x00 && bluespheres.timeattack.layoutselected == 0x00) 
+	if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x00 && bluespheres.timeattack.layoutselected == 0x00)
 	{
 		BlueSpheresTimer.Emeralds.setStatus(bluespheres.timeattack.levelselected, 0x01)
 	}
 	
 	// Get a super emerald for the currently selected level if it is inactive, and if these stages S&K
-	if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && bluespheres.timeattack.layoutselected == 0x01) 
+	if (BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && bluespheres.timeattack.layoutselected == 0x01)
 	{
 		BlueSpheresTimer.Emeralds.setStatus(bluespheres.timeattack.levelselected, 0x03)
 	}
@@ -23,17 +23,17 @@ function void BlueSpheresTimer.Emeralds.update()
 function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 {
 	u64 emeraldColor
-	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02) 
+	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02)
 		emeraldColor = "emply"
 	else if (emeraldId == 0x00)
 		emeraldColor = "green"
 	else if (emeraldId == 0x01)
 	{
 		// Yellow Emerald by Guthi, https://gamebanana.com/mods/54326
-		if (Mods.isModActive("Yellow Emerald")) 
-			emeraldColor = "yellow" 
-		else 
-			emeraldColor = "orange" 
+		if (Mods.isModActive("Yellow Emerald"))
+			emeraldColor = "yellow"
+		else
+			emeraldColor = "orange"
 	}
 	else if (emeraldId == 0x02)
 		emeraldColor = "pink"
@@ -47,10 +47,10 @@ function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 		emeraldColor = "cyan"
 	else if (emeraldId == 0x07)
 	{
-		if (Mods.isModActive("Yellow Emerald")) 
-			emeraldColor = "orange" 
-		else 
-			emeraldColor = "yellow" 
+		if (Mods.isModActive("Yellow Emerald"))
+			emeraldColor = "orange"
+		else
+			emeraldColor = "yellow"
 	}
 	
 	u64 emeraldView
@@ -77,11 +77,11 @@ function void BlueSpheresTimer.Emeralds.replaceAll(u8 status)
 {
 	for (u8 i = 0x00; i <= 0x07; i++)
 	{
-		BlueSpheresTimer.Emeralds.setStatus(i, status) 
+		BlueSpheresTimer.Emeralds.setStatus(i, status)
 	}
 }
 
-//? Проверяет значение адресов изумрудов, и если они равны указаному, вернуть true. 
+//? Проверяет значение адресов изумрудов, и если они равны указаному, вернуть true.
 function bool BlueSpheresTimer.Emeralds.allEqual(u8 status)
 {
 	bool equal = false
@@ -116,7 +116,7 @@ function u8 BlueSpheresTimer.Emeralds.getStatus(u8 emeraldId)
 }
 
 //? Sets a new value for the specified Emerald ID.
-function void BlueSpheresTimer.Emeralds.setStatus(u8 emeraldId, u8 status) 
+function void BlueSpheresTimer.Emeralds.setStatus(u8 emeraldId, u8 status)
 {
 	u32 emeraldOffset = BlueSpheresTimer.Emeralds.getAddress(emeraldId)
 	u8[emeraldOffset] = status

@@ -18,7 +18,7 @@ global u8 bluespheres.achievements.buttonselected	// The currently active button
 global u8 bluespheres.timeattack.characterselected	// The selected character in the Time Attack menu (0x00 - Sonic, 0x01 - Miles, 0x02 - Knuckles, 0x03 - Mighty (by Extra Slot Mighty))
 global u8 bluespheres.timeattack.levelselected	// Selected level (0x00 .. 0x07)
 global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0x00 - Sonic 3, 0x01 - Sonic & Knuckles)
-global u8 bluespheres.achievements.sortselected	// (Unused) Sort Achievements (0x00 - All, 0x01 - Time attack) 
+global u8 bluespheres.achievements.sortselected	// (Unused) Sort Achievements (0x00 - All, 0x01 - Time attack)
 
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere

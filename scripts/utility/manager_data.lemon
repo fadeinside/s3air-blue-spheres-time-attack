@@ -1,4 +1,4 @@
-//? Returns the dunamic address of the specified address 
+//? Returns the dunamic address of the specified address
 function u32 BlueSpheresTimer.Data.getAddress(u32 address)
 {
 	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x100 : 0x00
@@ -26,7 +26,7 @@ function u8 BlueSpheresTimer.Data.getValue(u32 address)
 }
 
 //? Sets a new value for the specified address.
-function void BlueSpheresTimer.Data.setValue(u32 address, u8 value) 
+function void BlueSpheresTimer.Data.setValue(u32 address, u8 value)
 {
 	// Achievements are unlocked globally, and do not depend on D.A Garden
 	if (address != bluespheres.achievementsUnlocked)

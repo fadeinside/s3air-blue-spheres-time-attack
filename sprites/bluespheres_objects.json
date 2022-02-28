@@ -4,7 +4,7 @@
 	"hud_text_time_chaosstage": { "File": "bluespheres_objects.png", "Rect": "144,14,40,12" },
 	// Time over text
 	"Text_Time": { "File": "bluespheres_objects.png", "Rect": "1,1,50,16", "Center": "50,8" },
-	"Text_Over": { "File": "bluespheres_objects.png", "Rect": "52,1,50,16", "Center": "0,8" }, 
+	"Text_Over": { "File": "bluespheres_objects.png", "Rect": "52,1,50,16", "Center": "0,8" },
 	// Not enough rings text
 	"Text_NotEnou": { "File": "bluespheres_objects.png", "Rect": "1,18,80,16", "Center": "80,8" },
 	"Text_ghRings": { "File": "bluespheres_objects.png", "Rect": "82,18,76,16", "Center": "0,8" }

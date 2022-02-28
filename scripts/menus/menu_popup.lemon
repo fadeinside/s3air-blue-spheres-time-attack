@@ -8,7 +8,7 @@ function void BlueSpheresTimer.Menu.popup.show(u64 text1, u64 text2, u64 text3, 
 		{
 			if (bluespheres.popup.buttonselected != 0x00)
 				--bluespheres.popup.buttonselected
-			else 
+			else
 				bluespheres.popup.buttonselected = 0x01
 		}
 		else if (control.pad1.pressed & CONTROL_RIGHT)
@@ -16,7 +16,7 @@ function void BlueSpheresTimer.Menu.popup.show(u64 text1, u64 text2, u64 text3, 
 			if (bluespheres.popup.buttonselected < 0x01)
 				++bluespheres.popup.buttonselected
 			else
-				bluespheres.popup.buttonselected = 0x00 
+				bluespheres.popup.buttonselected = 0x00
 		}
 	}
 			
@@ -94,7 +94,7 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button)
 	py += 16
 	u64 button_button = (bluespheres.popup.buttonselected == 0x00) ? stringformat("* %s *", button) : stringformat("%s", button)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_button, 0x01)
-} 
+}
 
 function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, u64 text1, u64 text2, u64 text3, u64 text4)
 {

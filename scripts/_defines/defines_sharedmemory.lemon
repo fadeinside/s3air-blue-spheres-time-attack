@@ -1,7 +1,7 @@
 // Achievements
-// Addresses - from 0x8a1016 to 
+// Addresses - from 0x8a1016 to
 define u32 bluespheres.achievementsDataAddress	= 0x8a1000	// Address in Shared Memory save data's to save achievements
-define u8 bluespheres.achievementsDataSize	= 0x04	// Size of saved data in bytes 
+define u8 bluespheres.achievementsDataSize	= 0x04	// Size of saved data in bytes
 
 // Records
 // Addresses - from 0x8c2162 to 0x8c55e8
@@ -15,7 +15,7 @@ define u8 bluespheres.recordDataSize	= 0x04	// Size of saved data in bytes
 define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memory save data's to save emeralds
 define u8 bluespheres.emeraldsDataSize	= 0x04	// Size of saved data in bytes
 
-// Events 
+// Events
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
 
 // Data

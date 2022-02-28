@@ -7,35 +7,35 @@ function void BlueSpheresTimer.Records.update()
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime || BlueSpheresTimer.Records.getRecordTime(0x02) == bluespheres.timer.currentTime || BlueSpheresTimer.Records.getRecordTime(0x03) == bluespheres.timer.currentTime || BlueSpheresTimer.Records.getRecordTime(0x04) == bluespheres.timer.currentTime)
 		return // Do not perform any actions if the record and time same, also, this can fixes copying 2 record place to 3 and 4 in some cases. I'm cry
 	
-	if (BlueSpheresTimer.Records.getRecordTime(0x01) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x01) > bluespheres.timer.currentTime) 
+	if (BlueSpheresTimer.Records.getRecordTime(0x01) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x01) > bluespheres.timer.currentTime)
 	{
-		if (BlueSpheresTimer.Records.getRecordTime(0x03) != 0x00) 
+		if (BlueSpheresTimer.Records.getRecordTime(0x03) != 0x00)
 			BlueSpheresTimer.Records.setNewRecordTime(0x04, BlueSpheresTimer.Records.getRecordTime(0x03))
-		if (BlueSpheresTimer.Records.getRecordTime(0x02) != 0x00) 
+		if (BlueSpheresTimer.Records.getRecordTime(0x02) != 0x00)
 			BlueSpheresTimer.Records.setNewRecordTime(0x03, BlueSpheresTimer.Records.getRecordTime(0x02))
-		if (BlueSpheresTimer.Records.getRecordTime(0x01) != 0x00) 
+		if (BlueSpheresTimer.Records.getRecordTime(0x01) != 0x00)
 			BlueSpheresTimer.Records.setNewRecordTime(0x02, BlueSpheresTimer.Records.getRecordTime(0x01))
 		BlueSpheresTimer.Records.setNewRecordTime(0x01, bluespheres.timer.currentTime)
 	}
-	else if (BlueSpheresTimer.Records.getRecordTime(0x02) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x02) > bluespheres.timer.currentTime) 
+	else if (BlueSpheresTimer.Records.getRecordTime(0x02) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x02) > bluespheres.timer.currentTime)
 	{
-		if (BlueSpheresTimer.Records.getRecordTime(0x03) != 0x00) 
-			BlueSpheresTimer.Records.setNewRecordTime(0x04, BlueSpheresTimer.Records.getRecordTime(0x03)) 
-		if (BlueSpheresTimer.Records.getRecordTime(0x02) != 0x00) 
-			BlueSpheresTimer.Records.setNewRecordTime(0x03, BlueSpheresTimer.Records.getRecordTime(0x02)) 
-		BlueSpheresTimer.Records.setNewRecordTime(0x02, bluespheres.timer.currentTime) 
-	} 
-	else if (BlueSpheresTimer.Records.getRecordTime(0x03) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x03) > bluespheres.timer.currentTime) 
-	{
-		if (BlueSpheresTimer.Records.getRecordTime(0x03) != 0x00) 
+		if (BlueSpheresTimer.Records.getRecordTime(0x03) != 0x00)
 			BlueSpheresTimer.Records.setNewRecordTime(0x04, BlueSpheresTimer.Records.getRecordTime(0x03))
-		BlueSpheresTimer.Records.setNewRecordTime(0x03, bluespheres.timer.currentTime) 
-	} 
-	else if (BlueSpheresTimer.Records.getRecordTime(0x04) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x04) > bluespheres.timer.currentTime) 
+		if (BlueSpheresTimer.Records.getRecordTime(0x02) != 0x00)
+			BlueSpheresTimer.Records.setNewRecordTime(0x03, BlueSpheresTimer.Records.getRecordTime(0x02))
+		BlueSpheresTimer.Records.setNewRecordTime(0x02, bluespheres.timer.currentTime)
+	}
+	else if (BlueSpheresTimer.Records.getRecordTime(0x03) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x03) > bluespheres.timer.currentTime)
+	{
+		if (BlueSpheresTimer.Records.getRecordTime(0x03) != 0x00)
+			BlueSpheresTimer.Records.setNewRecordTime(0x04, BlueSpheresTimer.Records.getRecordTime(0x03))
+		BlueSpheresTimer.Records.setNewRecordTime(0x03, bluespheres.timer.currentTime)
+	}
+	else if (BlueSpheresTimer.Records.getRecordTime(0x04) == 0x00 || BlueSpheresTimer.Records.getRecordTime(0x04) > bluespheres.timer.currentTime)
 	{
 		BlueSpheresTimer.Records.setNewRecordTime(0x04, bluespheres.timer.currentTime)
 	}
-} 
+}
 
 //? Returns the address of the specified Record place.
 function u32 BlueSpheresTimer.Records.getRecordAddress(u8 place)
@@ -47,9 +47,9 @@ function u32 BlueSpheresTimer.Records.getRecordAddress(u8 place)
 	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
 	
 	return bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-} 
+}
 
-//? Returns the time of the specified Record place. 
+//? Returns the time of the specified Record place.
 function s32 BlueSpheresTimer.Records.getRecordTime(u32 place)
 {
 	u32 recordOffset = BlueSpheresTimer.Records.getRecordAddress(place)
@@ -58,18 +58,18 @@ function s32 BlueSpheresTimer.Records.getRecordTime(u32 place)
 	return s32[recordOffset]
 }
 
-//? Sets a new time for the specified Record place. 
-function void BlueSpheresTimer.Records.setNewRecordTime(u8 place, s32 data) 
+//? Sets a new time for the specified Record place.
+function void BlueSpheresTimer.Records.setNewRecordTime(u8 place, s32 data)
 {
 	u32 recordOffset = BlueSpheresTimer.Records.getRecordAddress(place)
 	s32[recordOffset] = data
 	
 	System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), bluespheres.recordDataSize)
 	
-	//System.writeDisplayLine(stringformat("Saved time %s for 0x%06x in RAM", BlueSpheresTimer.getFormatTime(s32[recordOffset]), recordOffset)) 
-} 
+	//System.writeDisplayLine(stringformat("Saved time %s for 0x%06x in RAM", BlueSpheresTimer.getFormatTime(s32[recordOffset]), recordOffset))
+}
 
-//? Sets the value to 0 for all recorded Records memory addresses. 
+//? Sets the value to 0 for all recorded Records memory addresses.
 function void BlueSpheresTimer.Records.reset()
 {
 	for (u8 i = 0x00; i <= 0x07; i++)
@@ -77,9 +77,9 @@ function void BlueSpheresTimer.Records.reset()
 		for (u8 x = 0x01; x <= 0x04; x++)
 		{
 			for (u8 y = 0x00; y <= 0x03; y++)
-			{ 
+			{
 				for (u8 z = 0x00; z <= 0x01; z++)
-				{ 
+				{
 					u32 recordplace = 0x1024 * x
 					u32 character = 0x128 * (y + 0x01)
 					u32 stage = 0x16 * (i + 0x01)
@@ -95,7 +95,7 @@ function void BlueSpheresTimer.Records.reset()
 						s32[recordOffset] = 0x00
 						System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
 						
-						//debugLog(stringformat("Reset RAM 0x%06x", recordOffset)) 
+						//debugLog(stringformat("Reset RAM 0x%06x", recordOffset))
 					}
 				}
 			}
@@ -103,7 +103,7 @@ function void BlueSpheresTimer.Records.reset()
 	}
 }
 
-//? Returns the number of memory addresses that are not equal to 0, within the records addresses. 
+//? Returns the number of memory addresses that are not equal to 0, within the records addresses.
 function s32 BlueSpheresTimer.Records.writed()
 {
 	s32 writed_address
@@ -113,9 +113,9 @@ function s32 BlueSpheresTimer.Records.writed()
 		for (u8 x = 0x01; x <= 0x04; x++)
 		{
 			for (u8 y = 0x00; y <= 0x03; y++)
-			{ 
+			{
 				for (u8 z = 0x00; z <= 0x01; z++)
-				{ 
+				{
 					u32 recordplace = 0x1024 * x
 					u32 character = 0x128 * (y + 0x01)
 					u32 stage = 0x16 * (i + 0x01)
@@ -146,9 +146,9 @@ function void BlueSpheresTimer.Records.cheat()
 		for (u8 x = 0x01; x <= 0x04; x++)
 		{
 			for (u8 y = 0x00; y <= 0x03; y++)
-			{ 
+			{
 				for (u8 z = 0x00; z <= 0x01; z++)
-				{ 
+				{
 					u32 recordplace = 0x1024 * x
 					u32 character = 0x128 * (y + 0x01)
 					u32 stage = 0x16 * (i + 0x01)

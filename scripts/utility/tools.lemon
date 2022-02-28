@@ -37,7 +37,7 @@ function void BlueSpheresTimer.updateTimer()
 		bluespheres.timer.seconds %= 60
 	}
 	else
-	{ 
+	{
 		bluespheres.timeOver = 0x01
 	}
 	
@@ -78,8 +78,8 @@ function bool BlueSpheresTimer.timeUnlimited()
 {
 	bool timeUnlimited
 	
-	if (Game.getSetting(SETTING_INFINITE_TIME)) 
-		timeUnlimited = true 
+	if (Game.getSetting(SETTING_INFINITE_TIME))
+		timeUnlimited = true
 	else if (bluespheres.minigame_mode)
 		timeUnlimited = true
 	else if (bluespheres.timeattack.active)

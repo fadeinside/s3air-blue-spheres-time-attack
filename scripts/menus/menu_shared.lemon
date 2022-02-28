@@ -34,7 +34,7 @@ function void BlueSpheresTimer.Menu.shared.setup()
 			{
 				if (bluespheres.shared.buttonselected != 0x00)
 					--bluespheres.shared.buttonselected
-				else 
+				else
 					bluespheres.shared.buttonselected = bluespheres.buttons.setup
 			}
 			else if (control.pad1.pressed & CONTROL_DOWN)
@@ -42,7 +42,7 @@ function void BlueSpheresTimer.Menu.shared.setup()
 				if (bluespheres.shared.buttonselected < bluespheres.buttons.setup)
 					++bluespheres.shared.buttonselected
 				else
-					bluespheres.shared.buttonselected = 0x00 
+					bluespheres.shared.buttonselected = 0x00
 			}
 		}
 		
@@ -59,13 +59,13 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		// Start the selected stage
 		if (control.pad1.pressed & CONTROL_START)
 		{
-			if (bluespheres.shared.buttonselected == 0x00) 
+			if (bluespheres.shared.buttonselected == 0x00)
 			{
 				playSound(0xaf)
-				bluespheres.timeattack.active = 0x01 
+				bluespheres.timeattack.active = 0x01
 				BlueSpheresTimer.EntryFunctions.startSpecialStage()
 			}
-			if (bluespheres.shared.buttonselected == 0x01) 
+			if (bluespheres.shared.buttonselected == 0x01)
 			{
 				playSound(0x63)
 				bluespheres.timeattack.active = 0x00
@@ -91,6 +91,6 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		}
 		
 		// Clear sprites every frame
-		Renderer.resetSprites() 
+		Renderer.resetSprites()
 	}
 }

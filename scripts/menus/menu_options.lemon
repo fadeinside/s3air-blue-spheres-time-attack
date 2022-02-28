@@ -32,7 +32,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 			{
 				if (bluespheres.options.buttonselected != 0x00)
 					--bluespheres.options.buttonselected
-				else 
+				else
 					bluespheres.options.buttonselected = bluespheres.buttons.setup
 			}
 			else if (control.pad1.pressed & CONTROL_DOWN)
@@ -40,7 +40,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 				if (bluespheres.options.buttonselected < bluespheres.buttons.setup)
 					++bluespheres.options.buttonselected
 				else
-					bluespheres.options.buttonselected = 0x00 
+					bluespheres.options.buttonselected = 0x00
 			}
 		}
 		
@@ -49,10 +49,10 @@ function void BlueSpheresTimer.Menu.options.setup()
 		if (menu.headlinecounter > 185)
 			menu.headlinecounter = 0x00
 			
-		// Perform the action of selected button when start pressed 
-		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed == CONTROL_START)) 
+		// Perform the action of selected button when start pressed
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed == CONTROL_START))
 		{
-			if (bluespheres.options.buttonselected == 0x00) 
+			if (bluespheres.options.buttonselected == 0x00)
 			{
 				if (BlueSpheresTimer.Records.writed() > 0x00)
 				{
@@ -78,7 +78,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 					playSound(0x7b)
 				}
 			}
-			if (bluespheres.options.buttonselected == bluespheres.buttons.setup) 
+			if (bluespheres.options.buttonselected == bluespheres.buttons.setup)
 			{
 				playSound(0x63)
 				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
@@ -103,6 +103,6 @@ function void BlueSpheresTimer.Menu.options.setup()
 		}
 		
 		// Clear sprites every frame
-		Renderer.resetSprites() 
+		Renderer.resetSprites()
 	}
 }

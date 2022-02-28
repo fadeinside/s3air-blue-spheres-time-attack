@@ -84,7 +84,7 @@ function void fn009b62()
 		
 		// Fade out any music and clear spheres data
 		playMusic(MUSIC_CTRL_FADEOUT)
-		zeroMemory(0xfffff100, 0x400) 
+		zeroMemory(0xfffff100, 0x400)
 		++bluespheres.timeOver.timeout
 		
 		// Make Sonic slow down
@@ -109,7 +109,7 @@ function void fn009b62()
 		if (bluespheres.timeOver.timeout >= 0xc8)
 		{
 			if (bluespheres.timeattack.active)
-			{ 
+			{
 				// Back to Time Attack menu
 				global.game_mode = 0x87
 			}
@@ -121,14 +121,14 @@ function void fn009b62()
 					global.zone_act = level.backup.zone_act
 					checkpoint.number |= 0x80
 				}
-			} 
+			}
 			
 			if (bluespheres.timeOver.timeout == 0xc8)
 				playSound(0x6a)
-		} 
+		}
 	}
 	
-	// Collected all blue spheres in Time attack 
+	// Collected all blue spheres in Time attack
 	if (bluespheres.timeattack.active)
 	{
 		if (u8[0xffffe44c] == 0x01)
@@ -143,7 +143,7 @@ function void fn009b62()
 			
 			// Fade out any music and clear spheres data
 			playMusic(MUSIC_CTRL_FADEOUT)
-			zeroMemory(0xfffff100, 0x400) 
+			zeroMemory(0xfffff100, 0x400)
 			
 			// Update records
 			BlueSpheresTimer.Records.update()
@@ -231,7 +231,7 @@ function void fn009b62()
 				if (D0.u16 == 0x00)
 				{
 					// Update emeralds
-					BlueSpheresTimer.Emeralds.update() 
+					BlueSpheresTimer.Emeralds.update()
 					
 					++u8[0xffffe44c]
 					// Make everything spin around
@@ -250,8 +250,8 @@ function void fn009b62()
 	{
 		bluespheres.gameOver = 0x01
 		if (bluespheres.timeattack.active)
-		{ 
-			// Fade out any music 
+		{
+			// Fade out any music
 			playMusic(MUSIC_CTRL_FADEOUT)
 			// Back to Time Attack menu
 			global.game_mode = 0x85
@@ -396,7 +396,7 @@ function void UpdateGamePause()
 		return
 	}
 	
-#if STANDALONE 
+#if STANDALONE
 	if (global.game.paused != true)
 	{
 		if ((control.pad1.pressed & CONTROL_START) == 0x00)
@@ -405,11 +405,11 @@ function void UpdateGamePause()
 		global.game.paused = true
 	}
 	
-	syncZ80_variantB(0x01) 
+	syncZ80_variantB(0x01)
 	BlueSpheresTimer.Menu.pause.setup()
 	syncZ80_variantB(0x80)
 	
-	global.game.paused = false 
+	global.game.paused = false
 #endif
 }
 
@@ -433,7 +433,7 @@ function void fn02e3da()
 	
 	if (bluespheres.gameOver != 0x01 && bluespheres.timeOver != 0x01)
 	{
-		if (bluespheres.timer.currentTime == 45900) // Special time bonus for 4:59 
+		if (bluespheres.timer.currentTime == 45900) // Special time bonus for 4:59
 			bluespheres.timer.bonus = 10000
 		else
 		{
@@ -455,7 +455,7 @@ function void fn02e3da()
 	}
 	else
 	{
-		if (bluespheres.timer.currentTime == 45900) // Special time bonus for 4:59 
+		if (bluespheres.timer.currentTime == 45900) // Special time bonus for 4:59
 			bluespheres.timer.bonus = 500
 		else
 		{
