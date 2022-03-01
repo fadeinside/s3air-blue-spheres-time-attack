@@ -1,0 +1,92 @@
+//? Resets the values of some global variables and the timer.
+function void BlueSpheresTimer.resetTimer()
+{
+	bluespheres.timer.currentTime = 0x00
+	bluespheres.timer.frames = 0x00
+	bluespheres.timer.minutes = 0x00
+	bluespheres.timer.seconds = 0x00
+	bluespheres.timer.centiseconds = 0x00
+	bluespheres.timer.bonus = 0x00
+	
+	bluespheres.gameOver = 0x00
+	bluespheres.timeOver = 0x00
+	bluespheres.timeOver.timeout = 0x00
+	
+	//System.writeDisplayLine("Timer reset")
+}
+
+//? Updates the timer counter, and determines when the time is up, when unlimited time is not active.
+function void BlueSpheresTimer.updateTimer()
+{
+	// Ignore for Main Special stages if this disabled
+	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && bluespheres.timeattack.active == 0x00)
+		return
+	
+	// Ignore for Rolling Demo and Blue Sphere game
+	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	bool timeUnlimited = BlueSpheresTimer.timeUnlimited()
+	if (timeUnlimited ? (bluespheres.timer.currentTime < 595999) : (bluespheres.timer.currentTime < bluespheres.timer.timeLimit))
+	{
+		if (bluespheres.started_running && bluespheres.blue_remaining > 0x00 && bluespheres.gameOver != 0x01 && bluespheres.timeOver != 0x01)
+			++bluespheres.timer.frames
+		
+		bluespheres.timer.seconds += bluespheres.timer.frames / 60
+		bluespheres.timer.minutes += bluespheres.timer.seconds / 60
+		bluespheres.timer.frames %= 60
+		bluespheres.timer.seconds %= 60
+	}
+	else
+	{
+		bluespheres.timeOver = 0x01
+	}
+	
+	bluespheres.timer.centiseconds = (bluespheres.timer.frames * 99 + 30) / 59
+	bluespheres.timer.currentTime = bluespheres.timer.minutes * 10000 + bluespheres.timer.seconds * 100 + bluespheres.timer.centiseconds
+}
+
+//? Returns the formatted time from the already received data.
+function u64 BlueSpheresTimer.getFormatTime(s32 input_minutes, s32 input_seconds, s32 input_centiseconds)
+{
+	u64 stringminutes = stringformat("%d", input_minutes)
+	u64 stringseconds = stringformat("%d", input_seconds)
+	u64 stringcentiseconds = stringformat("%d", input_centiseconds)
+	
+	u64 time = stringformat("%s'%s`%s", (strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes, (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
+	
+	return time
+}
+
+//? Returns the formatted time from the input data.
+function u64 BlueSpheresTimer.getFormatTime(s32 input_data)
+{
+	s32 minutes = input_data / 10000
+	s32 seconds = (input_data - (minutes * 10000)) / 100
+	s32 centiseconds = (input_data - (minutes * 10000)) - (seconds * 100)
+	
+	u64 stringminutes = stringformat("%d", minutes)
+	u64 stringseconds = stringformat("%d", seconds)
+	u64 stringcentiseconds = stringformat("%d", centiseconds)
+	
+	u64 time = stringformat("%s'%s`%s", (strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes, (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
+	
+	return time
+}
+
+//? Returns true when there is a match. Used to determine the activity of unlimited time in the stages.
+function bool BlueSpheresTimer.timeUnlimited()
+{
+	bool timeUnlimited
+	
+	if (Game.getSetting(SETTING_INFINITE_TIME))
+		timeUnlimited = true
+	else if (bluespheres.minigame_mode)
+		timeUnlimited = true
+	else if (bluespheres.timeattack.active)
+		timeUnlimited = true
+	else
+		timeUnlimited = false
+	
+	return timeUnlimited
+}

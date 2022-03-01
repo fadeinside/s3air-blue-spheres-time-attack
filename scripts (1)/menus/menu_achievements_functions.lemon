@@ -117,7 +117,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	{
 		if (Mods.isModActive("No Blue Spheres Slowdown"))
 		{
-			BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x06)
+			BlueSpheresTimer.Menu.achievements.status()
 			if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 				BlueSpheresTimer.Menu.popup.show("`No Blue Spheres Slowdown` mod.", "Complete any 7 stages with the", "", "", accept_text)
 			else
@@ -239,4 +239,13 @@ function void BlueSpheresTimer.Menu.achievements.status()
 	py += 16
 	u64 status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? "Complete" : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? "Started" : "Not started")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", status), 0x01)
+}
+
+function void BlueSpheresTimer.Menu.achievements.items.sort(s32 px, s32 py)
+{
+	px += 128
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Sort", 0x01)
+	
+	py += 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.achievements.sortselected ? "Time Attack" : "All"), 0x01)
 }

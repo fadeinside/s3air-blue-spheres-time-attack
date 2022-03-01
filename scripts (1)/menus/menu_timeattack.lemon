@@ -84,6 +84,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		u8 maxCharacters = Mods.isModActive("Extra Slot Mighty") ? 0x03 : 0x02
 		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_Y))
 		{
+			bluespheres.popup.show = 0x01
 			playSound(0x5b)
 			++bluespheres.timeattack.characterselected
 			
@@ -92,7 +93,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		}
 		
 		// Change the levels layout from S3 to SK
-		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_X))
+		if (bluespheres.popup.show == 0x00 && Input.buttonPressed(BUTTON_X))
 		{
 			if (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 			{

@@ -25,7 +25,7 @@ function void BlueSpheresTimer.Achievements.setup()
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) >= 2048)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES)
 		
-	if (bluespheres.gameOver && bluespheres.blue_remaining == 0x01)
+	if (bluespheres.gameOver && bluespheres.blue_remaining)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
 	if (bluespheres.gameOver && bluespheres.timer.currentTime == 30)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
@@ -62,7 +62,7 @@ function void BlueSpheresTimer.Achievements.setup()
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) >= 110)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
 		
-	if (Mods.isModActive("No Blue Spheres Slowdown") && BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) == 0x06)
+	if (Mods.isModActive("No Blue Spheres Slowdown") && BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) == 0x07)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 }
 

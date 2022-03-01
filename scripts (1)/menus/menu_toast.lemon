@@ -1,0 +1,61 @@
+function void BlueSpheresTimer.Menu.toast.setup(u64 title)
+{
+	// Slide in
+	if (bluespheres.toast.state == 0x00)
+	{
+		++bluespheres.toast.frames
+		if (bluespheres.toast.frames == 0x01)
+			Audio.playAudio("menuwoosh", AudioContext.CONTEXT_SOUND)
+		
+		if (bluespheres.toast.frames >= 14)
+			bluespheres.toast.state = 0x01
+	}
+	
+	 // Waiting
+	if (bluespheres.toast.state == 0x01)
+	{
+		++bluespheres.toast.timeout
+		if (bluespheres.toast.timeout >= 196)
+			bluespheres.toast.state = 0x02
+	}
+	
+	// Slide out
+	if (bluespheres.toast.state == 0x02)
+	{
+		--bluespheres.toast.frames
+		if (bluespheres.toast.frames <= 0x00)
+			bluespheres.toast.state = 0x03
+	}
+	
+	 // Reset vars
+	if (bluespheres.toast.state == 0x03)
+	{
+		bluespheres.toast.frames = 0x00
+		bluespheres.toast.timeout = 0x00
+		
+		bluespheres.toast.state = 0x04 // ?
+	}
+	
+	BlueSpheresTimer.Menu.toast.items(title)
+	BlueSpheresTimer.Menu.toast.background()
+}
+
+function void BlueSpheresTimer.Menu.toast.items(u64 title)
+{
+	s32 px = (getScreenWidth() - 32) + 196 - (bluespheres.toast.frames * 14)
+	s32 py = 16
+	
+	BlueSpheresTimer.Menu.toast.items.title(px, py, title)
+}
+
+function void BlueSpheresTimer.Menu.toast.items.title(s32 px, s32 py, u64 title)
+{
+	Renderer.drawCustomSprite("icon_unlock", px + 16, py, 0x00, 0x40, 0xf000)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x00, title, 0x01)
+}
+
+function void BlueSpheresTimer.Menu.toast.background()
+{
+	for (s32 i = 0x00; i < 0x02 + (getScreenWidth() / 0x10); i++)
+		Renderer.drawCustomSprite("background_toast", 0x10 * i, (bluespheres.toast.frames * 4) - 56, 0x00, 0x40, 0xf000, 0x00, 0xdd)
+}

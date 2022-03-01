@@ -154,7 +154,7 @@ function void fn009b62()
 			u16[0xffffe428] = 0x0800
 			u8[0xffffe44d] = 0x78
 			
-			// Skip the emerald if it has already been received, or do you play with inactive super emeralds in S3 stages
+			// Skip the emerald if it has already been received, or do you play with inactive super emeralds in sk stages
 			if ((BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x01 || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x03) || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && !bluespheres.timeattack.layoutselected) 
 			{
 				// Go to the shared menu
@@ -162,8 +162,8 @@ function void fn009b62()
 				return
 			}
 			
-			// Skip the emerald if all the rings are not collected. Ignore for Stage 7 S3, there no rings
-			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00))
+			// Skip the emerald if all the rings are not collected
+			if (bluespheres.rings_remaining != 0x00)
 			{
 				// I'm just using "Time Over" dependencies to create "Not Enough Rings"
 				bluespheres.timeOver = 0x01

@@ -1,0 +1,110 @@
+function void BlueSpheresTimer.Menu.pause.setup()
+{
+	// Global variables setup
+	bluespheres.buttons.setup = 0x02
+	bluespheres.pause.buttonselected = 0x00
+	
+	// Menu variables
+	s32 menu.headlinecounter
+	u8 menu.clearView
+	
+	// Main loop
+	while (global.game.paused)
+	{
+		FadeInFromWhite()
+		waitForNextFrame()
+		
+		// Silence the stage music
+		Audio.playOverride("shutup", AudioContext.CONTEXT_MUSIC, 0x01, 0x00)
+		
+		// Button selection
+		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+		{
+			playSound(0x5b)
+			if (control.pad1.pressed & CONTROL_UP)
+			{
+				if (bluespheres.pause.buttonselected != 0x00)
+					--bluespheres.pause.buttonselected
+				else
+					bluespheres.pause.buttonselected = bluespheres.buttons.setup
+			}
+			else if (control.pad1.pressed & CONTROL_DOWN)
+			{
+				if (bluespheres.pause.buttonselected < bluespheres.buttons.setup)
+					++bluespheres.pause.buttonselected
+				else
+					bluespheres.pause.buttonselected = 0x00
+			}
+		}
+		
+		// Let's make the headline run across the screen from right to left
+		++menu.headlinecounter
+		if (menu.headlinecounter > 220)
+			menu.headlinecounter = 0x00
+			
+		// Clear the menu items for your cute screenshots
+		if (Input.buttonPressed(BUTTON_Y))
+		{
+			++menu.clearView
+			if (menu.clearView > 0x01)
+				menu.clearView = 0x00
+		}
+		
+		// Start the selected stage
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			if (menu.clearView)
+			{
+				menu.clearView = 0x00
+			}
+			else if (bluespheres.pause.buttonselected == 0x00)
+			{
+				playSound(0x63)
+				break
+			}
+			else if (bluespheres.pause.buttonselected == 0x01)
+			{
+				playSound(0xaf)
+				playMusic(MUSIC_CTRL_STOP)
+				
+				if (Mods.isModActive("Mania-Styled Blue Spheres"))
+					fn0011ca()
+				
+				BlueSpheresTimer.EntryFunctions.startSpecialStage()
+			}
+			else if (bluespheres.pause.buttonselected == 0x02)
+			{
+				playSound(0x63)
+				playMusic(MUSIC_CTRL_STOP)
+				
+				bluespheres.timeattack.active = 0x00
+				
+				Renderer.enableDefaultPlane(0x03, false)
+				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+			}
+		}
+		
+		// Checking the activity of achievements
+		BlueSpheresTimer.Achievements.setup()
+		
+		// Screen items
+		if (!menu.clearView)
+		{
+			BlueSpheresTimer.Menu.pause.headline(menu.headlinecounter)
+			BlueSpheresTimer.Menu.pause.items()
+			BlueSpheresTimer.Menu.pause.background()
+		}
+		
+		// Re-render game objects
+		BlueSpheres.renderCustomSpheres()
+		BlueSpheres.renderCustomCharacterShadows()
+		BlueSpheres.renderCustomGround()
+		
+		A0 = 0xffffb000
+		
+		D7 = 0x04
+		updateGameObjectLoopRenderOnly()
+		
+		RenderSprites()
+	}
+}

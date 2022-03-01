@@ -1,0 +1,44 @@
+function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
+{
+	// Ignore for Main Special stages if this disabled
+	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
+		return
+	
+	// Ignore for Rolling Demo and Blue Sphere game
+	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Checking the activity of achievements
+	BlueSpheresTimer.Achievements.setup()
+	
+	// Blink when the time exceeds 4:30 (except infinite time mode)
+	if (!BlueSpheresTimer.timeUnlimited() && bluespheres.timer.currentTime >= 43000 && level.framecounter.low & 0x10)
+		return
+	
+	s32 minutes = bluespheres.timer.currentTime / 10000
+	s32 seconds = (bluespheres.timer.currentTime - (minutes * 10000)) / 100
+	s32 centiseconds = (bluespheres.timer.currentTime - (minutes * 10000)) - (seconds * 100)
+	
+	py -= 0x06
+	if (Game.getSetting(SETTING_EXTENDED_HUD) || bluespheres.timeattack.active) // || Use extended HUD in Time Attack mode
+	{
+		px -= 0x13
+		HUD.drawNumber("hud_digit_%d", minutes / 0x0a, px - 0x10, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", minutes % 0x0a, px - 0x08, py, renderQueue)
+		HUD.drawSprite("hud_char_minutes", px, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", seconds / 0x0a, px + 0x08, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", seconds % 0x0a, px + 0x10, py, renderQueue)
+		HUD.drawSprite("hud_char_seconds", px + 0x18, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", centiseconds / 0x0a, px + 0x20, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", centiseconds % 0x0a, px + 0x28, py, renderQueue)
+	}
+	else
+	{
+		px -= 0x03
+		HUD.drawNumber("hud_digit_%d", minutes / 0x0a, px - 0x10, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", minutes % 0x0a, px - 0x08, py, renderQueue)
+		HUD.drawSprite("hud_char_colon", px, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", seconds / 0x0a, px + 0x08, py, renderQueue)
+		HUD.drawNumber("hud_digit_%d", seconds % 0x0a, px + 0x10, py, renderQueue)
+	}
+}

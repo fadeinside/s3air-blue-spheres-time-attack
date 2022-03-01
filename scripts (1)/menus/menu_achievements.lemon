@@ -22,7 +22,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		waitForNextFrame()
 		
 		// Button selection
-		if (!bluespheres.popup.show && control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+		if (bluespheres.popup.show == 0x00 && control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
 		{
 			playSound(0x5b)
 			if (control.pad1.pressed & CONTROL_UP)
@@ -47,7 +47,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 			menu.headlinecounter = 0x00
 		
 		// Perform the action of selected button when start pressed
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_START))
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_START))
 		{
 			for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
 			{
@@ -75,7 +75,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		BlueSpheresTimer.Menu.timeattack.background()
 		
 		// Go back to the time attack menu
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
+		if (bluespheres.popup.show == 0x00 && (control.pad1.pressed & CONTROL_B))
 		{
 			playSound(0xad)
 			BlueSpheresTimer.EntryFunctions.Menu.timeattack()

@@ -1,0 +1,67 @@
+function void BlueSpheresTimer.EntryFunctions.startSpecialStage()
+{
+	EntryFunctions.sharedInit()
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
+	System.setupCallFrame("BlueSpheresTimer.EntryFunctions.setupSpecialStage")
+}
+
+function void BlueSpheresTimer.EntryFunctions.setupSpecialStage()
+{
+	BlueSpheresTimer.resetTimer()
+	
+	lives_counter = 0x03
+	global.game.paused = false
+	
+	if (bluespheres.timeattack.characterselected == 0x03)
+	{
+		u8[0xffffE654] = 0x01
+		global.characters = 0x01
+	}
+	else
+	{
+		global.characters = bluespheres.timeattack.characterselected + 0x01
+	}
+	
+	global.next_bluespheres = bluespheres.timeattack.levelselected
+	global.sk_bluespheres = bluespheres.timeattack.layoutselected
+	global.lock_on_state = bluespheres.timeattack.layoutselected
+	
+	bluespheres.timeattack.active = 0x01
+	global.game_mode = 0x34
+}
+
+function void BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+{
+	EntryFunctions.sharedInit()
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
+	System.setupCallFrame("BlueSpheresTimer.Menu.timeattack.setup")
+	
+	global.game_mode = 0x85
+}
+
+function void BlueSpheresTimer.EntryFunctions.Menu.options()
+{
+	EntryFunctions.sharedInit()
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
+	System.setupCallFrame("BlueSpheresTimer.Menu.options.setup")
+	
+	global.game_mode = 0x86
+}
+
+function void BlueSpheresTimer.EntryFunctions.Menu.achievements()
+{
+	EntryFunctions.sharedInit()
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
+	System.setupCallFrame("BlueSpheresTimer.Menu.achievements.setup")
+	
+	global.game_mode = 0x88
+}
+
+function void BlueSpheresTimer.EntryFunctions.Menu.shared()
+{
+	EntryFunctions.sharedInit()
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
+	System.setupCallFrame("BlueSpheresTimer.Menu.shared.setup")
+	
+	global.game_mode = 0x87
+}
