@@ -1,0 +1,6 @@
+{
+	// Menu shadow
+	"background_menu": { "File": "menu_background.png", "Rect": "1,1,16,224", "Center": "8,0" },
+	// Toast shadow
+	"background_toast": { "File": "menu_background.png", "Rect": "18,1,16,64", "Center": "8,0" }
+}
