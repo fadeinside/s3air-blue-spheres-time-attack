@@ -1,4 +1,0 @@
-// Settings
-global u8 SETTING_BS_TIME_ATTACK_MODE	// When 0x01, Blue Sphere Time Attack menu opens instead of Data Select menu
-global u8 SETTING_BS_ACHIEVEMENTS_ENABLE	// When 0x01, achievements can be obtained in usual Special stages of the Main levels
-global u8 SETTING_BS_TIME_BONUSES_ON_SPECIALS	// When 0x01, a timer appears at the usual Special stages of the Main levels, and at the end, a time bonus will appear on the Results screen
