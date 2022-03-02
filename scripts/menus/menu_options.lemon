@@ -10,9 +10,6 @@ function void BlueSpheresTimer.Menu.options.setup()
 	// Menu variables
 	s32 menu.headlinecounter
 	
-	// Keep music from time attack menu
-	// playMusic(0x28)
-	
 	// VRAM stuff
 	waitForNextFrame()
 	fn0011ca()
@@ -82,9 +79,12 @@ function void BlueSpheresTimer.Menu.options.setup()
 			{
 				playSound(0x63)
 				global.game_mode = 0x85
-				break
 			}
 		}
+		
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x86)
+			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -101,7 +101,6 @@ function void BlueSpheresTimer.Menu.options.setup()
 		{
 			playSound(0xad)
 			global.game_mode = 0x85
-			break
 		}
 		
 		// Clear sprites every frame

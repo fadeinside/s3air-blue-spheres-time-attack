@@ -51,6 +51,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 		// Go to the selected game
 		if (control.pad1.pressed & CONTROL_START)
 		{
+			playSound(0x63)
 			if (bluespheres.lobby.buttonselected == 0x00)
 			{
 				bluespheres.timeattack.buttonselected = 0x01

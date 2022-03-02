@@ -143,7 +143,7 @@ function void fn009b62()
 			u8[0xffffe44d] = 0x78
 			
 			// Skip the emerald if it has already been received, or do you play with inactive super emeralds in S3 stages
-			if ((BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x01 || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x03) || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && !bluespheres.timeattack.layoutselected) 
+			if ((BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x01 || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x03) || BlueSpheresTimer.Emeralds.getStatus(bluespheres.timeattack.levelselected) == 0x02 && !bluespheres.timeattack.layoutselected)
 			{
 				// Go to the shared menu
 				global.game_mode = 0x87

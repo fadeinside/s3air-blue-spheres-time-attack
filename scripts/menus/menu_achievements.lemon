@@ -62,9 +62,12 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 			{
 				playSound(0x63)
 				global.game_mode = 0x85
-				break
 			}
 		}
+		
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x88)
+			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -79,7 +82,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
 		{
 			playSound(0xad)
-			BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+			global.game_mode = 0x85
 		}
 		
 		// Clear sprites every frame

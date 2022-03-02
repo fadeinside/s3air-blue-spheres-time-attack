@@ -80,10 +80,13 @@ function void BlueSpheresTimer.Menu.pause.setup()
 				bluespheres.timeattack.active = 0x00
 				
 				Renderer.enableDefaultPlane(0x03, false)
-				global.game_mode = 0x85
-				break
+				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
 			}
 		}
+		
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x34)
+			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()

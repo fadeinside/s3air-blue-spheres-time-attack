@@ -52,7 +52,7 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		if (menu.headlinecounter > offset)
 			menu.headlinecounter = 0x00
 		
-		// Stop flashing the header
+		// Stop flashing the headline
 		if (menu.headlinecounter == 200)
 			menu.headline.stopblink = 0x01
 			
@@ -70,9 +70,12 @@ function void BlueSpheresTimer.Menu.shared.setup()
 				playSound(0x63)
 				bluespheres.timeattack.active = 0x00
 				global.game_mode = 0x85
-				break
 			}
 		}
+		
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x87)
+			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -89,7 +92,6 @@ function void BlueSpheresTimer.Menu.shared.setup()
 			playSound(0xad)
 			bluespheres.timeattack.active = 0x00
 			global.game_mode = 0x85
-			break
 		}
 		
 		// Clear sprites every frame

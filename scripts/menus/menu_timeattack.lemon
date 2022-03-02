@@ -115,7 +115,6 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 				playSound(0x63)
 				bluespheres.timeattack.active = 0x00
 				global.game_mode = 0x86
-				break
 			}
 			if (bluespheres.timeattack.buttonselected == 0x01)
 			{
@@ -130,7 +129,6 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 					playSound(0x63)
 					bluespheres.timeattack.active = 0x00
 					global.game_mode = 0x88
-					break
 				}
 				else
 				{
@@ -146,6 +144,10 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 			bluespheres.popup.show = 0x01
 		if (u8[0x8e12a2] && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
 			bluespheres.popup.show = 0x01
+			
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x85)
+			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
