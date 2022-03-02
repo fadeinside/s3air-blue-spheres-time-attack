@@ -80,7 +80,8 @@ function void BlueSpheresTimer.Menu.pause.setup()
 				bluespheres.timeattack.active = 0x00
 				
 				Renderer.enableDefaultPlane(0x03, false)
-				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+				global.game_mode = 0x85
+				break
 			}
 		}
 		

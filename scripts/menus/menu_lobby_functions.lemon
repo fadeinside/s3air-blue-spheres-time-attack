@@ -1,0 +1,42 @@
+function void BlueSpheresTimer.Menu.lobby.headline(s32 counter)
+{
+	s32 px = getScreenWidth() / 0x02 - 230
+	
+	for (s32 i = 0x00; i < 0x06; i++)
+		BlueSpheresTimer.TextManager.drawText(px + (230 * i) - counter * 0x02, 25, 0xf000, 0x01, "CHOOSE A GAME!", 0x00)
+}
+
+function void BlueSpheresTimer.Menu.lobby.items()
+{
+	s32 px = getScreenWidth() / 0x02
+	s32 py = getScreenHeight() / 0x02
+	
+	BlueSpheresTimer.Menu.lobby.items.menu(px, py)
+}
+
+function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
+{
+	if !(Mods.isModActive("Blue Sphere Plus"))
+		py += 9
+	
+	py -= 18
+	u64 button_timeattack = (bluespheres.lobby.buttonselected == 0x00) ? "* Time Attack *" : "Time Attack"
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_timeattack, 0x01)
+	
+	if (Mods.isModActive("Blue Sphere Plus"))
+	{
+		py += 18
+		u64 button_bluesphere = (bluespheres.lobby.buttonselected == 0x01) ? "* Blue Sphere *" : "Blue Sphere"
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_bluesphere, 0x01)
+	
+		py += 18
+		u64 button_sonic3k = (bluespheres.lobby.buttonselected == 0x02) ? "* Sonic 3K *" : "Sonic 3K"
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_sonic3k, 0x01)
+	}
+	else
+	{
+		py += 18
+		u64 button_get_blue_spheres = (bluespheres.lobby.buttonselected == 0x01) ? "* Get Blue Spheres *" : "Get Blue Spheres"
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_get_blue_spheres, 0x01)
+	}
+}

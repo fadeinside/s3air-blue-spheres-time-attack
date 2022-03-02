@@ -14,7 +14,7 @@ function void BlueSpheresTimer.EntryFunctions.setupSpecialStage()
 	
 	if (bluespheres.timeattack.characterselected == 0x03)
 	{
-		u8[0xffffE654] = 0x01
+		u8[0xffffe654] = 0x01
 		global.characters = 0x01
 	}
 	else
@@ -48,6 +48,15 @@ function void BlueSpheresTimer.EntryFunctions.Menu.options()
 	global.game_mode = 0x86
 }
 
+function void BlueSpheresTimer.EntryFunctions.Menu.shared()
+{
+	EntryFunctions.sharedInit()
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
+	System.setupCallFrame("BlueSpheresTimer.Menu.shared.setup")
+	
+	global.game_mode = 0x87
+}
+
 function void BlueSpheresTimer.EntryFunctions.Menu.achievements()
 {
 	EntryFunctions.sharedInit()
@@ -57,11 +66,16 @@ function void BlueSpheresTimer.EntryFunctions.Menu.achievements()
 	global.game_mode = 0x88
 }
 
-function void BlueSpheresTimer.EntryFunctions.Menu.shared()
+function void BlueSpheresTimer.EntryFunctions.Menu.lobby()
 {
 	EntryFunctions.sharedInit()
 	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
-	System.setupCallFrame("BlueSpheresTimer.Menu.shared.setup")
+	System.setupCallFrame("BlueSpheresTimer.Menu.lobby.setup")
 	
-	global.game_mode = 0x87
+	global.game_mode = 0x89
+}
+
+function void EntryFunctions.blueSphereGame()
+{
+	BlueSpheresTimer.EntryFunctions.Menu.lobby()
 }

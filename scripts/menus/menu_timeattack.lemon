@@ -114,7 +114,8 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 			{
 				playSound(0x63)
 				bluespheres.timeattack.active = 0x00
-				BlueSpheresTimer.EntryFunctions.Menu.options()
+				global.game_mode = 0x86
+				break
 			}
 			if (bluespheres.timeattack.buttonselected == 0x01)
 			{
@@ -128,7 +129,8 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 				{
 					playSound(0x63)
 					bluespheres.timeattack.active = 0x00
-					BlueSpheresTimer.EntryFunctions.Menu.achievements()
+					global.game_mode = 0x88
+					break
 				}
 				else
 				{
@@ -158,9 +160,8 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
 		{
 			playSound(0xad)
-			FadeOutScreenBlocking()
-			
-			Game.returnToMainMenu()
+			global.game_mode = 0x89
+			break
 		}
 		
 		// Clear sprites every frame

@@ -15,10 +15,14 @@ global u8 bluespheres.options.buttonselected	// The currently active button in t
 global u8 bluespheres.pause.buttonselected	// The currently active button in the Pause menu
 global u8 bluespheres.popup.buttonselected	// The currently active button in the popup menu
 global u8 bluespheres.achievements.buttonselected	// The currently active button in the Achievements menu
+global u8 bluespheres.lobby.buttonselected	// The currently active button in the Lobby menu
 global u8 bluespheres.timeattack.characterselected	// The selected character in the Time Attack menu (0x00 - Sonic, 0x01 - Miles, 0x02 - Knuckles, 0x03 - Mighty (by Extra Slot Mighty))
+// To-Do: Probably Extra Slot Ray, which iCloudius will be working on in the future, will also use 0x03 ID in the list of characters. I plan to make bluespheres.timeattack.xtracharselected, or something like that
 global u8 bluespheres.timeattack.levelselected	// Selected level (0x00 .. 0x07)
 global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0x00 - Sonic 3, 0x01 - Sonic & Knuckles)
-global u8 bluespheres.achievements.sortselected	// (Unused) Sort Achievements (0x00 - All, 0x01 - Time attack)
+
+// From Blue Sphere Plus
+global bool bluespheregame.menu_usemaingamestages
 
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere
@@ -32,7 +36,6 @@ global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
 global u8 bluespheres.blue_collected	// Counter of collected blue spheres
 
 // Toast stuff
-global u8 bluespheres.toast.show	// (Unused) Set to 0x01 when the toast show
 global u8 bluespheres.toast.state	// The current state of the toast (0x00 - Slide in, 0x01 - Waiting, 0x02 - Slide out, 0x03 - Hide/Reset, 0x04 - Shit code?)
 global u8 bluespheres.toast.frames	// The counter is used for animation
 global u8 bluespheres.toast.timeout	// Waiting counter (max. 196)

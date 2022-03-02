@@ -12,7 +12,7 @@ function void GameModeControlLoop()
 #endif
 
 	InitSaveSlots()
-	global.game_mode = 0
+	global.game_mode = 0x00
 
 	while (true)
 	{
@@ -28,6 +28,7 @@ function void GameModeControlLoop()
 		// global.game_mode = 0x86	->	Blue Spheres Timer: Options menu
 		// global.game_mode = 0x87	->	Blue Spheres Timer: Shared menu
 		// global.game_mode = 0x88	->	Blue Spheres Timer: Achievements menu
+		// global.game_mode = 0x89	->	Blue Spheres Timer: Lobby menu
 	
 		if (global.game_mode == 0x85)
 			BlueSpheresTimer.Menu.timeattack.setup()
@@ -37,6 +38,8 @@ function void GameModeControlLoop()
 			BlueSpheresTimer.Menu.shared.setup()
 		else if (global.game_mode == 0x88)
 			BlueSpheresTimer.Menu.achievements.setup()
+		else if (global.game_mode == 0x89)
+			BlueSpheresTimer.Menu.lobby.setup()
 		else
 		{
 			D0.u16 = global.game_mode & 0x7c

@@ -61,7 +61,8 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 			if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup)
 			{
 				playSound(0x63)
-				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+				global.game_mode = 0x85
+				break
 			}
 		}
 		

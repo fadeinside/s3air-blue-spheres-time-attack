@@ -69,7 +69,8 @@ function void BlueSpheresTimer.Menu.shared.setup()
 			{
 				playSound(0x63)
 				bluespheres.timeattack.active = 0x00
-				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+				global.game_mode = 0x85
+				break
 			}
 		}
 		
@@ -87,7 +88,8 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		{
 			playSound(0xad)
 			bluespheres.timeattack.active = 0x00
-			BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+			global.game_mode = 0x85
+			break
 		}
 		
 		// Clear sprites every frame

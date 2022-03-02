@@ -1,4 +1,4 @@
-//? Simplified BlueSpheresTimer.TextManager.DrawText() function without configurable transparency.
+//? Simplified BlueSpheresTimer.TextManager.drawText() function without configurable transparency.
 function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font)
 {
 	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, text, font, 255)
@@ -24,6 +24,11 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 				character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
 		}
 	}
+	
+	// Alignment:
+	// - 0x00 - From Right
+	// - 0x01 - From Center
+	// - 0x02 - From Left
 	
 	s32 left
 	if (align == 0x00)
