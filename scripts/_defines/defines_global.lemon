@@ -21,9 +21,6 @@ global u8 bluespheres.timeattack.characterselected	// The selected character in 
 global u8 bluespheres.timeattack.levelselected	// Selected level (0x00 .. 0x07)
 global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0x00 - Sonic 3, 0x01 - Sonic & Knuckles)
 
-// From Blue Sphere Plus
-global bool bluespheregame.menu_usemaingamestages
-
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere
 global s32 bluespheres.timeOver.timeout	// Counter before returning to the level. Activated when Time over

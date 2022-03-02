@@ -4,7 +4,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	FadeOutScreenBlocking()
 	
 	// Global variables setup
-	bluespheres.buttons.setup = Mods.isModActive("Blue Sphere Plus") ? 0x02 : 0x01
+	bluespheres.buttons.setup = 0x01
 	
 	// Menu variables
 	s32 menu.headlinecounter
@@ -55,30 +55,22 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 			{
 				bluespheres.timeattack.buttonselected = 0x01
 				global.game_mode = 0x85
-				break
 			}
 			if (bluespheres.lobby.buttonselected == 0x01)
 			{
 				FadeOutScreenBlocking()
 				
-				u8[0xffffffa1] = 0x01
-				bluespheregame.menu_usemaingamestages = false
+				fn0011ca()
+				waitForNextFrame()
+				Renderer.resetSprites()
 				
 				global.game_mode = 0x2c
-				break
-			}
-			if (bluespheres.lobby.buttonselected == 0x02)
-			{
-				FadeOutScreenBlocking()
-				
-				u8[0xffffffa1] = 0x01
-				bluespheregame.menu_usemaingamestages = true
-				bluespheregame.menu_selection = 0x02
-				
-				global.game_mode = 0x2c
-				break
 			}
 		}
+		
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x89)
+			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()

@@ -12,18 +12,6 @@ function void GiantRing.BaseUpdate()
 	base.GiantRing.BaseUpdate()
 }
 
-//@ Function taken from sonic3air_dev/scripts/standalone/entryfunctions.lemon
-function void loadupDataSelect()
-{
-	if !(SETTING_BS_TIME_ATTACK_MODE)
-		base.loadupDataSelect()
-	else
-	{
-		bluespheres.timeattack.buttonselected = 0x01
-		BlueSpheresTimer.EntryFunctions.Menu.timeattack()
-	}
-}
-
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
 //# address-hook(0x009e88) end(0x009e9e)
 function void BlueSpheres.OnBlueSphereCollected()
