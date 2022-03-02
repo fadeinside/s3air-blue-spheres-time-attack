@@ -64,9 +64,12 @@ function void BlueSpheresTimer.Achievements.setup()
 		
 	if (Mods.isModActive("No Blue Spheres Slowdown") && BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) == 0x06)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
+		
+	if (BlueSpheresTimer.Emeralds.allEqual(0x03))
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 }
 
-//? Проверяет когда синяя сфера собрана/собирается.
+//? Checks when the blue sphere is collected.
 function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 {
 	// Ignore for locked Achievements
@@ -253,6 +256,10 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	{
 		bool targetMod_active = Mods.isModActive("No Blue Spheres Slowdown")
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) ? "You are too slow!" : (targetMod_active ? locked_text : needmod_text)
+	}
+	else if (achievementId == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) ? "Get them all!" : locked_text
 	}
 	else
 	{

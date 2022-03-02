@@ -222,7 +222,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 	centiseconds_total %= 99
 	seconds_total %= 60
 	
-	if (minutes_total <= 50 && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
+	if (minutes_total <= 100 && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
 		u8[0x8e12a2] = 0x01 // Temp
 	
 	py += 16

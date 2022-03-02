@@ -5,8 +5,8 @@ function void BlueSpheresTimer.Emeralds.update()
 	if (u8[0xffffe44c] == 0x00)
 		return
 	
-	// Do not perform any actions if all the rings are not collected at the stage
-	if (bluespheres.rings_remaining > 0x00)
+	// Do not perform any actions if all the rings are not collected at the stage. Ignore for Stage 7 S3, there no rings
+	if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00))
 		return
 	
 	// Get an emerald for the currently selected level, if it is not received, and if these are S3 stages
@@ -18,6 +18,7 @@ function void BlueSpheresTimer.Emeralds.update()
 		BlueSpheresTimer.Emeralds.setStatus(bluespheres.timeattack.levelselected, 0x03)
 }
 
+//? Returns the icon of the specified emerald ID.
 function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 {
 	u64 emeraldColor
@@ -70,7 +71,7 @@ function u32 BlueSpheresTimer.Emeralds.getAddress(u8 emeraldId)
 	return bluespheres.emeraldsDataAddress + emeraldID + mods
 }
 
-//? Установить новое значение для всех адресов Изумрудов.
+//? Set a new value for all Emerald addresses.
 function void BlueSpheresTimer.Emeralds.replaceAll(u8 status)
 {
 	for (u8 i = 0x00; i <= 0x07; i++)
@@ -79,7 +80,7 @@ function void BlueSpheresTimer.Emeralds.replaceAll(u8 status)
 	}
 }
 
-//? Проверяет значение адресов изумрудов, и если они равны указаному, вернуть true.
+//? Checks the value of the emerald addresses, and if they are equal to the specified one, return true.
 function bool BlueSpheresTimer.Emeralds.allEqual(u8 status)
 {
 	bool equal = false
