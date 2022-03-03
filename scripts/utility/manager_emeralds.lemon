@@ -85,7 +85,7 @@ function bool BlueSpheresTimer.Emeralds.allEqual(u8 status)
 {
 	bool equal = false
 	
-	if (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) == 0x01)
+	if (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 	{
 		if (BlueSpheresTimer.Emeralds.getStatus(0x00) == status && BlueSpheresTimer.Emeralds.getStatus(0x01) == status && BlueSpheresTimer.Emeralds.getStatus(0x02) == status && BlueSpheresTimer.Emeralds.getStatus(0x03) == status && BlueSpheresTimer.Emeralds.getStatus(0x04) == status && BlueSpheresTimer.Emeralds.getStatus(0x05) == status && BlueSpheresTimer.Emeralds.getStatus(0x06) == status && BlueSpheresTimer.Emeralds.getStatus(0x07) == status)
 			equal = true

@@ -28,5 +28,6 @@ define u32 ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES	= 0x0012
 define u32 ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES	= 0x0013
 
 define u32 ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW	= 0x0014
-
 define u32 ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS	= 0x0015
+
+// Suggest more of achievements on the Gamebanana page, GitHub issues, or via Discord on the Sonic 3 A.I.R server

@@ -19,5 +19,6 @@ function void BlueSpheresTimer.Data.setValue(u32 address, u8 value)
 {
 	u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
 	u8[addressOffset] = value
+	
 	System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
 }

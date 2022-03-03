@@ -22,6 +22,7 @@ function void BlueSpheres.OnBlueSphereCollected()
 	base.BlueSpheres.OnBlueSphereCollected()
 }
 
+//@ Function taken from sonic3air_dev/scripts/general/bluespheregame.lemon
 //# address-hook(0x04d6b8) end(0x04d7a0)
 function void fn04d6b8()
 {

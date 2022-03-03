@@ -248,7 +248,7 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	}
 	else if (achievementId == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 	{
-		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) ? "Get them all!" : locked_text
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) ? "Get all sparkles!" : locked_text
 	}
 	else
 	{
@@ -319,7 +319,7 @@ function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 		return
 	}
 	
-	BlueSpheresTimer.Achievements.addValue(achievementId, 0xfa1)
+	BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa1)
 	//System.writeDisplayLine(stringformat("Achievement 0x%04x complete and saved in 0x%06x RAM", achievementId, BlueSpheresTimer.Achievements.getAddress( achievementId)))
 }
 

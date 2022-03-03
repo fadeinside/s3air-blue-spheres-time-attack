@@ -42,6 +42,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 	// HUD
 	if (objA0.update_address == 0x008e2a)
 	{
+		// This is the best I could come up with, for a better view. If I insert it inside the script in another place, it will be invisible for about one frame before it appears
 		BlueSpheresTimer.renderTimer(px, py, renderQueue)
 	}
 	
