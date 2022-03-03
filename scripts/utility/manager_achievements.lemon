@@ -1,10 +1,6 @@
 //? Checks for matches of values/events, and sets the status Completed for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.setup()
 {
-	// Ignore for locked Achievements
-	if !(BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-		return
-		
 	// Ignore for Main Special stages if Achievements disabled
 	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
 		return
@@ -72,10 +68,6 @@ function void BlueSpheresTimer.Achievements.setup()
 //? Checks when the blue sphere is collected.
 function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 {
-	// Ignore for locked Achievements
-	if !(BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-		return
-	
 	// Ignore for Main Special stages if this disabled
 	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
 		return
@@ -101,10 +93,6 @@ function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 //? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.spheresChecks()
 {
-	// Ignore for locked Achievements
-	if !(BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-		return
-	
 	// Ignore for Main Special stages if this disabled
 	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
 		return

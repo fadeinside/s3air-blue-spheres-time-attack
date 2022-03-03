@@ -16,6 +16,5 @@ define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memor
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
 
 // Data
-define u32 bluespheres.achievementsUnlocked	= 0x8e11d8	// Set to 0x01 when
 define u32 bluespheres.stage8Unlocked	= 0x8e11ee	// Set to 0x01 when 7 Chaos emeralds are received
 define u32 bluespheres.skUnlocked	= 0x8e11fe	// Set to 0x01 when the 8 Chaos emerald is received

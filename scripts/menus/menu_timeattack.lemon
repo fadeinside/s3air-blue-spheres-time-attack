@@ -20,8 +20,6 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		playMusic(0xac) // Play Continue song when 8 stage unlocked
 	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 		playMusic(0xac) // Play Continue song when S&K stages unlocked
-	if (u8[0x8e12a2] && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-		playMusic(0xac) // Play Continue song when Achievements unlocked
 	
 	// VRAM stuff
 	waitForNextFrame()
@@ -124,16 +122,9 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 			}
 			if (bluespheres.timeattack.buttonselected == 0x02)
 			{
-				if (BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-				{
-					playSound(0x63)
-					bluespheres.timeattack.active = 0x00
-					global.game_mode = 0x88
-				}
-				else
-				{
-					playSound(0x7b)
-				}
+				playSound(0x63)
+				bluespheres.timeattack.active = 0x00
+				global.game_mode = 0x88
 			}
 		}
 		
@@ -141,8 +132,6 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 			bluespheres.popup.show = 0x01
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
-			bluespheres.popup.show = 0x01
-		if (u8[0x8e12a2] && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
 			bluespheres.popup.show = 0x01
 			
 		// End the current loop if the mode don't match
@@ -163,7 +152,6 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		{
 			playSound(0xad)
 			global.game_mode = 0x89
-			break
 		}
 		
 		// Clear sprites every frame

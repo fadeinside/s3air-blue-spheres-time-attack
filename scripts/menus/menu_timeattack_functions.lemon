@@ -28,18 +28,6 @@ function void BlueSpheresTimer.Menu.timeattack.popups()
 			bluespheres.popup.show = 0x00
 		}
 	}
-	if (u8[0x8e12a2] && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-	{
-		BlueSpheresTimer.Menu.popup.show("now unlocked!", "Achievements", "", "", accept_text)
-		if (control.pad1.pressed & CONTROL_START)
-		{
-			playSound(0x63)
-			u8[0x8e12a2] = 0x00
-			BlueSpheresTimer.Data.setValue(bluespheres.achievementsUnlocked, 0x01)
-			
-			bluespheres.popup.show = 0x00
-		}
-	}
 }
 
 
@@ -173,7 +161,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 	
 	px += 128
 	u64 button_achievements = (bluespheres.timeattack.buttonselected == 0x02) ? "* Achievements *" : "Achievements"
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01, BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked) ? 0xff : 0x90)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
@@ -222,9 +210,6 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 	minutes_total += seconds_total / 60
 	centiseconds_total %= 99
 	seconds_total %= 60
-	
-	if (minutes_total <= 100 && !BlueSpheresTimer.Data.getValue(bluespheres.achievementsUnlocked))
-		u8[0x8e12a2] = 0x01 // Temp
 	
 	py += 16
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", BlueSpheresTimer.getFormatTime(minutes_total, seconds_total, centiseconds_total)), 0x02)
@@ -277,7 +262,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x",BlueSpheresTimer.Emeralds.getAddress(x), BlueSpheresTimer.Emeralds.getStatus(x)))
 	}
 	
-	if (!BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+	if !(BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 		px += 7
 	
 	py += 15
