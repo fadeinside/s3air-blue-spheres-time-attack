@@ -1,7 +1,10 @@
 {
-	// Icons
+	// Achievements
 	"icon_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
 	"icon_unlock": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
+	
+	// Copyright
+	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
 	
 	// Super emeralds
 	"icon_emerald_super_green": { "File": "menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },

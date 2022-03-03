@@ -22,6 +22,19 @@ function void BlueSpheres.OnBlueSphereCollected()
 	base.BlueSpheres.OnBlueSphereCollected()
 }
 
+//# address-hook(0x04d6b8) end(0x04d7a0)
+function void fn04d6b8()
+{
+	if (control.pad1.pressed & CONTROL_B || Input.buttonPressed(BUTTON_BACK))
+	{
+		playSound(0xad)
+		global.game_mode = 0x89
+		return
+	}
+	
+	base.fn04d6b8()
+}
+
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
 //# address-hook(0x009ea0) end(0x009eba)
 function void fn009ea0()

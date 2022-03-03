@@ -65,6 +65,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 				waitForNextFrame()
 				Renderer.resetSprites()
 				
+				u8[0xffffffa1] = 0x00
 				global.game_mode = 0x2c
 			}
 		}

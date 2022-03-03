@@ -49,6 +49,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	Renderer.drawCustomSprite("sklogo", getScreenWidth() / 0x02, 40, 0x40, 0x00, 0xF000)
 	
 	// Copyright
+	Renderer.drawCustomSprite("icon_copyright", getScreenWidth() - 104, 210, 0x00, 0x40, 0xf000)
 	Renderer.drawCustomSprite("title_screen_cr", getScreenWidth() - 92, 206, 0x40, 0x00, 0xf000)
 	
 	// Draw a gradient so that the objects are more clearly visible on the background

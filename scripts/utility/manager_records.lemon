@@ -140,7 +140,7 @@ function s32 BlueSpheresTimer.Records.writed()
 	return writed_address
 }
 
-//? Sets the 15 seconds for all Records address.
+//? Sets the 25 seconds for all Records address.
 function void BlueSpheresTimer.Records.cheat()
 {
 	for (u8 i = 0x00; i <= 0x07; i++)
@@ -161,7 +161,7 @@ function void BlueSpheresTimer.Records.cheat()
 					
 					System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
 					
-					s32[recordOffset] = 101
+					s32[recordOffset] = 2500
 					System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
 				}
 			}
