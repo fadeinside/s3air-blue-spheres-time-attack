@@ -117,8 +117,8 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	{
 		if (Mods.isModActive("No Blue Spheres Slowdown"))
 		{
-			BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x06)
-			if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
+			BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x07)
+			if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
 				BlueSpheresTimer.Menu.popup.show("`No Blue Spheres Slowdown` mod.", "Complete any 7 stages with the", "", "", accept_text)
 			else
 				BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
@@ -130,7 +130,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 	{
-		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x07)
+		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x08)
 		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
 			BlueSpheresTimer.Menu.popup.show("8 Super emeralds.", "Collect all", "", "", accept_text)
 		else

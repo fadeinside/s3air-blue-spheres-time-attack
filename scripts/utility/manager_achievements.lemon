@@ -58,7 +58,7 @@ function void BlueSpheresTimer.Achievements.setup()
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) >= 110)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
 		
-	if (Mods.isModActive("No Blue Spheres Slowdown") && BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) == 0x06)
+	if (Mods.isModActive("No Blue Spheres Slowdown") && BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) == 0x07)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 		
 	if (BlueSpheresTimer.Emeralds.allEqual(0x03))
@@ -75,19 +75,20 @@ function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
-		
-	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && bluespheres.blue_remaining == 0x00)
-		BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) + 0x01)
-	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES))
-		BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) + 0x01)
+	
+	if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES))
+		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES, 0x01)
 	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES))
-		BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) + 0x01)
+		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES, 0x01)
 	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES))
-		BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) + 0x01)
+		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES, 0x01)
 	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES))
-		BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) + 0x01)
+		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES, 0x01)
 	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES))
-		BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) + 0x01)
+		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES, 0x01)
+		
+	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && bluespheres.blue_remaining <= 0x01)
+		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW, 0x01)
 }
 
 //? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
@@ -111,40 +112,40 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	// Bumper achievements checks
 	if (u8[A1] == 0x03 && u8[0xffffe42b] == 0x00)
 	{
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) + 0x01)
+		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES, 0x01)
 	}
 	
 	// Yellow sphere achievements checks
 	if (u8[A1] == 0x05 && (u8[0xffffe44c] == 0x00 && (u8[0xffffe432] & 0x80) == 0x00) && ((bluespheres.direction & 0x3f) == 0x00))
 	{
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES) + 0x01)
+		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES, 0x01)
 	}
 	
 	// D.A Garden Green sphere achievements checks
 	if (u8[A1] == 0x05 && (u8[0xffffef7c] && 0x01) == 0x01) // && check D.A Garden Green sphere
 	{
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_GREEN_SPHERE, 0x01)
+		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GREEN_SPHERE, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES))
-			BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES, BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) + 0x01)
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES, 0x01)
 	}
 }
 
@@ -243,7 +244,7 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	else if (achievementId == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 	{
 		bool targetMod_active = Mods.isModActive("No Blue Spheres Slowdown")
-		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) ? "You are too slow!" : (targetMod_active ? locked_text : needmod_text)
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) >= 0x01) ? "You are too slow!" : (targetMod_active ? locked_text : needmod_text)
 	}
 	else if (achievementId == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 	{
@@ -284,6 +285,18 @@ function void BlueSpheresTimer.Achievements.setValue(u32 achievementId, s32 valu
 	//System.writeDisplayLine(stringformat("Set new value to Achievement 0x%04x and saved in 0x%06x RAM", achievementId, achievementOffset))
 }
 
+//? Add value for the specified achievement ID.
+function void BlueSpheresTimer.Achievements.addValue(u32 achievementId, s32 value)
+{
+	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
+	s32 math = s32[achievementOffset] + value
+	s32[achievementOffset] = math
+	
+	System.savePersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), 0x04)
+	
+	//System.writeDisplayLine(stringformat("Added value to Achievement 0x%04x and saved in 0x%06x RAM", achievementId, achievementOffset))
+}
+
 //? Returns true when the specified achievement ID has the status Completed.
 function bool BlueSpheresTimer.Achievements.isComplete(u32 achievementId)
 {
@@ -306,7 +319,7 @@ function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 		return
 	}
 	
-	BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa1)
+	BlueSpheresTimer.Achievements.addValue(achievementId, 0xfa1)
 	//System.writeDisplayLine(stringformat("Achievement 0x%04x complete and saved in 0x%06x RAM", achievementId, BlueSpheresTimer.Achievements.getAddress( achievementId)))
 }
 
