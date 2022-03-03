@@ -289,7 +289,7 @@ function void BlueSpheresTimer.Achievements.setValue(u32 achievementId, s32 valu
 function void BlueSpheresTimer.Achievements.addValue(u32 achievementId, s32 value)
 {
 	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
-	s32 math = s32[achievementOffset] + value
+	s32 math = BlueSpheresTimer.Achievements.getValue(achievementId) + value
 	s32[achievementOffset] = math
 	
 	System.savePersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), 0x04)
