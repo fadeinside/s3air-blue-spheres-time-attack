@@ -87,7 +87,7 @@ function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES))
 		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES, 0x01)
 		
-	if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && bluespheres.blue_remaining <= 0x01)
+	if (Mods.isModActive("No Blue Spheres Slowdown") && !BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && bluespheres.blue_remaining <= 0x01)
 		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW, 0x01)
 }
 

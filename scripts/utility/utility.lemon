@@ -9,6 +9,7 @@ function void GiantRing.BaseUpdate()
 	
 	if (objA0.base_state == 0x04)
 		BlueSpheresTimer.resetTimer()
+	
 	base.GiantRing.BaseUpdate()
 }
 
@@ -41,9 +42,6 @@ function void fn04d6b8()
 function void fn009ea0()
 {
 	bluespheres.blue_collected = 0x00
-	//bluespheres.rings_remaining = 0x00
-	//bluespheres.blue_remaining = 0x01
-	//return
 	base.fn009ea0()
 }
 
