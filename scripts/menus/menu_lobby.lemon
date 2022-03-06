@@ -55,6 +55,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 			if (bluespheres.lobby.buttonselected == 0x00)
 			{
 				bluespheres.timeattack.buttonselected = 0x01
+				bluespheres.minigame_mode = 0x00
 				global.game_mode = 0x85
 			}
 			if (bluespheres.lobby.buttonselected == 0x01)
