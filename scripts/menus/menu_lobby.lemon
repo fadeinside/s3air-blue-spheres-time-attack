@@ -60,6 +60,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 			}
 			if (bluespheres.lobby.buttonselected == 0x01)
 			{
+				bluespheres.minigame_mode = 0x01
 				FadeOutScreenBlocking()
 				
 				fn0011ca()
@@ -67,6 +68,8 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 				Renderer.resetSprites()
 				
 				u8[0xffffffa1] = 0x00
+				fn04ceb6()
+				
 				global.game_mode = 0x2c
 			}
 		}
