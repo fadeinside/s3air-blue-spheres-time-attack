@@ -2,7 +2,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 {
 	u8 gameMode = global.game_mode & 0x7f
 	
-	if ((gameMode == 0x48 || gameMode == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS) // Blue Spheres results + fade to main game afterwards && check enabled Time bonu
+	if ((gameMode == 0x48 || gameMode == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS) // Blue Spheres results + fade to main game afterwards && check enabled Time bonus
 	{
 		// Blue Spheres results texts
 		if (objA0.update_address == 0x02ea50)

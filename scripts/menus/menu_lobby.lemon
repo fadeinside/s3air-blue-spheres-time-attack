@@ -70,6 +70,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 				u8[0xffffffa1] = 0x00
 				fn04ceb6()
 				
+				levelselect.characters = CHARS_SONIC_ALONE
 				global.game_mode = 0x2c
 			}
 		}
