@@ -99,7 +99,7 @@ function void fn009b62()
 			if (bluespheres.timeattack.active)
 			{
 				// Back to Time Attack menu
-				global.game_mode = 0x87
+				global.game_mode = 0x85
 			}
 			else
 			{
