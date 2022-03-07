@@ -121,7 +121,7 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	}
 	
 	// Yellow sphere achievements checks
-	if (u8[A1] == 0x05 && (u8[0xffffe44c] == 0x00 && (u8[0xffffe432] & 0x80) == 0x00) && ((bluespheres.direction & 0x3f) == 0x00))
+	if ((u8[A1] == 0x05 && (u8[0xffffef7c] && 0x01) == 0x00) && (u8[0xffffe44c] == 0x00 && (u8[0xffffe432] & 0x80) == 0x00) && ((bluespheres.direction & 0x3f) == 0x00))
 	{
 		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES, 0x01)
