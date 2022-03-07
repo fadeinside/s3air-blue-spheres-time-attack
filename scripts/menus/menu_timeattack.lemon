@@ -151,6 +151,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
 		{
 			playSound(0xad)
+			bluespheres.timeattack.active = 0x00
 			global.game_mode = 0x89
 		}
 		

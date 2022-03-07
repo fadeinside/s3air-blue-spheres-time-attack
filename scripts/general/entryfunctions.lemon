@@ -19,6 +19,7 @@ function void BlueSpheresTimer.EntryFunctions.setupSpecialStage()
 	}
 	else
 	{
+		u8[0xffffe654] = 0x00
 		global.characters = bluespheres.timeattack.characterselected + 0x01
 	}
 	
