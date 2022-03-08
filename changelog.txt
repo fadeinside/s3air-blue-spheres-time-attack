@@ -1,0 +1,15 @@
+// Follow the latest changes on GitHub: https://github.com/fadeinside/s3air-blue-spheres-time-attack
+
+// Update v1.0.2 - Stability improvements (Current)
++ Added mod page link to the mod.json.
++ Fixed when you could play for "Sonic and Tails" in the standard Blue Sphere mini-game, given that only one Sonic is selected.
++ Fixed when the Green Sphere from D.A. Garden was counted as a Yellow sphere in the Achievements manager.
++ Fixed when Mighty was always the main character after you played for him for one time.
++ Fixed when you could open custom pause menu in the standard Blue Sphere mini-game.
++ Fixed when after Time over in Time Attack mode, you back to Shared menu, instead of Time attack menu.
++ Fixed getting achievements at special stages of the main levels (i hope).
++ Optimized some functions
+
+// Update v1.0.1 - The bug-fix
++ Fixed a graphical bug when switching to a standard BS mini-game via the lobby.
++ Fixed a bug where, after the standard BS mini-game, switching to time attack mode, the level of the mini-game was always active, even after switching the level.

@@ -69,8 +69,8 @@ function void BlueSpheresTimer.Menu.options.items()
 
 function void BlueSpheresTimer.Menu.options.items.menu(s32 px, s32 py)
 {
-	u64 button_back = (bluespheres.options.buttonselected == bluespheres.buttons.setup) ? "* Back *" : "Back"
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+	u64 button_0xff = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, bluespheres.buttons.setup, "Back")
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0xff, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
@@ -83,10 +83,10 @@ function void BlueSpheresTimer.Menu.options.items.list.data(s32 px, s32 py)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Data", 0x01)
 	
 	py += 16
-	u64 button_reset = (bluespheres.options.buttonselected == 0x00) ? "* Reset all records *" : "Reset all records"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_reset, 0x01, (BlueSpheresTimer.Records.writed() > 0x00) ? 0xff : 0x90)
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x00, "Reset all records")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01, (BlueSpheresTimer.Records.writed() > 0x00) ? 0xff : 0x90)
 	
 	py += 16
-	u64 button_achievements = (bluespheres.options.buttonselected == 0x01) ? "* Reset all Achievements *" : "Reset all Achievements"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_achievements, 0x01, (BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x01, "Reset all Achievements")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01, (BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
 } 

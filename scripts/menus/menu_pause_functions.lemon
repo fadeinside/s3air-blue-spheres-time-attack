@@ -23,14 +23,14 @@ function void BlueSpheresTimer.Menu.pause.items()
 function void BlueSpheresTimer.Menu.pause.items.menu(s32 px, s32 py)
 {
 	py -= 18
-	u64 button_continue = (bluespheres.pause.buttonselected == 0x00) ? "* Continue *" : "Continue"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_continue, 0x01)
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x00, "Continue")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	py += 18
-	u64 button_restart = (bluespheres.pause.buttonselected == 0x01) ? "* Restart *" : "Restart"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_restart, 0x01)
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x01, "Restart")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 	
 	py += 18
-	u64 button_to_menu = (bluespheres.pause.buttonselected == 0x02) ? "* To menu *" : "To menu"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_to_menu, 0x01)
+	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, "To menu")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x02, 0x01)
 }

@@ -17,10 +17,10 @@ function void BlueSpheresTimer.Menu.lobby.items()
 function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
 	py -= 9
-	u64 button_timeattack = (bluespheres.lobby.buttonselected == 0x00) ? "* Time Attack *" : "Time Attack"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_timeattack, 0x01)
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x00, "Time Attack")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	py += 18
-	u64 button_get_blue_spheres = (bluespheres.lobby.buttonselected == 0x01) ? "* Get Blue Spheres *" : "Get Blue Spheres"
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_get_blue_spheres, 0x01)
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, "Get Blue Spheres") 
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 }

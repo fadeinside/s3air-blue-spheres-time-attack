@@ -30,7 +30,6 @@ function void BlueSpheresTimer.Menu.timeattack.popups()
 	}
 }
 
-
 function void BlueSpheresTimer.Menu.timeattack.background()
 {
 	// SK Blue Sphere logo
@@ -152,16 +151,16 @@ function void BlueSpheresTimer.Menu.timeattack.items()
 function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 {
 	px -= 128
-	u64 button_options = (bluespheres.timeattack.buttonselected == 0x00) ? "* Options *" : "Options"
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_options, 0x01)
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, "Options")
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	px += 128
-	u64 button_start = (bluespheres.timeattack.buttonselected == 0x01) ? "* Start *" : "Start"
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_start, 0x01)
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x01, "Start")
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x01, 0x01)
 	
 	px += 128
-	u64 button_achievements = (bluespheres.timeattack.buttonselected == 0x02) ? "* Achievements *" : "Achievements"
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01)
+	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, "Achievements")
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x02, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)

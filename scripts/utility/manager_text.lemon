@@ -41,6 +41,19 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 	BlueSpheresTimer.TextManager.basic(px - left, py, renderQueue, text, font, alpha)
 }
 
+//? Returns the string of the menu item. For example, when the item is hovered: "* Name *", otherwise just "Name".
+function u64 BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 target_selected, u64 button_name)
+{
+	u64 key
+	
+	if (button_var == target_selected)
+		key = stringformat("* %s *", button_name)
+	else
+		key = button_name
+	
+	return key
+}
+
 //? The basic code for rendering text.
 function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u32 renderQueue, u64 text, u8 font, u8 alpha)
 {
@@ -65,9 +78,9 @@ function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u32 renderQueue
 //? Single character rendering function. Some optimizations are also used here to fasted rendering.
 function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u32 renderQueue, s32 character, s32 character_space, u64 text, u8 font, u8 alpha)
 {
-	if ((px + character_space) > getScreenWidth() || (px + character_space) < -0x12)
+	if ((px + character_space) >= getScreenWidth() || (px + character_space) <= -0x12)
 		return
-	if (py > getScreenHeight() || py < 0x00)
+	if (py >= getScreenHeight() || py <= 0x00)
 		return
 	
 	u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)

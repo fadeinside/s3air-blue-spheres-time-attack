@@ -54,12 +54,12 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button1
 	py += 16
 	
 	px -= 64
-	u64 button_button1 = (bluespheres.popup.buttonselected == 0x00) ? stringformat("* %s *", button1) : stringformat("%s", button1)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_button1, 0x01)
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button1)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	px += 128
-	u64 button_button2 = (bluespheres.popup.buttonselected == 0x01) ? stringformat("* %s *", button2) : stringformat("%s", button2)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_button2, 0x01)
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x01, button2)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.popup.show(u64 text1, u64 text2, u64 text3, u64 text4, u64 button)
@@ -92,8 +92,8 @@ function void BlueSpheresTimer.Menu.popup.items(u64 text1, u64 text2, u64 text3,
 function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button)
 {
 	py += 16
-	u64 button_button = (bluespheres.popup.buttonselected == 0x00) ? stringformat("* %s *", button) : stringformat("%s", button)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_button, 0x01)
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, u64 text1, u64 text2, u64 text3, u64 text4)

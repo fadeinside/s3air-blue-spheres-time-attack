@@ -347,6 +347,12 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 //? Sets the value to 0 for all recorded achievements memory addresses.
 function void BlueSpheresTimer.Achievements.reset()
 {
+	// Reset the toast if it was in the process (live example with an active D.A. Garden)
+	bluespheres.toast.state = 0x00
+	bluespheres.toast.frames = 0x00
+	bluespheres.toast.timeout = 0x00
+	
+	// If the achievement has been received, or its value is not equal to 0, then set 0
 	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
 	{
 		if (BlueSpheresTimer.Achievements.getValue(i) != 0x00)
@@ -378,6 +384,7 @@ function void BlueSpheresTimer.Achievements.cheat()
 {
 	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
 	{
+		// Please NEVER use 0xfa1 as a value. The achievement toast system is VERY not stable in such cases. 
 		BlueSpheresTimer.Achievements.setValue(i, 0xfa2)
 	}
 }
