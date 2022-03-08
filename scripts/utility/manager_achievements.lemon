@@ -2,7 +2,7 @@
 function void BlueSpheresTimer.Achievements.setup()
 {
 	// Ignore for Main Special stages if Achievements disabled
-	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
 	// Ignore for Rolling Demo and Blue Sphere game
@@ -68,8 +68,8 @@ function void BlueSpheresTimer.Achievements.setup()
 //? Checks when the blue sphere is collected.
 function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 {
-	// Ignore for Main Special stages if this disabled
-	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 		
 	// Ignore for Rolling Demo and Blue Sphere game
@@ -94,8 +94,8 @@ function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 //? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.spheresChecks()
 {
-	// Ignore for Main Special stages if this disabled
-	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 		
 	// Ignore for Rolling Demo and Blue Sphere game

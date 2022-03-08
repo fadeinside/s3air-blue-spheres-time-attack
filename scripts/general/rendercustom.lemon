@@ -1,8 +1,15 @@
 function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 {
-	// Ignore for Main Special stages if this disabled
-	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
+	// Ignore for Main Special stages if Time bonus or Achievements disabled
+	if ((SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 || SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00) && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff)) 
+	{
+		if (SETTING_BS_ACHIEVEMENTS_ENABLE)
+		{
+			// If achievements are enabled, but the timer is disabled, then you still can get achievements
+			BlueSpheresTimer.Achievements.setup()
+		}
 		return
+	} 
 	
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
