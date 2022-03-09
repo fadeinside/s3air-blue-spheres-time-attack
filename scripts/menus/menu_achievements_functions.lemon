@@ -153,13 +153,14 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 }
 
-function void BlueSpheresTimer.Menu.achievements.headline(s32 counter)
+function void BlueSpheresTimer.Menu.achievements.headline()
 {
-	s32 px = getScreenWidth() / 0x02 - 243
+	s32 offset = 243
+	s32 px = getScreenWidth() / 0x02 - offset
 	s32 py = 0x00
 	
 	for (s32 i = 0x00; i < 0x05; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (243 * i) - counter * 0x02, 25, 0xf000, 0x01, "ACHIEVEMENTS!", 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "ACHIEVEMENTS!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items()

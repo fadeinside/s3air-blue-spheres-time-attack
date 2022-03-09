@@ -4,12 +4,9 @@ function void BlueSpheresTimer.Menu.shared.setup()
 	SetPaletteToWhite()
 	
 	// Global variables setup
+	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x01
 	bluespheres.shared.buttonselected = 0x00
-	
-	// Menu variables
-	s32 menu.headlinecounter
-	u8 menu.headline.stopblink
 	
 	// Sounds
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
@@ -25,6 +22,9 @@ function void BlueSpheresTimer.Menu.shared.setup()
 	{
 		FadeInFromWhite()
 		waitForNextFrame()
+		
+		// Start counting arrival frames in the menu
+		++level.framecounter
 		
 		// Button selection
 		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
@@ -46,16 +46,6 @@ function void BlueSpheresTimer.Menu.shared.setup()
 			}
 		}
 		
-		// Let's make the headline run across the screen from right to left
-		++menu.headlinecounter
-		s32 offset = (bluespheres.timer.currentTime >= 100000) ? 424 : 200
-		if (menu.headlinecounter > offset)
-			menu.headlinecounter = 0x00
-		
-		// Stop flashing the headline
-		if (menu.headlinecounter == 200)
-			menu.headline.stopblink = 0x01
-			
 		// Start the selected stage
 		if (control.pad1.pressed & CONTROL_START)
 		{
@@ -81,7 +71,7 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		BlueSpheresTimer.Achievements.setup()
 		
 		// Screen items
-		BlueSpheresTimer.Menu.shared.headline(menu.headlinecounter, menu.headline.stopblink)
+		BlueSpheresTimer.Menu.shared.headline()
 		BlueSpheresTimer.Menu.shared.items()
 		
 		BlueSpheresTimer.Menu.timeattack.background()

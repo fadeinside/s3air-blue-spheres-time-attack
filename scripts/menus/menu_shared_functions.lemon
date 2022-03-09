@@ -1,9 +1,9 @@
-function void BlueSpheresTimer.Menu.shared.headline(s32 counter, u8 check)
+function void BlueSpheresTimer.Menu.shared.headline()
 {
 	s32 offset = (bluespheres.timer.currentTime >= 50000) ? 424 : 200
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	if ((BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime) && global.framecounter.low & 32 && !check)
+	if ((BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime) && level.framecounter & 28 && !(level.framecounter >= 220))
 		return // Flashing when a new record
 	
 	u64 headline
@@ -21,7 +21,7 @@ function void BlueSpheresTimer.Menu.shared.headline(s32 counter, u8 check)
 		headline = "YOU NEED A LESSON IN SPEED!"
 	
 	for (u8 i = 0x00; i < 0x08; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - counter * 0x02, 25, 0xf000, 0x01, headline, 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, headline, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.shared.items()

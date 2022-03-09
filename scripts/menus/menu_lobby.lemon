@@ -4,11 +4,9 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	FadeOutScreenBlocking()
 	
 	// Global variables setup
+	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x01
-	
-	// Menu variables
-	s32 menu.headlinecounter
-	
+	8
 	// Play Blue Sphere game music
 	playMusic(0x28)
 	
@@ -22,6 +20,9 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	{
 		FadeInFromWhite()
 		waitForNextFrame()
+		
+		// Start counting arrival frames in the menu
+		++level.framecounter
 		
 		// Button selection
 		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
@@ -42,11 +43,6 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 					bluespheres.lobby.buttonselected = 0x00
 			}
 		}
-		
-		// Let's make the headline run across the screen from right to left
-		++menu.headlinecounter
-		if (menu.headlinecounter > 230)
-			menu.headlinecounter = 0x00
 		
 		// Go to the selected game
 		if (control.pad1.pressed & CONTROL_START)
@@ -84,7 +80,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 		BlueSpheresTimer.Achievements.setup()
 		
 		// Screen items
-		BlueSpheresTimer.Menu.lobby.headline(menu.headlinecounter)
+		BlueSpheresTimer.Menu.lobby.headline()
 		BlueSpheresTimer.Menu.lobby.items()
 		BlueSpheresTimer.Menu.timeattack.background()
 		

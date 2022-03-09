@@ -50,12 +50,13 @@ function void BlueSpheresTimer.Menu.options.popups()
 	}
 }
 
-function void BlueSpheresTimer.Menu.options.headline(s32 counter)
+function void BlueSpheresTimer.Menu.options.headline()
 {
-	s32 px = getScreenWidth() / 0x02 - 185
+	s32 offset = 180
+	s32 px = getScreenWidth() / 0x02 - offset
 	
 	for (s32 i = 0x00; i < 0x08; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (185 * i) - counter * 0x02, 25, 0xf000, 0x01, "OPTIONS!", 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "OPTIONS!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.options.items()

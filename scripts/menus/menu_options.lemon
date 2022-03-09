@@ -4,11 +4,9 @@ function void BlueSpheresTimer.Menu.options.setup()
 	FadeOutScreenBlocking()
 	
 	// Global variables setup
+	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x02
 	bluespheres.options.buttonselected = bluespheres.buttons.setup
-	
-	// Menu variables
-	s32 menu.headlinecounter
 	
 	// VRAM stuff
 	waitForNextFrame()
@@ -20,6 +18,9 @@ function void BlueSpheresTimer.Menu.options.setup()
 	{
 		FadeInFromWhite()
 		waitForNextFrame()
+		
+		// Start counting arrival frames in the menu
+		++level.framecounter
 		
 		// Button selection
 		if (!bluespheres.popup.show && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
@@ -41,11 +42,6 @@ function void BlueSpheresTimer.Menu.options.setup()
 			}
 		}
 		
-		// Let's make the headline run across the screen from right to left
-		++menu.headlinecounter
-		if (menu.headlinecounter > 185)
-			menu.headlinecounter = 0x00
-			
 		// Perform the action of selected button when start pressed
 		if (!bluespheres.popup.show && (control.pad1.pressed == CONTROL_START))
 		{
@@ -91,7 +87,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.options.popups()
-		BlueSpheresTimer.Menu.options.headline(menu.headlinecounter)
+		BlueSpheresTimer.Menu.options.headline()
 		BlueSpheresTimer.Menu.options.items()
 		
 		BlueSpheresTimer.Menu.timeattack.background()

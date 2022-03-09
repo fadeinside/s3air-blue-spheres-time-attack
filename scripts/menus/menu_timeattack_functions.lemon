@@ -123,12 +123,13 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	BlueSpheres.renderCustomGround()
 }
 
-function void BlueSpheresTimer.Menu.timeattack.headline(s32 counter)
+function void BlueSpheresTimer.Menu.timeattack.headline()
 {
-	s32 px = getScreenWidth() / 0x02 - 216
+	s32 offset = 216
+	s32 px = getScreenWidth() / 0x02 - offset
 	
 	for (s32 i = 0x00; i < 0x06; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (216 * i) - counter * 0x02, 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items()

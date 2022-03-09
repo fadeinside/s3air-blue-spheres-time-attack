@@ -1,11 +1,11 @@
 function void BlueSpheresTimer.Menu.pause.setup()
 {
 	// Global variables setup
+	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x02
 	bluespheres.pause.buttonselected = 0x00
 	
 	// Menu variables
-	s32 menu.headlinecounter
 	u8 menu.clearView
 	
 	// Main loop
@@ -15,7 +15,10 @@ function void BlueSpheresTimer.Menu.pause.setup()
 		waitForNextFrame()
 		
 		// Silence the stage music
-		Audio.playOverride("shutup", AudioContext.CONTEXT_MUSIC, 0x01, 0x00)
+		Audio.playOverride("silencepause", AudioContext.CONTEXT_MUSIC, 0x01, 0x00)
+		
+		// Start counting arrival frames in the menu
+		++level.framecounter
 		
 		// Button selection
 		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
@@ -36,11 +39,6 @@ function void BlueSpheresTimer.Menu.pause.setup()
 					bluespheres.pause.buttonselected = 0x00
 			}
 		}
-		
-		// Let's make the headline run across the screen from right to left
-		++menu.headlinecounter
-		if (menu.headlinecounter > 220)
-			menu.headlinecounter = 0x00
 			
 		// Clear the menu items for your cute screenshots
 		if (Input.buttonPressed(BUTTON_Y))
@@ -94,7 +92,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 		// Screen items
 		if (!menu.clearView)
 		{
-			BlueSpheresTimer.Menu.pause.headline(menu.headlinecounter)
+			BlueSpheresTimer.Menu.pause.headline()
 			BlueSpheresTimer.Menu.pause.items()
 			BlueSpheresTimer.Menu.pause.background()
 		}
