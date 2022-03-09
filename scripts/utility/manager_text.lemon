@@ -99,7 +99,7 @@ function u64 BlueSpheresTimer.TextManager.getFont(u8 font)
 		font_name = "font.regular"
 	else if (font == 0x02)
 		font_name = "font.thin"
-		
+	
 	return font_name
 }
 

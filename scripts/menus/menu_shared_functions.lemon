@@ -3,8 +3,9 @@ function void BlueSpheresTimer.Menu.shared.headline()
 	s32 offset = (bluespheres.timer.currentTime >= 50000) ? 424 : 200
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	if ((BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime) && level.framecounter & 28 && !(level.framecounter >= 220))
-		return // Flashing when a new record
+	// Flashing when a new record 
+	if ((BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime) && (level.framecounter + 16) & 32 && !(level.framecounter >= 236))
+		return
 	
 	u64 headline
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
