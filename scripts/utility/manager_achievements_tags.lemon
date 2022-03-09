@@ -1,0 +1,137 @@
+//? Returns the tags of the specified achievement ID.
+function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
+{
+	u64 achievementTags
+	
+	// Tag ID's:
+	// - 0 - None
+	// - 1 - Unknown tag
+	// - 2 - Common tag
+	// - 3 - Special tag 
+	// - 4 - Unique tag
+	// - 5 - Rare tag
+	// - 6 - Hard tag
+	
+	// - - - - - - - - - - - - - That all still unfinished
+	
+	/*if (BlueSpheresTimer.Achievements.getTitle(achievementId) == "Locked" || BlueSpheresTimer.Achievements.getTitle(achievementId) == "Need a mod")
+		achievementTags = "0"
+	else*/ if (BlueSpheresTimer.Achievements.getTitle(achievementId) == "Unknown achievement")
+		achievementTags = "1"
+	else if (achievementId == ACHIEVEMENT_BS_GET_600_BLUE_SPHERES)
+		achievementTags = "2"
+	else if (achievementId == ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES || achievementId == ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES)
+		achievementTags = "5"
+	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
+		achievementTags = "3"
+	else if (achievementId >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && achievementId <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
+	{
+		if (achievementId == ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
+			achievementTags = "35"
+		else
+			achievementTags = "3"
+	}
+	else if (achievementId >= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES && achievementId <= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
+		achievementTags = "2"
+	else if (achievementId == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
+		achievementTags = "35"
+	else if (achievementId == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
+		achievementTags = "2"
+	else if (achievementId == ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS)
+		achievementTags = "5"
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_50_TIMES)
+		achievementTags = "2"
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_200_TIMES)
+		achievementTags = "25"
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_500_TIMES)
+		achievementTags = "5"
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_1000_TIMES)
+		achievementTags = "56"
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_800_RINGS)
+		achievementTags = "2"
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_1200_RINGS)
+		achievementTags = "25"
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_2000_RINGS)
+		achievementTags = "5"
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_4000_RINGS)
+		achievementTags = "56"
+	else if (achievementId == ACHIEVEMENT_BS_GET_15_CONTINUES)
+		achievementTags = "2"
+	else if (achievementId == ACHIEVEMENT_BS_GET_30_CONTINUES)
+		achievementTags = "25"
+	else if (achievementId == ACHIEVEMENT_BS_GET_50_CONTINUES)
+		achievementTags = "56"
+	else
+		achievementTags = "0"
+	
+	return achievementTags
+}
+
+//? The basic code for rendering text.
+function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u32 renderQueue, u64 tags, u8 alpha)
+{
+	s32 tag_space
+	for (s32 i = 0x00; i < strlen(tags); i++)
+	{
+		s32 tag = getchar(tags, i)
+		
+		BlueSpheresTimer.Achievements.renderSingleTag(px, py, renderQueue, tag, tag_space, alpha)
+		tag_space += BlueSpheresTimer.Achievements.getTagsSpacing(tag)
+	}
+}
+
+//? Single tag rendering function. Some optimizations are also used here to fasted rendering.
+function void BlueSpheresTimer.Achievements.renderSingleTag(s32 px, s32 py, u32 renderQueue, s32 tag, s32 tag_space, u8 alpha)
+{
+	if ((px + tag_space) >= getScreenWidth() || (px + tag_space) <= -0x12)
+		return
+	if (py >= getScreenHeight() || py <= 0x00)
+		return
+	
+	u64 key = BlueSpheresTimer.Achievements.getTagSprite(tag)
+	Renderer.drawCustomSprite(key, px + tag_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+}
+
+//? Returns the tag sprite.
+function u64 BlueSpheresTimer.Achievements.getTagSprite(u64 tag)
+{
+	u64 tag_sprite
+	
+	if (tag == getChar("1"))
+		tag_sprite = "icon_unknown"
+	else if (tag == getChar("2"))
+		tag_sprite = "icon_common"
+	else if (tag == getChar("3"))
+		tag_sprite = "icon_special"
+	else if (tag == getChar("4"))
+		tag_sprite = "icon_unique"
+	else if (tag == getChar("5"))
+		tag_sprite = "icon_rare"
+	else if (tag == getChar("6"))
+		tag_sprite = "icon_hard"
+	else
+		tag_sprite = "icon_none"
+	
+	return tag_sprite
+}
+
+//? Returns the width of the tag sprite of the specified parameters.
+function s32 BlueSpheresTimer.Achievements.getTagsSpacing(u64 tag)
+{
+	s32 tag_space
+	
+	if (tag == getChar("1"))
+		tag_space = 41
+	else if (tag == getChar("2"))
+		tag_space = 37
+	else if (tag == getChar("3"))
+		tag_space = 34
+	else if (tag == getChar("4"))
+		tag_space = 32
+	else if (tag == getChar("5") || tag == getChar("6"))
+		tag_space = 24 
+	else
+		tag_space = 0x00
+	
+	return tag_space + 0x01
+}

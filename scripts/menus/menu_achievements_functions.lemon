@@ -244,7 +244,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	if (bluespheres.achievements.buttonselected >= 0x02 && !(bluespheres.achievements.buttonselected == bluespheres.buttons.setup))
 	{
 		for (s32 y = 0x00; y <= bluespheres.achievements.buttonselected - 0x02; y++)
-			py -= 16
+			py -= 26
 	}
 	
 	if (py >= -16)
@@ -258,7 +258,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
 	{
 		if (i != 0x00)
-			py += 16
+			py += 26
 		
 		// Do not calculate anything if the object is behind the screen
 		if (py >= getScreenHeight())
@@ -266,10 +266,13 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		
 		u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
 		
+		// About (py >= getScreenHeight() || py <= 0x00) - Why do you need to know the details of an achievement if you don't even see it? 
 		u64 achievement_status = (py >= getScreenHeight() || py <= 0x00) ? "icon_lock" : (BlueSpheresTimer.Achievements.isComplete(i) ? "icon_unlock" : "icon_lock") 
 		Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
 		
-		// About "Frosen" - Why do you need to know the title of an achievement if you don't even see it?
+		u64 achievement_tag = (py >= getScreenHeight() || py <= 0x00) ? "icon_unknown" : BlueSpheresTimer.Achievements.getTags(i)
+		BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)
+		
 		u64 button_achievement = (py >= getScreenHeight() || py <= 0x00) ? "Frozen" : BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, i, BlueSpheresTimer.Achievements.getTitle(i))
 		BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
 		
