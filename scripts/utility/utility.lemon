@@ -261,6 +261,14 @@ function void fn00972e()
 }
 
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
+//# address-hook(0x00903e) end(0x00919e)
+function void fn00903e()
+{
+	BlueSpheresTimer.Achievements.characterActionsCheck()
+	base.fn00903e()
+}
+
+//@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
 //# address-hook(0x008e94) end(0x008ee6)
 function void fn008e94()
 {

@@ -1,6 +1,7 @@
 // Follow the latest changes on GitHub: https://github.com/fadeinside/s3air-blue-spheres-time-attack
 
 // Update v1.0.2 - Stability improvements (Current)
++ Added 14 New Achievements, check Achievements menu.
 + Added mod page link to the mod.json.
 + Fixed when you could play for "Sonic and Tails" in the standard Blue Sphere mini-game, given that only one Sonic is selected.
 + Fixed when the Green Sphere from D.A. Garden was counted as a Yellow sphere in the Achievements manager.

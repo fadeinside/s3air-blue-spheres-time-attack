@@ -63,6 +63,37 @@ function void BlueSpheresTimer.Achievements.setup()
 		
 	if (BlueSpheresTimer.Emeralds.allEqual(0x03))
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
+	if (BlueSpheresTimer.Emeralds.getStatus(0x00) >= 0x01 && BlueSpheresTimer.Emeralds.getStatus(0x01) >= 0x01 && BlueSpheresTimer.Emeralds.getStatus(0x02) >= 0x01 && BlueSpheresTimer.Emeralds.getStatus(0x03) >= 0x01 && BlueSpheresTimer.Emeralds.getStatus(0x04) >= 0x01 && BlueSpheresTimer.Emeralds.getStatus(0x05) >= 0x01 && BlueSpheresTimer.Emeralds.getStatus(0x06) >= 0x01)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS)
+		
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_50_TIMES) >= 50)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_50_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_200_TIMES) >= 200)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_200_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_500_TIMES) >= 500)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_500_TIMES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_1000_TIMES) >= 1000)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES)
+	
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_400_RINGS) >= 400)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_800_RINGS) >= 800)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_1200_RINGS) >= 1200)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_2000_RINGS) >= 2000)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_4000_RINGS) >= 4000) // 4000 this is literally one step up to the limit, which is 0xfa1
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS)
+	
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_5_CONTINUES) >= 5)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_5_CONTINUES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_15_CONTINUES) >= 15)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_15_CONTINUES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_30_CONTINUES) >= 30)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_30_CONTINUES)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_50_CONTINUES) >= 50)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_50_CONTINUES)
 }
 
 //? Checks when the blue sphere is collected.
@@ -91,6 +122,31 @@ function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 		BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW, 0x01)
 }
 
+//? Checking the matches of the player's actions, and sets a new value for the specified achievement ID's.
+function void BlueSpheresTimer.Achievements.characterActionsCheck()
+{
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
+		return
+		
+	// Ignore for Rolling Demo and Blue Sphere game
+	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Jump achievements check
+	if ((u8[0xffffe432] & 0x80) == 0x00 && u8[0xffffe44c] == 0x00 && (control.pad1.pressed & CONTROL_ABC))
+	{
+		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_50_TIMES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_50_TIMES, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_200_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_50_TIMES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_200_TIMES, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_200_TIMES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_500_TIMES, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_1000_TIMES, 0x01)
+	}
+}
+
 //? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.spheresChecks()
 {
@@ -108,6 +164,33 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	D1.u16 <<= 0x05
 	D1.u8 |= D0.u8
 	A1 += D1.s16
+	
+	// Ring achievements checks
+	if (u8[A1] == 0x04)
+	{
+		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_400_RINGS, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_800_RINGS, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_1200_RINGS, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_2000_RINGS, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_4000_RINGS, 0x01)
+			
+		if (bluespheres.rings_collected >= 50 && (bluespheres.rings_flags & 0x01) == 0x00)
+		{
+			if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_5_CONTINUES, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_15_CONTINUES, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_30_CONTINUES, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_50_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_50_CONTINUES, 0x01)
+		}
+	}
 	
 	// Bumper achievements checks
 	if (u8[A1] == 0x03 && u8[0xffffe42b] == 0x00)
@@ -248,7 +331,63 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	}
 	else if (achievementId == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 	{
-		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) ? "Get all sparkles!" : locked_text
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) ? "Super Sparkles!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS) ? "Sparkle Sparkle" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_50_TIMES)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_50_TIMES) >= 0x01) ? "Bounce" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_200_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_50_TIMES) ? "I like jumping" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_500_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_200_TIMES)? "You jump like a pro!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_1000_TIMES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES) ? "Hop Hop Hop" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_400_RINGS)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_400_RINGS) >= 0x01) ? "Oh, shiny!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_800_RINGS)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS) ? "More rings!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_1200_RINGS)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) ? "Rings maniac!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_2000_RINGS)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS) ? "Master Collector" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_4000_RINGS)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS) ? "Epic Collector" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_5_CONTINUES)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_5_CONTINUES) >= 0x01) ? "Continues" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_15_CONTINUES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES) ? "More Continues" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_30_CONTINUES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES) ? "Soo many Continues!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_GET_50_CONTINUES)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES) ? "Why do you want it??" : locked_text
 	}
 	else
 	{
@@ -384,7 +523,7 @@ function void BlueSpheresTimer.Achievements.cheat()
 {
 	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
 	{
-		// Please NEVER use 0xfa1 as a value. The achievement toast system is VERY not stable in such cases. 
+		// Please NEVER use 0xfa1 as a value. The achievement toast system is VERY not stable in such cases.
 		BlueSpheresTimer.Achievements.setValue(i, 0xfa2)
 	}
 }

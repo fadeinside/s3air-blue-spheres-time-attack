@@ -1,5 +1,5 @@
 // Achievements
-// Addresses - from 0x8a1016 to
+// Addresses - from 0x8a1016 to 0x8a1318
 define u32 bluespheres.achievementsDataAddress	= 0x8a1000	// Address in Shared Memory save data's to save achievements
 
 // Records
@@ -16,5 +16,7 @@ define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memor
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
 
 // Data
+// D.A Garden active - 0x8e12ee
 define u32 bluespheres.stage8Unlocked	= 0x8e11ee	// Set to 0x01 when 7 Chaos emeralds are received
+// D.A Garden active - 0x8e12fe
 define u32 bluespheres.skUnlocked	= 0x8e11fe	// Set to 0x01 when the 8 Chaos emerald is received

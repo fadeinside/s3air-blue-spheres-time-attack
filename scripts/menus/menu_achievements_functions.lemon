@@ -136,6 +136,67 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 		else
 			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 	}
+	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS)
+	{
+		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x08)
+		if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
+			BlueSpheresTimer.Menu.popup.show("7 Chaos emeralds.", "Collect all", "", "", accept_text)
+		else
+			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+	}
+	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_JUMP_50_TIMES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_JUMP_1000_TIMES)
+	{
+		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_50_TIMES)
+			target = 50
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_200_TIMES)
+			target = 200
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_500_TIMES)
+			target = 500
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_1000_TIMES)
+			target = 1000
+		
+		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
+		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
+			BlueSpheresTimer.Menu.popup.show(stringformat("Jump %d times.", target), "", "", "", accept_text)
+		else
+			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+	}
+	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_COLLECT_400_RINGS && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_COLLECT_4000_RINGS)
+	{
+		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_COLLECT_400_RINGS)
+			target = 400
+		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_COLLECT_800_RINGS)
+			target = 800
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_COLLECT_1200_RINGS)
+			target = 1200
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_COLLECT_2000_RINGS)
+			target = 2000
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_COLLECT_4000_RINGS)
+			target = 4000
+		
+		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
+		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
+			BlueSpheresTimer.Menu.popup.show(stringformat("Collect %d rings.", target), "", "", "", accept_text)
+		else
+			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+	}
+	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_GET_5_CONTINUES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_GET_50_CONTINUES)
+	{
+		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_GET_5_CONTINUES)
+			target = 5
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_GET_15_CONTINUES)
+			target = 15
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_GET_30_CONTINUES)
+			target = 30
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_GET_50_CONTINUES)
+			target = 50
+		
+		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
+		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
+			BlueSpheresTimer.Menu.popup.show(stringformat("Get %d Continues.", target), "", "", "", accept_text)
+		else
+			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+	}
 	else if (bluespheres.popup.show != 0x00)
 	{
 		BlueSpheresTimer.Menu.achievements.status()
