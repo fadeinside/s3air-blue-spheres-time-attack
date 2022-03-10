@@ -4,13 +4,15 @@
 	"icon_unlock": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
 	
 	// Achievement tags
-	"icon_none": { "File": "menu_icons.png", "Rect": "1,1,1,1", "Center": "0,0" },
-	"icon_unknown": { "File": "menu_icons.png", "Rect": "1,29,41,8", "Center": "0,4" },
-	"icon_common": { "File": "menu_icons.png", "Rect": "43,29,37,8", "Center": "0,4" },
-	"icon_special": { "File": "menu_icons.png", "Rect": "106,29,34,8", "Center": "0,4" },
-	"icon_unique": { "File": "menu_icons.png", "Rect": "141,29,32,8", "Center": "0,4" },
-	"icon_rare": { "File": "menu_icons.png", "Rect": "81,29,24,8", "Center": "0,4" },
-	"icon_hard": { "File": "menu_icons.png", "Rect": "151,20,24,8", "Center": "0,4" },
+	"icon_tag_none": { "File": "menu_icons.png", "Rect": "1,1,1,1", "Center": "0,0" },
+	"icon_tag_unknown": { "File": "menu_icons.png", "Rect": "1,29,41,8", "Center": "0,4" },
+	"icon_tag_common": { "File": "menu_icons.png", "Rect": "43,29,37,8", "Center": "0,4" },
+	"icon_tag_hard": { "File": "menu_icons.png", "Rect": "151,20,24,8", "Center": "0,4" },
+	"icon_tag_special": { "File": "menu_icons.png", "Rect": "106,29,34,8", "Center": "0,4" },
+	"icon_tag_unique": { "File": "menu_icons.png", "Rect": "141,29,32,8", "Center": "0,4" },
+	"icon_tag_rare": { "File": "menu_icons.png", "Rect": "81,29,24,8", "Center": "0,4" },
+	"icon_tag_superrare": { "File": "menu_icons.png", "Rect": "1,38,52,8", "Center": "0,4" },
+	"icon_tag_challenge": { "File": "menu_icons.png", "Rect": "54,38,44,8", "Center": "0,4" },
 	
 	// Copyright
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
