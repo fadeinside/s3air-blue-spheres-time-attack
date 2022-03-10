@@ -31,7 +31,7 @@ function void BlueSpheresTimer.Menu.options.popups()
 		bluespheres.blue_collected = 0x00
 		BlueSpheresTimer.resetTimer()
 		
-		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "", "", deny_text, accept_text)
+		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "The emeralds will also be reset", "", deny_text, accept_text)
 		if (control.pad1.pressed & CONTROL_START)
 		{
 			playSound(0x63)
@@ -42,6 +42,12 @@ function void BlueSpheresTimer.Menu.options.popups()
 			{
 				playSound(0x68)
 				BlueSpheresTimer.Achievements.reset()
+				
+				// This check, actually, allows me not to fix some bugs related to get emeralds at the stage
+				if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+					BlueSpheresTimer.Emeralds.replaceAll(0x02)
+				else
+					BlueSpheresTimer.Emeralds.replaceAll(0x00)
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00

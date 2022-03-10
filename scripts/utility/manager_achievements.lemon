@@ -557,6 +557,6 @@ function void BlueSpheresTimer.Achievements.cheat()
 	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
 	{
 		// Please NEVER use 0xfa1 as a value. The achievement toast system is VERY not stable in such cases.
-		BlueSpheresTimer.Achievements.setValue(i, 0xfa2)
+		BlueSpheresTimer.Achievements.setValue(i, 0xfa1)
 	}
 }

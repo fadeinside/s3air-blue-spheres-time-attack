@@ -10,6 +10,7 @@
 + Fixed when you could open custom pause menu in the standard Blue Sphere mini-game.
 + Fixed when after Time over in Time Attack mode, you back to Shared menu, instead of Time attack menu.
 + Fixed getting achievements at special stages of the main levels (i hope).
++ Now reset Achievements, also reset emeralds.
 + Optimized some functions
 
 // Update v1.0.1 - The bug-fix
