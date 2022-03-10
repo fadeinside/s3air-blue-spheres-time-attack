@@ -1,7 +1,7 @@
 {
 	// Achievement status
-	"icon_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
-	"icon_unlock": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
+	"icon_status_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
+	"icon_status_unlock": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
 	
 	// Achievement tags
 	"icon_tag_none": { "File": "menu_icons.png", "Rect": "1,1,1,1", "Center": "0,0" },

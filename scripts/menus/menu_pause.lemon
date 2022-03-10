@@ -46,6 +46,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 			if !(menu.clearView)
 				++menu.clearView
 			
+			// Press on PC [Y] again to hide/show menu items
 			if (PlatformFlags.DESKTOP)
 			{
 				if (menu.clearView > 0x01)
@@ -97,6 +98,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 		// Screen items
 		if (menu.clearView)
 		{
+			// On mobile, tap anywhere on the screen to show the menu items again
 			if (PlatformFlags.MOBILE)
 				Input.setTouchInputMode(TOUCH_INPUT_MODE_FULLSCREEN_START)
 		}

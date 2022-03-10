@@ -23,7 +23,7 @@ global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0
 
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere
-global u8 bluespheres.notEnoughRings	// Set to 0x01 when No Rings
+global u8 bluespheres.notEnoughRings	// Set to 0x01 when not enough rings for get emerald
 global s32 bluespheres.timeOver.timeout	// Counter before returning to the level. Activated when Time over
 
 // Checks

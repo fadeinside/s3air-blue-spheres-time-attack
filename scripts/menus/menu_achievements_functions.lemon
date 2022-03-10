@@ -197,11 +197,6 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 		else
 			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 	}
-	/*else if (bluespheres.popup.show != 0x00)
-	{
-		BlueSpheresTimer.Menu.achievements.status()
-		BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
-	}*/
 	else
 	{
 		bluespheres.popup.show = 0x00
@@ -267,7 +262,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		{
 			u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
 			
-			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(i) ? "icon_unlock" : "icon_lock"
+			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(i) ? "icon_status_unlock" : "icon_status_lock"
 			Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
 			
 			// Make transparent for Locked/Unknown achievements
