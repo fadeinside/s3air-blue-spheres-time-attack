@@ -397,6 +397,39 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	return achievementTitle
 }
 
+function s32 BlueSpheresTimer.Achievements.getScore()
+{
+	s32 score_total
+	
+	for (u8 x = 0x00; x <= bluespheres.achievements.total; x++)
+	{
+		for (s32 y = 0x00; y < strlen(BlueSpheresTimer.Achievements.getTags(x)); y++)
+		{
+			s32 tag = getchar(BlueSpheresTimer.Achievements.getTags(x), y)
+			
+			if (BlueSpheresTimer.Achievements.isComplete(x))
+			{
+				if (tag == getChar("2"))
+					score_total += 5
+				else if (tag == getChar("3"))
+					score_total += 20
+				else if (tag == getChar("4"))
+					score_total += 25
+				else if (tag == getChar("5"))
+					score_total += 35
+				else if (tag == getChar("6"))
+					score_total += 10
+				else if (tag == getChar("7"))
+					score_total += 15
+				else if (tag == getChar("8"))
+					score_total += 45
+			}
+		}
+	}
+	
+	return score_total * 0x0a
+}
+
 //? Returns the address of the specified achievement ID.
 function u32 BlueSpheresTimer.Achievements.getAddress(u32 achievementId)
 {

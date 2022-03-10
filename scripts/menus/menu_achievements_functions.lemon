@@ -230,7 +230,9 @@ function void BlueSpheresTimer.Menu.achievements.items()
 	s32 py = 46
 	
 	BlueSpheresTimer.Menu.achievements.items.menu(px, py)
+	
 	BlueSpheresTimer.Menu.achievements.items.achievements(px, py)
+	BlueSpheresTimer.Menu.achievements.items.score(px, py)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
@@ -260,23 +262,22 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		if (i != 0x00)
 			py += 26
 		
-		// Do not calculate anything if the object is behind the screen
-		if (py >= getScreenHeight())
-			return
+		// This optimizes render by calculating only the data that is visible to the screen
+		if !(py >= getScreenHeight() || py <= 0x00)
+		{
+			u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
+			
+			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(i) ? "icon_unlock" : "icon_lock"
+			Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
 		
-		u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
+			u64 achievement_tag = BlueSpheresTimer.Achievements.getTags(i)
+			BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)
 		
-		// About (py >= getScreenHeight() || py <= 0x00) - Why do you need to know the details of an achievement if you don't even see it? 
-		u64 achievement_status = (py >= getScreenHeight() || py <= 0x00) ? "icon_lock" : (BlueSpheresTimer.Achievements.isComplete(i) ? "icon_unlock" : "icon_lock") 
-		Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
+			u64 button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, i, BlueSpheresTimer.Achievements.getTitle(i))
+			BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
 		
-		u64 achievement_tag = (py >= getScreenHeight() || py <= 0x00) ? "icon_unknown" : BlueSpheresTimer.Achievements.getTags(i)
-		BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)
-		
-		u64 button_achievement = (py >= getScreenHeight() || py <= 0x00) ? "Frozen" : BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, i, BlueSpheresTimer.Achievements.getTitle(i))
-		BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
-		
-		//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(i), BlueSpheresTimer.Achievements.getValue(i)))
+			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(i), BlueSpheresTimer.Achievements.getValue(i)))
+		}
 	}
 }
 
@@ -294,6 +295,16 @@ function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py, 
 	py += 16
 	u64 sign_unlocked = (unlocked_total - 0x01 == bluespheres.achievements.total) ? "* ALL UNLOCKED! *" : stringformat("* %d / %d *", unlocked_total, bluespheres.achievements.total + 0x01)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, sign_unlocked, 0x01, alpha)
+}
+
+function void BlueSpheresTimer.Menu.achievements.items.score(s32 px, s32 py)
+{
+	px += 128
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Score", 0x01)
+	
+	py += 16
+	s32 sign_score = BlueSpheresTimer.Achievements.getScore()
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %d *", sign_score), 0x02)
 }
 
 function void BlueSpheresTimer.Menu.achievements.status(s32 data, s32 target)
