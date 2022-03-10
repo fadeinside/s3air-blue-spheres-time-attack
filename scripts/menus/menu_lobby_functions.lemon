@@ -22,6 +22,6 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	py += 18
-	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, "Get Blue Spheres") 
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, "Get Blue Spheres")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 }

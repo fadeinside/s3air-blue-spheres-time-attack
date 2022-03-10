@@ -50,7 +50,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 	if ((objA0.update_address == 0x008f24 || objA0.update_address == 0x008eec) && bluespheres.timeOver)
 	{
 		// "Not Enough Rings"
-		if (bluespheres.rings_remaining != 0x00)
+		if (bluespheres.notEnoughRings)
 		{
 			px += 0x02
 			if (objA0.animation.sprite == 0x02) // Part 1

@@ -7,7 +7,7 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 	// - 0 - None
 	// - 1 - Unknown tag
 	// - 2 - Common tag
-	// - 3 - Hard tag 
+	// - 3 - Hard tag
 	// - 4 - Special tag
 	// - 5 - Unique tag
 	// - 6 - Rare tag
@@ -20,7 +20,7 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 		achievementTags = "26"
 	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
 		achievementTags = "2"
-	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
+	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
 		achievementTags = "26"
 	else if (achievementId >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && achievementId <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	{
@@ -73,7 +73,7 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 	return achievementTags
 }
 
-//? The basic code for rendering text.
+//? The basic code for tags rendering.
 function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u32 renderQueue, u64 tags, u8 alpha)
 {
 	s32 tag_space
@@ -125,7 +125,7 @@ function u64 BlueSpheresTimer.Achievements.getTagSprite(u64 tag)
 	return tag_sprite
 }
 
-//? Returns the width of the tag sprite of the specified parameters.
+//? Returns the width of the tag sprite.
 function s32 BlueSpheresTimer.Achievements.getTagsSpacing(u64 tag)
 {
 	s32 tag_space

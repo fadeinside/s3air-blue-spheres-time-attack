@@ -88,7 +88,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		// Change the levels layout from S3 to SK
 		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_X))
 		{
-			if (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+			if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 			{
 				playSound(0x5b)
 				++bluespheres.timeattack.layoutselected

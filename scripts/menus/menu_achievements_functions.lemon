@@ -197,11 +197,11 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 		else
 			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 	}
-	else if (bluespheres.popup.show != 0x00)
+	/*else if (bluespheres.popup.show != 0x00)
 	{
 		BlueSpheresTimer.Menu.achievements.status()
 		BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
-	}
+	}*/
 	else
 	{
 		bluespheres.popup.show = 0x00
@@ -269,6 +269,10 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 			
 			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(i) ? "icon_unlock" : "icon_lock"
 			Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
+			
+			// Make transparent for Locked/Unknown achievements
+			if (BlueSpheresTimer.Achievements.getTitle(i) == "Locked" || BlueSpheresTimer.Achievements.getTitle(i) == "Need a mod" || BlueSpheresTimer.Achievements.getTitle(i) == "Unknown achievement")
+				alpha -= alpha / 0x02
 		
 			u64 achievement_tag = BlueSpheresTimer.Achievements.getTags(i)
 			BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)

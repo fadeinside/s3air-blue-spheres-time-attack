@@ -23,11 +23,13 @@ global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0
 
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere
+global u8 bluespheres.notEnoughRings	// Set to 0x01 when No Rings
 global s32 bluespheres.timeOver.timeout	// Counter before returning to the level. Activated when Time over
 
 // Checks
 global u8 bluespheres.timeattack.active	// Set to 0x01 when the Time Attack menu is active
 global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
+global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 
 // Counters
 global u8 bluespheres.blue_collected	// Counter of collected blue spheres

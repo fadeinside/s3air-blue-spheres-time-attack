@@ -1,7 +1,11 @@
 function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 {
+	// Ignore for Rolling Demo and Blue Sphere game
+	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
 	// Ignore for Main Special stages if Time bonus or Achievements disabled
-	if ((SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 || SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00) && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff)) 
+	if ((SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 || SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00) && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 	{
 		if (SETTING_BS_ACHIEVEMENTS_ENABLE)
 		{
@@ -9,17 +13,14 @@ function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 			BlueSpheresTimer.Achievements.setup()
 		}
 		return
-	} 
-	
-	// Ignore for Rolling Demo and Blue Sphere game
-	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
-		return
+	}
 	
 	// Checking the activity of achievements
 	BlueSpheresTimer.Achievements.setup()
 	
-	// Blink when the time exceeds 4:30 (except infinite time mode)
-	if (!BlueSpheresTimer.timeUnlimited() && bluespheres.timer.currentTime >= 43000 && level.framecounter.low & 0x10)
+	// Blink when the time exceeds 59:00:00 / 4:30:00
+	bool timeUnlimited = BlueSpheresTimer.timeUnlimited()
+	if (bluespheres.timer.currentTime >= (timeUnlimited ? 590000 : 43000) && level.framecounter.low & 0x10)
 		return
 	
 	s32 minutes = bluespheres.timer.currentTime / 10000

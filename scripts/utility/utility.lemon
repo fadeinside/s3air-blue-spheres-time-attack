@@ -42,6 +42,8 @@ function void fn04d6b8()
 function void fn009ea0()
 {
 	bluespheres.blue_collected = 0x00
+	bluespheres.continue_granted = 0x00
+	
 	base.fn009ea0()
 }
 
@@ -166,6 +168,7 @@ function void fn009b62()
 			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00))
 			{
 				// I'm just using "Time Over" dependencies to create "Not Enough Rings"
+				bluespheres.notEnoughRings = 0x01
 				bluespheres.timeOver = 0x01
 				++bluespheres.timeOver.timeout
 				

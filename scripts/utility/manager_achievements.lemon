@@ -1,12 +1,12 @@
 //? Checks for matches of values/events, and sets the status Completed for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.setup()
 {
-	// Ignore for Main Special stages if Achievements disabled
-	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
-		return
-	
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
 	// Main function
@@ -99,12 +99,12 @@ function void BlueSpheresTimer.Achievements.setup()
 //? Checks when the blue sphere is collected.
 function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 {
-	// Ignore for Main Special stages if Achievements disabled
-	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
-		return
-		
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
 	if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES))
@@ -125,12 +125,12 @@ function void BlueSpheresTimer.Achievements.blueCollectedChecks()
 //? Checking the matches of the player's actions, and sets a new value for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.characterActionsCheck()
 {
-	// Ignore for Main Special stages if Achievements disabled
-	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
-		return
-		
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
 	// Jump achievements check
@@ -145,17 +145,32 @@ function void BlueSpheresTimer.Achievements.characterActionsCheck()
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_1000_TIMES, 0x01)
 	}
+	
+	// Continue achievements checks
+	if (bluespheres.rings_collected >= 50 && (bluespheres.rings_flags & 0x01) && !bluespheres.continue_granted)
+	{
+		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_5_CONTINUES, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_15_CONTINUES, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_30_CONTINUES, 0x01)
+		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_50_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES))
+			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_50_CONTINUES, 0x01)
+		
+		bluespheres.continue_granted = 0x01
+	}
 }
 
 //? Checks for matches of touched spheres, and sets a new value for the specified achievement ID's.
 function void BlueSpheresTimer.Achievements.spheresChecks()
 {
-	// Ignore for Main Special stages if Achievements disabled
-	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
-		return
-		
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	 
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
 	A1 = 0xfffff100
@@ -178,18 +193,6 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_2000_RINGS, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_4000_RINGS, 0x01)
-			
-		if (bluespheres.rings_collected >= 50 && (bluespheres.rings_flags & 0x01) == 0x00)
-		{
-			if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES))
-				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_5_CONTINUES, 0x01)
-			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_5_CONTINUES))
-				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_15_CONTINUES, 0x01)
-			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_15_CONTINUES))
-				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_30_CONTINUES, 0x01)
-			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_50_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES))
-				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GET_50_CONTINUES, 0x01)
-		}
 	}
 	
 	// Bumper achievements checks
@@ -397,6 +400,7 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	return achievementTitle
 }
 
+//? Returns the total score of all Achievements.
 function s32 BlueSpheresTimer.Achievements.getScore()
 {
 	s32 score_total
@@ -409,7 +413,9 @@ function s32 BlueSpheresTimer.Achievements.getScore()
 			
 			if (BlueSpheresTimer.Achievements.isComplete(x))
 			{
-				if (tag == getChar("2"))
+				if (tag == getChar("0"))
+					score_total += 1
+				else if (tag == getChar("2"))
 					score_total += 5
 				else if (tag == getChar("3"))
 					score_total += 20
@@ -557,6 +563,6 @@ function void BlueSpheresTimer.Achievements.cheat()
 	for (u8 i = 0x00; i <= bluespheres.achievements.total; i++)
 	{
 		// Please NEVER use 0xfa1 as a value. The achievement toast system is VERY not stable in such cases.
-		BlueSpheresTimer.Achievements.setValue(i, 0xfa1)
+		BlueSpheresTimer.Achievements.setValue(i, 0xfa2)
 	}
 }

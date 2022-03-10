@@ -45,9 +45,17 @@ function void BlueSpheresTimer.Menu.options.popups()
 				
 				// This check, actually, allows me not to fix some bugs related to get emeralds at the stage
 				if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+				{
 					BlueSpheresTimer.Emeralds.replaceAll(0x02)
+					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS, 0xfa2)
+				}
 				else
 					BlueSpheresTimer.Emeralds.replaceAll(0x00)
+				
+				// This check sets the full value of achievement for the toast pass
+				if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_DA_GARDEN_EDITION, 0xfa2)
+					
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00
