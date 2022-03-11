@@ -1,6 +1,11 @@
 // Follow the latest changes on GitHub: https://github.com/fadeinside/s3air-blue-spheres-time-attack
 
-// Update v1.0.2 - Stability improvements (Current)
+// Update v1.0.2a - The distorter fix
+// Note: I'm sorry for this absurdity. GitHub compressed some images, as a result of which they could not be read by the S3 A.I.R. compiler. This update fixes this. -Fade
++ Fixed A.I.R couldn't read .png files.
++ Fixed A.I.R couldn't find icon_unlock sprite.
+
+// Update v1.0.2 - Stability improvements
 // Note: Today's update fixes the bugs you have noticed, and also makes few changes and improvements to each corner of mod. Thanks! :3 -Fade
 + Added 14 New Achievements, Achievements tags and score. Check the achievements menu.
 + Fixed when you could play for "Sonic and Tails" in the standard Blue Sphere mini-game, given that only one Sonic is selected.
