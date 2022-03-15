@@ -24,7 +24,7 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 		achievementTags = "26"
 	else if (achievementId >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && achievementId <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	{
-		if (achievementId == ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES || achievementId == ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES)
+		if (achievementId == ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES || achievementId == ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 			achievementTags = "46"
 		else
 			achievementTags = "4"
