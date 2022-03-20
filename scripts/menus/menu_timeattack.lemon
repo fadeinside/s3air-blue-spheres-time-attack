@@ -75,6 +75,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		}
 		
 		// Change the character
+		// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
 		u8 maxCharacters = Mods.isModActive("Extra Slot Mighty") ? 0x03 : 0x02
 		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_Y))
 		{

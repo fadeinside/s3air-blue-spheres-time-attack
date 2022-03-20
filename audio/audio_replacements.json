@@ -1,6 +1,7 @@
 {
 	// Pause menu silence
 	"silencepause": { "File": "music/PauseMenu.ogg", "Type": "Jingle" },
+	
 	// Menu woosh
 	"menuwoosh": { "File": "sounds/MenuWoosh.ogg", "Type": "Sound" }
 }

@@ -1,10 +1,36 @@
 function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 {
-	u8 gameMode = global.game_mode & 0x7f
-	
-	if ((gameMode == 0x48 || gameMode == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS) // Blue Spheres results + fade to main game afterwards && check enabled Time bonus
+	// Display HUD
+	if (objA0.update_address == 0x008e2a)
 	{
-		// Blue Spheres results texts
+		// This is the best I could come up with, for a better view. If I insert it inside the script in another place, it will be invisible for about one frame before it appears
+		BlueSpheresTimer.renderTimer(px, py, renderQueue)
+	}
+	
+	// Time over text (consists of two objects)
+	if ((objA0.update_address == 0x008f24 || objA0.update_address == 0x008eec) && bluespheres.timeOver)
+	{
+		// "Not Enough Rings"
+		if (bluespheres.notEnoughRings)
+		{
+			px += 0x02
+			if (objA0.animation.sprite == 0x02) // Part 1
+				Renderer.drawCustomSprite("display_text_notenoughrings_1", px, py, 0x00, 0x00, renderQueue)
+			if (objA0.animation.sprite == 0x03) // Part 2
+				Renderer.drawCustomSprite("display_text_notenoughrings_2", px, py, 0x00, 0x00, renderQueue)
+			return true
+		}
+		
+		if (objA0.animation.sprite == 0x02) // Part 1
+			Renderer.drawCustomSprite("display_text_timeover_1", px, py, 0x00, 0x00, renderQueue)
+		if (objA0.animation.sprite == 0x03) // Part 2
+			Renderer.drawCustomSprite("display_text_timeover_2", px, py, 0x00, 0x00, renderQueue)
+		return true
+	}
+	
+	if (((global.game_mode & 0x7f) == 0x48 || (global.game_mode & 0x7f) == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS) // Special stage result + fade to main game afterwards && check enabled Time bonus
+	{
+		// Special stage result texts
 		if (objA0.update_address == 0x02ea50)
 		{
 			py -= 0x10
@@ -37,34 +63,6 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 				return true
 			}
 		}
-	}
-	
-	// HUD
-	if (objA0.update_address == 0x008e2a)
-	{
-		// This is the best I could come up with, for a better view. If I insert it inside the script in another place, it will be invisible for about one frame before it appears
-		BlueSpheresTimer.renderTimer(px, py, renderQueue)
-	}
-	
-	// Time over text
-	if ((objA0.update_address == 0x008f24 || objA0.update_address == 0x008eec) && bluespheres.timeOver)
-	{
-		// "Not Enough Rings"
-		if (bluespheres.notEnoughRings)
-		{
-			px += 0x02
-			if (objA0.animation.sprite == 0x02) // Part 1
-				Renderer.drawCustomSprite("Text_NotEnou", px, py, 0x00, 0x00, renderQueue)
-			if (objA0.animation.sprite == 0x03) // Part 2
-				Renderer.drawCustomSprite("Text_ghRings", px, py, 0x00, 0x00, renderQueue)
-			return true
-		}
-		
-		if (objA0.animation.sprite == 0x02) // Part 1
-			Renderer.drawCustomSprite("Text_Time", px, py, 0x00, 0x00, renderQueue)
-		if (objA0.animation.sprite == 0x03) // Part 2
-			Renderer.drawCustomSprite("Text_Over", px, py, 0x00, 0x00, renderQueue)
-		return true
 	}
 	
 	return base.Standalone.onWriteToSpriteTable(px, py, renderQueue)

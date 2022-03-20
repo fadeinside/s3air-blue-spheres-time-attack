@@ -181,8 +181,9 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	A1 += D1.s16
 	
 	// Ring achievements checks
-	if (u8[A1] == 0x04)
+	if (u8[A1] == 0x04 && (bluespheres.rings_flags & 0x80))
 	{
+		debugLog(stringformat("ACHIEVEMENT_BS_COLLECT_400_RINGS : %d", BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_400_RINGS)))
 		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_400_RINGS, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))

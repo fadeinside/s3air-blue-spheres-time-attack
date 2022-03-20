@@ -10,6 +10,7 @@ function void GiantRing.BaseUpdate()
 	if (objA0.base_state == 0x04)
 		BlueSpheresTimer.resetTimer()
 	
+	// Call the base function
 	base.GiantRing.BaseUpdate()
 }
 
@@ -20,6 +21,7 @@ function void BlueSpheres.OnBlueSphereCollected()
 	++bluespheres.blue_collected
 	BlueSpheresTimer.Achievements.blueCollectedChecks()
 	
+	// Call the base function
 	base.BlueSpheres.OnBlueSphereCollected()
 }
 
@@ -34,6 +36,7 @@ function void fn04d6b8()
 		return
 	}
 	
+	// Call the base function
 	base.fn04d6b8()
 }
 
@@ -44,6 +47,7 @@ function void fn009ea0()
 	bluespheres.blue_collected = 0x00
 	bluespheres.continue_granted = 0x00
 	
+	// Call the base function
 	base.fn009ea0()
 }
 
@@ -51,7 +55,7 @@ function void fn009ea0()
 //# address-hook(0x009b62) end(0x009d1c)
 function void fn009b62()
 {
-	// Ignore Rolling Demo and BS Game
+	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 	{
 		base.fn009b62()
@@ -252,15 +256,20 @@ function void fn009b62()
 	if (u8[0xffffe44c] != 0x00 && bluespheres.timeattack.active)
 		return
 	
+	// Ignore for Rolling Demo and Blue Sphere game
 	base.fn009b62()
 }
 
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
-//# address-hook(0x00972e) end(0x0098ae)
-function void fn00972e()
+//# address-hook(0x009580) end(0x00972c)
+function void fn009580()
 {
-	BlueSpheresTimer.Achievements.spheresChecks()
-	base.fn00972e()
+	base.fn009580() // Call the base function
+	
+	if ((u8[0xffffe432] & 0x80) == 0x00 && u8[0xffffe44c] == 0x00)
+	{
+		BlueSpheresTimer.Achievements.spheresChecks()
+	}
 }
 
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
@@ -268,6 +277,8 @@ function void fn00972e()
 function void fn00903e()
 {
 	BlueSpheresTimer.Achievements.characterActionsCheck()
+	
+	// Call the base function
 	base.fn00903e()
 }
 
@@ -391,6 +402,7 @@ function void UpdateGamePause()
 {
 	if (bluespheres.timeattack.active != 0x01)
 	{
+		// Call the base function
 		base.UpdateGamePause()
 		return
 	}
@@ -418,6 +430,7 @@ function void fn02e3da()
 {
 	if !(SETTING_BS_TIME_BONUSES_ON_SPECIALS)
 	{
+		// Call the base function
 		base.fn02e3da()
 		return
 	}

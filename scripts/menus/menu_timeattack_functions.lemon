@@ -43,74 +43,91 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	for (s32 i = 0x00; i < 0x02 + (getScreenWidth() / 0x10); i++)
 		Renderer.drawCustomSprite("background_menu", 0x10 * i, 0x00, 0x00, 0x40, 0xf000)
 	
-	// Cool details with active Mania BS
+	// Preview character
+	// - For now, this only works for Mania-Styled Blue Spheres, but plans to implement a more responsive version in the future with support for standard/custom character skins
 	if (Mods.isModActive("Mania-Styled Blue Spheres"))
 	{
-		// Timer for animate characters
-		s32 timer = global.framecounter >> 0x02
+		// Character framerate
+		A0 = 0xffffb000
+		u16[A0 + 0x60] += bluespheres.movement_speed >> 0x04
 		
-		u64 key // Get characters sprites
-		// Ultimate Mighty by Sotaknuck, https://gamebanana.com/mods/54268
+		D1 = u8[A0 + 0x60]
+		if (D1.u8 >= 0x0c)
+			D1.u8 = 0x00
+		
+		u8[A0 + 0x60] = D1.u8
+		
+		// Character tail framerate
+		A1 = 0xffffb04a
+		u16[A1 + 0x60] += (bluespheres.movement_speed - (bluespheres.movement_speed >> 0x03)) >> 0x04
+		
+		D2 = u8[A1 + 0x60]
+		if (D2.u8 >= 0x15)
+			D2.u8 = 0x00
+		
+		u8[A1 + 0x60] = D2.u8
+		
+		u64 key
+		u64 key2
+		
+		// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
+		// "Ultimate Mighty" by Sotaknuck, check https://gamebanana.com/mods/54268
 		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || bluespheres.timeattack.characterselected == 0x03)
 		{
-			key = stringformat("CharacterMighty_walk_%d", timer % 0x0c)
+			key = stringformat("character_mighty_walk_%d", u8[A0 + 0x60])
 		}
-		// Ray the Flying Squirrel by campbellsonic, https://gamebanana.com/mods/54261
+		// "Ray the Flying Squirrel" by campbellsonic, https://gamebanana.com/mods/54261
 		else if (bluespheres.timeattack.characterselected == 0x01 && Mods.isModActive("Ray the Flying Squirrel"))
 		{
-			key = stringformat("CharacterRay_walk_%d", timer % 0x0c)
-			u64 key2 = stringformat("CharacterRay_tail_%d", timer % 0x0b)
-			Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+			key = stringformat("character_ray_walk_%d", u8[A0 + 0x60])
+			key2 = stringformat("character_ray_tail_%d", u8[A1 + 0x60] % 0x0b)
 		}
 		else if (bluespheres.timeattack.characterselected == 0x00)
 		{
-			key = stringformat("CharacterSonic_walk_%d", timer % 0x0c)
+			key = stringformat("character_sonic_walk_%d", u8[A0 + 0x60])
 		}
 		else if (bluespheres.timeattack.characterselected == 0x01)
 		{
-			key = stringformat("CharacterMiles_walk_%d", timer % 0x0c)
-			u64 key2 = stringformat("CharacterMiles_tails_%d", timer % 0x15)
-			Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+			key = stringformat("character_miles_walk_%d", u8[A0 + 0x60])
+			key2 = stringformat("character_miles_tails_%d", u8[A1 + 0x60])
 		}
 		else if (bluespheres.timeattack.characterselected == 0x02)
 		{
-			key = stringformat("CharacterKnuckles_walk_%d", timer % 0x0c)
+			key = stringformat("character_knuckles_walk_%d", u8[A0 + 0x60])
 		}
 		
-		// Render character
-		Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
-		
-		// Render character shadow
-		global.characters = 0x01
-		BlueSpheres.renderCustomCharacterShadows()
-		
-		// Some things to make the ground animate
-		u8[0xffffe433] = 0x00
-		bluespheres.direction = 0x40
-		bluespheres.movement_speed = 1100
-		
-		D2.s16 = bluespheres.movement_speed
-		D0.u8 = bluespheres.direction
+		if (Renderer.hasCustomSprite(key))
+		{
+			// Render character sprites
+			if (Renderer.hasCustomSprite(key2))
+				Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+			Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+			
+			// Render character shadow
+			global.characters = 0x01
+			BlueSpheres.renderCustomCharacterShadows()  
+		}
+	}
 	
-		LookupSinCos()
-		D0.s32 = s32(D0.s16) * D2.s16
-		D1.s32 = s32(D1.s16) * D2.s16
-		bluespheres.position.x -= D0 >> 0x10
-		bluespheres.position.y -= D1 >> 0x10
-	}
-	else
-	{
-		// If the mod is inactive, then just turn off the ground so that it looks so boring
-		bluespheres.position.x = 1024
-		bluespheres.position.y = 1024
-		bluespheres.direction = 96
-	}
+	// Some things to make the ground animate
+	u8[0xffffe433] = 0x00
+	bluespheres.direction = 0x40
+	bluespheres.movement_speed = 1100
+	
+	D2.s16 = bluespheres.movement_speed
+	D0.u8 = bluespheres.direction
+	
+	LookupSinCos()
+	D0.s32 = s32(D0.s16) * D2.s16
+	D1.s32 = s32(D1.s16) * D2.s16
+	bluespheres.position.x -= D0 >> 0x10
+	bluespheres.position.y -= D1 >> 0x10
 	
 	// Load ground colors
 	A1 = u32[0x0088ba + bluespheres.timeattack.levelselected * 0x10]
 	if (bluespheres.timeattack.layoutselected)
 		A1 += 0x0130
-	
+	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
 	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
 		A1 += 0x2cb80e
 	

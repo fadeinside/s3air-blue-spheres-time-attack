@@ -23,7 +23,7 @@ function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 	if (bluespheres.timer.currentTime >= (timeUnlimited ? 590000 : 43000) && level.framecounter.low & 0x10)
 		return
 	
-	// Разьединить bluespheres.timer.currentTime на минуты, секунды и centiseconds
+	// Get from bluespheres.timer.currentTime minutes, seconds, and centiseconds
 	s32 minutes = bluespheres.timer.currentTime / 10000
 	s32 seconds = (bluespheres.timer.currentTime - (minutes * 10000)) / 100
 	s32 centiseconds = (bluespheres.timer.currentTime - (minutes * 10000)) - (seconds * 100)
