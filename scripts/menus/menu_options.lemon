@@ -47,7 +47,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 		{
 			if (bluespheres.options.buttonselected == 0x00)
 			{
-				if (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00)
+				if (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00)
 				{
 					playSound(0x63)
 					bluespheres.popup.show = 0x01

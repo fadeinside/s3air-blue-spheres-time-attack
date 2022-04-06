@@ -22,3 +22,47 @@ function void BlueSpheresTimer.Data.setValue(u32 address, u8 value)
 	
 	System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
 }
+
+//? Sets 0x00 for all Data memory addresses that are greater than 0x00.
+function void BlueSpheresTimer.Data.reset(u32 address)
+{
+	// D.A. Garden Edition (0x00 .. 0x01)
+	for (u8 A = 0x00; A <= 0x01; ++A)
+	{
+		u32 mods = 0x100 * A
+		
+		u32 addressOffset = address + mods
+		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+		
+		// Set the 0x00 for an address if it is greater than 0x00
+		if (u8[addressOffset] > 0x00)
+		{
+			u8[addressOffset] = 0x00
+			System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x00)
+		}
+	}
+}
+
+//? Returns the number of Data memory addresses that are greater than 0x00.
+function s32 BlueSpheresTimer.Data.writed(u32 address)
+{
+	s32 writed_addresses
+	
+	// D.A. Garden Edition (0x00 .. 0x01)
+	for (u8 A = 0x00; A <= 0x01; ++A)
+	{
+		u32 mods = 0x100 * A
+		
+		u32 addressOffset = address + mods
+		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+		
+		// Set the 0x00 for an address if it is greater than 0x00
+		if (u8[addressOffset] > 0x00)
+		{
+			writed_addresses += 0x01
+		}
+	}
+	
+	// Return the value
+	return writed_addresses
+}

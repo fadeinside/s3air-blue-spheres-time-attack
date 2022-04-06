@@ -191,27 +191,33 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 	s32 seconds_total
 	s32 centiseconds_total
 	
+	u8 gangMain = (bluespheres.timeattack.characterselected + 0x01)
+	u8 gangExtra = bluespheres.timeattack.characterselected == 0x03 ? (bluespheres.timeattack.xtracharselected - 0x01) : 0x00
+	
+	// Number of stages (0x00 .. 0x06, 0x07)
 	u8 maxStages = BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x07 : 0x06
-	for (u8 x = 0x00; x <= maxStages; x++)
+	for (u8 A = 0x00; A <= maxStages; A++)
 	{
-		for (u8 y = 0x01; y <= 0x04; y++)
+		// Number of record places (0x01 .. 0x04)
+		for (u8 B = 0x01; B <= 0x04; B++)
 		{
-			u32 recordplace = 0x1024 * y
-			u32 character = 0x128 * ((bluespheres.timeattack.characterselected + 0x01) + (bluespheres.timeattack.xtracharselected - 0x01))
-			u32 stage = 0x16 * (x + 0x01)
-			u32 layout = bluespheres.timeattack.layoutselected * 0x08
+			u32 recordplace = 0x1024 * B
+			u32 character = 0x128 * (gangMain + gangExtra)
+			u32 stage = 0x16 * (A + 0x01)
+			u32 layout = 0x08 * bluespheres.timeattack.layoutselected
 			u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
 			
 			u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-			
 			System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
 			
+			// Get parsed data from address value
 			s32 minutes = s32[recordOffset] / 10000
 			s32 seconds = (s32[recordOffset] - (minutes * 10000)) / 100
 			s32 centiseconds = (s32[recordOffset] - (minutes * 10000)) - (seconds * 100)
 			
 			//debugLog(stringformat("Loaded RAM 0x%06x: %s", recordOffset, BlueSpheresTimer.getFormatTime(minutes, seconds, centiseconds)))
 			
+			// If the address value is greater than 0x00, then add its parsed values to the variables. Otherwise add a static value to a variable
 			if (s32[recordOffset] > 0x00)
 			{
 				minutes_total += minutes
@@ -224,7 +230,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 			}
 		}
 	}
-	
+	 
 	seconds_total += centiseconds_total / 60
 	minutes_total += seconds_total / 60
 	centiseconds_total %= 99

@@ -18,24 +18,24 @@
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
 	
 	// Super emeralds
-	"icon_emerald_super_green": { "File": "menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_yellow": { "File": "menu_icons.png", "Rect": "16,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_orange": { "File": "menu_icons.png", "Rect": "31,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_pink": { "File": "menu_icons.png", "Rect": "46,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_blue": { "File": "menu_icons.png", "Rect": "61,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_gray": { "File": "menu_icons.png", "Rect": "76,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_red": { "File": "menu_icons.png", "Rect": "91,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_cyan": { "File": "menu_icons.png", "Rect": "106,1,14,13", "Center": "7,6" },
-	"icon_emerald_super_emply": { "File": "menu_icons.png", "Rect": "136,15,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x00": { "File": "menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x01": { "File": "menu_icons.png", "Rect": "31,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x02": { "File": "menu_icons.png", "Rect": "46,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x03": { "File": "menu_icons.png", "Rect": "61,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x04": { "File": "menu_icons.png", "Rect": "76,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x05": { "File": "menu_icons.png", "Rect": "91,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x06": { "File": "menu_icons.png", "Rect": "106,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x07": { "File": "menu_icons.png", "Rect": "16,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x0a": { "File": "menu_icons.png", "Rect": "136,15,14,13", "Center": "7,6" },
 	
 	// Chaos emeralds
-	"icon_emerald_chaos_green": { "File": "menu_icons.png", "Rect": "1,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_yellow": { "File": "menu_icons.png", "Rect": "16,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_orange": { "File": "menu_icons.png", "Rect": "31,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_pink": { "File": "menu_icons.png", "Rect": "46,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_blue": { "File": "menu_icons.png", "Rect": "61,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_gray": { "File": "menu_icons.png", "Rect": "76,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_red": { "File": "menu_icons.png", "Rect": "91,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_cyan": { "File": "menu_icons.png", "Rect": "106,15,14,13", "Center": "7,6" },
-	"icon_emerald_chaos_emply": { "File": "menu_icons.png", "Rect": "121,15,14,13", "Center": "7,6" }
+	"icon_emerald_chaos_0x00": { "File": "menu_icons.png", "Rect": "1,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x01": { "File": "menu_icons.png", "Rect": "31,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x02": { "File": "menu_icons.png", "Rect": "46,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x03": { "File": "menu_icons.png", "Rect": "61,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x04": { "File": "menu_icons.png", "Rect": "76,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x05": { "File": "menu_icons.png", "Rect": "91,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x06": { "File": "menu_icons.png", "Rect": "106,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x07": { "File": "menu_icons.png", "Rect": "16,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x0a": { "File": "menu_icons.png", "Rect": "121,15,14,13", "Center": "7,6" }
 }

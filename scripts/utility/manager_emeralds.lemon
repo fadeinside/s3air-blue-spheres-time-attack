@@ -1,4 +1,4 @@
-//? Checks for matches of values/events.
+//? Update the status of the current emerald in case of matches.
 function void BlueSpheresTimer.Emeralds.update()
 {
 	// Do not perform any actions if the level was not successful
@@ -21,85 +21,74 @@ function void BlueSpheresTimer.Emeralds.update()
 //? Returns the icon of the specified emerald ID.
 function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 {
-	u64 emeraldColor
-	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02)
-		emeraldColor = "emply"
-	else if (emeraldId == 0x00)
-		emeraldColor = "green"
-	else if (emeraldId == 0x01)
-	{
-		// Yellow Emerald by Guthi, https://gamebanana.com/mods/54326
-		if (Mods.isModActive("Yellow Emerald"))
-			emeraldColor = "yellow"
-		else
-			emeraldColor = "orange"
-	}
-	else if (emeraldId == 0x02)
-		emeraldColor = "pink"
-	else if (emeraldId == 0x03)
-		emeraldColor = "blue"
-	else if (emeraldId == 0x04)
-		emeraldColor = "gray"
-	else if (emeraldId == 0x05)
-		emeraldColor = "red"
-	else if (emeraldId == 0x06)
-		emeraldColor = "cyan"
-	else if (emeraldId == 0x07)
-	{
-		if (Mods.isModActive("Yellow Emerald"))
-			emeraldColor = "orange"
-		else
-			emeraldColor = "yellow"
-	}
-	
-	u64 emeraldView
+	// Determine whether the status of the specified emerald ID is of chaos type or not
+	u64 emeraldType
 	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x01)
-		emeraldView = "chaos"
+		emeraldType = "chaos"
 	else if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x03)
-		emeraldView = "super"
+		emeraldType = "super"
 	
-	u64 key = stringformat("icon_emerald_%s_%s", emeraldView, emeraldColor)
+	// If the emerald is inactive, then assign a distinctive ID
+	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02)
+		emeraldId = 0x0a
+	
+	// Determine the emerald color based on its ID 
+	u8 emeraldColor = emeraldId
+#if GAMEAPP >= 0x21091200
+	// Replace Yellow Emerald with Orange, and Orange with Yellow, if the mod "Yellow Emerald" is active. Otherwise use the original position
+	// "Yellow Emerald" by Guthi, check https://gamebanana.com/mods/54326
+	if (Mods.isModActive("Yellow Emerald"))
+	{
+		if (emeraldColor == 0x01)
+			emeraldId = 0x07
+		else if (emeraldColor == 0x07)
+			emeraldId = 0x01
+		emeraldColor = emeraldId
+	}
+#endif
+	
+	// Build key
+	u64 key = stringformat("icon_emerald_%s_0x%02x", emeraldType, emeraldColor)
+	
+	// Return sprite key
 	return key
 }
 
-//? Returns the address of the specified Emerald ID.
+//? Return the assembled memory address for the specified Emerald ID.
 function u32 BlueSpheresTimer.Emeralds.getAddress(u8 emeraldId)
 {
 	u32 emeraldID = 0x16 * (emeraldId + 0x01)
 	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x100 : 0x00
 	
+	// Return the assembled address
 	return bluespheres.emeraldsDataAddress + emeraldID + mods
 }
 
-//? Set a new value for all Emerald addresses.
+//? Set a new value for all Emerald memory addresses.
 function void BlueSpheresTimer.Emeralds.replaceAll(u8 status)
 {
-	for (u8 i = 0x00; i <= 0x07; i++)
+	// Number of emeralds (0x00 .. 0x07)
+	for (u8 A = 0x00; A <= 0x07; ++A)
 	{
-		BlueSpheresTimer.Emeralds.setStatus(i, status)
+		BlueSpheresTimer.Emeralds.setStatus(A, status)
 	}
 }
 
-//? Checks the value of the emerald addresses, and if they are equal to the specified one, return true.
+//? Check all Emerald memory addresses, if they are equal to the specified value, then return true.
 function bool BlueSpheresTimer.Emeralds.allEqual(u8 status)
 {
 	bool equal = false
 	
-	if (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+	if (BlueSpheresTimer.Emeralds.getStatus(0x00) == status && BlueSpheresTimer.Emeralds.getStatus(0x01) == status && BlueSpheresTimer.Emeralds.getStatus(0x02) == status && BlueSpheresTimer.Emeralds.getStatus(0x03) == status && BlueSpheresTimer.Emeralds.getStatus(0x04) == status && BlueSpheresTimer.Emeralds.getStatus(0x05) == status && BlueSpheresTimer.Emeralds.getStatus(0x06) == status && (BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? BlueSpheresTimer.Emeralds.getStatus(0x07) == status : true))
 	{
-		if (BlueSpheresTimer.Emeralds.getStatus(0x00) == status && BlueSpheresTimer.Emeralds.getStatus(0x01) == status && BlueSpheresTimer.Emeralds.getStatus(0x02) == status && BlueSpheresTimer.Emeralds.getStatus(0x03) == status && BlueSpheresTimer.Emeralds.getStatus(0x04) == status && BlueSpheresTimer.Emeralds.getStatus(0x05) == status && BlueSpheresTimer.Emeralds.getStatus(0x06) == status && BlueSpheresTimer.Emeralds.getStatus(0x07) == status)
-			equal = true
-	}
-	else
-	{
-		if (BlueSpheresTimer.Emeralds.getStatus(0x00) == status && BlueSpheresTimer.Emeralds.getStatus(0x01) == status && BlueSpheresTimer.Emeralds.getStatus(0x02) == status && BlueSpheresTimer.Emeralds.getStatus(0x03) == status && BlueSpheresTimer.Emeralds.getStatus(0x04) == status && BlueSpheresTimer.Emeralds.getStatus(0x05) == status && BlueSpheresTimer.Emeralds.getStatus(0x06) == status)
-			equal = true
+		equal = true
 	}
 	
+	// Return the value
 	return equal
 }
 
-//? Returns the value of the specified Emerald ID.
+//? Returns the value for the specified Emerald ID.
 function u8 BlueSpheresTimer.Emeralds.getStatus(u8 emeraldId)
 {
 	// Returns:
@@ -111,6 +100,7 @@ function u8 BlueSpheresTimer.Emeralds.getStatus(u8 emeraldId)
 	u32 emeraldOffset = BlueSpheresTimer.Emeralds.getAddress(emeraldId)
 	System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
 	
+	// Return the value
 	return u8[emeraldOffset]
 }
 
@@ -121,4 +111,58 @@ function void BlueSpheresTimer.Emeralds.setStatus(u8 emeraldId, u8 status)
 	u8[emeraldOffset] = status
 	
 	System.savePersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+}
+
+//? Sets 0x00 for all Emerald memory addresses that are greater than 0x00.
+function void BlueSpheresTimer.Emeralds.reset()
+{
+	// Number of emeralds (0x00 .. 0x07)
+	for (u8 A = 0x00; A <= 0x07; ++A)
+	{
+		// D.A. Garden Edition Activity Status (0x00 .. 0x01)
+		for (u8 B = 0x00; B <= 0x01; ++B)
+		{
+			u32 emeraldID = 0x16 * (A + 0x01)
+			u32 mods = 0x100 * B
+			
+			u32 emeraldOffset = bluespheres.emeraldsDataAddress + emeraldID + mods
+			System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+			
+			// Set the 0x00 for an address if it is greater than 0x00
+			if (u8[emeraldOffset] > 0x00)
+			{
+				u8[emeraldOffset] = 0x00
+				System.savePersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x00)
+			}
+		}
+	}
+}
+
+//? Returns the number of Emerald memory addresses that are greater than 0x00.
+function s32 BlueSpheresTimer.Emeralds.writed()
+{
+	s32 writed_addresses
+	
+	// Number of emeralds (0x00 .. 0x07)
+	for (u8 A = 0x00; A <= 0x07; ++A)
+	{
+		// D.A. Garden Edition (0x00 .. 0x01)
+		for (u8 B = 0x00; B <= 0x01; ++B)
+		{
+			u32 emeraldID = 0x16 * (A + 0x01)
+			u32 mods = 0x100 * B
+			
+			u32 emeraldOffset = bluespheres.emeraldsDataAddress + emeraldID + mods
+			System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+			
+			// Add +1 to variable if address greater than 0x00
+			if (u8[emeraldOffset] > 0x00)
+			{
+				writed_addresses += 0x01
+			}
+		}
+	}
+	
+	// Return the value
+	return writed_addresses
 }

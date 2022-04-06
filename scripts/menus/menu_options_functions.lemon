@@ -6,6 +6,10 @@ function void BlueSpheresTimer.Menu.options.popups()
 	u64 accept_text = "Reset"
 	u64 deny_text = "Cancel"
 	
+	// A reset is needed here, because if there is no reset, then the saved values in the variables will activate BlueSpheresTimer.Achievements.setup() again
+	bluespheres.blue_collected = 0x00
+	BlueSpheresTimer.resetTimer()
+	
 	if (bluespheres.options.buttonselected == 0x00)
 	{
 		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "your records and achievements", "This will completely erase all", deny_text, accept_text)
@@ -19,10 +23,11 @@ function void BlueSpheresTimer.Menu.options.popups()
 			{
 				playSound(0x68)
 				BlueSpheresTimer.Records.reset()
+				BlueSpheresTimer.Emeralds.reset()
 				BlueSpheresTimer.Achievements.reset()
-				BlueSpheresTimer.Emeralds.replaceAll(0x00)
-				BlueSpheresTimer.Data.setValue(bluespheres.stage8Unlocked, 0x00)
-				BlueSpheresTimer.Data.setValue(bluespheres.skUnlocked, 0x00)
+				
+				BlueSpheresTimer.Data.reset(bluespheres.stage8Unlocked)
+				BlueSpheresTimer.Data.reset(bluespheres.skUnlocked)
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00
@@ -50,10 +55,6 @@ function void BlueSpheresTimer.Menu.options.popups()
 	}
 	else if (bluespheres.options.buttonselected == 0x02)
 	{
-		// A reset is needed here, because if there is no reset, then the saved values in the variables will activate BlueSpheresTimer.Achievements.setup() again
-		bluespheres.blue_collected = 0x00
-		BlueSpheresTimer.resetTimer()
-		
 		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "The emeralds will also be reset", "", deny_text, accept_text)
 		if (control.pad1.pressed & CONTROL_START)
 		{
@@ -119,7 +120,7 @@ function void BlueSpheresTimer.Menu.options.items.list.data(s32 px, s32 py)
 	
 	py += 16
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x00, "Erase all data")
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01, (BlueSpheresTimer.Records.writed() > 0x00) ? 0xff : 0x90)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01, (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
 	
 	py += 16
 	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x01, "Erase all records")
