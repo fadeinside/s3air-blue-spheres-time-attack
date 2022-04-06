@@ -28,7 +28,8 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 		return true
 	}
 	
-	if (((global.game_mode & 0x7f) == 0x48 || (global.game_mode & 0x7f) == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS) // Special stage result + fade to main game afterwards && check enabled Time bonus
+	// Special stage result + fade to main game afterwards && check enabled Time bonus
+	if (((global.game_mode & 0x7f) == 0x48 || (global.game_mode & 0x7f) == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS)
 	{
 		// Special stage result texts
 		if (objA0.update_address == 0x02ea50)
@@ -39,7 +40,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 			if (objA0.animation.sprite == 0x19 || objA0.animation.sprite == 0x33 || objA0.animation.sprite == 0x38)
 			{
 				u64 key
-				if (!Mods.isModActive("Sonic Mania HUD"))
+				if !(Mods.isModActive("Sonic Mania HUD"))
 					key = isSKStage ? "hud_text_time_superstage" : "hud_text_time_chaosstage"
 				else
 					key = "hud_text_time"

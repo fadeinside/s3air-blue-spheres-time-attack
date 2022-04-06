@@ -75,15 +75,27 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		}
 		
 		// Change the character
-		// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
-		u8 maxCharacters = Mods.isModActive("Extra Slot Mighty") ? 0x03 : 0x02
+		u8 maxCharacters = BlueSpheresTimer.maxCharacters()
 		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_Y))
 		{
 			playSound(0x5b)
-			++bluespheres.timeattack.characterselected
-			
-			if (bluespheres.timeattack.characterselected > maxCharacters)
-				bluespheres.timeattack.characterselected = 0x00
+			if (bluespheres.timeattack.characterselected < 0x03)
+			{
+				++bluespheres.timeattack.characterselected
+				
+				if (bluespheres.timeattack.characterselected > maxCharacters)
+					bluespheres.timeattack.characterselected = 0x00
+			}
+			else
+			{
+				++bluespheres.timeattack.xtracharselected
+				
+				if (bluespheres.timeattack.xtracharselected >= maxCharacters - 0x02)
+				{
+					bluespheres.timeattack.characterselected = 0x00
+					bluespheres.timeattack.xtracharselected = 0x00
+				}
+			}
 		}
 		
 		// Change the levels layout from S3 to SK

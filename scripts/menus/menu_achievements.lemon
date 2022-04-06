@@ -49,7 +49,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 			{
 				if (bluespheres.achievements.buttonselected == i)
 				{
-					if !(BlueSpheresTimer.Achievements.getTitle(i) == "Locked" || BlueSpheresTimer.Achievements.getTitle(i) == "Need a mod" || BlueSpheresTimer.Achievements.getTitle(i) == "Unknown achievement")
+					if !(BlueSpheresTimer.Achievements.getTitle(i) == "Locked" || BlueSpheresTimer.Achievements.getTitle(i) == "Unknown achievement")
 					{
 						playSound(0x63)
 						bluespheres.popup.show = 0x01

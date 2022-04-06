@@ -2,24 +2,24 @@
 
 // Update v1.0.2a - The distorter fix
 // Note: I'm sorry for this absurdity. GitHub compressed some images, as a result of which they could not be read by the S3 A.I.R. compiler. This update fixes this. -Fade
-+ Fixed A.I.R couldn't read .png files.
-+ Fixed A.I.R couldn't find icon_unlock sprite.
+// + Fixed A.I.R couldn't read .png files.
+// + Fixed A.I.R couldn't find icon_unlock sprite.
 
 // Update v1.0.2 - Stability improvements
 // Note: Today's update fixes the bugs you have noticed, and also makes few changes and improvements to each corner of mod. Thanks! :3 -Fade
-+ Added 14 New Achievements, Achievements tags and score. Check the achievements menu.
-+ Fixed when you could play for "Sonic and Tails" in the standard Blue Sphere mini-game, given that only one Sonic is selected.
-+ Fixed when the Green Sphere from D.A. Garden was counted as a Yellow sphere in the achievements manager.
-+ Fixed when Mighty was always the main character after you played for him for one time.
-+ Fixed when you could open custom pause menu in the standard Blue Sphere mini-game.
-+ Fixed when after Time over in Time Attack mode, you back to Shared menu, instead of Time attack menu.
-+ Fixed when you could switch S3/S&K levels without even unlocking them.
-+ Fixed getting achievements at special stages of the main levels (i hope).
-+ Now reset achievements also reset emeralds.
-+ Now for Locked/Unknown achievements detail popup can't be opened.
-+ Optimized some functions.
+// + Added 14 New Achievements, Achievements tags and score. Check the achievements menu.
+// + Fixed when you could play for "Sonic and Tails" in the standard Blue Sphere mini-game, given that only one Sonic is selected.
+// + Fixed when the Green Sphere from D.A. Garden was counted as a Yellow sphere in the achievements manager.
+// + Fixed when Mighty was always the main character after you played for him for one time.
+// + Fixed when you could open custom pause menu in the standard Blue Sphere mini-game.
+// + Fixed when after Time over in Time Attack mode, you back to Shared menu, instead of Time attack menu.
+// + Fixed when you could switch S3/S&K levels without even unlocking them.
+// + Fixed getting achievements at special stages of the main levels (i hope).
+// + Now reset achievements also reset emeralds.
+// + Now for Locked/Unknown achievements detail popup can't be opened.
+// + Optimized some functions.
 
 // Update v1.0.1 - The bug-fix
 // Note: -
-+ Fixed a graphical bug when switching to a standard BS mini-game via the lobby.
-+ Fixed a bug where, after the standard BS mini-game, switching to time attack mode, the level of the mini-game was always active, even after switching the level.
+// + Fixed a graphical bug when switching to a standard BS mini-game via the lobby.
+// + Fixed a bug where, after the standard BS mini-game, switching to time attack mode, the level of the mini-game was always active, even after switching the level.

@@ -40,13 +40,13 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	{
-		if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+		if (Mods.isModActive("Sonic 3: D.A. Garden Edition") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 		{
 			if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_DA_GARDEN_EDITION)
 			{
 				BlueSpheresTimer.Menu.achievements.status()
 				if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-					BlueSpheresTimer.Menu.popup.show("`Sonic 3: D.A. Garden Edition` mod.", "Install and activate", "", "", accept_text)
+					BlueSpheresTimer.Menu.popup.show("`Sonic 3: D.A. Garden Edition` mod.", "Starting the game with the", "", "", accept_text)
 				else
 					BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
 			}
@@ -115,7 +115,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 	{
-		if (Mods.isModActive("No Blue Spheres Slowdown"))
+		if (Mods.isModActive("No Blue Spheres Slowdown") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 		{
 			BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x07)
 			if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)

@@ -28,8 +28,8 @@ function void BlueSpheresTimer.Achievements.setup()
 		
 	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
 	{
-		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION)
-		
+		if (global.game_mode == 0x34)
+			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GREEN_SPHERE) >= 0x01)
 			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GREEN_SPHERE)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) >= 50)
@@ -183,7 +183,6 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	// Ring achievements checks
 	if (u8[A1] == 0x04 && (bluespheres.rings_flags & 0x80))
 	{
-		debugLog(stringformat("ACHIEVEMENT_BS_COLLECT_400_RINGS : %d", BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_COLLECT_400_RINGS)))
 		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_400_RINGS, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))

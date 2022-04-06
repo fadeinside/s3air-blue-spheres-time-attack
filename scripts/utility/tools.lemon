@@ -15,6 +15,26 @@ function void BlueSpheresTimer.resetTimer()
 	//System.writeDisplayLine("Timer reset")
 }
 
+//? Returns the maximum number of possible characters.
+function u8 BlueSpheresTimer.maxCharacters()
+{
+	u8 maxCharacters
+	
+	for (u8 char = 0x03; char > 0x00; --char)
+	{
+		if (Renderer.hasCustomSprite(stringformat("dataSel_slot%d", char)))
+			++maxCharacters
+	}
+
+	return maxCharacters + 0x02
+}
+
+//? Overload function from Extra Character Slots.
+function void ChooseWhichExtraChar()
+{
+	base.ChooseWhichExtraChar()
+}
+
 //? Updates the timer counter, and determines when the time is up, when unlimited time is not active.
 function void BlueSpheresTimer.updateTimer()
 {

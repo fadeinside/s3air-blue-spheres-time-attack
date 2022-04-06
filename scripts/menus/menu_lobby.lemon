@@ -6,7 +6,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	// Global variables setup
 	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x01
-	8
+	
 	// Play Blue Sphere game music
 	playMusic(0x28)
 	

@@ -49,7 +49,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	{
 		// Character framerate
 		A0 = 0xffffb000
-		u16[A0 + 0x60] += bluespheres.movement_speed >> 0x04
+		u16[A0 + 0x60] += 0x800 >> 0x05
 		
 		D1 = u8[A0 + 0x60]
 		if (D1.u8 >= 0x0c)
@@ -59,7 +59,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 		
 		// Character tail framerate
 		A1 = 0xffffb04a
-		u16[A1 + 0x60] += (bluespheres.movement_speed - (bluespheres.movement_speed >> 0x03)) >> 0x04
+		u16[A1 + 0x60] += (0x1000 - (0x1000 >> 0x02)) >> 0x05
 		
 		D2 = u8[A1 + 0x60]
 		if (D2.u8 >= 0x15)
@@ -72,12 +72,12 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 		
 		// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
 		// "Ultimate Mighty" by Sotaknuck, check https://gamebanana.com/mods/54268
-		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || bluespheres.timeattack.characterselected == 0x03)
+		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || (bluespheres.timeattack.characterselected == 0x03 && bluespheres.timeattack.xtracharselected == 0x00 && Mods.isModActive("Extra Slot Mighty")))
 		{
 			key = stringformat("character_mighty_walk_%d", u8[A0 + 0x60])
 		}
 		// "Ray the Flying Squirrel" by campbellsonic, https://gamebanana.com/mods/54261
-		else if (bluespheres.timeattack.characterselected == 0x01 && Mods.isModActive("Ray the Flying Squirrel"))
+		else if ((bluespheres.timeattack.characterselected == 0x01 && Mods.isModActive("Ray the Flying Squirrel")) || (bluespheres.timeattack.characterselected == 0x03 && bluespheres.timeattack.xtracharselected == 0x01 && Mods.isModActive("Extra Slot Ray")))
 		{
 			key = stringformat("character_ray_walk_%d", u8[A0 + 0x60])
 			key2 = stringformat("character_ray_tail_%d", u8[A1 + 0x60] % 0x0b)
@@ -98,10 +98,11 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 		
 		if (Renderer.hasCustomSprite(key))
 		{
-			// Render character sprites
+			// Render tail sprite
 			if (Renderer.hasCustomSprite(key2))
-				Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
-			Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162, 0x00, 0x40, 0xf000)
+				Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162 + getScreenHeight() - 224, 0x00, 0x40, 0xf000)
+			// Render character sprite
+			Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162 + getScreenHeight() - 224, 0x00, 0x40, 0xf000)
 			
 			// Render character shadow
 			global.characters = 0x01
@@ -112,7 +113,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	// Some things to make the ground animate
 	u8[0xffffe433] = 0x00
 	bluespheres.direction = 0x40
-	bluespheres.movement_speed = 1100
+	bluespheres.movement_speed = 0x500
 	
 	D2.s16 = bluespheres.movement_speed
 	D0.u8 = bluespheres.direction
@@ -127,6 +128,7 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	A1 = u32[0x0088ba + bluespheres.timeattack.levelselected * 0x10]
 	if (bluespheres.timeattack.layoutselected)
 		A1 += 0x0130
+	
 	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
 	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
 		A1 += 0x2cb80e
@@ -259,9 +261,19 @@ function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py
 	else if (bluespheres.timeattack.characterselected == 0x02)
 		key = "continue_icon_knuckles"
 	else if (bluespheres.timeattack.characterselected == 0x03)
-		key = "continue_icon_mighty"
+	{
+		if (bluespheres.timeattack.xtracharselected == 0x00)
+			key = "continue_icon_slot1"
+		else if (bluespheres.timeattack.xtracharselected == 0x01)
+			key = "continue_icon_slot2"
+		else if (bluespheres.timeattack.xtracharselected == 0x02)
+			key = "continue_icon_slot3" 
+	}
 	
-	Renderer.drawCustomSprite(key, px, py + 28, 0x40, 0x00, 0xf000)
+	if (Renderer.hasCustomSprite(key))
+	{
+		Renderer.drawCustomSprite(key, px, py + 28, 0x40, 0x00, 0xf000)
+	}
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
@@ -276,7 +288,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 	{
 		s32 width = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 16 : 14
 		Renderer.drawCustomSprite(BlueSpheresTimer.Emeralds.getEmerald(x), px + (width * x), py, 0x00, 0x40, 0xf000)
-		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x",BlueSpheresTimer.Emeralds.getAddress(x), BlueSpheresTimer.Emeralds.getStatus(x)))
+		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x", BlueSpheresTimer.Emeralds.getAddress(x), BlueSpheresTimer.Emeralds.getStatus(x)))
 	}
 	
 	if !(BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
@@ -287,7 +299,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 	{
 		s32 width = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 16 : 14
 		Renderer.drawCustomSprite(BlueSpheresTimer.Emeralds.getEmerald(y + 0x04), px + (width * y), py, 0x00, 0x40, 0xf000)
-		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x",BlueSpheresTimer.Emeralds.getAddress(y + 0x04), BlueSpheresTimer.Emeralds.getStatus(y + 0x04)))
+		//debugLog(stringformat("Loaded RAM 0x%06x: 0x%02x", BlueSpheresTimer.Emeralds.getAddress(y + 0x04), BlueSpheresTimer.Emeralds.getStatus(y + 0x04)))
 	}
 }
 

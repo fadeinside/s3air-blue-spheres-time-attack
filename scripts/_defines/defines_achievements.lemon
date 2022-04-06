@@ -48,4 +48,6 @@ define u32 ACHIEVEMENT_BS_GET_15_CONTINUES	= 0x0021	// Tag: Common, Rare
 define u32 ACHIEVEMENT_BS_GET_30_CONTINUES	= 0x0022	// Tag: Rare
 define u32 ACHIEVEMENT_BS_GET_50_CONTINUES	= 0x0023	// Tag: Super rare
 
+define u32 ACHIEVEMENT_BS_UNTITLED	= 0x0024	// Tag: Challenge, Hard
+
 // Suggest more of achievements on the Gamebanana page, GitHub issues, or via Discord on the Sonic 3 A.I.R server
