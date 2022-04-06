@@ -14,7 +14,7 @@ function void BlueSpheresTimer.EntryFunctions.setupSpecialStage()
 	
 	if (bluespheres.timeattack.characterselected == 0x03)
 	{
-		u8[0xffffe654] = bluespheres.timeattack.xtracharselected + 0x01
+		u8[0xffffe654] = bluespheres.timeattack.xtracharselected
 		ChooseWhichExtraChar()
 	}
 	else

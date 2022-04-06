@@ -82,15 +82,51 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 			if (bluespheres.timeattack.characterselected < 0x03)
 			{
 				++bluespheres.timeattack.characterselected
-				
 				if (bluespheres.timeattack.characterselected > maxCharacters)
 					bluespheres.timeattack.characterselected = 0x00
+				
+				// Set the available ID for the extra character as the first value
+				if (bluespheres.timeattack.characterselected == 0x03)
+				{
+					if (Renderer.hasCustomSprite("dataSel_slot1"))
+						bluespheres.timeattack.xtracharselected = 0x01
+					else if (Renderer.hasCustomSprite("dataSel_slot2"))
+						bluespheres.timeattack.xtracharselected = 0x02
+					else if (Renderer.hasCustomSprite("dataSel_slot3"))
+						bluespheres.timeattack.xtracharselected = 0x03
+					else
+					{
+						bluespheres.timeattack.characterselected = 0x00
+						bluespheres.timeattack.xtracharselected = 0x00
+					}
+				}
 			}
 			else
 			{
-				++bluespheres.timeattack.xtracharselected
-				
-				if (bluespheres.timeattack.xtracharselected >= maxCharacters - 0x02)
+				// Check the availability of extra characters, if available, then set it, otherwise reset and go to Sonic
+				if (bluespheres.timeattack.xtracharselected == 0x01)
+				{
+					if (Renderer.hasCustomSprite("dataSel_slot2"))
+						bluespheres.timeattack.xtracharselected = 0x02
+					else if (Renderer.hasCustomSprite("dataSel_slot3"))
+						bluespheres.timeattack.xtracharselected = 0x03
+					else
+					{
+						bluespheres.timeattack.characterselected = 0x00
+						bluespheres.timeattack.xtracharselected = 0x00
+					}
+				}
+				else if (bluespheres.timeattack.xtracharselected == 0x02)
+				{
+					if (Renderer.hasCustomSprite("dataSel_slot3"))
+						bluespheres.timeattack.xtracharselected = 0x03
+					else
+					{
+						bluespheres.timeattack.characterselected = 0x00
+						bluespheres.timeattack.xtracharselected = 0x00
+					}
+				}
+				else
 				{
 					bluespheres.timeattack.characterselected = 0x00
 					bluespheres.timeattack.xtracharselected = 0x00

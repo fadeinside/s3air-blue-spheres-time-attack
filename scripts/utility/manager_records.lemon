@@ -43,7 +43,7 @@ function void BlueSpheresTimer.Records.update()
 function u32 BlueSpheresTimer.Records.getRecordAddress(u8 place)
 {
 	u32 recordplace = 0x1024 * place
-	u32 character = 0x128 * (bluespheres.timeattack.characterselected + 0x01)
+	u32 character = 0x128 * ((bluespheres.timeattack.characterselected + 0x01) + (bluespheres.timeattack.xtracharselected - 0x01))
 	u32 stage = 0x16 * (bluespheres.timeattack.levelselected + 0x01)
 	u32 layout = bluespheres.timeattack.layoutselected * 0x08
 	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
