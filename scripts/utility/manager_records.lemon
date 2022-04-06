@@ -74,30 +74,33 @@ function void BlueSpheresTimer.Records.setNewRecordTime(u8 place, s32 data)
 //? Sets the value to 0 for all recorded Records memory addresses.
 function void BlueSpheresTimer.Records.reset()
 {
-	for (u8 i = 0x00; i <= 0x07; i++)
+	for (u8 A = 0x00; A <= 0x07; ++A)
 	{
-		for (u8 x = 0x01; x <= 0x04; x++)
+		for (u8 B = 0x01; B <= 0x04; ++B)
 		{
-			for (u8 y = 0x00; y <= 0x03; y++)
+			for (u8 C = 0x00; C <= 0x06; ++C)
 			{
-				for (u8 z = 0x00; z <= 0x01; z++)
+				for (u8 D = 0x00; D <= 0x01; ++D)
 				{
-					u32 recordplace = 0x1024 * x
-					u32 character = 0x128 * (y + 0x01)
-					u32 stage = 0x16 * (i + 0x01)
-					u32 layout = z * 0x08
-					u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
-			
-					u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-					
-					System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
-					
-					if (s32[recordOffset] != 0x00)
+					for (u8 E = 0x00; E <= 0x01; ++E)
 					{
-						s32[recordOffset] = 0x00
-						System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
+						u32 recordplace = 0x1024 * B
+						u32 character = 0x128 * (C + 0x01)
+						u32 stage = 0x16 * (A + 0x01)
+						u32 layout = D * 0x08
+						u32 mods = E * 0x10000
 						
-						//debugLog(stringformat("Reset RAM 0x%06x", recordOffset))
+						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+						
+						System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+						
+						if (s32[recordOffset] != 0x00)
+						{
+							s32[recordOffset] = 0x00
+							System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
+							
+							//debugLog(stringformat("Reset RAM 0x%06x", recordOffset))
+						}
 					}
 				}
 			}
@@ -110,27 +113,30 @@ function s32 BlueSpheresTimer.Records.writed()
 {
 	s32 writed_address
 	
-	for (u8 i = 0x00; i <= 0x07; i++)
+	for (u8 A = 0x00; A <= 0x07; ++A)
 	{
-		for (u8 x = 0x01; x <= 0x04; x++)
+		for (u8 B = 0x01; B <= 0x04; ++B)
 		{
-			for (u8 y = 0x00; y <= 0x03; y++)
+			for (u8 C = 0x00; C <= 0x06; ++C)
 			{
-				for (u8 z = 0x00; z <= 0x01; z++)
+				for (u8 D = 0x00; D <= 0x01; ++D)
 				{
-					u32 recordplace = 0x1024 * x
-					u32 character = 0x128 * (y + 0x01)
-					u32 stage = 0x16 * (i + 0x01)
-					u32 layout = z * 0x08
-					u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
-			
-					u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-					
-					System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
-					
-					if (s32[recordOffset] > 0x00)
+					for (u8 E = 0x00; E <= 0x01; ++E)
 					{
-						writed_address += 0x01
+						u32 recordplace = 0x1024 * B
+						u32 character = 0x128 * (C + 0x01)
+						u32 stage = 0x16 * (A + 0x01)
+						u32 layout = D * 0x08
+						u32 mods = E * 0x10000
+						
+						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+						
+						System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+						
+						if (s32[recordOffset] > 0x00)
+						{
+							writed_address += 0x01
+						}
 					}
 				}
 			}
@@ -138,33 +144,4 @@ function s32 BlueSpheresTimer.Records.writed()
 	}
 	
 	return writed_address
-}
-
-//? Sets the 25 seconds for all Records address.
-function void BlueSpheresTimer.Records.cheat()
-{
-	for (u8 i = 0x00; i <= 0x07; i++)
-	{
-		for (u8 x = 0x01; x <= 0x04; x++)
-		{
-			for (u8 y = 0x00; y <= 0x03; y++)
-			{
-				for (u8 z = 0x00; z <= 0x01; z++)
-				{
-					u32 recordplace = 0x1024 * x
-					u32 character = 0x128 * (y + 0x01)
-					u32 stage = 0x16 * (i + 0x01)
-					u32 layout = z * 0x08
-					u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
-			
-					u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-					
-					System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
-					
-					s32[recordOffset] = 2500
-					System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
-				}
-			}
-		}
-	}
 }

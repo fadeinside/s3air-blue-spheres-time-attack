@@ -5,7 +5,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 	
 	// Global variables setup
 	level.framecounter = 0x00
-	bluespheres.buttons.setup = 0x02
+	bluespheres.buttons.setup = 0x03
 	bluespheres.options.buttonselected = bluespheres.buttons.setup
 	
 	// VRAM stuff
@@ -47,7 +47,7 @@ function void BlueSpheresTimer.Menu.options.setup()
 		{
 			if (bluespheres.options.buttonselected == 0x00)
 			{
-				if (BlueSpheresTimer.Records.writed() > 0x00)
+				if (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00)
 				{
 					playSound(0x63)
 					bluespheres.popup.show = 0x01
@@ -59,6 +59,19 @@ function void BlueSpheresTimer.Menu.options.setup()
 				}
 			}
 			if (bluespheres.options.buttonselected == 0x01)
+			{
+				if (BlueSpheresTimer.Records.writed() > 0x00)
+				{
+					playSound(0x63)
+					bluespheres.popup.show = 0x01
+					waitForNextFrame()
+				}
+				else
+				{
+					playSound(0x7b)
+				}
+			}
+			if (bluespheres.options.buttonselected == 0x02)
 			{
 				if (BlueSpheresTimer.Achievements.writed() > 0x00)
 				{

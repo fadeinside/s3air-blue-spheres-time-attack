@@ -25,7 +25,7 @@ function u8 BlueSpheresTimer.maxCharacters()
 		if (Renderer.hasCustomSprite(stringformat("dataSel_slot%d", char)))
 			++maxCharacters
 	}
-
+	
 	return maxCharacters + 0x02
 }
 
