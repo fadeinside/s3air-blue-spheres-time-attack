@@ -9,7 +9,7 @@ Run through exciting levels of Special Stages in Time Attack mode! Play on your 
 <font color="#6ee16c">About the custom menus:</font><br>
 1. Lobby - A change of game mode selection between "Time Attack" и "Blue Sphere".<br>
 2. Time Attack - Menu for viewing the latest records, choosing a character, stage and layout to start the race. Also from here you can go to other sections, such as "Options" and "Achievements".<br>
-3. Options - Subsection "Time Attack". Here it is fashionable to reset all your records and achievements, if something from this was obtained. <b>Be careful, this action cannot be undone!</b><br>
+3. Options - Subsection "Time Attack". Here can be to reset all your records and achievements, if something from this was obtained. <b>Be careful, this action cannot be undone!</b><br>
 4. Achievements - Subsection "Time Attack". A list of locked and unlocked achievements. Tracking the progress of achievements and the total score.<br>
 5. Pause menu - During the game in the "Time Attack" mode, a custom pause menu will be used, for more convenient navigation in the "Time Attack" menu and restarting the stage.<br><br>
 
