@@ -43,76 +43,15 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
 		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000)
 	
-	// Preview character
-	// - For now, this only works for Mania-Styled Blue Spheres, but plans to implement a more responsive version in the future with support for standard/custom character skins
-	if (Mods.isModActive("Mania-Styled Blue Spheres"))
-	{
-		// Character framerate
-		A0 = 0xffffb000
-		u16[A0 + 0x60] += 0x800 >> 0x05
-		
-		D1 = u8[A0 + 0x60]
-		if (D1.u8 >= 0x0c)
-			D1.u8 = 0x00
-		
-		u8[A0 + 0x60] = D1.u8
-		
-		// Character tail framerate
-		A1 = 0xffffb04a
-		u16[A1 + 0x60] += (0x1000 - (0x1000 >> 0x02)) >> 0x05
-		
-		D2 = u8[A1 + 0x60]
-		if (D2.u8 >= 0x15)
-			D2.u8 = 0x00
-		
-		u8[A1 + 0x60] = D2.u8
-		
-		u64 key
-		u64 key2
-		
-		// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
-		// "Ultimate Mighty" by Sotaknuck, check https://gamebanana.com/mods/54268
-		if ((bluespheres.timeattack.characterselected == 0x00 && Mods.isModActive("Ultimate Mighty")) || (bluespheres.timeattack.xtracharselected == 0x01 && Mods.isModActive("Extra Slot Mighty")))
-		{
-			key = stringformat("character_mighty_walk_%d", u8[A0 + 0x60])
-		}
-		// "Ray the Flying Squirrel" by campbellsonic, https://gamebanana.com/mods/54261
-		else if ((bluespheres.timeattack.characterselected == 0x01 && Mods.isModActive("Ray the Flying Squirrel")) || (bluespheres.timeattack.xtracharselected == 0x02 && Mods.isModActive("Extra Slot Ray")))
-		{
-			key = stringformat("character_ray_walk_%d", u8[A0 + 0x60])
-			key2 = stringformat("character_ray_tail_%d", u8[A1 + 0x60] % 0x0b)
-		}
-		else if (bluespheres.timeattack.characterselected == 0x00)
-		{
-			key = stringformat("character_sonic_walk_%d", u8[A0 + 0x60])
-		}
-		else if (bluespheres.timeattack.characterselected == 0x01)
-		{
-			key = stringformat("character_miles_walk_%d", u8[A0 + 0x60])
-			key2 = stringformat("character_miles_tails_%d", u8[A1 + 0x60])
-		}
-		else if (bluespheres.timeattack.characterselected == 0x02)
-		{
-			key = stringformat("character_knuckles_walk_%d", u8[A0 + 0x60])
-		}
-		
-		if (Renderer.hasCustomSprite(key))
-		{
-			// Render tail sprite
-			if (Renderer.hasCustomSprite(key2))
-				Renderer.drawCustomSprite(key2, getScreenWidth() / 0x02, 162 + getScreenHeight() - 224, 0x00, 0x40, 0xf000)
-			// Render character sprite
-			Renderer.drawCustomSprite(key, getScreenWidth() / 0x02, 162 + getScreenHeight() - 224, 0x00, 0x40, 0xf000)
-			
-			// Render character shadow
-			global.characters = 0x01
-			BlueSpheres.renderCustomCharacterShadows()  
-		}
-	}
-	
+	// Render stage preview
+	BlueSpheresTimer.Menu.timeattack.stagePreview()
+}
+
+function void BlueSpheresTimer.Menu.timeattack.stagePreview()
+{
 	// Some things to make the ground animate
 	u8[0xffffe433] = 0x00
-	bluespheres.direction = 0x40
+	bluespheres.lifted_height = 0x00
 	bluespheres.movement_speed = 0x500
 	
 	D2.s16 = bluespheres.movement_speed
@@ -123,13 +62,12 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	D1.s32 = s32(D1.s16) * D2.s16
 	bluespheres.position.x -= D0 >> 0x10
 	bluespheres.position.y -= D1 >> 0x10
-	
+		
 	// Load ground colors
 	A1 = u32[0x0088ba + bluespheres.timeattack.levelselected * 0x10]
 	if (bluespheres.timeattack.layoutselected)
 		A1 += 0x0130
 	
-	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
 	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
 		A1 += 0x2cb80e
 	
@@ -140,6 +78,59 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 	
 	// Render ground
 	BlueSpheres.renderCustomGround()
+	
+	// Проигнорировать рендер сфер, если выключена эта настройка
+	if !(SETTING_BS_STAGE_PREVIEW_ENABLE)
+		return
+	
+	// Main game stages
+	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
+	if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02)
+		Kosinski.decompress(0x2d3ad0, 0xffff0000)
+	else
+		Kosinski.decompress(u32[0x1e4078], 0xffff0000)
+	
+	// Load level layout, either from S3 or S&K
+	A2 = bluespheres.timeattack.layoutselected ? 0x008590 : 0x25e2d8
+	A2 = u32[A2 + bluespheres.timeattack.levelselected * 0x04]
+	if !(bluespheres.timeattack.layoutselected)
+	{
+		A2 += 0x200000
+		if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02)
+			A2 += 0x0679b0
+	}
+	
+	zeroMemory(0xfffff000, 0x100)
+	copyMemory(0xfffff100, A2, 0x400)
+	zeroMemory(0xfffff500, 0x100)
+	A2 += 0x400
+	
+	bool stageChanged = control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)
+	bool layoutChanged = Input.buttonPressed(BUTTON_X)
+	bool characterChanged = Input.buttonPressed(BUTTON_Y) && bluespheres.timeattack.characterselected == 0x02 && Mods.isModActive("Sonic 3: D.A. Garden Edition") // Knuckles has a different level layout in DAGE
+	
+	// Sets the camera in the right place
+	if (global.game_mode == 0x85 && !bluespheres.popup.show && (stageChanged || layoutChanged || characterChanged))
+	{
+		u16[0xffffe426] = u16[A2]
+		bluespheres.position.x = u16[A2+2]
+		bluespheres.position.y = u16[A2+4]
+	}
+	
+	if (bluespheres.direction != 0x00 || bluespheres.direction != 64 || bluespheres.direction != 128 || bluespheres.direction != 192) // Fixes camera direction when you return to the menu after red sphere or emerald
+		u16[0xffffe426] = u16[A2]
+		
+	if (global.game_mode == 0x89 && bluespheres.position.x == 0x00) // Sets the correct camera position when you first log in to the Lobby
+	{
+		bluespheres.position.x = u16[A2+2]
+		bluespheres.position.y = u16[A2+4]
+	}
+	
+	fn00a0e6() // VRAM stuff
+	fn009d9e() // Rings framerate
+	
+	// Render spheres
+	BlueSpheres.RenderSpheres()
 }
 
 function void BlueSpheresTimer.Menu.timeattack.headline()
@@ -147,7 +138,7 @@ function void BlueSpheresTimer.Menu.timeattack.headline()
 	s32 offset = 216
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (u8 A = 0x00; A < 0x06; A++)
+	for (u8 A = 0x00; A < 0x06; ++A)
 		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
 }
 
@@ -230,7 +221,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 			}
 		}
 	}
-	 
+	
 	seconds_total += centiseconds_total / 60
 	minutes_total += seconds_total / 60
 	centiseconds_total %= 99

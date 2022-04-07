@@ -12,8 +12,20 @@
 	{
 		"List":
 		[
+		{
+				"Category": "Menu appearance",
+				"InternalName": "SETTING_BS_STAGE_PREVIEW_ENABLE",
+				"DisplayName": "Show stage spheres in menu:",
+				"Variable": "SETTING_BS_STAGE_PREVIEW_ENABLE",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled (Default)",
+					"1": "Enable"
+				}
+			},
 			{
-				"Category": "Tweaks",
+				"Category": "Additional",
 				"InternalName": "SETTING_BS_ACHIEVEMENTS_ENABLE",
 				"DisplayName": "Achievements in Main stages:",
 				"Variable": "SETTING_BS_ACHIEVEMENTS_ENABLE",
@@ -25,7 +37,7 @@
 				}
 			},
 			{
-				"Category": "Tweaks",
+				"Category": "Additional",
 				"InternalName": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
 				"DisplayName": "Time bonus in Main stages:",
 				"Variable": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",

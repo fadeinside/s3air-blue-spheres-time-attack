@@ -1,3 +1,4 @@
 // Settings
+global u8 SETTING_BS_STAGE_PREVIEW_ENABLE	// Когда 0x01, то в меню на ground будут отображаться сферы этапа (Может вызывать просидание FPS на некоторых устройствах)
 global u8 SETTING_BS_ACHIEVEMENTS_ENABLE	// When 0x01, achievements can be obtained in usual Special stages of the Main levels
 global u8 SETTING_BS_TIME_BONUSES_ON_SPECIALS	// When 0x01, a timer appears at the usual Special stages of the Main levels, and at the end, a time bonus will appear on the Results screen
