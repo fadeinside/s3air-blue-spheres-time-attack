@@ -7,6 +7,7 @@ function void GiantRing.BaseUpdate()
 	// - 0x0616e6	-> objA0.base_state = 0x02  -> Regular update
 	// - 0x0617b8	-> objA0.base_state = 0x04  -> Character jumped in
 	
+	// Reset the timer when the character jumps into a special ring
 	if (objA0.base_state == 0x04)
 		BlueSpheresTimer.resetTimer()
 	
@@ -58,6 +59,7 @@ function void fn009b62()
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 	{
+		// Call the base function
 		base.fn009b62()
 		return
 	}

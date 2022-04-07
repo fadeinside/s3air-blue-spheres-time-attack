@@ -1,7 +1,9 @@
-//? Returns the dunamic address of the specified address
+//? Return the assembled memory address for the specified Data address.
 function u32 BlueSpheresTimer.Data.getAddress(u32 address)
 {
 	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x100 : 0x00
+	
+	// Return the assembled address
 	return address + mods
 }
 
@@ -11,6 +13,7 @@ function u8 BlueSpheresTimer.Data.getValue(u32 address)
 	u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
 	System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
 	
+	// Return the value
 	return u8[addressOffset]
 }
 

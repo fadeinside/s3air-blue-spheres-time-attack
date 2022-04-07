@@ -42,11 +42,11 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 }
 
 //? Returns the string of the menu item. For example, when the item is hovered: "* Name *", otherwise just "Name".
-function u64 BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 target_selected, u64 button_name)
+function u64 BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 button_target, u64 button_name)
 {
 	u64 key
 	
-	if (button_var == target_selected)
+	if (button_var == button_target)
 		key = stringformat("* %s *", button_name)
 	else
 		key = button_name

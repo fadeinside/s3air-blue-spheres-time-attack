@@ -1,4 +1,4 @@
-//? Checks for matches of values/events.
+//? Define and update the record place in case of matches.
 function void BlueSpheresTimer.Records.update()
 {
 	// Do not perform any actions if the level was not successful

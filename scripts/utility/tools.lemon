@@ -15,10 +15,10 @@ function void BlueSpheresTimer.resetTimer()
 	//System.writeDisplayLine("Timer reset")
 }
 
-//? Returns the maximum number of possible characters.
+//? Returns the maximum number of available characters.
 function u8 BlueSpheresTimer.maxCharacters()
 {
-	u8 maxCharacters
+	u8 maxCharacters = 0x02
 	
 	for (u8 char = 0x03; char > 0x00; --char)
 	{
@@ -26,12 +26,14 @@ function u8 BlueSpheresTimer.maxCharacters()
 			++maxCharacters
 	}
 	
-	return maxCharacters + 0x02
+	// Return the value
+	return maxCharacters
 }
 
 //? Overload function from Extra Character Slots.
 function void ChooseWhichExtraChar()
 {
+	// Call the base function
 	base.ChooseWhichExtraChar()
 }
 
