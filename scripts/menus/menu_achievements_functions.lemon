@@ -213,10 +213,9 @@ function void BlueSpheresTimer.Menu.achievements.headline()
 {
 	s32 offset = 243
 	s32 px = getScreenWidth() / 0x02 - offset
-	s32 py = 0x00
 	
-	for (s32 i = 0x00; i < 0x05; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "ACHIEVEMENTS!", 0x00)
+	for (u8 A = 0x00; A < 0x05; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "ACHIEVEMENTS!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items()
@@ -240,21 +239,21 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 {
 	if (bluespheres.achievements.buttonselected >= 0x02 && !(bluespheres.achievements.buttonselected == bluespheres.buttons.setup))
 	{
-		for (s32 y = 0x00; y <= bluespheres.achievements.buttonselected - 0x02; y++)
+		for (u8 A = 0x00; A <= bluespheres.achievements.buttonselected - 0x02; ++A)
 			py -= 26
 	}
 	
 	if (py >= -16)
 	{
-		u8 alpha0 = (py < 0) ? 48 : ((py < 16) ? 100 : ((py < 32) ? 150 : 255))
+		u8 alpha0 = (py < 0x00) ? 48 : ((py < 16) ? 100 : ((py < 32) ? 150 : 255))
 		BlueSpheresTimer.Menu.achievements.items.unlocked(px, py, alpha0)
 	}
 	
 	px -= 128
 	py += 44
-	for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
+	for (u8 B = 0x00; B <= bluespheres.achievements.total; ++B)
 	{
-		if (i != 0x00)
+		if (B != 0x00)
 			py += 26
 		
 		// This optimizes render by calculating only the data that is visible to the screen
@@ -262,20 +261,20 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		{
 			u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
 			
-			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(i) ? "icon_status_unlock" : "icon_status_lock"
+			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(B) ? "icon_status_unlock" : "icon_status_lock"
 			Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
 			
 			// Make transparent for Locked/Unknown achievements
-			if (BlueSpheresTimer.Achievements.getTitle(i) == "Locked" || BlueSpheresTimer.Achievements.getTitle(i) == "Need a mod" || BlueSpheresTimer.Achievements.getTitle(i) == "Unknown achievement")
+			if (BlueSpheresTimer.Achievements.getTitle(B) == "Locked" || BlueSpheresTimer.Achievements.getTitle(B) == "Need a mod" || BlueSpheresTimer.Achievements.getTitle(B) == "Unknown achievement")
 				alpha -= alpha / 0x02
 		
-			u64 achievement_tag = BlueSpheresTimer.Achievements.getTags(i)
+			u64 achievement_tag = BlueSpheresTimer.Achievements.getTags(B)
 			BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)
 		
-			u64 button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, i, BlueSpheresTimer.Achievements.getTitle(i))
+			u64 button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, B, BlueSpheresTimer.Achievements.getTitle(B))
 			BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
 		
-			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(i), BlueSpheresTimer.Achievements.getValue(i)))
+			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(B), BlueSpheresTimer.Achievements.getValue(B)))
 		}
 	}
 }
@@ -285,9 +284,9 @@ function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py, 
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Unlocked", 0x01, alpha)
 	
 	s32 unlocked_total
-	for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
+	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
-		if (BlueSpheresTimer.Achievements.isComplete(i))
+		if (BlueSpheresTimer.Achievements.isComplete(A))
 			unlocked_total += 0x01
 	}
 	

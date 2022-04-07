@@ -31,6 +31,9 @@ global u8 bluespheres.timeattack.active	// Set to 0x01 when the Time Attack mode
 global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
 global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 
+// Temp vars
+global u8 bluespheres.tempValue1	// Used in some cases
+
 // Counters
 global u8 bluespheres.blue_collected	// Counter of collected blue spheres
 

@@ -1,3 +1,24 @@
+function void BlueSpheresTimer.Menu.popup.background()
+{
+	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (global.game_mode == 0x88) ? 0xdb : 0xca)
+}
+
+function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, u64 text1, u64 text2, u64 text3, u64 text4)
+{
+	py -= 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text1, 0x01)
+	
+	py -= 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text2, 0x01)
+	
+	py -= 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text3, 0x01)
+	
+	py -= 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text4, 0x01)
+}
+
 function void BlueSpheresTimer.Menu.popup.show(u64 text1, u64 text2, u64 text3, u64 text4, u64 button1, u64 button2)
 {
 	// Button selection
@@ -24,12 +45,6 @@ function void BlueSpheresTimer.Menu.popup.show(u64 text1, u64 text2, u64 text3, 
 	BlueSpheresTimer.Menu.popup.background()
 }
 
-function void BlueSpheresTimer.Menu.popup.background()
-{
-	for (s32 i = 0x00; i < 0x02 + (getScreenWidth() / 0x10); i++)
-		Renderer.drawCustomSprite("background_menu", 0x10 * i, 0x00, 0x00, 0x40, 0xf000, 0x00, (global.game_mode == 0x88) ? 0xdb : 0xca)
-}
-
 function void BlueSpheresTimer.Menu.popup.items(u64 text1, u64 text2, u64 text3, u64 text4, u64 button1, u64 button2)
 {
 	s32 px = getScreenWidth() / 0x02
@@ -39,11 +54,11 @@ function void BlueSpheresTimer.Menu.popup.items(u64 text1, u64 text2, u64 text3,
 		py += 16
 	
 	if (text2 != "")
-		py += 8
+		py += 0x08
 	if (text3 != "")
-		py += 8
+		py += 0x08
 	if (text4 != "")
-		py += 8
+		py += 0x08
 	
 	BlueSpheresTimer.Menu.popup.items.menu(px, py, button1, button2)
 	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
@@ -79,11 +94,11 @@ function void BlueSpheresTimer.Menu.popup.items(u64 text1, u64 text2, u64 text3,
 		py += 16
 	
 	if (text2 != "")
-		py += 8
+		py += 0x08
 	if (text3 != "")
-		py += 8
+		py += 0x08
 	if (text4 != "")
-		py += 8
+		py += 0x08
 	
 	BlueSpheresTimer.Menu.popup.items.menu(px, py, button)
 	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
@@ -94,19 +109,4 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button)
 	py += 16
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
-}
-
-function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, u64 text1, u64 text2, u64 text3, u64 text4)
-{
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text1, 0x01)
-	
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text2, 0x01)
-	
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text3, 0x01)
-	
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text4, 0x01)
 }

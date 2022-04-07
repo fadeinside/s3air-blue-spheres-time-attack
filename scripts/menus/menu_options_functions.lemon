@@ -7,6 +7,7 @@ function void BlueSpheresTimer.Menu.options.popups()
 	u64 deny_text = "Cancel"
 	
 	// A reset is needed here, because if there is no reset, then the saved values in the variables will activate BlueSpheresTimer.Achievements.setup() again
+	bluespheres.tempValue1 = 0x00
 	bluespheres.blue_collected = 0x00
 	BlueSpheresTimer.resetTimer()
 	
@@ -90,8 +91,8 @@ function void BlueSpheresTimer.Menu.options.headline()
 	s32 offset = 180
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (s32 i = 0x00; i < 0x08; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "OPTIONS!", 0x00)
+	for (u8 A = 0x00; A < 0x08; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "OPTIONS!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.options.items()
@@ -111,16 +112,14 @@ function void BlueSpheresTimer.Menu.options.items.menu(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
 {
-	BlueSpheresTimer.Menu.options.items.list.data(px, py)
-}
-
-function void BlueSpheresTimer.Menu.options.items.list.data(s32 px, s32 py)
-{
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Erase", 0x01)
 	
 	py += 16
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x00, "Erase all data")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01, (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
+	
+	py += 16
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "-", 0x02, 0x90)
 	
 	py += 16
 	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x01, "Erase all records")

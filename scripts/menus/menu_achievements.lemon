@@ -49,9 +49,9 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		if (!bluespheres.popup.show && control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
 		{
 			++menu.fastScrolling
-			if (menu.fastScrolling >= 30)
+			if (menu.fastScrolling >= 25)
 			{
-				if (menu.fastScrolling >= 35)
+				if (menu.fastScrolling >= 30)
 				{
 					playSound(0x5b)
 					if (control.pad1.state & CONTROL_UP)
@@ -69,7 +69,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 							bluespheres.achievements.buttonselected = 0x00
 					}
 					
-					menu.fastScrolling = 30
+					menu.fastScrolling = 25
 				}
 			}
 		}
@@ -81,11 +81,11 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		// Perform the action of selected button when start pressed
 		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_START))
 		{
-			for (s32 i = 0x00; i <= bluespheres.achievements.total; i++)
+			for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 			{
-				if (bluespheres.achievements.buttonselected == i)
+				if (bluespheres.achievements.buttonselected == A)
 				{
-					if !(BlueSpheresTimer.Achievements.getTitle(i) == "Locked" || BlueSpheresTimer.Achievements.getTitle(i) == "Unknown achievement")
+					if !(BlueSpheresTimer.Achievements.getTitle(A) == "Locked" || BlueSpheresTimer.Achievements.getTitle(A) == "Unknown achievement")
 					{
 						playSound(0x63)
 						bluespheres.popup.show = 0x01

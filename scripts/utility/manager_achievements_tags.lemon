@@ -1,4 +1,4 @@
-//? Returns the tags of the specified achievement ID.
+//? Returns the tags of the specified Achievement ID.
 function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 {
 	u64 achievementTags
@@ -77,9 +77,9 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u32 renderQueue, u64 tags, u8 alpha)
 {
 	s32 tag_space
-	for (s32 i = 0x00; i < strlen(tags); i++)
+	for (s32 A = 0x00; A < strlen(tags); ++A)
 	{
-		s32 tag = getchar(tags, i)
+		s32 tag = getchar(tags, A)
 		
 		BlueSpheresTimer.Achievements.renderSingleTag(px, py, renderQueue, tag, tag_space, alpha)
 		tag_space += BlueSpheresTimer.Achievements.getTagsSpacing(tag)

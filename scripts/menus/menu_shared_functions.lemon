@@ -21,8 +21,8 @@ function void BlueSpheresTimer.Menu.shared.headline()
 	else if (bluespheres.timer.currentTime >= 50000)
 		headline = "YOU NEED A LESSON IN SPEED!"
 	
-	for (u8 i = 0x00; i < 0x08; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, headline, 0x00)
+	for (u8 A = 0x00; A < 0x08; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, headline, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.shared.items()

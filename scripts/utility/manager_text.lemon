@@ -8,9 +8,9 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font, u8 alpha)
 {
 	s32 character_space
-	for (s32 i = 0x00; i < strlen(text); i++)
+	for (s32 A = 0x00; A < strlen(text); ++A)
 	{
-		u8 character = getchar(text, i)
+		u8 character = getchar(text, A)
 		
 		if (character >= getChar("a") && character <= getChar("z"))
 			character -= 32
@@ -20,8 +20,7 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 		u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
 		if (Renderer.hasCustomSprite(key))
 		{
-			if !(align == 0x01 && (character == getChar(".") || character == getChar(",") || character == getChar("!")))
-				character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
+			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
 		}
 	}
 	
@@ -58,9 +57,9 @@ function u64 BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 button_t
 function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u32 renderQueue, u64 text, u8 font, u8 alpha)
 {
 	s32 character_space
-	for (s32 i = 0x00; i < strlen(text); i++)
+	for (s32 A = 0x00; A < strlen(text); ++A)
 	{
-		s32 character = getchar(text, i)
+		s32 character = getchar(text, A)
 		
 		if (character >= getChar("a") && character <= getChar("z"))
 			character -= 32

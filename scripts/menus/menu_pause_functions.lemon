@@ -1,7 +1,7 @@
 function void BlueSpheresTimer.Menu.pause.background()
 {
-	for (s32 i = 0x00; i < 0x02 + (getScreenWidth() / 0x10); i++)
-		Renderer.drawCustomSprite("background_menu", 0x10 * i, 0x00, 0x00, 0x40, 0xf000, 0x00, 0xaa)
+	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, 0xaa)
 }
 
 function void BlueSpheresTimer.Menu.pause.headline()
@@ -9,8 +9,8 @@ function void BlueSpheresTimer.Menu.pause.headline()
 	s32 offset = 220
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (s32 i = 0x00; i < 0x08; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "GAME PAUSED!", 0x00)
+	for (u8 A = 0x00; A < 0x08; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "GAME PAUSED!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.pause.items()

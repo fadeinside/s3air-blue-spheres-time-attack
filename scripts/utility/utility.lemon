@@ -258,7 +258,7 @@ function void fn009b62()
 	if (u8[0xffffe44c] != 0x00 && bluespheres.timeattack.active)
 		return
 	
-	// Ignore for Rolling Demo and Blue Sphere game
+	// Call the base function
 	base.fn009b62()
 }
 

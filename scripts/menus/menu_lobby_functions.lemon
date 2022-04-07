@@ -3,8 +3,8 @@ function void BlueSpheresTimer.Menu.lobby.headline()
 	s32 offset = 230
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (s32 i = 0x00; i < 0x06; i++)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * i) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "CHOOSE A GAME!", 0x00)
+	for (u8 A = 0x00; A < 0x06; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "CHOOSE A GAME!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.lobby.items()

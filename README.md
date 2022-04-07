@@ -18,7 +18,7 @@ Run through exciting levels of Special Stages in Time Attack mode! Play on your 
 1. Go to the "Extras - Blue Sphere" in the A.I.R menu. A menu will open, with a choice between "Time Attack" and "Blue Sphere".<br>
 2. Go to "Time Attack". This menu will open:<br>
 <img src="https://cdn.discordapp.com/attachments/949432560935645247/949435132077547550/IMG_1646433140.png"><br>
-Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switching between S3 and S&K stages, [LEFT] / [RIGHT] - Menu selection, [START] - Start.<br>
+Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switching between S3 and S&K stages, [LEFT] / [RIGHT] - Menu selection, [START] - Start, [B] - Back.<br>
 3. Configure your game, and press [START] on the appropriate button to start the race.
 4. Successfully complete the stage, and your time will be saved. Collect all the rings in the stage to get the Emerald, and then unlock some unlockable items.<br><br>
 
