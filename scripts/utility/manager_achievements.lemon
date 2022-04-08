@@ -511,24 +511,33 @@ function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 	//System.writeDisplayLine(stringformat("Achievement 0x%04x complete and saved in 0x%06x RAM", achievementId, BlueSpheresTimer.Achievements.getAddress( achievementId)))
 }
 
-//? A rather dubious solution to the infinite toast problem when achievement is complete.
+//? Show toast when the specified Achievement ID is complete.
 function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 {
-	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2 && bluespheres.toast.state == 0x00)
-		return
-	
 	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa1)
 	{
 		u64 achievementTitle = (bluespheres.toast.timeout >= 98) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : "Achievement complete!"
-		BlueSpheresTimer.Menu.toast.setup(achievementTitle)
+		if (bluespheres.toast.show == "" || bluespheres.toast.show == BlueSpheresTimer.Achievements.getTitle(achievementId))
+		{
+			bluespheres.toast.show = BlueSpheresTimer.Achievements.getTitle(achievementId)
+			BlueSpheresTimer.Menu.toast.setup(achievementTitle)
+		}
 	}
 	
-	if (bluespheres.toast.state == 0x04)
+	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2 && bluespheres.toast.show != BlueSpheresTimer.Achievements.getTitle(achievementId))
+		return
+	
+	if (bluespheres.toast.show == BlueSpheresTimer.Achievements.getTitle(achievementId) && bluespheres.toast.state == 0x04)
 	{
 		if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2)
+		{
+			bluespheres.toast.show = ""
 			bluespheres.toast.state = 0x00
+		}
 		else
+		{
 			BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa2)
+		}
 	}
 }
 
@@ -536,6 +545,7 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 function void BlueSpheresTimer.Achievements.reset()
 {
 	// Reset the toast if it was in the process
+	bluespheres.toast.show = ""
 	bluespheres.toast.state = 0x00
 	bluespheres.toast.frames = 0x00
 	bluespheres.toast.timeout = 0x00
@@ -577,7 +587,6 @@ function void BlueSpheresTimer.Achievements.cheat()
 	// Total number of Achievements
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
-		// Please NEVER use 0xfa1 as a value. The achievement toast system is VERY not stable in such cases.
-		BlueSpheresTimer.Achievements.setValue(A, 0xfa2)
+		BlueSpheresTimer.Achievements.setValue(A, 0xfa1)
 	}
 }

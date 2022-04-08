@@ -1,5 +1,8 @@
 // Follow the latest changes on GitHub: https://github.com/fadeinside/s3air-blue-spheres-time-attack
 
+// Update v1.0.3 - Untitled
+// Note: -
+
 // Update v1.0.2a - The distorter fix
 // Note: I'm sorry for this absurdity. GitHub compressed some images, as a result of which they could not be read by the S3 A.I.R. compiler. This update fixes this. -Fade
 // + Fixed A.I.R couldn't read .png files.

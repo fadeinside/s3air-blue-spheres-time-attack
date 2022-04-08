@@ -1,6 +1,5 @@
 function void BlueSpheresTimer.Menu.toast.setup(u64 title)
 {
-	// Slide in
 	if (bluespheres.toast.state == 0x00)
 	{
 		if !(global.game.paused)
@@ -36,7 +35,7 @@ function void BlueSpheresTimer.Menu.toast.setup(u64 title)
 		bluespheres.toast.frames = 0x00
 		bluespheres.toast.timeout = 0x00
 		
-		bluespheres.toast.state = 0x04 // ?
+		bluespheres.toast.state = 0x04
 	}
 	
 	BlueSpheresTimer.Menu.toast.items(title)

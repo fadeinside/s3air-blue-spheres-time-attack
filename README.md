@@ -37,7 +37,7 @@ Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switc
 
 <font color="#6ee16c">Question and Answer:</font><br>
 Q. How can I get achievements?<br>
-A. Achievements can be obtained by playing special stages in the "Time Attack" mode and in special stages of the main levels, if "Achievements in Main stages" is enabled in the game options. To check the status of your achievements, go to "Extras - Blue Sphere" in the A.I.R menu. Look in this section more often, as not all blocked achievements will be visible immediately, but only after opening some others.<br><br>
+A. Achievements can be obtained by playing special stages in the "Time Attack" mode and in special stages of the main levels, if "Achievements in Main stages" is enabled in the game options. To check the status of your achievements, go to "Extras - Blue Sphere - Time Attack - Achievements". Look in this section more often, as not all blocked achievements will be visible immediately, but only after opening some others.<br><br>
 Q. How can I access The Secret 8 special stage?<br>
 A. It's a secret. To unlock it, get all 7 chaos emeralds.<br><br>
 Q. How do I access the "Sonic and Knuckles" level layout?<br>
