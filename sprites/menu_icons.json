@@ -17,7 +17,7 @@
 	// Copyright
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
 	
-	// Keyboard keys
+	// Keyboard keys by egordorichev, check https://egordorichev.itch.io/key-set
 	"icon_key_x": { "File": "menu_icons.png", "Rect": "1,47,12,12", "Center": "6,6" },
 	"icon_key_y": { "File": "menu_icons.png", "Rect": "14,47,12,12", "Center": "6,6" },
 	"icon_key_a": { "File": "menu_icons.png", "Rect": "27,47,12,12", "Center": "6,6" },

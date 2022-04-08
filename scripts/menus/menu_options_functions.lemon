@@ -13,7 +13,7 @@ function void BlueSpheresTimer.Menu.options.popups()
 	
 	if (bluespheres.options.buttonselected == 0x00)
 	{
-		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "your records and achievements", "This will completely erase all", deny_text, accept_text)
+		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "your records, emeralds, achievements and unlocks", "This will completely erase all", deny_text, accept_text)
 		if (control.pad1.pressed & CONTROL_START)
 		{
 			playSound(0x63)
@@ -29,6 +29,12 @@ function void BlueSpheresTimer.Menu.options.popups()
 				
 				BlueSpheresTimer.Data.reset(bluespheres.stage8Unlocked)
 				BlueSpheresTimer.Data.reset(bluespheres.skUnlocked)
+				
+				// Override selected level and layout variables
+				if (bluespheres.timeattack.levelselected == 0x07)
+					bluespheres.timeattack.levelselected = 0x06
+				if (bluespheres.timeattack.layoutselected)
+					bluespheres.timeattack.layoutselected = 0x00
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00
