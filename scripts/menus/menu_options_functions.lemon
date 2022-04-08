@@ -13,7 +13,7 @@ function void BlueSpheresTimer.Menu.options.popups()
 	
 	if (bluespheres.options.buttonselected == 0x00)
 	{
-		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "your records, emeralds, achievements and unlocks", "This will completely erase all", deny_text, accept_text)
+		BlueSpheresTimer.Menu.popup.show("You are sure?", "This action cannot be undone", "your saved data", "This will completely erase all", deny_text, accept_text)
 		if (control.pad1.pressed & CONTROL_START)
 		{
 			playSound(0x63)

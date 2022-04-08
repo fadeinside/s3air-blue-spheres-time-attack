@@ -3,15 +3,15 @@ Run through exciting levels of Special Stages in Time Attack mode! Play on your 
 <font color="#6ee16c">List of features:</font><br>
 1. New 4 Custom screens that do not replace anything.<br>
 2. All records are automatically saved after the completion of the stage.<br>
-3. Collect Emeralds and unlock all unlockable.<br>
+3. Collect Emeralds and unlock all Unlockable.<br>
 4. Play and get 20+ New Custom Achievements.<br><br>
 
 <font color="#6ee16c">About the custom menus:</font><br>
-1. Lobby - A change of game mode selection between "Time Attack" и "Blue Sphere".<br>
-2. Time Attack - Menu for viewing the latest records, choosing a character, stage and layout to start the race. Also from here you can go to other sections, such as "Options" and "Achievements".<br>
-3. Options - Subsection "Time Attack". Here can be to reset all your records and achievements, if something from this was obtained. <b>Be careful, this action cannot be undone!</b><br>
-4. Achievements - Subsection "Time Attack". A list of locked and unlocked achievements. Tracking the progress of achievements and the total score.<br>
-5. Pause menu - During the game in the "Time Attack" mode, a custom pause menu will be used, for more convenient navigation in the "Time Attack" menu and restarting the stage.<br><br>
+1. "Lobby" - A change of game mode selection between "Time Attack" и "Blue Sphere".<br>
+2. "Time Attack" - Menu for viewing the latest records, choosing a character, stage and layout to start the race. Also from here you can go to other sections, such as "Options" and "Achievements".<br>
+3. "Options" - Subsection "Time Attack". Here you can delete all saved data, only records or achievements if something from this was obtained. <b>Be careful, this action cannot be undone!</b><br>
+4. "Achievements" - Subsection "Time Attack". A list of locked and unlocked achievements. Tracking the progress of achievements and the total score.<br>
+5. "Pause menu" - During the game in the "Time Attack" mode, a custom pause menu will be used, for more convenient navigation to the "Time Attack" menu and restarting the stage.<br><br>
 
 <font color="#6ee16c">How to play:</font><br>
 <font color="#fe4e4e">You need to unlock the secret of the "Blue Sphere" in A.I.R, as further actions are only possible through this section.</font><br>
@@ -22,9 +22,12 @@ Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switc
 3. Configure your game, and press [START] on the appropriate button to start the race.
 4. Successfully complete the stage, and your time will be saved. Collect all the rings in the stage to get the Emerald, and then unlock some unlockable items.<br><br>
 
-<font color="#6ee16c">Additional mod options:</font><br>
-1. Achievements in Main stages - If active, achievements can be obtained at special stages of the main levels, where possible.<br>
-2. Time bonus in Main stages - If active, the timer will be shown at special stages of the main levels. After completing the stage, the current time will be converted into a Time Bonus, and will be added to the main score. You can find the Time bonuses below:<br>
+<font color="#6ee16c">Mod options:</font><br>
+1. "Show stage spheres in menu" - If enabled, in the menu will display the spheres of the selected stage and layout. (May cause reduction FPS on some devices)<br>
+2. "Show keyboard in menu" - If enabled, the control keys will be shown in the menu.<br>
+3. "Menu Optimization" - If enabled, the animated ground in the menu will be replaced with a static one from the first release, and during the active popup, all rear objects will not be rendered. This is can will improve the FPS in the menu on weak devices.<br>
+4. "Achievements in Main stages" - If enabled, achievements can be obtained at special stages of the main levels, where possible.<br>
+5. "Time bonus in Main stages" - If enabled, the timer will be shown at special stages of the main levels. After completing the stage, the current time will be converted into a Time Bonus, and will be added to the main score. You can find the Time bonuses below:<br>
 <img src="https://cdn.discordapp.com/attachments/949432560935645247/949437251727794197/IMG_0305014323.png"><br><br>
 
 <font color="#6ee16c">Compatibility notes:</font><br>
@@ -32,7 +35,7 @@ Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switc
 2. <a href="https://gamebanana.com/mods/333879">Mania-Styled Blue Spheres</a> should be installed above this mod so that their resources are prioritized.<br>
 3. <a href="https://gamebanana.com/mods/151029">Sonic 3: D.A. Garden Edition</a>, <a href="https://gamebanana.com/mods/336038">Extra Slot Mighty</a> should be installed below this mod so that our script can check certain things from their mods.<br><br>
 
-<font color="#6ee16c">Question/Answer:</font><br>
+<font color="#6ee16c">Question and Answer:</font><br>
 Q. How can I get achievements?<br>
 A. Achievements can be obtained by playing special stages in the "Time Attack" mode and in special stages of the main levels, if "Achievements in Main stages" is enabled in the game options. To check the status of your achievements, go to "Extras - Blue Sphere" in the A.I.R menu. Look in this section more often, as not all blocked achievements will be visible immediately, but only after opening some others.<br><br>
 Q. How can I access The Secret 8 special stage?<br>
