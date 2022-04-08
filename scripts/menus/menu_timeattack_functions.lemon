@@ -49,6 +49,32 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 
 function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 {
+	// We will make the ground static, as in the first release, when the menu optimization setting is active
+	if (SETTING_BS_MENU_OPTIMIZATION)
+	{
+		bluespheres.position.x = 1024
+		bluespheres.position.y = 1024
+		bluespheres.direction = 96
+		
+		// Load ground colors
+		A1 = u32[0x0088ba + bluespheres.timeattack.levelselected * 0x10]
+		if (bluespheres.timeattack.layoutselected)
+			A1 += 0x0130
+		
+		if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+			A1 += 0x2cb80e
+		
+		u32[0xffffe446] = A1
+		A2 = 0xfffffc80
+		
+		copyMemory(A2 + 0x70, A1, 0x10)
+	
+		// Render ground
+		BlueSpheres.renderCustomGround()
+		
+		return
+	}
+	
 	// Some things to make the ground animate
 	u8[0xffffe433] = 0x00
 	bluespheres.lifted_height = 0x00
@@ -141,8 +167,8 @@ function void BlueSpheresTimer.Menu.timeattack.headline()
 	s32 offset = 216
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (u8 A = 0x00; A < 0x06; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
+	for (u8 A = 0x00; A < 0x04; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items()
@@ -165,6 +191,8 @@ function void BlueSpheresTimer.Menu.timeattack.items()
 function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 {
 	px -= 128
+	BlueSpheresTimer.TextManager.drawKeyboard(px - 48, getScreenHeight() - py, 0xf000, "left")
+	
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, "Options")
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x00, 0x01)
 	
@@ -173,6 +201,8 @@ function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x01, 0x01)
 	
 	px += 128
+	BlueSpheresTimer.TextManager.drawKeyboard(px + 64, getScreenHeight() - py, 0xf000, "right")
+	
 	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, "Achievements")
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x02, 0x01)
 }
@@ -250,6 +280,8 @@ function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py)
 {
 	px -= 128
+	if (global.game_mode != 0x87)
+		BlueSpheresTimer.TextManager.drawKeyboard(px + 48, py, 0xf000, "y")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Character", 0x01)
 	BlueSpheresTimer.TextManager.drawText(px, py + 16, 0xf000, 0x01, "*    *", 0x02)
 	
@@ -299,6 +331,8 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.levelselect(s32 px, s32 py)
 {
 	px += 128
+	if (global.game_mode != 0x87)
+		BlueSpheresTimer.TextManager.drawKeyboard_dual(px + 32, py, 0xf000, "up", "down", 0x00)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Level", 0x01)
 	
 	py += 16
@@ -314,6 +348,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py
 	u8 alpha = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 0xff : 0x90
 	
 	py +=  44
+	BlueSpheresTimer.TextManager.drawKeyboard(px + 64, py, 0xf000, "a")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Levels layout", 0x01, alpha)
 	
 	py += 16

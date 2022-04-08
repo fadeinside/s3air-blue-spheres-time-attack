@@ -3,8 +3,8 @@ function void BlueSpheresTimer.Menu.lobby.headline()
 	s32 offset = 230
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (u8 A = 0x00; A < 0x06; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "CHOOSE A GAME!", 0x00)
+	for (u8 A = 0x00; A < 0x04; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, "CHOOSE A GAME!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.lobby.items()
@@ -17,6 +17,8 @@ function void BlueSpheresTimer.Menu.lobby.items()
 
 function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px - 176, py, 0xf000 + 0x01, "up", "down", 0x10)
+	
 	py -= 9
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x00, "Time Attack")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)

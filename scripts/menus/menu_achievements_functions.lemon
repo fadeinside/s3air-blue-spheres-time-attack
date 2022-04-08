@@ -231,6 +231,9 @@ function void BlueSpheresTimer.Menu.achievements.items()
 
 function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 {
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px - 176, getScreenHeight() / 0x02, 0xf000, "up", "down", 0x10)
+	BlueSpheresTimer.TextManager.drawKeyboard(px + 32, getScreenHeight() - py, 0xf000, "b")
+	
 	u64 button_0xff = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, "Back")
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0xff, 0x01)
 }

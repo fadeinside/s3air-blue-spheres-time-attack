@@ -5,19 +5,43 @@
 		"Author": "FadeInside",
 		"Description": "Run through exciting levels of Special Stages in Time Attack mode! Play on your favorite stages, record your time passed, collect emeralds, get achievements, and unlock all unlockable.",
 		"URL": "https://gamebanana.com/mods/362325",
-		"ModVersion": "1.0.2a",
+		"ModVersion": "1.0.3",
 		"GameVersion": "21.09.28.0"
 	},
 	"Settings":
 	{
 		"List":
 		[
-		{
+			{
 				"Category": "Menu appearance",
 				"InternalName": "SETTING_BS_STAGE_PREVIEW_ENABLE",
 				"DisplayName": "Show stage spheres in menu:",
 				"Variable": "SETTING_BS_STAGE_PREVIEW_ENABLE",
 				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Enable (Default)"
+				}
+			},
+			{
+				"Category": "Menu appearance",
+				"InternalName": "SETTING_BS_SHOW_KEYBOARD_KEYS",
+				"DisplayName": "Show keyboard in menu:",
+				"Variable": "SETTING_BS_SHOW_KEYBOARD_KEYS",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Enable (Default)"
+				}
+			},
+			{
+				"Category": "Menu appearance",
+				"InternalName": "SETTING_BS_MENU_OPTIMIZATION",
+				"DisplayName": "Menu Optimization:",
+				"Variable": "SETTING_BS_MENU_OPTIMIZATION",
+				"DefaultValue": "0",
 				"Options":
 				{
 					"0": "Disabled (Default)",

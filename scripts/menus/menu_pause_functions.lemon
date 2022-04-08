@@ -9,8 +9,8 @@ function void BlueSpheresTimer.Menu.pause.headline()
 	s32 offset = 220
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (u8 A = 0x00; A < 0x08; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, "GAME PAUSED!", 0x00)
+	for (u8 A = 0x00; A < 0x04; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, "GAME PAUSED!", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.pause.items()

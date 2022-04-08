@@ -19,7 +19,7 @@ function void BlueSpheresTimer.resetTimer()
 function void BlueSpheresTimer.stagePreviewVRAMLoad()
 {
 	// Ignore if this setting is disabled
-	if !(SETTING_BS_STAGE_PREVIEW_ENABLE)
+	if !(SETTING_BS_STAGE_PREVIEW_ENABLE || SETTING_BS_MENU_OPTIMIZATION)
 		return
 	
 	copyMemory(0xfffffc80, 0x00896e, 0x100)

@@ -1,5 +1,9 @@
 function void BlueSpheresTimer.Menu.popup.background()
 {
+	// Rendering the background here no longer makes sense if this setting is active
+	if (SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
 		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (global.game_mode == 0x88) ? 0xdb : 0xca)
 }
@@ -69,10 +73,14 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button1
 	py += 16
 	
 	px -= 64
+	BlueSpheresTimer.TextManager.drawKeyboard(px - 48, py, 0xf000, "left")
+	
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button1)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	px += 128
+	BlueSpheresTimer.TextManager.drawKeyboard(px + 48, py, 0xf000, "right")
+	
 	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x01, button2)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 }

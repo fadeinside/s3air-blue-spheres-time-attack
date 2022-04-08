@@ -115,9 +115,12 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.achievements.popups()
-		BlueSpheresTimer.Menu.achievements.headline()
-		BlueSpheresTimer.Menu.achievements.items()
-		BlueSpheresTimer.Menu.timeattack.background()
+		if !(bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		{
+			BlueSpheresTimer.Menu.achievements.headline()
+			BlueSpheresTimer.Menu.achievements.items()
+			BlueSpheresTimer.Menu.timeattack.background()
+		}
 		
 		// Go back to the time attack menu
 		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))

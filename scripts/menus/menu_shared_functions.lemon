@@ -21,8 +21,8 @@ function void BlueSpheresTimer.Menu.shared.headline()
 	else if (bluespheres.timer.currentTime >= 50000)
 		headline = "YOU NEED A LESSON IN SPEED!"
 	
-	for (u8 A = 0x00; A < 0x08; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, headline, 0x00)
+	for (u8 A = 0x00; A < 0x04; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, headline, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.shared.items()
@@ -40,6 +40,8 @@ function void BlueSpheresTimer.Menu.shared.items()
 
 function void BlueSpheresTimer.Menu.shared.items.menu(s32 px, s32 py)
 {
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px - 176, getScreenHeight() - py - 0x06, 0xf000, "up", "down", 0x10)
+	
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, "Retry")
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py - 16, 0xf000, 0x01, button_0x00, 0x01)
 	

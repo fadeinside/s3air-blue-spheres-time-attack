@@ -17,6 +17,16 @@
 	// Copyright
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
 	
+	// Keyboard keys
+	"icon_key_x": { "File": "menu_icons.png", "Rect": "1,47,12,12", "Center": "6,6" },
+	"icon_key_y": { "File": "menu_icons.png", "Rect": "14,47,12,12", "Center": "6,6" },
+	"icon_key_a": { "File": "menu_icons.png", "Rect": "27,47,12,12", "Center": "6,6" },
+	"icon_key_b": { "File": "menu_icons.png", "Rect": "40,47,12,12", "Center": "6,6" },
+	"icon_key_up": { "File": "menu_icons.png", "Rect": "53,47,12,12", "Center": "6,6" },
+	"icon_key_left": { "File": "menu_icons.png", "Rect": "66,47,12,12", "Center": "6,6" },
+	"icon_key_down": { "File": "menu_icons.png", "Rect": "79,47,12,12", "Center": "6,6" },
+	"icon_key_right": { "File": "menu_icons.png", "Rect": "92,47,12,12", "Center": "6,6" },
+	
 	// Super emeralds
 	"icon_emerald_super_0x00": { "File": "menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },
 	"icon_emerald_super_0x01": { "File": "menu_icons.png", "Rect": "31,1,14,13", "Center": "7,6" },
