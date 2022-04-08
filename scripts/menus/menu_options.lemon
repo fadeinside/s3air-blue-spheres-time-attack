@@ -1,8 +1,5 @@
 function void BlueSpheresTimer.Menu.options.setup()
 {
-	// Screen fade
-	FadeOutScreenBlocking()
-	
 	// Global variables setup
 	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x03
@@ -12,12 +9,17 @@ function void BlueSpheresTimer.Menu.options.setup()
 	waitForNextFrame()
 	fn0011ca()
 	fn04c8e4()
+	BlueSpheresTimer.stagePreviewVRAMLoad()
+	
+	// Screen fades
+	FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)
 	{
-		FadeInFromWhite()
+		global.frame_state = 0x12
 		waitForNextFrame()
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter

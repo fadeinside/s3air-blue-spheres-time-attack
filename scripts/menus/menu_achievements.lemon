@@ -1,8 +1,5 @@
 function void BlueSpheresTimer.Menu.achievements.setup()
 {
-	// Screen fades
-	FadeOutScreenBlocking()
-		
 	// Global variables setup
 	level.framecounter = 0x00
 	bluespheres.buttons.setup = bluespheres.achievements.total + 0x01
@@ -15,12 +12,17 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 	waitForNextFrame()
 	fn0011ca()
 	fn04c8e4()
+	BlueSpheresTimer.stagePreviewVRAMLoad()
+	
+	// Screen fades
+	FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)
 	{
-		FadeInFromWhite()
+		global.frame_state = 0x12
 		waitForNextFrame()
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter
@@ -68,7 +70,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 						else
 							bluespheres.achievements.buttonselected = 0x00
 					}
-					
+	
 					menu.fastScrolling = 25
 				}
 			}

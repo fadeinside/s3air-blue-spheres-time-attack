@@ -1,11 +1,5 @@
 function void BlueSpheresTimer.Menu.timeattack.setup()
 {
-	// Screen fades
-	if (bluespheres.timeattack.active)
-		SetPaletteToWhite()
-	else
-		FadeOutScreenBlocking()
-		
 	// Global variables setup
 	level.framecounter = 0x00
 	bluespheres.buttons.setup = 0x02
@@ -23,12 +17,20 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 	waitForNextFrame()
 	fn0011ca()
 	fn04c8e4()
+	BlueSpheresTimer.stagePreviewVRAMLoad()
+	
+	// Screen fades
+	if (bluespheres.timeattack.active)
+		SetPaletteToWhite()
+	else
+		FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)
 	{
-		FadeInFromWhite()
+		global.frame_state = 0x12
 		waitForNextFrame()
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter

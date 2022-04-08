@@ -62,7 +62,7 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	D1.s32 = s32(D1.s16) * D2.s16
 	bluespheres.position.x -= D0 >> 0x10
 	bluespheres.position.y -= D1 >> 0x10
-		
+	
 	// Load ground colors
 	A1 = u32[0x0088ba + bluespheres.timeattack.levelselected * 0x10]
 	if (bluespheres.timeattack.layoutselected)
@@ -79,9 +79,12 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	// Render ground
 	BlueSpheres.renderCustomGround()
 	
-	// Проигнорировать рендер сфер, если выключена эта настройка
+	// Ignore the spheres render if this setting is disabled
 	if !(SETTING_BS_STAGE_PREVIEW_ENABLE)
+	{
+		bluespheres.direction = 0x40
 		return
+	}
 	
 	// Main game stages
 	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
@@ -96,7 +99,7 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	if !(bluespheres.timeattack.layoutselected)
 	{
 		A2 += 0x200000
-		if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02)
+		if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02) // Knuckles has a different level layout in DAGE
 			A2 += 0x0679b0
 	}
 	

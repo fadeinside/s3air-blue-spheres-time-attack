@@ -73,9 +73,6 @@ function void BlueSpheresTimer.Menu.pause.setup()
 				global.game.paused = 0x00
 				playMusic(MUSIC_CTRL_STOP)
 				
-				if (Mods.isModActive("Mania-Styled Blue Spheres"))
-					fn0011ca()
-				
 				BlueSpheresTimer.EntryFunctions.startSpecialStage()
 			}
 			else if (bluespheres.pause.buttonselected == 0x02)
@@ -85,7 +82,6 @@ function void BlueSpheresTimer.Menu.pause.setup()
 				playMusic(MUSIC_CTRL_STOP)
 				
 				bluespheres.timeattack.active = 0x00
-				
 				Renderer.enableDefaultPlane(0x03, false)
 				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
 			}
