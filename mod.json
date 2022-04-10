@@ -14,6 +14,19 @@
 		[
 			{
 				"Category": "Menu appearance",
+				"InternalName": "SETTING_BS_DEFAULT_CHARACTER",
+				"DisplayName": "Default selected character:",
+				"Variable": "SETTING_BS_DEFAULT_CHARACTER",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Sonic (Default)",
+					"1": "Miles \"Tails\"",
+					"2": "Knuckles"
+				}
+			},
+			{
+				"Category": "Menu appearance",
 				"InternalName": "SETTING_BS_STAGE_PREVIEW_ENABLE",
 				"DisplayName": "Show stage spheres in menu:",
 				"Variable": "SETTING_BS_STAGE_PREVIEW_ENABLE",

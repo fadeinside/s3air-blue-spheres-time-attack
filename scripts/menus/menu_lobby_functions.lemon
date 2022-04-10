@@ -12,13 +12,30 @@ function void BlueSpheresTimer.Menu.lobby.items()
 	s32 px = getScreenWidth() / 0x02
 	s32 py = getScreenHeight() / 0x02
 	
+	BlueSpheresTimer.Menu.lobby.items.keys(px, py)
 	BlueSpheresTimer.Menu.lobby.items.menu(px, py)
+}
+
+function void BlueSpheresTimer.Menu.lobby.items.keys(s32 px, s32 py)
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "b")
+	px += 13
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+	px += 18 // Additional offset by "start"
+	px += 13
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "up", "down", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawKeyboard_dual(px - 176, py, 0xf000 + 0x01, "up", "down", 0x10)
-	
 	py -= 9
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x00, "Time Attack")
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)

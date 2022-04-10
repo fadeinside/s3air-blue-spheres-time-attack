@@ -30,18 +30,18 @@ function void BlueSpheresTimer.Menu.shared.items()
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 46
 	
+	BlueSpheresTimer.Menu.lobby.items.keys(px, py)
 	BlueSpheresTimer.Menu.shared.items.menu(px, py)
 	
-	BlueSpheresTimer.Menu.timeattack.items.playerselect(px, py)
 	BlueSpheresTimer.Menu.shared.items.betstime(px, py)
-	BlueSpheresTimer.Menu.timeattack.items.levelselect(px, py)
 	BlueSpheresTimer.Menu.shared.items.currenttime(px, py)
+	
+	BlueSpheresTimer.Menu.timeattack.items.playerselect(px, py)
+	BlueSpheresTimer.Menu.timeattack.items.levelselect(px, py)
 }
 
 function void BlueSpheresTimer.Menu.shared.items.menu(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawKeyboard_dual(px - 176, getScreenHeight() - py - 0x06, 0xf000, "up", "down", 0x10)
-	
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, "Retry")
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py - 16, 0xf000, 0x01, button_0x00, 0x01)
 	

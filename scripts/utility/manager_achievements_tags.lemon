@@ -13,62 +13,95 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 	// - 6 - Rare tag
 	// - 7 - Super rare tag
 	// - 8 - Challenge tag
+	// - 9 - Easy tag
 	
-	if (achievementId == ACHIEVEMENT_BS_GET_600_BLUE_SPHERES || achievementId == ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES)
-		achievementTags = "2"
+	if (achievementId == ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
+		achievementTags = "9" // Tag: Easy
+	else if (achievementId == ACHIEVEMENT_BS_GET_300_BLUE_SPHERES)
+		achievementTags = "9" // Tag: Easy
+	else if (achievementId == ACHIEVEMENT_BS_GET_600_BLUE_SPHERES)
+		achievementTags = "2" // Tag: Common
+	else if (achievementId == ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES)
+		achievementTags = "26" // Tag: Common, Rare
 	else if (achievementId == ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES)
-		achievementTags = "26"
+		achievementTags = "26" // Tag: Common, Rare
+	
 	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
-		achievementTags = "2"
-	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
-		achievementTags = "26"
+		achievementTags = "26" // Tag: Common, Rare
+	else if (achievementId == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
+		achievementTags = "9" // Tag: Easy
+	
 	else if (achievementId >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && achievementId <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	{
-		if (achievementId == ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES || achievementId == ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
-			achievementTags = "46"
+		if (achievementId == ACHIEVEMENT_BS_DA_GARDEN_EDITION)
+			achievementTags = "49" // Tag: Special, Easy
+		else if (achievementId == ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES || achievementId == ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
+			achievementTags = "46" // Tag: Special, Rare
 		else
-			achievementTags = "4"
+			achievementTags = "4" // Tag: Special
 	}
+	
 	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES)
-		achievementTags = "2"
-	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES || achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES)
-		achievementTags = "26"
+		achievementTags = "9" // Tag: Easy
+	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES)
+		achievementTags = "26" // Tag: Common, Rare
+	else if (achievementId == ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES)
+		achievementTags = "27" // Tag: Common, Super rare
+	
 	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES)
-		achievementTags = "2"
-	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES || achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
-		achievementTags = "26"
+		achievementTags = "2" // Tag: Common 
+	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES)
+		achievementTags = "26" // Tag: Common, Rare
+	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
+		achievementTags = "36" // Tag: Hard, Rare 
+	
 	else if (achievementId == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
-		achievementTags = "46"
+		achievementTags = "46" // Tag: Special, Rare
+	
 	else if (achievementId == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
-		achievementTags = "6"
+		achievementTags = "8" // Tag: Challenge
 	else if (achievementId == ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS)
-		achievementTags = "2"
+		achievementTags = "3" // Tag: Hard
+	
 	else if (achievementId == ACHIEVEMENT_BS_JUMP_50_TIMES)
-		achievementTags = "2"
+		achievementTags = "9" // Tag: Easy
 	else if (achievementId == ACHIEVEMENT_BS_JUMP_200_TIMES)
-		achievementTags = "26"
+		achievementTags = "26" // Tag: Common, Rare
 	else if (achievementId == ACHIEVEMENT_BS_JUMP_500_TIMES)
-		achievementTags = "7"
+		achievementTags = "37" // Tag: Hard, Super rare
 	else if (achievementId == ACHIEVEMENT_BS_JUMP_1000_TIMES)
-		achievementTags = "7"
+		achievementTags = "8" // Tag: Challenge
+	
+	else if (achievementId == ACHIEVEMENT_BS_COLLECT_400_RINGS)
+		achievementTags = "9" // Tag: Easy
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_800_RINGS)
-		achievementTags = "2"
+		achievementTags = "2" // Tag: Common 
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_1200_RINGS)
-		achievementTags = "26"
+		achievementTags = "26" // Tag: Common, Rare
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_2000_RINGS)
-		achievementTags = "6"
+		achievementTags = "37" // Tag: Hard, Super rare
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_4000_RINGS)
-		achievementTags = "7"
+		achievementTags = "8" // Tag: Challenge
+	
 	else if (achievementId == ACHIEVEMENT_BS_GET_5_CONTINUES)
-		achievementTags = "2"
+		achievementTags = "9" // Tag: Easy
 	else if (achievementId == ACHIEVEMENT_BS_GET_15_CONTINUES)
-		achievementTags = "26"
+		achievementTags = "2" // Tag: Common 
 	else if (achievementId == ACHIEVEMENT_BS_GET_30_CONTINUES)
-		achievementTags = "6"
+		achievementTags = "37" // Tag: Hard, Super rare
 	else if (achievementId == ACHIEVEMENT_BS_GET_50_CONTINUES)
-		achievementTags = "7"
+		achievementTags = "8" // Tag: Challenge
+	
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10)
+		achievementTags = "2" // Tag: Common
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50)
+		achievementTags = "3" // Tag: Hard
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100)
+		achievementTags = "36" // Tag: Hard, Rare
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
+		achievementTags = "37" // Tag: Hard, Super rare
 	else
-		achievementTags = "0"
+		achievementTags = "0" // Tag: None
 	
 	return achievementTags
 }
@@ -119,6 +152,8 @@ function u64 BlueSpheresTimer.Achievements.getTagSprite(u64 tag)
 		tag_sprite = "icon_tag_superrare"
 	else if (tag == getChar("8"))
 		tag_sprite = "icon_tag_challenge"
+	else if (tag == getChar("9"))
+		tag_sprite = "icon_tag_easy"
 	else
 		tag_sprite = "icon_tag_none"
 	
@@ -144,6 +179,8 @@ function s32 BlueSpheresTimer.Achievements.getTagsSpacing(u64 tag)
 		tag_space = 52
 	else if (tag == getChar("8"))
 		tag_space = 44
+	else if (tag == getChar("9"))
+		tag_space = 25
 	else
 		tag_space = 0x00
 	

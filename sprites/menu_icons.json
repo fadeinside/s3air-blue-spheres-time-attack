@@ -13,6 +13,7 @@
 	"icon_tag_rare": { "File": "menu_icons.png", "Rect": "81,29,24,8", "Center": "0,4" },
 	"icon_tag_superrare": { "File": "menu_icons.png", "Rect": "1,38,52,8", "Center": "0,4" },
 	"icon_tag_challenge": { "File": "menu_icons.png", "Rect": "54,38,44,8", "Center": "0,4" },
+	"icon_tag_easy": { "File": "menu_icons.png", "Rect": "99,38,25,8", "Center": "0,4" },
 	
 	// Copyright
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
@@ -26,6 +27,7 @@
 	"icon_key_left": { "File": "menu_icons.png", "Rect": "66,47,12,12", "Center": "6,6" },
 	"icon_key_down": { "File": "menu_icons.png", "Rect": "79,47,12,12", "Center": "6,6" },
 	"icon_key_right": { "File": "menu_icons.png", "Rect": "92,47,12,12", "Center": "6,6" },
+	"icon_key_start": { "File": "menu_icons.png", "Rect": "105,47,30,12", "Center": "6,6" },
 	
 	// Super emeralds
 	"icon_emerald_super_0x00": { "File": "menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },

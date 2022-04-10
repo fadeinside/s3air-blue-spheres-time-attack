@@ -9,7 +9,6 @@ function void BlueSpheresTimer.Achievements.setup()
 	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
-	// Main function
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) >= 100)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) >= 300)
@@ -98,6 +97,15 @@ function void BlueSpheresTimer.Achievements.setup()
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_30_CONTINUES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_50_CONTINUES) >= 50)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_50_CONTINUES)
+		
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10) >= 10)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50) >= 50)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100) >= 100)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100)
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220) >= 220)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
 }
 
 //? Checks when the blue sphere is collected.
@@ -136,6 +144,13 @@ function void BlueSpheresTimer.Achievements.characterActionsCheck()
 	// Ignore for Main Special stages if Achievements disabled
 	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
+		
+	A1 = 0xfffff100
+	D0.u16 = ((bluespheres.position.x + 0x80) >> 0x08) & 0x1f
+	D1.u16 = ((bluespheres.position.y + 0x80) >> 0x08) & 0x1f
+	D1.u16 <<= 0x05
+	D1.u8 |= D0.u8
+	A1 += D1.s16
 	
 	// Jump achievements check
 	if ((u8[0xffffe432] & 0x80) == 0x00 && u8[0xffffe44c] == 0x00 && (control.pad1.pressed & CONTROL_ABC))
@@ -148,6 +163,19 @@ function void BlueSpheresTimer.Achievements.characterActionsCheck()
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_500_TIMES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_1000_TIMES, 0x01)
+		
+		// Red sphere achievements checks
+		if (u8[A1] == 0x01)
+		{
+			if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220, 0x01)
+		}
 	}
 	
 	// Continue achievements checks
@@ -172,7 +200,7 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
-	 
+	
 	// Ignore for Main Special stages if Achievements disabled
 	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
@@ -221,8 +249,8 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES, 0x01)
 	}
 	
-	// D.A Garden Green sphere achievements checks
-	if (u8[A1] == 0x05 && (u8[0xffffef7c] && 0x01) == 0x01) // && check D.A Garden Green sphere
+	// D.A. Garden Green sphere achievements checks
+	if (u8[A1] == 0x05 && (u8[0xffffef7c] && 0x01) == 0x01)
 	{
 		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GREEN_SPHERE, 0x01)
@@ -396,6 +424,22 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	{
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_30_CONTINUES) ? "Why do you want it??" : locked_text
 	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10)
+	{
+		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10) >= 0x01) ? "I can't lose" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10) ? "Careful!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50) ? "Good response!" : locked_text
+	}
+	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100) ? "To the other side" : locked_text
+	}
 	else
 	{
 		achievementTitle = "Unknown achievement"
@@ -416,25 +460,24 @@ function s32 BlueSpheresTimer.Achievements.getScore()
 		for (s32 B = 0x00; B < strlen(BlueSpheresTimer.Achievements.getTags(A)); ++B)
 		{
 			s32 tag = getchar(BlueSpheresTimer.Achievements.getTags(A), B)
-			
 			if (BlueSpheresTimer.Achievements.isComplete(A))
 			{
-				if (tag == getChar("0"))
-					score_total += 1
-				else if (tag == getChar("2"))
-					score_total += 5
+				if (tag == getChar("2"))
+					score_total += 3 // Common: 30
 				else if (tag == getChar("3"))
-					score_total += 20
+					score_total += 20 // Hard: 200
 				else if (tag == getChar("4"))
-					score_total += 25
+					score_total += 30 // Special: 300
 				else if (tag == getChar("5"))
-					score_total += 35
+					score_total += 35 // Unique: 350
 				else if (tag == getChar("6"))
-					score_total += 10
+					score_total += 10 // Rate: 100
 				else if (tag == getChar("7"))
-					score_total += 15
+					score_total += 15 // Super rate: 150
 				else if (tag == getChar("8"))
-					score_total += 45
+					score_total += 50 // Challenge: 500
+				else if (tag == getChar("9"))
+					score_total += 2 // Easy: 10
 			}
 		}
 	}
@@ -446,10 +489,10 @@ function s32 BlueSpheresTimer.Achievements.getScore()
 //? Return the assembled memory address for the specified Achievement ID.
 function u32 BlueSpheresTimer.Achievements.getAddress(u32 achievementId)
 {
-	u32 achievementID = 0x16 * (achievementId + 0x01)
+	u32 achievement = 0x16 * (achievementId + 0x01)
 	
 	// Return the assembled address
-	return bluespheres.achievementsDataAddress + achievementID
+	return bluespheres.achievementsDataAddress + achievement
 }
 
 //? Returns the value for the specified Achievement ID.
@@ -514,21 +557,27 @@ function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 //? Show toast when the specified Achievement ID is complete.
 function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 {
+	// Check if need to show a toast for achievement
 	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa1)
 	{
-		u64 achievementTitle = (bluespheres.toast.timeout >= 98) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : "Achievement complete!"
+		// Show toast if it doesn't show anything or shows a specified achievement
 		if (bluespheres.toast.show == "" || bluespheres.toast.show == BlueSpheresTimer.Achievements.getTitle(achievementId))
 		{
 			bluespheres.toast.show = BlueSpheresTimer.Achievements.getTitle(achievementId)
+			
+			u64 achievementTitle = (bluespheres.toast.timeout >= 98) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : "Achievement complete!"
 			BlueSpheresTimer.Menu.toast.setup(achievementTitle)
 		}
 	}
 	
+	// If the specified achievement does not require a toast and it is not equal to the current one shown, then ignore
 	if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2 && bluespheres.toast.show != BlueSpheresTimer.Achievements.getTitle(achievementId))
 		return
 	
+	// If the specified achievement is equal to the current one shown and the state of the toast is equal to 0x04
 	if (bluespheres.toast.show == BlueSpheresTimer.Achievements.getTitle(achievementId) && bluespheres.toast.state == 0x04)
 	{
+		// If the specified achievement is fully completed, then reset the shown toast
 		if (BlueSpheresTimer.Achievements.getValue(achievementId) == 0xfa2)
 		{
 			bluespheres.toast.show = ""
@@ -536,6 +585,7 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 		}
 		else
 		{
+			// Otherwise, complete the specified achievement
 			BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa2)
 		}
 	}

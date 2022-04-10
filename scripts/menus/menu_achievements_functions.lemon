@@ -25,18 +25,12 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE)
 	{
 		BlueSpheresTimer.Menu.achievements.status()
-		if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-			BlueSpheresTimer.Menu.popup.show("in any level.", "Blue spheres except one,", "collecting all the", "Ran into Red sphere,", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show("in any level.", "Blue spheres except one,", "collecting all the", "Ran into Red sphere,", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2)
 	{
 		BlueSpheresTimer.Menu.achievements.status()
-		if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-			BlueSpheresTimer.Menu.popup.show("for 00'00`30.", "Ran into Red sphere,", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show("for 00'00`30.", "Ran into Red sphere,", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	{
@@ -45,18 +39,12 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_DA_GARDEN_EDITION)
 			{
 				BlueSpheresTimer.Menu.achievements.status()
-				if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-					BlueSpheresTimer.Menu.popup.show("`Sonic 3: D.A. Garden Edition` mod.", "Starting the game with the", "", "", accept_text)
-				else
-					BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+				BlueSpheresTimer.Menu.popup.show("`Sonic 3: D.A. Garden Edition` mod.", "Starting the game with the", "", "", accept_text)
 			}
 			else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_GREEN_SPHERE)
 			{
 				BlueSpheresTimer.Menu.achievements.status()
-				if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-					BlueSpheresTimer.Menu.popup.show("to Blue sphere.", "Convert Green sphere", "", "", accept_text)
-				else
-					BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+				BlueSpheresTimer.Menu.popup.show("to Blue sphere.", "Convert Green sphere", "", "", accept_text)
 			}
 			else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 			{
@@ -72,10 +60,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 					target = 1200
 				
 				BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-				if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-					BlueSpheresTimer.Menu.popup.show("to Blue spheres.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected), "", "", accept_text)
-				else
-					BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+				BlueSpheresTimer.Menu.popup.show("to Blue spheres.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected), "", "", accept_text)
 			}
 		}
 		else
@@ -93,10 +78,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			target = 150
 		
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-			BlueSpheresTimer.Menu.popup.show(stringformat("the Bumper %d times.", target), "Jump away from", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(stringformat("the Bumper %d times.", target), "Jump away from", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
 	{
@@ -108,20 +90,14 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			target = 110
 		
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-			BlueSpheresTimer.Menu.popup.show(stringformat("%d times.", target), "Jump on the Yellow sphere", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(stringformat("%d times.", target), "Jump on the Yellow sphere", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 	{
 		if (Mods.isModActive("No Blue Spheres Slowdown") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 		{
 			BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x07)
-			if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-				BlueSpheresTimer.Menu.popup.show("`No Blue Spheres Slowdown` mod.", "Complete any 7 stages with the", "", "", accept_text)
-			else
-				BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+			BlueSpheresTimer.Menu.popup.show("`No Blue Spheres Slowdown` mod.", "Complete any 7 stages with the", "", "", accept_text)
 		}
 		else
 		{
@@ -131,18 +107,12 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 	{
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x08)
-		if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-			BlueSpheresTimer.Menu.popup.show("8 Super emeralds.", "Collect all", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show("8 Super emeralds.", "Collect all", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS)
 	{
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x08)
-		if (BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
-			BlueSpheresTimer.Menu.popup.show("7 Chaos emeralds.", "Collect all", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show("7 Chaos emeralds.", "Collect all", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_JUMP_50_TIMES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_JUMP_1000_TIMES)
 	{
@@ -156,10 +126,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			target = 1000
 		
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-			BlueSpheresTimer.Menu.popup.show(stringformat("Jump %d times.", target), "", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(stringformat("Jump %d times.", target), "", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_COLLECT_400_RINGS && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_COLLECT_4000_RINGS)
 	{
@@ -175,10 +142,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			target = 4000
 		
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-			BlueSpheresTimer.Menu.popup.show(stringformat("Collect %d rings.", target), "", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(stringformat("Collect %d rings.", target), "", "", "", accept_text)
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_GET_5_CONTINUES && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_GET_50_CONTINUES)
 	{
@@ -192,10 +156,21 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			target = 50
 		
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-		if (BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) >= 0x01)
-			BlueSpheresTimer.Menu.popup.show(stringformat("Get %d Continues.", target), "", "", "", accept_text)
-		else
-			BlueSpheresTimer.Menu.popup.show(stringformat("%s.", BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected)), "", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(stringformat("Get %d Continues.", target), "", "", "", accept_text)
+	}
+	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10 && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
+	{
+		if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10)
+			target = 10
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50)
+			target = 50
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100)
+			target = 100
+		else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
+			target = 220
+		
+		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
+		BlueSpheresTimer.Menu.popup.show(stringformat("avoiding losing %d times.", target), "Jump in front of the Red sphere,", "", "", accept_text)
 	}
 	else
 	{
@@ -223,17 +198,49 @@ function void BlueSpheresTimer.Menu.achievements.items()
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 46
 	
+	BlueSpheresTimer.Menu.achievements.items.keys(px, py)
 	BlueSpheresTimer.Menu.achievements.items.menu(px, py)
 	
 	BlueSpheresTimer.Menu.achievements.items.achievements(px, py)
 	BlueSpheresTimer.Menu.achievements.items.score(px, py)
 }
 
+function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	// Bools
+	bool isBackButton = bluespheres.achievements.buttonselected == bluespheres.buttons.setup
+	bool isAvailableAchievement = false
+	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
+	{
+		if (bluespheres.achievements.buttonselected == A)
+		{
+			if !(BlueSpheresTimer.Achievements.getTitle(A) == "Locked" || BlueSpheresTimer.Achievements.getTitle(A) == "Unknown achievement")
+				isAvailableAchievement = true
+		}
+	}
+	bool showStartButton = isAvailableAchievement || isBackButton
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "b")
+	px += 13
+	if (showStartButton)
+	{
+		BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+		px += 18 // Additional offset by "start"
+		px += 13
+	}
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "up", "down", 0x00)
+}
+
 function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawKeyboard_dual(px - 176, getScreenHeight() / 0x02, 0xf000, "up", "down", 0x10)
-	BlueSpheresTimer.TextManager.drawKeyboard(px + 32, getScreenHeight() - py, 0xf000, "b")
-	
 	u64 button_0xff = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, "Back")
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0xff, 0x01)
 }

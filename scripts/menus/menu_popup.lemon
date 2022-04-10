@@ -64,8 +64,22 @@ function void BlueSpheresTimer.Menu.popup.items(u64 text1, u64 text2, u64 text3,
 	if (text4 != "")
 		py += 0x08
 	
+	BlueSpheresTimer.Menu.popup.items.keys1(px, py)
 	BlueSpheresTimer.Menu.popup.items.menu(px, py, button1, button2)
+	
 	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
+}
+
+function void BlueSpheresTimer.Menu.popup.items.keys1(s32 px, s32 py)
+{
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+	px += 18 // Additional offset by "start"
+	px += 13
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "left", "right", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button1, u64 button2)
@@ -73,14 +87,10 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button1
 	py += 16
 	
 	px -= 64
-	BlueSpheresTimer.TextManager.drawKeyboard(px - 48, py, 0xf000, "left")
-	
 	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button1)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	px += 128
-	BlueSpheresTimer.TextManager.drawKeyboard(px + 48, py, 0xf000, "right")
-	
 	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x01, button2)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 }
@@ -88,7 +98,7 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button1
 function void BlueSpheresTimer.Menu.popup.show(u64 text1, u64 text2, u64 text3, u64 text4, u64 button)
 {
 	bluespheres.popup.buttonselected = 0x00
-			
+	
 	BlueSpheresTimer.Menu.popup.items(text1, text2, text3, text4, button)
 	BlueSpheresTimer.Menu.popup.background()
 }
@@ -108,8 +118,19 @@ function void BlueSpheresTimer.Menu.popup.items(u64 text1, u64 text2, u64 text3,
 	if (text4 != "")
 		py += 0x08
 	
+	BlueSpheresTimer.Menu.popup.items.keys2(px, py)
 	BlueSpheresTimer.Menu.popup.items.menu(px, py, button)
+	
 	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
+}
+
+function void BlueSpheresTimer.Menu.popup.items.keys2(s32 px, s32 py)
+{
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
 }
 
 function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, u64 button)

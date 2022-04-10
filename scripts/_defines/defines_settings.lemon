@@ -1,4 +1,5 @@
 // Settings
+global u8 SETTING_BS_DEFAULT_CHARACTER
 global u8 SETTING_BS_STAGE_PREVIEW_ENABLE	// When 0x01, the menu on the ground will display the stage spheres (May cause reduction FPS on some devices)
 global u8 SETTING_BS_SHOW_KEYBOARD_KEYS	// When 0x01, the menu will show the navigation keys
 global u8 SETTING_BS_MENU_OPTIMIZATION	// When 0x01, the background in menu will be replaced with a static ground (Like the first release) and during the active popup all rear objects will not be rendered (Optimization method for weak devices)

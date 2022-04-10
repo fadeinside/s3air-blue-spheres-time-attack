@@ -19,7 +19,7 @@ function void FadeScreenToWhiteBlocking()
 	}
 }
 
-//? Modified FadeInFromWhite(), for the correct palette fade of spheres in the menu.
+//? Modified FadeInFromWhite(), for the correct palette fade of VDP spheres in the menu.
 //@ Original function taken from sonic3air_dev/scripts/general/screenfades.lemon
 function void BlueSpheresTimer.FadeInFromWhite()
 {

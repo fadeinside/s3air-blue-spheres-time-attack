@@ -18,7 +18,26 @@ function void BlueSpheresTimer.Menu.pause.items()
 	s32 px = getScreenWidth() / 0x02
 	s32 py = getScreenHeight() / 0x02
 	
+	BlueSpheresTimer.Menu.pause.items.keys(px, py)
 	BlueSpheresTimer.Menu.pause.items.menu(px, py)
+}
+
+function void BlueSpheresTimer.Menu.pause.items.keys(s32 px, s32 py)
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "y")
+	px += 13
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+	px += 18 // Additional offset by "start"
+	px += 13
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "up", "down", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.pause.items.menu(s32 px, s32 py)
