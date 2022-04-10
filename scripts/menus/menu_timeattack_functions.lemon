@@ -2,12 +2,10 @@ function void BlueSpheresTimer.Menu.timeattack.popups()
 {
 	if (bluespheres.popup.show == 0x00)
 		return
-		
-	u64 accept_text = "Okay"
 	
 	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 	{
-		BlueSpheresTimer.Menu.popup.show("now unlocked!", "Secret 8 stage", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(STRING_UNLOCK_NOW_UNLOCKED, STRING_UNLOCK_SECRET_STAGE, "", "", STRING_OKAY)
 		if (control.pad1.pressed & CONTROL_START)
 		{
 			playSound(0x63)
@@ -16,9 +14,10 @@ function void BlueSpheresTimer.Menu.timeattack.popups()
 			bluespheres.popup.show = 0x00
 		}
 	}
+	
 	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 	{
-		BlueSpheresTimer.Menu.popup.show("now unlocked!", "`Sonic and Knuckles` stages", "", "", accept_text)
+		BlueSpheresTimer.Menu.popup.show(STRING_UNLOCK_NOW_UNLOCKED, STRING_UNLOCK_SK_STAGES, "", "", STRING_OKAY)
 		if (control.pad1.pressed & CONTROL_START)
 		{
 			playSound(0x63)
@@ -168,7 +167,7 @@ function void BlueSpheresTimer.Menu.timeattack.headline()
 	s32 px = getScreenWidth() / 0x02 - offset
 	
 	for (u8 A = 0x00; A < 0x04; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, "TIME ATTACK!", 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, STRING_TIME_ATTACK_HEADLINE, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items()
@@ -210,21 +209,21 @@ function void BlueSpheresTimer.Menu.timeattack.items.keys(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 {
 	px -= 128
-	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, "Options")
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, STRING_TIME_ATTACK_OPTIONS)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	px += 128
-	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x01, "Start")
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x01, STRING_TIME_ATTACK_START)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x01, 0x01)
 	
 	px += 128
-	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, "Achievements")
+	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, STRING_TIME_ATTACK_ACHIEVEMENTS)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x02, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Total", 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_TOTAL, 0x01)
 	
 	s32 minutes_total
 	s32 seconds_total
@@ -282,7 +281,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 {
 	py += 44
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Records", 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_RECORDS, 0x01)
 	
 	for (u8 A = 0x01; A <= 0x04; ++A)
 	{
@@ -295,7 +294,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py)
 {
 	px -= 128
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Character", 0x01, "y", "")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_CHARACTER, 0x01, "y", "")
 	BlueSpheresTimer.TextManager.drawText(px, py + 16, 0xf000, 0x01, "*    *", 0x02)
 	
 	u64 key
@@ -318,7 +317,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 {
 	px -= 128
 	py += 44
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Emeralds", 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_EMERALDS, 0x01)
 	
 	u8 width = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 16 : 14
 	
@@ -344,7 +343,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.levelselect(s32 px, s32 py)
 {
 	px += 128
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Level", 0x01, "up", "down")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LEVEL, 0x01, "up", "down")
 	
 	py += 16
 	if (bluespheres.timeattack.levelselected == 0x07)
@@ -359,10 +358,10 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py
 	u8 alpha = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 0xff : 0x90
 	
 	py +=  44
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Levels layout", 0x01, alpha, "a", "")
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LAYOUT, 0x01, alpha, "a", "")
 	
 	py += 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? "SK" : "S3"), 0x01, alpha)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? STRING_TIME_ATTACK_SK : STRING_TIME_ATTACK_S3), 0x01, alpha)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 renderQueue, u8 align, u64 text, s32 input_data)

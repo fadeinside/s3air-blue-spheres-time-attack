@@ -1,1 +1,73 @@
+// Strings
+define string STRING_OKAY	= "OKAY"
+define string STRING_CANCEL	= "CANCEL"
+define string STRING_RESET	= "RESET"
+define string STRING_RETRY	= "RETRY"
+define string STRING_BACK	= "BACK"
+
+// "Lobby" strings
+define string STRING_LOBBY_HEADLINE	= "CHOOSE A GAME!"
 define string STRING_LOBBY_TIME_ATTACK	= "Time Attack"
+define string STRING_LOBBY_GET_BLUE_SPHERES	= "Get Blue Spheres"
+
+// "Time Attack" strings
+define string STRING_TIME_ATTACK_HEADLINE	= "TIME ATTACK!"
+define string STRING_TIME_ATTACK_OPTIONS	= "Options"
+define string STRING_TIME_ATTACK_START	= "Start"
+define string STRING_TIME_ATTACK_ACHIEVEMENTS	= "Achievements"
+define string STRING_TIME_ATTACK_TOTAL	= "Total"
+define string STRING_TIME_ATTACK_RECORDS	= "Records"
+define string STRING_TIME_ATTACK_CHARACTER	= "Character"
+define string STRING_TIME_ATTACK_EMERALDS	= "Emeralds"
+define string STRING_TIME_ATTACK_LEVEL	= "Level"
+define string STRING_TIME_ATTACK_LAYOUT	= "Levels layout"
+define string STRING_TIME_ATTACK_SK	= "SK"
+define string STRING_TIME_ATTACK_S3	= "S3"
+
+// "Unlocks" strings
+define string STRING_UNLOCK_NOW_UNLOCKED	= "now unlocked!"
+define string STRING_UNLOCK_SECRET_STAGE	= "Secret 8 stage"
+define string STRING_UNLOCK_SK_STAGES	= "`Sonic and Knuckles` stages"
+
+// "Options" strings
+define string STRING_OPTIONS_HEADLINE	= "OPTIONS!"
+define string STRING_OPTIONS_DATA	= "- Data -"
+define string STRING_OPTIONS_ERASE_ALL_DATA	= "Erase all Data"
+define string STRING_OPTIONS_ERASE_ALL_RECORDS	= "Erase all Records"
+define string STRING_OPTIONS_ERASE_ALL_ACHIEVEMENTS	= "Erase all Achievements"
+
+define string STRING_OPTIONS_YOU_ARE_SURE	= "You are sure?"
+define string STRING_OPTIONS_THIS_ACTION	= "This action cannot be undone."
+define string STRING_OPTIONS_EMERALDS_BE_RESET	= "The emeralds will also be reset."
+define string STRING_OPTIONS_THIS_ERASE_ALL	= "This will completely erase all"
+define string STRING_OPTIONS_YOUR_DATA	= "your saved data."
+
+// "Pause" strings
+define string STRING_PAUSE_HEADLINE	= "GAME PAUSED!"
+define string STRING_PAUSE_CONTINUE	= "Continue"
+define string STRING_PAUSE_RESTART	= "Restart"
+define string STRING_PAUSE_EXIT	= "To menu"
+
+// "Shared" strings
+define string STRING_SHARED_BEST_TIME	= "BEST TIME!"
+define string STRING_SHARED_GOOD_GAME	= "GOOD GAME!"
+define string STRING_SHARED_CAN_BETTER	= "CAN BETTER!"
+define string STRING_SHARED_NICE_TRY	= "NICE TRY!"
+define string STRING_SHARED_SKILL_ISSUE	= "SKILL ISSUE!"
+define string STRING_SHARED_LESSON_IN_SPEED	= "YOU NEED A LESSON IN SPEED!"
+define string STRING_SHARED_BEST_TIME	= "Best time"
+define string STRING_SHARED_YOUR_TIME	= "Your time"
+
+
+
+
+
+
+
+
+
+
+
+
+
+

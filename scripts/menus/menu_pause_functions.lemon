@@ -10,7 +10,7 @@ function void BlueSpheresTimer.Menu.pause.headline()
 	s32 px = getScreenWidth() / 0x02 - offset
 	
 	for (u8 A = 0x00; A < 0x04; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, "GAME PAUSED!", 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, STRING_PAUSE_HEADLINE, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.pause.items()
@@ -43,14 +43,14 @@ function void BlueSpheresTimer.Menu.pause.items.keys(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.pause.items.menu(s32 px, s32 py)
 {
 	py -= 18
-	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x00, "Continue")
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x00, STRING_PAUSE_CONTINUE)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 	
 	py += 18
-	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x01, "Restart")
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x01, STRING_PAUSE_RESTART)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 	
 	py += 18
-	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, "To menu")
+	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, STRING_PAUSE_EXIT)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x02, 0x01)
 }

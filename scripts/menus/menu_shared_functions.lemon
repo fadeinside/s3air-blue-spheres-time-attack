@@ -9,17 +9,17 @@ function void BlueSpheresTimer.Menu.shared.headline()
 	
 	u64 headline
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
-		headline = "BEST TIME!"
+		headline = STRING_SHARED_BEST_TIME
 	else if (BlueSpheresTimer.Records.getRecordTime(0x02) == bluespheres.timer.currentTime)
-		headline = "GOOD GAME!"
+		headline = STRING_SHARED_GOOD_GAME
 	else if (BlueSpheresTimer.Records.getRecordTime(0x03) == bluespheres.timer.currentTime)
-		headline = "CAN BETTER!"
+		headline = STRING_SHARED_CAN_BETTER
 	else if (BlueSpheresTimer.Records.getRecordTime(0x04) == bluespheres.timer.currentTime)
-		headline = "NICE TRY!"
+		headline = STRING_SHARED_NICE_TRY
 	else if (bluespheres.timer.currentTime < 45900)
-		headline = "SKILL ISSUE!"
+		headline = STRING_SHARED_SKILL_ISSUE
 	else if (bluespheres.timer.currentTime >= 50000)
-		headline = "YOU NEED A LESSON IN SPEED!"
+		headline = STRING_SHARED_LESSON_IN_SPEED
 	
 	for (u8 A = 0x00; A < 0x04; ++A)
 		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, headline, 0x00)
@@ -42,16 +42,16 @@ function void BlueSpheresTimer.Menu.shared.items()
 
 function void BlueSpheresTimer.Menu.shared.items.menu(s32 px, s32 py)
 {
-	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, "Retry")
+	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, STRING_RETRY)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py - 16, 0xf000, 0x01, button_0x00, 0x01)
 	
-	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x01, "Back")
+	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x01, STRING_BACK)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x01, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.shared.items.betstime(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Best time", 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_SHARED_BEST_TIME, 0x01)
 	
 	py += 16
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", BlueSpheresTimer.getFormatTime(BlueSpheresTimer.Records.getRecordTime(0x01))), 0x02)
@@ -60,7 +60,7 @@ function void BlueSpheresTimer.Menu.shared.items.betstime(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.shared.items.currenttime(s32 px, s32 py)
 {
 	py += 44
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "Your time", 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_SHARED_YOUR_TIME, 0x01)
 	
 	py += 16
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", BlueSpheresTimer.getFormatTime(bluespheres.timer.currentTime)), 0x02)
