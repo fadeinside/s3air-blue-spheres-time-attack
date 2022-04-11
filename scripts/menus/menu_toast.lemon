@@ -1,4 +1,4 @@
-function void BlueSpheresTimer.Menu.toast.setup(u64 title)
+function void BlueSpheresTimer.Menu.toast.setup(string title)
 {
 	// Slide in
 	if (bluespheres.toast.state == 0x00)
@@ -43,7 +43,7 @@ function void BlueSpheresTimer.Menu.toast.setup(u64 title)
 	BlueSpheresTimer.Menu.toast.background()
 }
 
-function void BlueSpheresTimer.Menu.toast.items(u64 title)
+function void BlueSpheresTimer.Menu.toast.items(string title)
 {
 	s32 px = (getScreenWidth() - 32) + 196 - (bluespheres.toast.frames * 14)
 	s32 py = 16
@@ -51,7 +51,7 @@ function void BlueSpheresTimer.Menu.toast.items(u64 title)
 	BlueSpheresTimer.Menu.toast.items.title(px, py, title)
 }
 
-function void BlueSpheresTimer.Menu.toast.items.title(s32 px, s32 py, u64 title)
+function void BlueSpheresTimer.Menu.toast.items.title(s32 px, s32 py, string title)
 {
 	Renderer.drawCustomSprite("icon_status_unlock", px + 16, py, 0x00, 0x40, 0xf000)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x00, title, 0x01)

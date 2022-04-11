@@ -249,7 +249,7 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 {
-	u64 button_0xff = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, STRING_BACK)
+	string button_0xff = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, STRING_BACK)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0xff, 0x01)
 }
 
@@ -279,17 +279,17 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		{
 			u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
 			
-			u64 achievement_status = BlueSpheresTimer.Achievements.isComplete(B) ? "icon_status_unlock" : "icon_status_lock"
+			string achievement_status = BlueSpheresTimer.Achievements.isComplete(B) ? "icon_status_unlock" : "icon_status_lock"
 			Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
 			
 			// Make transparent for Locked/Unknown achievements
 			if (BlueSpheresTimer.Achievements.getTitle(B) == STRING_ACHIEVEMENTS_LOCKED || BlueSpheresTimer.Achievements.getTitle(B) == STRING_ACHIEVEMENTS_MOD_REQUIRE || BlueSpheresTimer.Achievements.getTitle(B) == STRING_ACHIEVEMENTS_UNKNOWN)
 				alpha -= alpha / 0x02
 		
-			u64 achievement_tag = BlueSpheresTimer.Achievements.getTags(B)
+			string achievement_tag = BlueSpheresTimer.Achievements.getTags(B)
 			BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)
 		
-			u64 button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, B, BlueSpheresTimer.Achievements.getTitle(B))
+			string button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, B, BlueSpheresTimer.Achievements.getTitle(B))
 			BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
 		
 			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(B), BlueSpheresTimer.Achievements.getValue(B)))
@@ -309,7 +309,7 @@ function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py, 
 	}
 	
 	py += 16
-	u64 sign_unlocked = (unlocked_total - 0x01 == bluespheres.achievements.total) ? STRING_ACHIEVEMENTS_ALL_UNLOCKED : stringformat("* %d / %d *", unlocked_total, bluespheres.achievements.total + 0x01)
+	string sign_unlocked = (unlocked_total - 0x01 == bluespheres.achievements.total) ? STRING_ACHIEVEMENTS_ALL_UNLOCKED : stringformat("* %d / %d *", unlocked_total, bluespheres.achievements.total + 0x01)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, sign_unlocked, 0x01, alpha)
 }
 
@@ -331,7 +331,7 @@ function void BlueSpheresTimer.Menu.achievements.status(s32 data, s32 target)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
 	
 	py += 16
-	u64 sign_status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? STRING_ACHIEVEMENTS_COMPLETE : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? stringformat("%d / %d", data, target): STRING_ACHIEVEMENTS_NOT_STARTED)
+	string sign_status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? STRING_ACHIEVEMENTS_COMPLETE : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? stringformat("%d / %d", data, target): STRING_ACHIEVEMENTS_NOT_STARTED)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", sign_status), 0x01)
 }
 
@@ -343,6 +343,6 @@ function void BlueSpheresTimer.Menu.achievements.status()
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
 	
 	py += 16
-	u64 sign_status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? STRING_ACHIEVEMENTS_COMPLETE : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? STRING_ACHIEVEMENTS_STARTED : STRING_ACHIEVEMENTS_NOT_STARTED)
+	string sign_status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? STRING_ACHIEVEMENTS_COMPLETE : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? STRING_ACHIEVEMENTS_STARTED : STRING_ACHIEVEMENTS_NOT_STARTED)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", sign_status), 0x01)
 }

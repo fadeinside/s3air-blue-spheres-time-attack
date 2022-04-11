@@ -1,11 +1,11 @@
 //? Simplified BlueSpheresTimer.TextManager.drawText() function without configurable transparency.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, string text, u8 font)
 {
 	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, text, font, 255)
 }
 
 //? The full text rendering code with text alignment.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font, u8 alpha)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha)
 {
 	s32 character_space
 	for (s32 A = 0x00; A < strlen(text); ++A)
@@ -17,7 +17,7 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 		if (character == getChar("^"))
 			 character_space = 0x00
 		
-		u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
+		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
 		if (Renderer.hasCustomSprite(key))
 			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
 	}
@@ -39,10 +39,9 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 }
 
 //? Returns the string of the menu item. For example, when the item is hovered: "* Name *", otherwise just "Name".
-function u64 BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 button_target, u64 button_name)
+function string BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 button_target, string button_name)
 {
-	u64 key
-	
+	string key
 	if (button_var == button_target)
 		key = stringformat("* %s *", button_name)
 	else
@@ -52,7 +51,7 @@ function u64 BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 button_t
 }
 
 //? The basic code for rendering text.
-function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u32 renderQueue, u64 text, u8 font, u8 alpha)
+function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u16 renderQueue, string text, u8 font, u8 alpha)
 {
 	s32 character_space
 	for (s32 A = 0x00; A < strlen(text); ++A)
@@ -73,23 +72,22 @@ function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u32 renderQueue
 }
 
 //? Single character rendering function. Some optimizations are also used here to fasted rendering.
-function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u32 renderQueue, s32 character, s32 character_space, u64 text, u8 font, u8 alpha)
+function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u32 renderQueue, s32 character, s32 character_space, string text, u8 font, u8 alpha)
 {
 	if ((px + character_space) >= getScreenWidth() || (px + character_space) <= -0x12)
 		return
 	if (py >= getScreenHeight() || py <= 0x00)
 		return
 	
-	u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
+	string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
 	if (Renderer.hasCustomSprite(key))
 		Renderer.drawCustomSprite(key, px + character_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
 }
 
 //? Returns the font name.
-function u64 BlueSpheresTimer.TextManager.getFont(u8 font)
+function string BlueSpheresTimer.TextManager.getFont(u8 font)
 {
-	u64 font_name
-	
+	string font_name
 	if (font == 0x00)
 		font_name = "font.headline"
 	else if (font == 0x01)
@@ -101,10 +99,9 @@ function u64 BlueSpheresTimer.TextManager.getFont(u8 font)
 }
 
 //? Returns the width of the character of the specified parameters.
-function s32 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
+function u8 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
 {
-	s32 character_space
-	
+	u8 character_space
 	if (font == 0x00) // Headline font
 	{
 		if (character == getChar("A") || character == getChar("Q"))
@@ -145,7 +142,7 @@ function s32 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
 }
 
 //? Simplified view of the getchar() function without the second parameter.
-function u8 getChar(u64 character)
+function u8 getChar(string character)
 {
 	return getchar(character, 0x00)
 }

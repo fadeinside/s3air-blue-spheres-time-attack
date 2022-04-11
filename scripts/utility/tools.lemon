@@ -87,29 +87,29 @@ function void BlueSpheresTimer.updateTimer()
 }
 
 //? Returns the formatted time from the already received data.
-function u64 BlueSpheresTimer.getFormatTime(s32 input_minutes, s32 input_seconds, s32 input_centiseconds)
+function string BlueSpheresTimer.getFormatTime(s32 input_minutes, s32 input_seconds, s32 input_centiseconds)
 {
-	u64 stringminutes = stringformat("%d", input_minutes)
-	u64 stringseconds = stringformat("%d", input_seconds)
-	u64 stringcentiseconds = stringformat("%d", input_centiseconds)
+	string stringminutes = stringformat("%d", input_minutes)
+	string stringseconds = stringformat("%d", input_seconds)
+	string stringcentiseconds = stringformat("%d", input_centiseconds)
 	
-	u64 time = stringformat("%s'%s`%s", (strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes, (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
+	string time = stringformat("%s'%s`%s", (strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes, (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
 	
 	return time
 }
 
 //? Returns the formatted time from the input data.
-function u64 BlueSpheresTimer.getFormatTime(s32 input_data)
+function string BlueSpheresTimer.getFormatTime(s32 input_data)
 {
 	s32 minutes = input_data / 10000
 	s32 seconds = (input_data - (minutes * 10000)) / 100
 	s32 centiseconds = (input_data - (minutes * 10000)) - (seconds * 100)
 	
-	u64 stringminutes = stringformat("%d", minutes)
-	u64 stringseconds = stringformat("%d", seconds)
-	u64 stringcentiseconds = stringformat("%d", centiseconds)
+	string stringminutes = stringformat("%d", minutes)
+	string stringseconds = stringformat("%d", seconds)
+	string stringcentiseconds = stringformat("%d", centiseconds)
 	
-	u64 time = stringformat("%s'%s`%s", (strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes, (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
+	string time = stringformat("%s'%s`%s", (strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes, (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
 	
 	return time
 }

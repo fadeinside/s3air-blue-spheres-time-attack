@@ -42,4 +42,4 @@ global u8 bluespheres.blue_collected	// Counter of collected blue spheres
 global u8 bluespheres.toast.state	// The current state of the toast (0x00 - Slide in, 0x01 - Waiting, 0x02 - Slide out, 0x03 - Hide/Reset, 0x04 - Additional code)
 global u8 bluespheres.toast.frames	// The counter is used for animation
 global u8 bluespheres.toast.timeout	// Waiting counter (max. 196)
-global u64 bluespheres.toast.show	// Sets the name of the achievement when it was completed
+global string bluespheres.toast.show	// Sets the name of the achievement when it was completed

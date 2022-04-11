@@ -1,7 +1,7 @@
 //? Returns the tags of the specified Achievement ID.
-function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
+function string BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 {
-	u64 achievementTags
+	string achievementTags
 	
 	// Tag ID's:
 	// - 0 - None
@@ -111,7 +111,7 @@ function u64 BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 }
 
 //? The basic code for tags rendering.
-function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u32 renderQueue, u64 tags, u8 alpha)
+function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u16 renderQueue, string tags, u8 alpha)
 {
 	s32 tag_space
 	for (s32 A = 0x00; A < strlen(tags); ++A)
@@ -124,22 +124,21 @@ function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u32 
 }
 
 //? Single tag rendering function. Some optimizations are also used here to fasted rendering.
-function void BlueSpheresTimer.Achievements.renderSingleTag(s32 px, s32 py, u32 renderQueue, s32 tag, s32 tag_space, u8 alpha)
+function void BlueSpheresTimer.Achievements.renderSingleTag(s32 px, s32 py, u16 renderQueue, string tag, s32 tag_space, u8 alpha)
 {
 	if ((px + tag_space) >= getScreenWidth() || (px + tag_space) <= -0x12)
 		return
 	if (py >= getScreenHeight() || py <= 0x00)
 		return
 	
-	u64 key = BlueSpheresTimer.Achievements.getTagSprite(tag)
+	string key = BlueSpheresTimer.Achievements.getTagSprite(tag)
 	Renderer.drawCustomSprite(key, px + tag_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
 }
 
 //? Returns the tag sprite.
-function u64 BlueSpheresTimer.Achievements.getTagSprite(u64 tag)
+function string BlueSpheresTimer.Achievements.getTagSprite(string tag)
 {
-	u64 tag_sprite
-	
+	string tag_sprite
 	if (tag == getChar("1"))
 		tag_sprite = "icon_tag_unknown"
 	else if (tag == getChar("2"))
@@ -165,10 +164,9 @@ function u64 BlueSpheresTimer.Achievements.getTagSprite(u64 tag)
 }
 
 //? Returns the width of the tag sprite.
-function s32 BlueSpheresTimer.Achievements.getTagsSpacing(u64 tag)
+function u8 BlueSpheresTimer.Achievements.getTagsSpacing(string tag)
 {
-	s32 tag_space
-	
+	u8 tag_space
 	if (tag == getChar("1"))
 		tag_space = 41
 	else if (tag == getChar("2"))

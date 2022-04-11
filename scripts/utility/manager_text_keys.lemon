@@ -1,11 +1,11 @@
 //? Simplified BlueSpheresTimer.TextManager.drawText() function with the key and without configurable transparency.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font, u64 key1, u64 key2)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, string text, u8 font, string key1, string key2)
 {
 	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, text, font, 255, key1, key2)
 }
 
 //? The full text rendering code with text alignment and the key.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, u64 text, u8 font, u8 alpha, u64 key1, u64 key2)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, string text, u8 font, u8 alpha, string key1, string key2)
 {
 	s32 character_space
 	for (s32 A = 0x00; A < strlen(text); ++A)
@@ -17,7 +17,7 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 		if (character == getChar("^"))
 			 character_space = 0x00
 		
-		u64 key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
+		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
 		if (Renderer.hasCustomSprite(key))
 			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
 	}
@@ -36,7 +36,7 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 }
 
 //? Render two keyboard keys with orientation.
-function void BlueSpheresTimer.TextManager.drawKeyboard_dual(s32 px, s32 py, u16 renderQueue, u64 key1, u64 key2, u8 orientation)
+function void BlueSpheresTimer.TextManager.drawKeyboard_dual(s32 px, s32 py, u16 renderQueue, string key1, string key2, u8 orientation)
 {
 	// Orientation:
 	// - 0x00 - Horizontal
@@ -58,7 +58,7 @@ function void BlueSpheresTimer.TextManager.drawKeyboard_dual(s32 px, s32 py, u16
 }
 
 //? Render of a single key keyboard.
-function void BlueSpheresTimer.TextManager.drawKeyboard(s32 px, s32 py, u16 renderQueue, u64 key)
+function void BlueSpheresTimer.TextManager.drawKeyboard(s32 px, s32 py, u16 renderQueue, string key)
 {
 	// Ignore rendering if this setting is disabled
 	if !(SETTING_BS_SHOW_KEYBOARD_KEYS)

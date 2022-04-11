@@ -7,7 +7,7 @@ function void BlueSpheresTimer.Menu.shared.headline()
 	if ((BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime) && (level.framecounter + 16) & 32 && !(level.framecounter >= 236))
 		return
 	
-	u64 headline
+	string headline
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
 		headline = STRING_SHARED_BEST_TIME
 	else if (BlueSpheresTimer.Records.getRecordTime(0x02) == bluespheres.timer.currentTime)
@@ -42,10 +42,10 @@ function void BlueSpheresTimer.Menu.shared.items()
 
 function void BlueSpheresTimer.Menu.shared.items.menu(s32 px, s32 py)
 {
-	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, STRING_RETRY)
+	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, STRING_RETRY)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py - 16, 0xf000, 0x01, button_0x00, 0x01)
 	
-	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x01, STRING_BACK)
+	string button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x01, STRING_BACK)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x01, 0x01)
 }
 
