@@ -3,7 +3,10 @@ global u8 SETTING_BS_DEFAULT_CHARACTER	// Sets the default character (0x00 - Son
 global u8 SETTING_BS_STAGE_PREVIEW_ENABLE	// When enabled, the menu on the ground will display the stage spheres (May cause reduction FPS on some devices)
 global u8 SETTING_BS_SHOW_KEYBOARD_KEYS	// When 0x01, the menu will show the navigation keys
 global u8 SETTING_BS_MENU_OPTIMIZATION	// When enabled, the background in menu will be replaced with a static ground (Like the first release) and during the active popup all rear objects will not be rendered (Optimization method for weak devices)
+
 global u8 SETTING_BS_ACHIEVEMENT_TOAST_ENABLE	// When disabled, the toast will not appear when the achievement is completed, but the achievement will still be received
-global u8 SETTING_BS_TOAST_DURATION	// Sets the duration of the toast (128 frames - Faster, 192 frames - Default)
+global u8 SETTING_BS_TOAST_POSITION	// Sets the position of the toast on the screen (0x00 - Bottom of the screen, 0x01 - Top of the screen)
+global u8 SETTING_BS_TOAST_DURATION	// Sets the duration of the toast (128 - Faster, 192 - Default)
+
 global u8 SETTING_BS_ACHIEVEMENTS_ENABLE	// When enabled, achievements can be obtained in usual Special stages of the Main levels
 global u8 SETTING_BS_TIME_BONUSES_ON_SPECIALS	// When enabled, timer appears at the usual Special stages of the Main levels, and at the end, a time bonus will appear on the Results screen

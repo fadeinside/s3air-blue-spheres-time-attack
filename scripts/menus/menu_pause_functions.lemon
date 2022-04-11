@@ -54,3 +54,90 @@ function void BlueSpheresTimer.Menu.pause.items.menu(s32 px, s32 py)
 	string button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, STRING_PAUSE_EXIT)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x02, 0x01)
 }
+
+function void BlueSpheresTimer.Menu.pause.updateControl()
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Button selection
+	if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+	{
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_UP)
+		{
+			if (bluespheres.pause.buttonselected != 0x00)
+				--bluespheres.pause.buttonselected
+			else
+				bluespheres.pause.buttonselected = bluespheres.buttons.setup
+		}
+		else if (control.pad1.pressed & CONTROL_DOWN)
+		{
+			if (bluespheres.pause.buttonselected < bluespheres.buttons.setup)
+				++bluespheres.pause.buttonselected
+			else
+				bluespheres.pause.buttonselected = 0x00
+		}
+	}
+	
+	// Clear the menu items for your cute screenshots
+	if (Input.buttonPressed(BUTTON_Y))
+	{
+		if !(bluespheres.pause.hideMenu)
+			++bluespheres.pause.hideMenu
+		
+		// Press on PC [Y] again to hide/show menu items
+		if (PlatformFlags.DESKTOP)
+		{
+			if (bluespheres.pause.hideMenu > 0x01)
+				bluespheres.pause.hideMenu = 0x00
+		}
+	}
+	
+	// Perform the action of selected button when start pressed
+	if (control.pad1.pressed & CONTROL_START)
+	{
+		if (bluespheres.pause.hideMenu)
+		{
+			bluespheres.pause.hideMenu = 0x00
+		}
+		else if (bluespheres.pause.buttonselected == 0x00)
+		{
+			playSound(0x63)
+			global.game.paused = 0x00
+		}
+		else if (bluespheres.pause.buttonselected == 0x01)
+		{
+			playSound(0xaf)
+			global.game.paused = 0x00
+			playMusic(MUSIC_CTRL_STOP)
+			
+			BlueSpheresTimer.EntryFunctions.startSpecialStage()
+		}
+		else if (bluespheres.pause.buttonselected == 0x02)
+		{
+			playSound(0x63)
+			global.game.paused = 0x00
+			playMusic(MUSIC_CTRL_STOP)
+			
+			// Disable rendering of plane B prio
+			Renderer.enableDefaultPlane(0x03, false)
+			
+			bluespheres.timeattack.active = 0x00
+			BlueSpheresTimer.EntryFunctions.Menu.timeattack()
+		}
+	} 
+}
+
+function void BlueSpheresTimer.Menu.pause.renderStageObjects()
+{
+	BlueSpheres.renderCustomSpheres()
+	BlueSpheres.renderCustomCharacterShadows()
+	BlueSpheres.renderCustomGround()
+	
+	A0 = 0xffffb000
+	
+	D7 = 0x04
+	updateGameObjectLoopRenderOnly()
+}

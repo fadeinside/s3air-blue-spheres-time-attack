@@ -49,11 +49,11 @@ function string BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 		achievementTags = "27" // Tag: Common, Super rare
 	
 	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES)
-		achievementTags = "2" // Tag: Common 
+		achievementTags = "2" // Tag: Common
 	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES)
 		achievementTags = "26" // Tag: Common, Rare
 	else if (achievementId == ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES)
-		achievementTags = "36" // Tag: Hard, Rare 
+		achievementTags = "36" // Tag: Hard, Rare
 	
 	else if (achievementId == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 		achievementTags = "46" // Tag: Special, Rare
@@ -75,7 +75,7 @@ function string BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_400_RINGS)
 		achievementTags = "9" // Tag: Easy
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_800_RINGS)
-		achievementTags = "2" // Tag: Common 
+		achievementTags = "2" // Tag: Common
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_1200_RINGS)
 		achievementTags = "26" // Tag: Common, Rare
 	else if (achievementId == ACHIEVEMENT_BS_COLLECT_2000_RINGS)
@@ -86,7 +86,7 @@ function string BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 	else if (achievementId == ACHIEVEMENT_BS_GET_5_CONTINUES)
 		achievementTags = "9" // Tag: Easy
 	else if (achievementId == ACHIEVEMENT_BS_GET_15_CONTINUES)
-		achievementTags = "2" // Tag: Common 
+		achievementTags = "2" // Tag: Common
 	else if (achievementId == ACHIEVEMENT_BS_GET_30_CONTINUES)
 		achievementTags = "37" // Tag: Hard, Super rare
 	else if (achievementId == ACHIEVEMENT_BS_GET_50_CONTINUES)

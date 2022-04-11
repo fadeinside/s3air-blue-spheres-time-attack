@@ -2,17 +2,13 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	bluespheres.buttons.scrollTimer = 0x00
 	bluespheres.buttons.setup = bluespheres.achievements.total + 0x01
 	bluespheres.achievements.buttonselected = bluespheres.buttons.setup
 	
-	// Menu variables
-	s32 menu.fastScrolling = 0x00
-	
 	// VRAM stuff
-	waitForNextFrame()
-	fn0011ca()
-	fn04c8e4()
-	BlueSpheresTimer.stagePreviewVRAMLoad()
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
 	
 	// Screen fades
 	FadeOutScreenBlocking()
@@ -22,93 +18,16 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 	{
 		global.frame_state = 0x12
 		waitForNextFrame()
-		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Button selection
-		if (!bluespheres.popup.show && control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_UP)
-			{
-				if (bluespheres.achievements.buttonselected != 0x00)
-					--bluespheres.achievements.buttonselected
-				else
-					bluespheres.achievements.buttonselected = bluespheres.buttons.setup
-			}
-			else if (control.pad1.pressed & CONTROL_DOWN)
-			{
-				if (bluespheres.achievements.buttonselected < bluespheres.buttons.setup)
-					++bluespheres.achievements.buttonselected
-				else
-					bluespheres.achievements.buttonselected = 0x00
-			}
-		}
-		
-		// Fast scrolling button selection
-		if (!bluespheres.popup.show && control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
-		{
-			++menu.fastScrolling
-			if (menu.fastScrolling >= 25)
-			{
-				if (menu.fastScrolling >= 30)
-				{
-					playSound(0x5b)
-					if (control.pad1.state & CONTROL_UP)
-					{
-						if (bluespheres.achievements.buttonselected != 0x00)
-							--bluespheres.achievements.buttonselected
-						else
-							bluespheres.achievements.buttonselected = bluespheres.buttons.setup
-					}
-					else if (control.pad1.state & CONTROL_DOWN)
-					{
-						if (bluespheres.achievements.buttonselected < bluespheres.buttons.setup)
-							++bluespheres.achievements.buttonselected
-						else
-							bluespheres.achievements.buttonselected = 0x00
-					}
-	
-					menu.fastScrolling = 25
-				}
-			}
-		}
-		else
-		{
-			menu.fastScrolling = 0x00
-		}
-		
-		// Perform the action of selected button when start pressed
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_START))
-		{
-			for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
-			{
-				if (bluespheres.achievements.buttonselected == A)
-				{
-					if !(BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_LOCKED || BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_UNKNOWN)
-					{
-						playSound(0x63)
-						bluespheres.popup.show = 0x01
-						waitForNextFrame()
-					}
-					else
-					{
-						playSound(0x7b)
-					}
-				}
-			}
-			if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup)
-			{
-				playSound(0x63)
-				global.game_mode = 0x85
-			}
-		}
-		
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x88)
 			break
+		
+		// Checking control buttons
+		BlueSpheresTimer.Menu.achievements.updateControl()
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -119,17 +38,14 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		{
 			BlueSpheresTimer.Menu.achievements.headline()
 			BlueSpheresTimer.Menu.achievements.items()
+			
 			BlueSpheresTimer.Menu.timeattack.background()
 		}
 		
-		// Go back to the time attack menu
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
-		{
-			playSound(0xad)
-			global.game_mode = 0x85
-		}
+		// Screen fades
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Clear sprites every frame
-		Renderer.resetSprites()
+		RenderSprites()
 	}
 }

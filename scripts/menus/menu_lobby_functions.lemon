@@ -44,3 +44,65 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	string button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, STRING_LOBBY_GET_BLUE_SPHERES)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
 }
+
+function void BlueSpheresTimer.Menu.lobby.updateControl()
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Button selection
+	if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+	{
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_UP)
+		{
+			if (bluespheres.lobby.buttonselected != 0x00)
+				--bluespheres.lobby.buttonselected
+			else
+				bluespheres.lobby.buttonselected = bluespheres.buttons.setup
+		}
+		else if (control.pad1.pressed & CONTROL_DOWN)
+		{
+			if (bluespheres.lobby.buttonselected < bluespheres.buttons.setup)
+				++bluespheres.lobby.buttonselected
+			else
+				bluespheres.lobby.buttonselected = 0x00
+		}
+	}
+	
+	// Go to the selected game
+	if (control.pad1.pressed & CONTROL_START)
+	{
+		playSound(0x63)
+		if (bluespheres.lobby.buttonselected == 0x00)
+		{
+			bluespheres.timeattack.buttonselected = 0x01
+			bluespheres.minigame_mode = 0x00
+			bluespheres.timeattack.active = 0x00
+			global.game_mode = 0x85
+		}
+		if (bluespheres.lobby.buttonselected == 0x01)
+		{
+			bluespheres.minigame_mode = 0x01
+			FadeOutScreenBlocking()
+			
+			fn0011ca()
+			waitForNextFrame()
+			Renderer.resetSprites()
+			
+			u8[0xffffffa1] = 0x00
+			fn04ceb6()
+			
+			levelselect.characters = CHARS_SONIC_ALONE
+			global.game_mode = 0x2c
+		}
+	}
+	
+	// Go back to the main menu
+	if (control.pad1.pressed & CONTROL_B)
+	{
+		playSound(0xad)
+		Game.returnToMainMenu()
+	}
+}

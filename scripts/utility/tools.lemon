@@ -15,8 +15,19 @@ function void BlueSpheresTimer.resetTimer()
 	//System.writeDisplayLine("Timer reset")
 }
 
+//? Clear some data from the VRAM.
+function void BlueSpheresTimer.VRAMClear()
+{
+	VDP.fillVRAMbyDMA(0x00, 0x0000, 0x40)
+	VDP.fillVRAMbyDMA(0x00, 0xc000, 0x2000)
+	VDP.fillVRAMbyDMA(0x00, 0xe000, 0x2000)
+	
+	zeroMemory(0xfffff800, 0x280)
+	zeroMemory(0xffffe000, 0x400)
+}
+
 //? Loads some data into VRAM related with spheres.
-function void BlueSpheresTimer.stagePreviewVRAMLoad()
+function void BlueSpheresTimer.VRAMLoad_stagePreview()
 {
 	// Ignore if this setting is disabled
 	if !(SETTING_BS_STAGE_PREVIEW_ENABLE || SETTING_BS_MENU_OPTIMIZATION)
@@ -24,13 +35,8 @@ function void BlueSpheresTimer.stagePreviewVRAMLoad()
 	
 	copyMemory(0xfffffc80, 0x00896e, 0x100)
 	
-	Nemesis.loadDataToVRAM(0x0b07b8, 0x0000)
-	Nemesis.loadDataToVRAM(0x0ad904, 0xd000)
-	Nemesis.loadDataToVRAM(0x0adf60, 0xb4e0)
-	Nemesis.loadDataToVRAM(0x0aeed0, 0xb360)
-	Nemesis.loadDataToVRAM(0x0ad472, 0xabe0)
-	Nemesis.loadDataToVRAM(0x0ad5f4, 0xdf00)
-	Nemesis.loadDataToVRAM(0x0ad650, 0xf020)
+	Nemesis.loadDataToVRAM(0x0ad904, 0xd000) // Spheres
+	Nemesis.loadDataToVRAM(0x0adf60, 0xb4e0) // Rings
 }
 
 //? Returns the maximum number of available characters.

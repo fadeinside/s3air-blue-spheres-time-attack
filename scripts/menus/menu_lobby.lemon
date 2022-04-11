@@ -13,10 +13,8 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	playMusic(0x28)
 	
 	// VRAM stuff
-	waitForNextFrame()
-	fn0011ca()
-	fn04c8e4()
-	BlueSpheresTimer.stagePreviewVRAMLoad()
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
 	
 	// Screen fades
 	FadeOutScreenBlocking()
@@ -26,62 +24,16 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	{
 		global.frame_state = 0x12
 		waitForNextFrame()
-		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Button selection
-		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_UP)
-			{
-				if (bluespheres.lobby.buttonselected != 0x00)
-					--bluespheres.lobby.buttonselected
-				else
-					bluespheres.lobby.buttonselected = bluespheres.buttons.setup
-			}
-			else if (control.pad1.pressed & CONTROL_DOWN)
-			{
-				if (bluespheres.lobby.buttonselected < bluespheres.buttons.setup)
-					++bluespheres.lobby.buttonselected
-				else
-					bluespheres.lobby.buttonselected = 0x00
-			}
-		}
-		
-		// Go to the selected game
-		if (control.pad1.pressed & CONTROL_START)
-		{
-			playSound(0x63)
-			if (bluespheres.lobby.buttonselected == 0x00)
-			{
-				bluespheres.timeattack.buttonselected = 0x01
-				bluespheres.minigame_mode = 0x00
-				bluespheres.timeattack.active = 0x00
-				global.game_mode = 0x85
-			}
-			if (bluespheres.lobby.buttonselected == 0x01)
-			{
-				bluespheres.minigame_mode = 0x01
-				FadeOutScreenBlocking()
-				
-				fn0011ca()
-				waitForNextFrame()
-				Renderer.resetSprites()
-				
-				u8[0xffffffa1] = 0x00
-				fn04ceb6()
-				
-				levelselect.characters = CHARS_SONIC_ALONE
-				global.game_mode = 0x2c
-			}
-		}
-		
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x89)
 			break
+		
+		// Checking control buttons
+		BlueSpheresTimer.Menu.lobby.updateControl()
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -89,18 +41,13 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 		// Screen items
 		BlueSpheresTimer.Menu.lobby.headline()
 		BlueSpheresTimer.Menu.lobby.items()
+		
 		BlueSpheresTimer.Menu.timeattack.background()
 		
-		// Go back to the main menu
-		if (control.pad1.pressed & CONTROL_B)
-		{
-			playSound(0xad)
-			FadeOutScreenBlocking()
-			
-			Game.returnToMainMenu()
-		}
+		// Screen fades
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Clear sprites every frame
-		Renderer.resetSprites()
+		RenderSprites()
 	}
 }

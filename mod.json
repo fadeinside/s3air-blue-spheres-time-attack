@@ -75,6 +75,18 @@
 			},
 			{
 				"Category": "Achievement toast",
+				"InternalName": "SETTING_BS_TOAST_POSITION",
+				"DisplayName": "Toast position:",
+				"Variable": "SETTING_BS_TOAST_POSITION",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Bottom of the screen (Default)",
+					"1": "Top of the screen"
+				}
+			},
+			{
+				"Category": "Achievement toast",
 				"InternalName": "SETTING_BS_TOAST_DURATION",
 				"DisplayName": "Toast duration:",
 				"Variable": "SETTING_BS_TOAST_DURATION",

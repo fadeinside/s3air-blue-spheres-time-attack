@@ -10,10 +10,8 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		playMusic(0xac) // Play Continue song when a new record
 	
 	// VRAM stuff
-	waitForNextFrame()
-	fn0011ca()
-	fn04c8e4()
-	BlueSpheresTimer.stagePreviewVRAMLoad()
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
 	
 	// Screen fades
 	SetPaletteToWhite()
@@ -23,51 +21,16 @@ function void BlueSpheresTimer.Menu.shared.setup()
 	{
 		global.frame_state = 0x12
 		waitForNextFrame()
-		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Button selection
-		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_UP)
-			{
-				if (bluespheres.shared.buttonselected != 0x00)
-					--bluespheres.shared.buttonselected
-				else
-					bluespheres.shared.buttonselected = bluespheres.buttons.setup
-			}
-			else if (control.pad1.pressed & CONTROL_DOWN)
-			{
-				if (bluespheres.shared.buttonselected < bluespheres.buttons.setup)
-					++bluespheres.shared.buttonselected
-				else
-					bluespheres.shared.buttonselected = 0x00
-			}
-		}
-		
-		// Start the selected stage
-		if (control.pad1.pressed & CONTROL_START)
-		{
-			if (bluespheres.shared.buttonselected == 0x00)
-			{
-				playSound(0xaf)
-				bluespheres.timeattack.active = 0x01
-				BlueSpheresTimer.EntryFunctions.startSpecialStage()
-			}
-			if (bluespheres.shared.buttonselected == 0x01)
-			{
-				playSound(0x63)
-				bluespheres.timeattack.active = 0x00
-				global.game_mode = 0x85
-			}
-		}
-		
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x87)
 			break
+			
+		// Checking control buttons
+		BlueSpheresTimer.Menu.shared.updateControl()
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -78,15 +41,10 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		
 		BlueSpheresTimer.Menu.timeattack.background()
 		
-		// Go back to the time attack menu
-		if (control.pad1.pressed & CONTROL_B)
-		{
-			playSound(0xad)
-			bluespheres.timeattack.active = 0x00
-			global.game_mode = 0x85
-		}
+		// Screen fades
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Clear sprites every frame
-		Renderer.resetSprites()
+		RenderSprites()
 	}
 }

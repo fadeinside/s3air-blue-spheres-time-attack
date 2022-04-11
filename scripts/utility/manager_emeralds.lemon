@@ -32,7 +32,7 @@ function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02)
 		emeraldId = 0x0a
 	
-	// Determine the emerald color based on its ID 
+	// Determine the emerald color based on its ID
 	u8 emeraldColor = emeraldId
 #if GAMEAPP >= 0x21091200
 	// Replace Yellow Emerald with Orange, and Orange with Yellow, if the mod "Yellow Emerald" is active. Otherwise use the original position

@@ -1,34 +1,3 @@
-function void BlueSpheresTimer.Menu.timeattack.popups()
-{
-	if (bluespheres.popup.show == 0x00)
-		return
-	
-	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
-	{
-		BlueSpheresTimer.Menu.popup.show(STRING_UNLOCK_NOW_UNLOCKED, STRING_UNLOCK_SECRET_STAGE, "", "", STRING_OKAY)
-		if (control.pad1.pressed & CONTROL_START)
-		{
-			playSound(0x63)
-			BlueSpheresTimer.Data.setValue(bluespheres.stage8Unlocked, 0x01)
-			
-			bluespheres.popup.show = 0x00
-		}
-	}
-	
-	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
-	{
-		BlueSpheresTimer.Menu.popup.show(STRING_UNLOCK_NOW_UNLOCKED, STRING_UNLOCK_SK_STAGES, "", "", STRING_OKAY)
-		if (control.pad1.pressed & CONTROL_START)
-		{
-			playSound(0x63)
-			BlueSpheresTimer.Data.setValue(bluespheres.skUnlocked, 0x01)
-			BlueSpheresTimer.Emeralds.replaceAll(0x02)
-			
-			bluespheres.popup.show = 0x00
-		}
-	}
-}
-
 function void BlueSpheresTimer.Menu.timeattack.background()
 {
 	// SK Blue Sphere logo
@@ -112,10 +81,9 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	}
 	
 	// Main game stages
+	Kosinski.decompress(u32[0x1e4078], 0xffff0000)
 	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
-	if !(Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02)
-		Kosinski.decompress(u32[0x1e4078], 0xffff0000)
-	else // Knuckles has a different level layout in DAGE
+	if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02) // Knuckles has a different level layout in DAGE
 		Kosinski.decompress(0x2d3ad0, 0xffff0000)
 	
 	// Load level layout, either from S3 or S&K
@@ -133,11 +101,10 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	zeroMemory(0xfffff500, 0x100)
 	A2 += 0x400
 	
+	// Sets the camera in the right place
 	bool stageChanged = control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)
 	bool layoutChanged = Input.buttonPressed(BUTTON_X) && BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked)
 	bool characterChanged = Input.buttonPressed(BUTTON_Y) && (bluespheres.timeattack.characterselected == 0x02 && Mods.isModActive("Sonic 3: D.A. Garden Edition")) // Knuckles has a different level layout in DAGE
-	
-	// Sets the camera in the right place
 	if (global.game_mode == 0x85 && !bluespheres.popup.show && (stageChanged || layoutChanged || characterChanged))
 	{
 		u16[0xffffe426] = u16[A2]
@@ -376,4 +343,189 @@ function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 r
 	}
 	
 	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, BlueSpheresTimer.getFormatTime(input_data), 0x02)
+}
+
+function void BlueSpheresTimer.Menu.timeattack.updateControl()
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Button selection
+	if (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT))
+	{
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_LEFT)
+		{
+			if (bluespheres.timeattack.buttonselected != 0x00)
+				--bluespheres.timeattack.buttonselected
+			else
+				bluespheres.timeattack.buttonselected = bluespheres.buttons.setup
+		}
+		else if (control.pad1.pressed & CONTROL_RIGHT)
+		{
+			if (bluespheres.timeattack.buttonselected < bluespheres.buttons.setup)
+				++bluespheres.timeattack.buttonselected
+			else
+				bluespheres.timeattack.buttonselected = 0x00
+		}
+	}
+	
+	// Switch stages
+	u8 maxStages = BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x07 : 0x06
+	if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+	{
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_UP)
+		{
+			if (bluespheres.timeattack.levelselected < maxStages)
+				++bluespheres.timeattack.levelselected
+			else
+				bluespheres.timeattack.levelselected = 0x00
+		}
+		if (control.pad1.pressed & CONTROL_DOWN)
+		{
+			if (bluespheres.timeattack.levelselected != 0x00)
+				--bluespheres.timeattack.levelselected
+			else
+				bluespheres.timeattack.levelselected = maxStages
+		}
+	}
+	
+	// Change the character
+	u8 maxCharacters = BlueSpheresTimer.maxCharacters()
+	if (Input.buttonPressed(BUTTON_Y))
+	{
+		playSound(0x5b)
+		if (bluespheres.timeattack.characterselected < 0x03)
+		{
+			++bluespheres.timeattack.characterselected
+			if (bluespheres.timeattack.characterselected > maxCharacters)
+				bluespheres.timeattack.characterselected = 0x00
+			
+			// Set the available ID for the extra character as the first value
+			if (bluespheres.timeattack.characterselected == 0x03)
+			{
+				if (Renderer.hasCustomSprite("dataSel_slot1"))
+					bluespheres.timeattack.xtracharselected = 0x01
+				else if (Renderer.hasCustomSprite("dataSel_slot2"))
+					bluespheres.timeattack.xtracharselected = 0x02
+				else if (Renderer.hasCustomSprite("dataSel_slot3"))
+					bluespheres.timeattack.xtracharselected = 0x03
+				else
+				{
+					bluespheres.timeattack.characterselected = 0x00
+					bluespheres.timeattack.xtracharselected = 0x00
+				}
+			}
+		}
+		else
+		{
+			// Check the availability of extra characters, if available, then set it, otherwise reset and go to Sonic
+			if (bluespheres.timeattack.xtracharselected == 0x01)
+			{
+				if (Renderer.hasCustomSprite("dataSel_slot2"))
+					bluespheres.timeattack.xtracharselected = 0x02
+				else if (Renderer.hasCustomSprite("dataSel_slot3"))
+					bluespheres.timeattack.xtracharselected = 0x03
+				else
+				{
+					bluespheres.timeattack.characterselected = 0x00
+					bluespheres.timeattack.xtracharselected = 0x00
+				}
+			}
+			else if (bluespheres.timeattack.xtracharselected == 0x02)
+			{
+				if (Renderer.hasCustomSprite("dataSel_slot3"))
+					bluespheres.timeattack.xtracharselected = 0x03
+				else
+				{
+					bluespheres.timeattack.characterselected = 0x00
+					bluespheres.timeattack.xtracharselected = 0x00
+				}
+			}
+			else
+			{
+				bluespheres.timeattack.characterselected = 0x00
+				bluespheres.timeattack.xtracharselected = 0x00
+			}
+		}
+	}
+	// Change the levels layout from S3 to SK
+	if (Input.buttonPressed(BUTTON_X))
+	{
+		if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+		{
+			playSound(0x5b)
+			++bluespheres.timeattack.layoutselected
+			if (bluespheres.timeattack.layoutselected > 0x01)
+				bluespheres.timeattack.layoutselected = 0x00
+		}
+		else
+		{
+			playSound(0x7b)
+		}
+	}
+	
+	// Perform the action of selected button when start pressed
+	if (control.pad1.pressed & CONTROL_START)
+	{
+		if (bluespheres.timeattack.buttonselected == 0x00)
+		{
+			playSound(0x63)
+			bluespheres.timeattack.active = 0x00
+			global.game_mode = 0x86
+		}
+		if (bluespheres.timeattack.buttonselected == 0x01)
+		{
+			playSound(0xaf)
+			bluespheres.timeattack.active = 0x01
+			BlueSpheresTimer.EntryFunctions.startSpecialStage()
+		}
+		if (bluespheres.timeattack.buttonselected == 0x02)
+		{
+			playSound(0x63)
+			bluespheres.timeattack.active = 0x00
+			global.game_mode = 0x88
+		}
+	}
+	
+	// Go back to the main menu
+	if (control.pad1.pressed & CONTROL_B)
+	{
+		playSound(0xad)
+		bluespheres.timeattack.active = 0x00
+		global.game_mode = 0x89
+	}
+}
+
+function void BlueSpheresTimer.Menu.timeattack.popups()
+{
+	if (bluespheres.popup.show == 0x00)
+		return
+	
+	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
+	{
+		BlueSpheresTimer.Menu.popup.show(STRING_UNLOCK_NOW_UNLOCKED, STRING_UNLOCK_SECRET_STAGE, "", "", STRING_OKAY)
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			BlueSpheresTimer.Data.setValue(bluespheres.stage8Unlocked, 0x01)
+			
+			bluespheres.popup.show = 0x00
+		}
+	}
+	
+	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+	{
+		BlueSpheresTimer.Menu.popup.show(STRING_UNLOCK_NOW_UNLOCKED, STRING_UNLOCK_SK_STAGES, "", "", STRING_OKAY)
+		if (control.pad1.pressed & CONTROL_START)
+		{
+			playSound(0x63)
+			BlueSpheresTimer.Data.setValue(bluespheres.skUnlocked, 0x01)
+			BlueSpheresTimer.Emeralds.replaceAll(0x02)
+			
+			bluespheres.popup.show = 0x00
+		}
+	}
 }

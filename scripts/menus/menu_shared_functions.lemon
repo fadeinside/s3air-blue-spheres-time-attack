@@ -65,3 +65,55 @@ function void BlueSpheresTimer.Menu.shared.items.currenttime(s32 px, s32 py)
 	py += 16
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", BlueSpheresTimer.getFormatTime(bluespheres.timer.currentTime)), 0x02)
 }
+
+function void BlueSpheresTimer.Menu.shared.updateControl()
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Button selection
+	if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+	{
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_UP)
+		{
+			if (bluespheres.shared.buttonselected != 0x00)
+				--bluespheres.shared.buttonselected
+			else
+				bluespheres.shared.buttonselected = bluespheres.buttons.setup
+		}
+		else if (control.pad1.pressed & CONTROL_DOWN)
+		{
+			if (bluespheres.shared.buttonselected < bluespheres.buttons.setup)
+				++bluespheres.shared.buttonselected
+			else
+				bluespheres.shared.buttonselected = 0x00
+		}
+	}
+	
+	// Start the selected stage
+	if (control.pad1.pressed & CONTROL_START)
+	{
+		if (bluespheres.shared.buttonselected == 0x00)
+		{
+			playSound(0xaf)
+			bluespheres.timeattack.active = 0x01
+			BlueSpheresTimer.EntryFunctions.startSpecialStage()
+		}
+		if (bluespheres.shared.buttonselected == 0x01)
+		{
+			playSound(0x63)
+			bluespheres.timeattack.active = 0x00
+			global.game_mode = 0x85
+		}
+	}
+	
+	// Go back to the time attack menu
+	if (control.pad1.pressed & CONTROL_B)
+	{
+		playSound(0xad)
+		bluespheres.timeattack.active = 0x00
+		global.game_mode = 0x85
+	}
+}

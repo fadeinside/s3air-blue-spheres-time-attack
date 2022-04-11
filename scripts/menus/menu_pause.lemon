@@ -5,94 +5,27 @@ function void BlueSpheresTimer.Menu.pause.setup()
 	bluespheres.buttons.setup = 0x02
 	bluespheres.pause.buttonselected = 0x00
 	
-	// Menu variables
-	u8 menu.hideMenu
-	
 	// Main loop
 	while (global.game.paused)
 	{
 		FadeInFromWhite()
 		waitForNextFrame()
 		
-		// Silence the stage music
-		Audio.playOverride("silencepause", AudioContext.CONTEXT_MUSIC, 0x01, 0x00)
-		
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Button selection
-		if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_UP)
-			{
-				if (bluespheres.pause.buttonselected != 0x00)
-					--bluespheres.pause.buttonselected
-				else
-					bluespheres.pause.buttonselected = bluespheres.buttons.setup
-			}
-			else if (control.pad1.pressed & CONTROL_DOWN)
-			{
-				if (bluespheres.pause.buttonselected < bluespheres.buttons.setup)
-					++bluespheres.pause.buttonselected
-				else
-					bluespheres.pause.buttonselected = 0x00
-			}
-		}
-			
-		// Clear the menu items for your cute screenshots
-		if (Input.buttonPressed(BUTTON_Y))
-		{
-			if !(menu.hideMenu)
-				++menu.hideMenu
-			
-			// Press on PC [Y] again to hide/show menu items
-			if (PlatformFlags.DESKTOP)
-			{
-				if (menu.hideMenu > 0x01)
-					menu.hideMenu = 0x00
-			}
-		}
-		
-		// Start the selected stage
-		if (control.pad1.pressed & CONTROL_START)
-		{
-			if (menu.hideMenu)
-			{
-				menu.hideMenu = 0x00
-			}
-			else if (bluespheres.pause.buttonselected == 0x00)
-			{
-				playSound(0x63)
-				global.game.paused = 0x00
-				break
-			}
-			else if (bluespheres.pause.buttonselected == 0x01)
-			{
-				playSound(0xaf)
-				global.game.paused = 0x00
-				playMusic(MUSIC_CTRL_STOP)
-				
-				BlueSpheresTimer.EntryFunctions.startSpecialStage()
-			}
-			else if (bluespheres.pause.buttonselected == 0x02)
-			{
-				playSound(0x63)
-				global.game.paused = 0x00
-				playMusic(MUSIC_CTRL_STOP)
-				
-				bluespheres.timeattack.active = 0x00
-				Renderer.enableDefaultPlane(0x03, false)
-				BlueSpheresTimer.EntryFunctions.Menu.timeattack()
-			}
-		}
+		// Silence the stage music
+		Audio.playOverride("silencepause", AudioContext.CONTEXT_MUSIC, 0x01, 0x00)
 		
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x34)
 			break
+			
+		// Checking control buttons
+		BlueSpheresTimer.Menu.pause.updateControl()
 		
 		// Screen items
-		if (menu.hideMenu)
+		if (bluespheres.pause.hideMenu)
 		{
 			// On mobile, tap anywhere on the screen to show the menu items again
 			if (PlatformFlags.MOBILE)
@@ -105,16 +38,8 @@ function void BlueSpheresTimer.Menu.pause.setup()
 			BlueSpheresTimer.Menu.pause.background()
 		}
 		
-		// Re-render game objects
-		BlueSpheres.renderCustomSpheres()
-		BlueSpheres.renderCustomCharacterShadows()
-		BlueSpheres.renderCustomGround()
-		
-		A0 = 0xffffb000
-		
-		D7 = 0x04
-		updateGameObjectLoopRenderOnly()
-		
+		// Re-render stage objects
+		BlueSpheresTimer.Menu.pause.renderStageObjects()
 		RenderSprites()
 	}
 }

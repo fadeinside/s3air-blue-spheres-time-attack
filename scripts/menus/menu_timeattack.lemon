@@ -14,10 +14,8 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		playMusic(0xac) // Play Continue song when S&K stages unlocked
 	
 	// VRAM stuff
-	waitForNextFrame()
-	fn0011ca()
-	fn04c8e4()
-	BlueSpheresTimer.stagePreviewVRAMLoad()
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
 	
 	// Screen fades
 	if (bluespheres.timeattack.active)
@@ -30,160 +28,22 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 	{
 		global.frame_state = 0x12
 		waitForNextFrame()
-		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Button selection
-		if (!bluespheres.popup.show && (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT)))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_LEFT)
-			{
-				if (bluespheres.timeattack.buttonselected != 0x00)
-					--bluespheres.timeattack.buttonselected
-				else
-					bluespheres.timeattack.buttonselected = bluespheres.buttons.setup
-			}
-			else if (control.pad1.pressed & CONTROL_RIGHT)
-			{
-				if (bluespheres.timeattack.buttonselected < bluespheres.buttons.setup)
-					++bluespheres.timeattack.buttonselected
-				else
-					bluespheres.timeattack.buttonselected = 0x00
-			}
-		}
+		// Checking control buttons
+		BlueSpheresTimer.Menu.timeattack.updateControl()
 		
-		// Switch stages
-		u8 maxStages = BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x07 : 0x06
-		if (!bluespheres.popup.show && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_UP)
-			{
-				if (bluespheres.timeattack.levelselected < maxStages)
-					++bluespheres.timeattack.levelselected
-				else
-					bluespheres.timeattack.levelselected = 0x00
-			}
-			if (control.pad1.pressed & CONTROL_DOWN)
-			{
-				if (bluespheres.timeattack.levelselected != 0x00)
-					--bluespheres.timeattack.levelselected
-				else
-					bluespheres.timeattack.levelselected = maxStages
-			}
-		}
-		
-		// Change the character
-		u8 maxCharacters = BlueSpheresTimer.maxCharacters()
-		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_Y))
-		{
-			playSound(0x5b)
-			if (bluespheres.timeattack.characterselected < 0x03)
-			{
-				++bluespheres.timeattack.characterselected
-				if (bluespheres.timeattack.characterselected > maxCharacters)
-					bluespheres.timeattack.characterselected = 0x00
-				
-				// Set the available ID for the extra character as the first value
-				if (bluespheres.timeattack.characterselected == 0x03)
-				{
-					if (Renderer.hasCustomSprite("dataSel_slot1"))
-						bluespheres.timeattack.xtracharselected = 0x01
-					else if (Renderer.hasCustomSprite("dataSel_slot2"))
-						bluespheres.timeattack.xtracharselected = 0x02
-					else if (Renderer.hasCustomSprite("dataSel_slot3"))
-						bluespheres.timeattack.xtracharselected = 0x03
-					else
-					{
-						bluespheres.timeattack.characterselected = 0x00
-						bluespheres.timeattack.xtracharselected = 0x00
-					}
-				}
-			}
-			else
-			{
-				// Check the availability of extra characters, if available, then set it, otherwise reset and go to Sonic
-				if (bluespheres.timeattack.xtracharselected == 0x01)
-				{
-					if (Renderer.hasCustomSprite("dataSel_slot2"))
-						bluespheres.timeattack.xtracharselected = 0x02
-					else if (Renderer.hasCustomSprite("dataSel_slot3"))
-						bluespheres.timeattack.xtracharselected = 0x03
-					else
-					{
-						bluespheres.timeattack.characterselected = 0x00
-						bluespheres.timeattack.xtracharselected = 0x00
-					}
-				}
-				else if (bluespheres.timeattack.xtracharselected == 0x02)
-				{
-					if (Renderer.hasCustomSprite("dataSel_slot3"))
-						bluespheres.timeattack.xtracharselected = 0x03
-					else
-					{
-						bluespheres.timeattack.characterselected = 0x00
-						bluespheres.timeattack.xtracharselected = 0x00
-					}
-				}
-				else
-				{
-					bluespheres.timeattack.characterselected = 0x00
-					bluespheres.timeattack.xtracharselected = 0x00
-				}
-			}
-		}
-		
-		// Change the levels layout from S3 to SK
-		if (!bluespheres.popup.show && Input.buttonPressed(BUTTON_X))
-		{
-			if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
-			{
-				playSound(0x5b)
-				++bluespheres.timeattack.layoutselected
-				if (bluespheres.timeattack.layoutselected > 0x01)
-					bluespheres.timeattack.layoutselected = 0x00
-			}
-			else
-			{
-				playSound(0x7b)
-			}
-		}
-		
-		// Perform the action of selected button when start pressed
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_START))
-		{
-			if (bluespheres.timeattack.buttonselected == 0x00)
-			{
-				playSound(0x63)
-				bluespheres.timeattack.active = 0x00
-				global.game_mode = 0x86
-			}
-			if (bluespheres.timeattack.buttonselected == 0x01)
-			{
-				playSound(0xaf)
-				bluespheres.timeattack.active = 0x01
-				BlueSpheresTimer.EntryFunctions.startSpecialStage()
-			}
-			if (bluespheres.timeattack.buttonselected == 0x02)
-			{
-				playSound(0x63)
-				bluespheres.timeattack.active = 0x00
-				global.game_mode = 0x88
-			}
-		}
-		
-		// Unlocks check
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x85)
+			break
+			
+		// Unlockables checking
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 			bluespheres.popup.show = 0x01
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 			bluespheres.popup.show = 0x01
-			
-		// End the current loop if the mode don't match
-		if (global.game_mode != 0x85)
-			break
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -194,18 +54,14 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		{
 			BlueSpheresTimer.Menu.timeattack.headline()
 			BlueSpheresTimer.Menu.timeattack.items()
+			
 			BlueSpheresTimer.Menu.timeattack.background()
 		}
 		
-		// Go back to the main menu
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
-		{
-			playSound(0xad)
-			bluespheres.timeattack.active = 0x00
-			global.game_mode = 0x89
-		}
+		// Screen fades
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Clear sprites every frame
-		Renderer.resetSprites()
+		RenderSprites()
 	}
 }

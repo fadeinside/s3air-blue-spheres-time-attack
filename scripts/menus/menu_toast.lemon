@@ -12,7 +12,7 @@ function void BlueSpheresTimer.Menu.toast.setup(string title)
 			bluespheres.toast.state = 0x01
 	}
 	
-	 // Waiting
+	// Waiting
 	if (bluespheres.toast.state == 0x01)
 	{
 		if !(global.game.paused)
@@ -30,7 +30,7 @@ function void BlueSpheresTimer.Menu.toast.setup(string title)
 			bluespheres.toast.state = 0x03
 	}
 	
-	 // Reset vars
+	// Reset vars
 	if (bluespheres.toast.state == 0x03)
 	{
 		bluespheres.toast.frames = 0x00
@@ -46,7 +46,7 @@ function void BlueSpheresTimer.Menu.toast.setup(string title)
 function void BlueSpheresTimer.Menu.toast.items(string title)
 {
 	s32 px = (getScreenWidth() - 32) + 196 - (bluespheres.toast.frames * 14)
-	s32 py = 16
+	s32 py = !SETTING_BS_TOAST_POSITION ? (getScreenHeight() - 16) : 16
 	
 	BlueSpheresTimer.Menu.toast.items.title(px, py, title)
 }
@@ -59,6 +59,7 @@ function void BlueSpheresTimer.Menu.toast.items.title(s32 px, s32 py, string tit
 
 function void BlueSpheresTimer.Menu.toast.background()
 {
+	s32 py = !SETTING_BS_TOAST_POSITION ? (getScreenHeight() - (bluespheres.toast.frames * 4) + 56) : ((bluespheres.toast.frames * 4) - 56)
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_toast", 0x10 * A, (bluespheres.toast.frames * 4) - 56, 0x00, 0x40, 0xf000, 0x00, 0xdd)
+		Renderer.drawCustomSprite("background_toast", 0x10 * A, py, 0x00, !SETTING_BS_TOAST_POSITION ? SPRITE_FLAG_FLIP_Y : 0x40, 0xf000, 0x00, 0xdd)
 }

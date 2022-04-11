@@ -54,7 +54,7 @@ function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, stri
 	s32 px = getScreenWidth() / 0x02
 	s32 py = getScreenHeight() / 0x02
 	
-	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == "Need a mod"))
+	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
 		py += 16
 	
 	if (text2 != "")
@@ -108,7 +108,7 @@ function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, stri
 	s32 px = getScreenWidth() / 0x02
 	s32 py = getScreenHeight() / 0x02
 	
-	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == "Need a mod"))
+	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
 		py += 16
 	
 	if (text2 != "")

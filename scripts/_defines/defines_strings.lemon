@@ -115,8 +115,8 @@ define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10	= "I can't lose"
 define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50	= "Careful!"
 define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100	= "Good response!"
 define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220	= "To the other side"
-define string STRING_ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES	= "Challenger"	// Not used
-define string STRING_ACHIEVEMENT_BS_ACHIEVE_10_ACHIEVEMENTS	= "Beginer"	// Not used
+define string STRING_ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES	= "Challenger"
+define string STRING_ACHIEVEMENT_BS_ACHIEVE_10_ACHIEVEMENTS	= "Beginer"
 
 // Achievements descriptions (Line position: 4 - Top, 1 - Bottom)
 define string STRING_ACHIEVEMENT_BS_GET_100_BLUE_SPHERES.LINE1	= "Collect the Blue sphere %d times."

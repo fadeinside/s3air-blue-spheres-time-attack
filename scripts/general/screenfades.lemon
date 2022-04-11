@@ -2,16 +2,29 @@
 //# address-hook(0x003d30) end(0x003d4e)
 function void FadeScreenToWhiteBlocking()
 {
+	// We will make some changes to this fade, for good work with the custom pause menu
+	if !(bluespheres.timeattack.active)
+	{
+		// Return the base function
+		base.FadeScreenToWhiteBlocking()
+		return
+	}
+	
+	// Disable rendering of plane B prio
+	Renderer.enableDefaultPlane(0x03, false) // First frame
+	
+	// Variables setup
 	palette_fade.range = 0x003f
 	D4.u16 = 0x15
+	
+	// Main loop
 	while (D4.s16 >= 0x00)
 	{
 		global.frame_state = 0x12
 		waitForNextFrame()
 		
-	#if GAMEAPP
+		// Disable rendering of plane B prio
 		Renderer.enableDefaultPlane(0x03, false)
-	#endif
 		
 		FadePaletteToWhite()
 		LoadRequiredSpritePatterns()

@@ -1,6 +1,6 @@
 // Timer stuff
 global s32 bluespheres.timer.currentTime	// The current time value (up to time limit) in AABBCC format: AA is minutes, BB is seconds, CC is centiseconds. Thus, 45999 is 4 minutes 59 seconds and 99 centiseconds
-global s32 bluespheres.timer.timeLimit = 50000	// The time limit after which the stage will fail
+define s32 bluespheres.timer.timeLimit	= 50000	// The time limit after which the stage will fail
 global s32 bluespheres.timer.frames	// Frames inside current second
 global s32 bluespheres.timer.minutes	// Minutes counter
 global s32 bluespheres.timer.seconds	// Seconds counter
@@ -9,6 +9,7 @@ global s32 bluespheres.timer.bonus	// Time bonus for successfully completed leve
 
 // Menus
 global u8 bluespheres.buttons.setup	// Sets the number of buttons in the menu
+global s32 bluespheres.buttons.scrollTimer	//
 global u8 bluespheres.timeattack.buttonselected	// The currently active button in the Time Attack menu
 global u8 bluespheres.shared.buttonselected	// The currently active button in the Shared menu
 global u8 bluespheres.options.buttonselected	// The currently active button in the Options menu
@@ -31,6 +32,7 @@ global u8 bluespheres.timeattack.active	// Set to 0x01 when the Time Attack mode
 global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
 global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 global u8 bluespheres.character_selected	// Set to 0x01 when the default character was defined and sets once
+global u8 bluespheres.pause.hideMenu	//
 
 // Temp vars
 global u8 bluespheres.tempValue1	// Used in some cases

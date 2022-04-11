@@ -6,10 +6,8 @@ function void BlueSpheresTimer.Menu.options.setup()
 	bluespheres.options.buttonselected = bluespheres.buttons.setup
 	
 	// VRAM stuff
-	waitForNextFrame()
-	fn0011ca()
-	fn04c8e4()
-	BlueSpheresTimer.stagePreviewVRAMLoad()
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
 	
 	// Screen fades
 	FadeOutScreenBlocking()
@@ -19,83 +17,16 @@ function void BlueSpheresTimer.Menu.options.setup()
 	{
 		global.frame_state = 0x12
 		waitForNextFrame()
-		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Button selection
-		if (!bluespheres.popup.show && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
-		{
-			playSound(0x5b)
-			if (control.pad1.pressed & CONTROL_UP)
-			{
-				if (bluespheres.options.buttonselected != 0x00)
-					--bluespheres.options.buttonselected
-				else
-					bluespheres.options.buttonselected = bluespheres.buttons.setup
-			}
-			else if (control.pad1.pressed & CONTROL_DOWN)
-			{
-				if (bluespheres.options.buttonselected < bluespheres.buttons.setup)
-					++bluespheres.options.buttonselected
-				else
-					bluespheres.options.buttonselected = 0x00
-			}
-		}
-		
-		// Perform the action of selected button when start pressed
-		if (!bluespheres.popup.show && (control.pad1.pressed == CONTROL_START))
-		{
-			if (bluespheres.options.buttonselected == 0x00)
-			{
-				if (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00)
-				{
-					playSound(0x63)
-					bluespheres.popup.show = 0x01
-					waitForNextFrame()
-				}
-				else
-				{
-					playSound(0x7b)
-				}
-			}
-			if (bluespheres.options.buttonselected == 0x01)
-			{
-				if (BlueSpheresTimer.Records.writed() > 0x00)
-				{
-					playSound(0x63)
-					bluespheres.popup.show = 0x01
-					waitForNextFrame()
-				}
-				else
-				{
-					playSound(0x7b)
-				}
-			}
-			if (bluespheres.options.buttonselected == 0x02)
-			{
-				if (BlueSpheresTimer.Achievements.writed() > 0x00)
-				{
-					playSound(0x63)
-					bluespheres.popup.show = 0x01
-					waitForNextFrame()
-				}
-				else
-				{
-					playSound(0x7b)
-				}
-			}
-			if (bluespheres.options.buttonselected == bluespheres.buttons.setup)
-			{
-				playSound(0x63)
-				global.game_mode = 0x85
-			}
-		}
-		
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x86)
 			break
+			
+		// Checking control buttons
+		BlueSpheresTimer.Menu.options.updateControl()
 		
 		// Checking the activity of achievements
 		BlueSpheresTimer.Achievements.setup()
@@ -110,14 +41,10 @@ function void BlueSpheresTimer.Menu.options.setup()
 			BlueSpheresTimer.Menu.timeattack.background()
 		}
 		
-		// Go back to the time attack menu
-		if (!bluespheres.popup.show && (control.pad1.pressed & CONTROL_B))
-		{
-			playSound(0xad)
-			global.game_mode = 0x85
-		}
+		// Screen fades
+		BlueSpheresTimer.FadeInFromWhite()
 		
 		// Clear sprites every frame
-		Renderer.resetSprites()
+		RenderSprites()
 	}
 }

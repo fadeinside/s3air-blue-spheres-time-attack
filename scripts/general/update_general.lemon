@@ -1,3 +1,4 @@
+//@ Function taken from sonic3air_dev/scripts/general/update_general.lemon
 //# address-hook(0x000494) end(0x0004c4)
 function void GameModeControlLoop()
 {
@@ -17,7 +18,7 @@ function void GameModeControlLoop()
 	while (true)
 	{
 		@EntryPoint:
-		
+	
 		#if STANDALONE
 			if ((global.game_mode & 0x03 || (global.game_mode & 0x7f) > 0x50) && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 				assert(false, stringformat("Invalid game mode: 0x%02x", global.game_mode))
