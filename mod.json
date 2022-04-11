@@ -52,7 +52,7 @@
 			{
 				"Category": "Menu appearance",
 				"InternalName": "SETTING_BS_MENU_OPTIMIZATION",
-				"DisplayName": "Optimization in menu :",
+				"DisplayName": "Menu optimization:",
 				"Variable": "SETTING_BS_MENU_OPTIMIZATION",
 				"DefaultValue": "0",
 				"Options":
@@ -64,7 +64,7 @@
 			{
 				"Category": "Achievement toast",
 				"InternalName": "SETTING_BS_ACHIEVEMENT_TOAST_ENABLE",
-				"DisplayName": "Show Achievements toast:",
+				"DisplayName": "Show achievements toast:",
 				"Variable": "SETTING_BS_ACHIEVEMENT_TOAST_ENABLE",
 				"DefaultValue": "1",
 				"Options":

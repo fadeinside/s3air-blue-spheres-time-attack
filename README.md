@@ -23,11 +23,14 @@ Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switc
 4. Successfully complete the stage, and your time will be saved. Collect all the rings in the stage to get the Emerald, and then unlock some unlockable items.<br><br>
 
 <font color="#6ee16c">Mod options:</font><br>
-1. "Show stage spheres in menu" - If enabled, in the menu will display the spheres of the selected stage and layout. (May cause reduction FPS on some devices)<br>
-2. "Show keyboard in menu" - If enabled, the control keys will be shown in the menu.<br>
-3. "Menu Optimization" - If enabled, the animated ground in the menu will be replaced with a static one from the first release, and during the active popup, all rear objects will not be rendered. This is can will improve the FPS in the menu on weak devices.<br>
-4. "Achievements in Main stages" - If enabled, achievements can be obtained at special stages of the main levels, where possible.<br>
-5. "Time bonus in Main stages" - If enabled, the timer will be shown at special stages of the main levels. After completing the stage, the current time will be converted into a Time Bonus, and will be added to the main score. You can find the Time bonuses below:<br>
+1. "Default selected character" - Sets the default character: Sonic (Default), Tails "Miles" or Knuckles. Each time you enter the menu, the selected character will be used.<br>
+2. "Show stage spheres in menu" - If enabled, in the menu will display the spheres of the selected stage and layout. (May cause reduction FPS on some devices)<br>
+3. "Show hot-keys in menu" - If enabled, the control keys will be shown in the menu.<br>
+4. "Menu optimization" - If enabled, the animated ground in the menu will be replaced with a static one from the first release, and during the active popup, all rear objects will not be rendered. This is can will improve the FPS in the menu on weak devices.<br>
+5. "Show achievements toast" - If disabled, the toast will not appear when the achievement is completed, but the achievement itself will still be received.<br>
+6. "Toast duration" - Sets the duration of the toast before it hides behind the screen: 128 Frames - Faster, 192 Frames - Default.<br>
+7. "Achievements in Main stages" - If enabled, achievements can be obtained at special stages of the main levels, where possible.<br>
+8. "Time bonus in Main stages" - If enabled, the timer will be shown at special stages of the main levels. After completing the stage, the current time will be converted into a Time Bonus, and will be added to the main score. You can find the Time bonuses below:<br>
 <img src="https://cdn.discordapp.com/attachments/949432560935645247/949437251727794197/IMG_0305014323.png"><br><br>
 
 <font color="#6ee16c">Compatibility notes:</font><br>

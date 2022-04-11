@@ -17,7 +17,7 @@ global u8 bluespheres.popup.buttonselected	// The currently active button in the
 global u8 bluespheres.achievements.buttonselected	// The currently active button in the Achievements menu
 global u8 bluespheres.lobby.buttonselected	// The currently active button in the Lobby menu
 global u8 bluespheres.timeattack.characterselected	// The selected character in the Time Attack menu (0x00 - Sonic, 0x01 - Miles, 0x02 - Knuckles, 0x03 - Extra character)
-global u8 bluespheres.timeattack.xtracharselected	// The selected extra character in the Time Attack menu (0x00 - Character 1, 0x01 - Character 2, 0x02 - Character 3)
+global u8 bluespheres.timeattack.xtracharselected	// The selected extra character in the Time Attack menu (0x01 - Character 1, 0x02 - Character 2, 0x03 - Character 3)
 global u8 bluespheres.timeattack.levelselected	// Selected level (0x00 .. 0x07)
 global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0x00 - Sonic 3, 0x01 - Sonic & Knuckles)
 
@@ -41,5 +41,5 @@ global u8 bluespheres.blue_collected	// Counter of collected blue spheres
 // Toast stuff
 global u8 bluespheres.toast.state	// The current state of the toast (0x00 - Slide in, 0x01 - Waiting, 0x02 - Slide out, 0x03 - Hide/Reset, 0x04 - Additional code)
 global u8 bluespheres.toast.frames	// The counter is used for animation
-global u8 bluespheres.toast.timeout	// Waiting counter (max. 196)
+global u8 bluespheres.toast.timeout	// Waiting counter. The limit is determined from SETTING_BS_TOAST_DURATION
 global string bluespheres.toast.show	// Sets the name of the achievement when it was completed
