@@ -3,5 +3,7 @@ global u8 SETTING_BS_DEFAULT_CHARACTER
 global u8 SETTING_BS_STAGE_PREVIEW_ENABLE	// When 0x01, the menu on the ground will display the stage spheres (May cause reduction FPS on some devices)
 global u8 SETTING_BS_SHOW_KEYBOARD_KEYS	// When 0x01, the menu will show the navigation keys
 global u8 SETTING_BS_MENU_OPTIMIZATION	// When 0x01, the background in menu will be replaced with a static ground (Like the first release) and during the active popup all rear objects will not be rendered (Optimization method for weak devices)
+global u8 SETTING_BS_ACHIEVEMENT_TOAST_ENABLE
+global u8 SETTING_BS_TOAST_DURATION
 global u8 SETTING_BS_ACHIEVEMENTS_ENABLE	// When 0x01, achievements can be obtained in usual Special stages of the Main levels
 global u8 SETTING_BS_TIME_BONUSES_ON_SPECIALS	// When 0x01, a timer appears at the usual Special stages of the Main levels, and at the end, a time bonus will appear on the Results screen

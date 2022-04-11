@@ -58,7 +58,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 					target = 1200
 				
 				BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
-				BlueSpheresTimer.Menu.popup.show(STRING_ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES.LINE1, stringformat(STRING_ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES.LINE2, target), "", "", STRING_CLOSE)
+				BlueSpheresTimer.Menu.popup.show(stringformat(STRING_ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES.LINE1, target), STRING_ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES.LINE2, "", "", STRING_CLOSE)
 			}
 		}
 		else

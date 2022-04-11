@@ -550,6 +550,12 @@ function bool BlueSpheresTimer.Achievements.isComplete(u32 achievementId)
 //? Assigns the status Completed to the specified Achievement ID, and toast.
 function void BlueSpheresTimer.Achievements.setComplete(u32 achievementId)
 {
+	if !(SETTING_BS_ACHIEVEMENT_TOAST_ENABLE)
+	{
+		BlueSpheresTimer.Achievements.setValue(achievementId, 0xfa2)
+		return
+	}
+	
 	if (BlueSpheresTimer.Achievements.isComplete(achievementId))
 	{
 		BlueSpheresTimer.Achievements.toast(achievementId)
@@ -571,7 +577,7 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 		{
 			bluespheres.toast.show = BlueSpheresTimer.Achievements.getTitle(achievementId)
 			
-			u64 achievementTitle = (bluespheres.toast.timeout >= 98) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : STRING_ACHIEVEMENTS_TOAST_COMPLETE
+			u64 achievementTitle = (bluespheres.toast.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : STRING_ACHIEVEMENTS_TOAST_COMPLETE
 			BlueSpheresTimer.Menu.toast.setup(achievementTitle)
 		}
 	}
@@ -619,9 +625,9 @@ function void BlueSpheresTimer.Achievements.reset()
 }
 
 //? Returns the number of Achievements memory addresses that are greater than 0x00.
-function s32 BlueSpheresTimer.Achievements.writed()
+function u8 BlueSpheresTimer.Achievements.writed()
 {
-	s32 writed_address
+	u8 writed_address
 	
 	// Total number of Achievements
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
@@ -640,9 +646,12 @@ function s32 BlueSpheresTimer.Achievements.writed()
 //? Sets a Completed status for the all Achievements ID's.
 function void BlueSpheresTimer.Achievements.cheat()
 {
+	if (Input.buttonDown(BUTTON_B) == 0x00)
+		return
+	
 	// Total number of Achievements
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
-		BlueSpheresTimer.Achievements.setValue(A, 0xfa1)
+		BlueSpheresTimer.Achievements.setComplete(A)
 	}
 }

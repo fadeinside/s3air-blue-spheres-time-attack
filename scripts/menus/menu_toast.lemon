@@ -17,7 +17,7 @@ function void BlueSpheresTimer.Menu.toast.setup(string title)
 	{
 		if !(global.game.paused)
 			++bluespheres.toast.timeout
-		if (bluespheres.toast.timeout >= 196)
+		if (bluespheres.toast.timeout >= SETTING_BS_TOAST_DURATION)
 			bluespheres.toast.state = 0x02
 	}
 	

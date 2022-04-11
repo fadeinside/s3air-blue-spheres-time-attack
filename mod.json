@@ -40,7 +40,7 @@
 			{
 				"Category": "Menu appearance",
 				"InternalName": "SETTING_BS_SHOW_KEYBOARD_KEYS",
-				"DisplayName": "Show keyboard in menu:",
+				"DisplayName": "Show hot-keys in menu:",
 				"Variable": "SETTING_BS_SHOW_KEYBOARD_KEYS",
 				"DefaultValue": "1",
 				"Options":
@@ -52,13 +52,37 @@
 			{
 				"Category": "Menu appearance",
 				"InternalName": "SETTING_BS_MENU_OPTIMIZATION",
-				"DisplayName": "Menu Optimization:",
+				"DisplayName": "Optimization in menu :",
 				"Variable": "SETTING_BS_MENU_OPTIMIZATION",
 				"DefaultValue": "0",
 				"Options":
 				{
 					"0": "Disabled (Default)",
 					"1": "Enable"
+				}
+			},
+			{
+				"Category": "Achievement toast",
+				"InternalName": "SETTING_BS_ACHIEVEMENT_TOAST_ENABLE",
+				"DisplayName": "Show Achievements toast:",
+				"Variable": "SETTING_BS_ACHIEVEMENT_TOAST_ENABLE",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Enable (Default)"
+				}
+			},
+			{
+				"Category": "Achievement toast",
+				"InternalName": "SETTING_BS_TOAST_DURATION",
+				"DisplayName": "Toast duration:",
+				"Variable": "SETTING_BS_TOAST_DURATION",
+				"DefaultValue": "192",
+				"Options":
+				{
+					"192": "192 frames (Default)",
+					"128": "128 frames / Faster"
 				}
 			},
 			{

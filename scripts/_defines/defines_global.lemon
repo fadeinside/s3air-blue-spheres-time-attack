@@ -30,7 +30,7 @@ global s32 bluespheres.timeOver.timeout	// Counter before returning to the level
 global u8 bluespheres.timeattack.active	// Set to 0x01 when the Time Attack mode is active
 global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
 global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
-global u8 bluespheres.character_selected	// Set to 0x01 when персонаж по умолчанию был определён и установлен единожды
+global u8 bluespheres.character_selected	// Set to 0x01 when the default character was defined and sets once
 
 // Temp vars
 global u8 bluespheres.tempValue1	// Used in some cases
