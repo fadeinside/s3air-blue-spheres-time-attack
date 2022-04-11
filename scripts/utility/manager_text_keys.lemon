@@ -5,7 +5,7 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQu
 }
 
 //? The full text rendering code with text alignment and the key.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, string text, u8 font, u8 alpha, string key1, string key2)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha, string key1, string key2)
 {
 	s32 character_space
 	for (s32 A = 0x00; A < strlen(text); ++A)
