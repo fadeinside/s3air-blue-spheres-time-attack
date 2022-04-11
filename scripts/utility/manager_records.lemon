@@ -89,7 +89,7 @@ function void BlueSpheresTimer.Records.reset()
 			// Number of characters (0x00 .. 0x06)
 			for (u8 C = 0x00; C <= 0x06; ++C)
 			{
-				// "Sonic & Knuckles" levela layout (0x00 .. 0x01)
+				// "Sonic & Knuckles" level layout (0x00 .. 0x01)
 				for (u8 D = 0x00; D <= 0x01; ++D)
 				{
 					// D.A. Garden Edition (0x00 .. 0x01)
@@ -131,7 +131,7 @@ function s32 BlueSpheresTimer.Records.writed()
 			// Number of characters (0x00 .. 0x06)
 			for (u8 C = 0x00; C <= 0x06; ++C)
 			{
-				// "Sonic & Knuckles" levela layout (0x00 .. 0x01)
+				// "Sonic & Knuckles" level layout (0x00 .. 0x01)
 				for (u8 D = 0x00; D <= 0x01; ++D)
 				{
 					// D.A. Garden Edition (0x00 .. 0x01)

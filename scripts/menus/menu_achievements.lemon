@@ -87,7 +87,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 			{
 				if (bluespheres.achievements.buttonselected == A)
 				{
-					if !(BlueSpheresTimer.Achievements.getTitle(A) == "Locked" || BlueSpheresTimer.Achievements.getTitle(A) == "Unknown achievement")
+					if !(BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_LOCKED || BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_UNKNOWN)
 					{
 						playSound(0x63)
 						bluespheres.popup.show = 0x01
