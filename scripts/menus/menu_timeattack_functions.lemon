@@ -121,8 +121,8 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 		bluespheres.position.y = u16[A2+4]
 	}
 	
-	fn00a0e6() // VRAM stuff
-	fn009d9e() // Rings framerate
+	// Rings framerate
+	fn009d9e()
 	
 	// Render spheres
 	BlueSpheres.RenderSpheres()
@@ -314,7 +314,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelselect(s32 px, s32 py)
 	
 	py += 16
 	if (bluespheres.timeattack.levelselected == 0x07)
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "* Secret *", 0x01)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_SECRET, 0x01)
 	else
 		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* 0%d *", bluespheres.timeattack.levelselected + 0x01), 0x02)
 }

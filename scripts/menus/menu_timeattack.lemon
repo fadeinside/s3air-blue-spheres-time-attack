@@ -32,13 +32,13 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		// Start counting arrival frames in the menu
 		++level.framecounter
 		
-		// Checking control buttons
-		BlueSpheresTimer.Menu.timeattack.updateControl()
-		
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x85)
 			break
-			
+		
+		// Checking control buttons
+		BlueSpheresTimer.Menu.timeattack.updateControl() 
+		
 		// Unlockables checking
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))
 			bluespheres.popup.show = 0x01

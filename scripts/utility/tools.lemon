@@ -21,9 +21,6 @@ function void BlueSpheresTimer.VRAMClear()
 	VDP.fillVRAMbyDMA(0x00, 0x0000, 0x40)
 	VDP.fillVRAMbyDMA(0x00, 0xc000, 0x2000)
 	VDP.fillVRAMbyDMA(0x00, 0xe000, 0x2000)
-	
-	zeroMemory(0xfffff800, 0x280)
-	zeroMemory(0xffffe000, 0x400)
 }
 
 //? Loads some data into VRAM related with spheres.
@@ -32,6 +29,9 @@ function void BlueSpheresTimer.VRAMLoad_stagePreview()
 	// Ignore if this setting is disabled
 	if !(SETTING_BS_STAGE_PREVIEW_ENABLE || SETTING_BS_MENU_OPTIMIZATION)
 		return
+		
+	copyMemory(0xffffe480, 0x00a10a, 0x70)
+	zeroMemory(0xffffa400, 0x100)
 	
 	copyMemory(0xfffffc80, 0x00896e, 0x100)
 	

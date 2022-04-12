@@ -32,7 +32,7 @@ global u8 bluespheres.timeattack.active	// Set to 0x01 when the Time Attack mode
 global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
 global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 global u8 bluespheres.character_selected	// Set to 0x01 when the default character was defined and sets once
-global u8 bluespheres.pause.hideMenu	//
+global u8 bluespheres.pause.hideMenu	// Sets 0x01 when items are hidden in the pause menu
 
 // Temp vars
 global u8 bluespheres.tempValue1	// Used in some cases

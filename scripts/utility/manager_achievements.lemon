@@ -9,8 +9,6 @@ function void BlueSpheresTimer.Achievements.setup()
 	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 		return
 	
-	BlueSpheresTimer.Achievements.cheat()
-	
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) >= 100)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) >= 300)
@@ -648,7 +646,7 @@ function u8 BlueSpheresTimer.Achievements.writed()
 //? Sets a Completed status for the all Achievements ID's.
 function void BlueSpheresTimer.Achievements.cheat()
 {
-	if (Input.buttonDown(BUTTON_B) == 0x00)
+	if (Input.buttonDown(BUTTON_B) == 0x00  || global.game_mode == 0x34)
 		return
 	
 	// Total number of Achievements
