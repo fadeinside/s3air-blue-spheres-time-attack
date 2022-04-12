@@ -30,7 +30,7 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		BlueSpheresTimer.Menu.achievements.updateControl()
 		
 		// Checking the activity of achievements
-		BlueSpheresTimer.Achievements.setup()
+		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.achievements.popups()

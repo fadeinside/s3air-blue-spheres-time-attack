@@ -5,6 +5,10 @@ function void BlueSpheresTimer.Menu.pause.setup()
 	bluespheres.buttons.setup = 0x02
 	bluespheres.pause.buttonselected = 0x00
 	
+	#if STANDALONE
+		Game.endSkippableCutscene()
+	#endif
+	
 	// Main loop
 	while (global.game.paused)
 	{

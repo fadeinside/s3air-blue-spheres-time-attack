@@ -129,6 +129,10 @@ function void fn009b62()
 	{
 		if (u8[0xffffe44c] == 0x01)
 		{
+		#if STANDALONE
+			Game.startSkippableCutscene()
+		#endif
+			
 			if (bluespheres.lifted_height < 0x100)
 			{
 				if (bluespheres.lifted_height == 0x00)
@@ -170,8 +174,8 @@ function void fn009b62()
 				return
 			}
 			
-			// Skip the emerald if all the rings are not collected. Ignore for Stage 7 S3, there no rings
-			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00))
+			// Skip the emerald if all the rings are not collected
+			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00 && !Mods.isModActive("Sonic 3: D.A. Garden Edition")))
 			{
 				// I'm just using "Time Over" dependencies to create "Not Enough Rings"
 				bluespheres.notEnoughRings = 0x01
@@ -227,6 +231,10 @@ function void fn009b62()
 				D0.u16 = (bluespheres.position.x | bluespheres.position.y) & 0xe0
 				if (D0.u16 == 0x00)
 				{
+				#if STANDALONE
+					Game.endSkippableCutscene()
+				#endif
+					
 					// Update emeralds
 					BlueSpheresTimer.Emeralds.update()
 					
@@ -288,7 +296,6 @@ function void fn00903e()
 //# address-hook(0x008e94) end(0x008ee6)
 function void fn008e94()
 {
-	// debugLog(stringformat("0x%06x, 0x%06x, %d", u32[0xffffb0de], u16[A0 + 0x30], objA0.value32))
 	if (objA0.value32 != 0x00)
 		--objA0.value32
 	else
@@ -330,7 +337,6 @@ function void fn008e94()
 //# address-hook(0x008eec) end(0x008f1e)
 function void fn008eec()
 {
-	// debugLog(stringformat("0x%06x, 0x%06x, %d", u32[0xffffb0de], u16[A0 + 0x30], objA0.value32))
 	if (bluespheres.timeOver != 0x01)
 	{
 		u16[A0 + 0x30] -= 0x10
@@ -366,7 +372,6 @@ function void fn008eec()
 //# address-hook(0x008f24) end(0x008f58)
 function void fn008f24()
 {
-	// debugLog(stringformat("0x%06x, 0x%06x, %d", u32[0xffffb0de], u16[A0 + 0x30], objA0.value32))
 	if (bluespheres.timeOver != 0x01)
 	{
 		if (objA0.value32 != 0x00)

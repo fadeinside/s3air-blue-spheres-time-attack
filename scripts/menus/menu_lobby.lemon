@@ -12,12 +12,12 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	// Play Blue Sphere game music
 	playMusic(0x28)
 	
+	// Screen fades
+	FadeOutScreenBlocking()
+	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()
 	BlueSpheresTimer.VRAMLoad_stagePreview()
-	
-	// Screen fades
-	FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)
@@ -36,7 +36,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 		BlueSpheresTimer.Menu.lobby.updateControl()
 		
 		// Checking the activity of achievements
-		BlueSpheresTimer.Achievements.setup()
+		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.lobby.headline()

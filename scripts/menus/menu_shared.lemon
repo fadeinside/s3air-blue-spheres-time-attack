@@ -33,7 +33,7 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		BlueSpheresTimer.Menu.shared.updateControl()
 		
 		// Checking the activity of achievements
-		BlueSpheresTimer.Achievements.setup()
+		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.shared.headline()

@@ -12,16 +12,16 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		playMusic(0xac) // Play Continue song when 8 stage unlocked
 	if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 		playMusic(0xac) // Play Continue song when S&K stages unlocked
-	
-	// VRAM stuff
-	BlueSpheresTimer.VRAMClear()
-	BlueSpheresTimer.VRAMLoad_stagePreview()
-	
+		
 	// Screen fades
 	if (bluespheres.timeattack.active)
 		SetPaletteToWhite()
 	else
 		FadeOutScreenBlocking()
+	
+	// VRAM stuff
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
 	
 	// Main loop
 	while (true)
@@ -46,7 +46,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 			bluespheres.popup.show = 0x01
 		
 		// Checking the activity of achievements
-		BlueSpheresTimer.Achievements.setup()
+		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.timeattack.popups()

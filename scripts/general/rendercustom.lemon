@@ -10,13 +10,13 @@ function void BlueSpheresTimer.renderTimer(s16 px, s16 py, u16 renderQueue)
 		if (SETTING_BS_ACHIEVEMENTS_ENABLE)
 		{
 			// If achievements are enabled, but the timer is disabled, then you still can get achievements
-			BlueSpheresTimer.Achievements.setup()
+			BlueSpheresTimer.Achievements.update()
 		}
 		return
 	}
 	
 	// Checking the activity of achievements
-	BlueSpheresTimer.Achievements.setup()
+	BlueSpheresTimer.Achievements.update()
 	
 	// Blink when the time exceeds 59:00:00 / 4:30:00
 	bool timeUnlimited = BlueSpheresTimer.timeUnlimited()

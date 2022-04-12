@@ -104,6 +104,13 @@ function void BlueSpheresTimer.Menu.pause.updateControl()
 		}
 		else if (bluespheres.pause.buttonselected == 0x00)
 		{
+			if (u8[0xffffe44c] > 0x00)
+			{
+			#if STANDALONE
+				Game.startSkippableCutscene()
+			#endif
+			}
+			
 			playSound(0x63)
 			global.game.paused = 0x00
 		}
