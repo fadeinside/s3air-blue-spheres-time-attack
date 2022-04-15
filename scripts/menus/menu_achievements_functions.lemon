@@ -80,6 +80,11 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	}
 	
 	px -= 128
+	
+	// Scroll bar
+	s32 scrollOffset = ((getScreenHeight() - 44) / bluespheres.achievements.total) * ((bluespheres.achievements.buttonselected == bluespheres.buttons.setup) ? 0x00 : bluespheres.achievements.buttonselected)
+	debugDrawRect(px - 24, 44 + scrollOffset, 0x05, 0x15, 0xffffffff)
+	
 	py += 44
 	for (u8 B = 0x00; B <= bluespheres.achievements.total; ++B)
 	{
