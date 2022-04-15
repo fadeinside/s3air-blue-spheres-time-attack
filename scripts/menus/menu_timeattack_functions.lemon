@@ -1,8 +1,3 @@
-function void DataSelect.setup()
-{
-	base.DataSelect.setup()
-}
-
 function void BlueSpheresTimer.Menu.timeattack.background()
 {
 	// SK Blue Sphere logo
@@ -120,8 +115,8 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	if (global.game_mode == 0x85 && !bluespheres.popup.show && (stageChanged || layoutChanged || characterChanged))
 	{
 		u16[0xffffe426] = u16[A2]
-		bluespheres.position.x = u16[A2+2]
-		bluespheres.position.y = u16[A2+4]
+		bluespheres.position.x = u16[A2 + 0x02]
+		bluespheres.position.y = u16[A2 + 0x04]
 	}
 	
 	if (bluespheres.direction != 0x00 || bluespheres.direction != 64 || bluespheres.direction != 128 || bluespheres.direction != 192) // Fixes camera direction when you return to the menu after red sphere or emerald
@@ -129,8 +124,8 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 		
 	if (global.game_mode == 0x89 && bluespheres.position.x == 0x00) // Sets the correct camera position when you first log in to the Lobby
 	{
-		bluespheres.position.x = u16[A2+2]
-		bluespheres.position.y = u16[A2+4]
+		bluespheres.position.x = u16[A2 + 0x02]
+		bluespheres.position.y = u16[A2 + 0x04]
 	}
 	
 	// Rings framerate

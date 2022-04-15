@@ -75,15 +75,12 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	
 	if (py >= -16)
 	{
-		u8 alpha0 = (py < 0x00) ? 48 : ((py < 16) ? 100 : ((py < 32) ? 150 : 255))
-		BlueSpheresTimer.Menu.achievements.items.unlocked(px, py, alpha0)
+		u8 alpha = (py < 0x00) ? 48 : ((py < 16) ? 100 : ((py < 32) ? 150 : 255))
+		BlueSpheresTimer.Menu.achievements.items.unlocked(px, py, alpha)
 	}
 	
 	px -= 128
-	
-	// Scroll bar
-	s32 scrollOffset = ((getScreenHeight() - 44) / bluespheres.achievements.total) * ((bluespheres.achievements.buttonselected == bluespheres.buttons.setup) ? 0x00 : bluespheres.achievements.buttonselected)
-	debugDrawRect(px - 24, 44 + scrollOffset, 0x05, 0x15, 0xffffffff)
+	BlueSpheresTimer.Menu.achievements.items.scrollbar(px)
 	
 	py += 44
 	for (u8 B = 0x00; B <= bluespheres.achievements.total; ++B)
@@ -112,6 +109,32 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(B), BlueSpheresTimer.Achievements.getValue(B)))
 		}
 	}
+}
+
+function void BlueSpheresTimer.Menu.achievements.items.scrollbar(s32 px)
+{
+	if (control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
+	{
+		bluespheres.scrollbar.alpha = 0xff
+		bluespheres.scrollbar.timer = 0x00
+	}
+	
+	if (bluespheres.scrollbar.alpha != 0x00)
+	{
+		++bluespheres.scrollbar.timer
+		if (bluespheres.scrollbar.timer >= 0x0a)
+		{
+			bluespheres.scrollbar.alpha -= bluespheres.scrollbar.timer
+			if (bluespheres.scrollbar.timer >= 0x5a)
+			{
+				bluespheres.scrollbar.alpha = 0x00
+				bluespheres.scrollbar.timer = 0x00
+			}
+		}
+	}
+	
+	s32 scrollOffset = ((getScreenHeight() - 88) / bluespheres.achievements.total) * ((bluespheres.achievements.buttonselected == bluespheres.buttons.setup) ? 0x00 : bluespheres.achievements.buttonselected)
+	Renderer.drawCustomSprite("icon_scrollbar", getScreenWidth(), 44 + scrollOffset, 0x00, 0x40, 0xf000, 0x00, bluespheres.scrollbar.alpha)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py, u8 alpha)

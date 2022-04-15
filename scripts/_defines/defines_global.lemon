@@ -45,3 +45,7 @@ global u8 bluespheres.toast.state	// The current state of the toast (0x00 - Slid
 global u8 bluespheres.toast.frames	// The counter is used for animation
 global u8 bluespheres.toast.timeout	// Waiting counter. The limit is determined from SETTING_BS_TOAST_DURATION
 global string bluespheres.toast.show	// Sets the name of the achievement when it was completed
+
+// Scroll bar
+global u8 bluespheres.scrollbar.alpha
+global u8 bluespheres.scrollbar.timer
