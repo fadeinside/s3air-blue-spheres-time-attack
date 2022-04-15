@@ -1,5 +1,5 @@
 //? Simplified BlueSpheresTimer.TextManager.drawText() function with the key and without configurable transparency.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, string text, u8 font, string key1, string key2)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, string key1, string key2)
 {
 	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, text, font, 255, key1, key2)
 }

@@ -1,5 +1,5 @@
 //? Simplified BlueSpheresTimer.TextManager.drawText() function without configurable transparency.
-function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u32 renderQueue, u8 align, string text, u8 font)
+function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font)
 {
 	BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, align, text, font, 255)
 }
@@ -72,7 +72,7 @@ function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u16 renderQueue
 }
 
 //? Single character rendering function. Some optimizations are also used here to fasted rendering.
-function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u32 renderQueue, s32 character, s32 character_space, string text, u8 font, u8 alpha)
+function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u16 renderQueue, s32 character, s32 character_space, string text, u8 font, u8 alpha)
 {
 	if ((px + character_space) >= getScreenWidth() || (px + character_space) <= -0x12)
 		return
@@ -89,11 +89,11 @@ function string BlueSpheresTimer.TextManager.getFont(u8 font)
 {
 	string font_name
 	if (font == 0x00)
-		font_name = "font.headline"
+		font_name = "font_headline"
 	else if (font == 0x01)
-		font_name = "font.regular"
+		font_name = "font_regular"
 	else if (font == 0x02)
-		font_name = "font.thin"
+		font_name = "font_thin"
 	
 	return font_name
 }
