@@ -1,5 +1,8 @@
 function void BlueSpheresTimer.Menu.options.headline()
 {
+	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
 	s32 offset = 150
 	s32 px = getScreenWidth() / 0x02 - offset
 	
@@ -9,6 +12,9 @@ function void BlueSpheresTimer.Menu.options.headline()
 
 function void BlueSpheresTimer.Menu.options.items()
 {
+	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 46
 	

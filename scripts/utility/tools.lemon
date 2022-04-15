@@ -23,9 +23,22 @@ function void BlueSpheresTimer.VRAMClear()
 	VDP.fillVRAMbyDMA(0x00, 0xe000, 0x2000)
 }
 
-//? Loads some data into VRAM related with spheres.
+//? Loads some data into VRAM related with menu background.
 function void BlueSpheresTimer.VRAMLoad_stagePreview()
 {
+	// "Sonic and Knuckles" background stuff
+	if (SETTING_BS_MENU_BACKGROUND == 0x01)
+	{
+		copyMemory(0xfffffc80, 0x04de08, 0x80)
+		
+		Nemesis.loadDataToVRAM(0x0dde34, 0xb7e0)
+		Nemesis.loadDataToVRAM(0x189c7c, 0x32e0)
+		
+		Enigma.decompress(0x189c4e, 0xffff8000, 0x6197)
+		fn04dea2()
+		return
+	}
+	
 	// Ignore if this setting is disabled
 	if !(SETTING_BS_STAGE_PREVIEW_ENABLE || SETTING_BS_MENU_OPTIMIZATION)
 		return

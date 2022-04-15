@@ -50,13 +50,10 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.timeattack.popups()
-		if !(bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
-		{
-			BlueSpheresTimer.Menu.timeattack.headline()
-			BlueSpheresTimer.Menu.timeattack.items()
-			
-			BlueSpheresTimer.Menu.timeattack.background()
-		}
+		BlueSpheresTimer.Menu.timeattack.headline()
+		BlueSpheresTimer.Menu.timeattack.items()
+		
+		BlueSpheresTimer.Menu.timeattack.background()
 		
 		// Screen fades
 		BlueSpheresTimer.FadeInFromWhite()

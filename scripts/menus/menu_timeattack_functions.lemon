@@ -1,15 +1,24 @@
+function void DataSelect.setup()
+{
+	base.DataSelect.setup()
+}
+
 function void BlueSpheresTimer.Menu.timeattack.background()
 {
 	// SK Blue Sphere logo
-	Renderer.drawCustomSprite("sklogo", getScreenWidth() / 0x02, 40, 0x40, 0x00, 0xF000)
+	if (SETTING_BS_MENU_BACKGROUND != 0x01) // Do not render this if the "Sonic and Knuckles" theme is enabled
+		Renderer.drawCustomSprite("sklogo", getScreenWidth() / 0x02, 40, 0x40, 0x00, 0xF000)
 	
 	// Copyright
-	Renderer.drawCustomSprite("icon_copyright", getScreenWidth() - 104, 210, 0x00, 0x40, 0xf000)
-	Renderer.drawCustomSprite("title_screen_cr", getScreenWidth() - 92, 206, 0x40, 0x00, 0xf000)
+	if !(bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+	{
+		Renderer.drawCustomSprite("icon_copyright", getScreenWidth() - 104, 210, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite("title_screen_cr", getScreenWidth() - 92, 206, 0x40, 0x00, 0xf000)
+	}
 	
 	// Draw a gradient so that the objects are more clearly visible on the background
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (SETTING_BS_MENU_BACKGROUND == 0x01) ? 0xba : 0xff)
 	
 	// Render stage preview
 	BlueSpheresTimer.Menu.timeattack.stagePreview()
@@ -17,6 +26,10 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 
 function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 {
+	// Ignore function if "Sonic and Knuckles" theme is enabled
+	if (SETTING_BS_MENU_BACKGROUND == 0x01)
+		return
+	
 	// We will make the ground static, as in the first release, when the menu optimization setting is active
 	if (SETTING_BS_MENU_OPTIMIZATION)
 	{
@@ -39,7 +52,6 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	
 		// Render ground
 		BlueSpheres.renderCustomGround()
-		
 		return
 	}
 	
@@ -130,6 +142,9 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 
 function void BlueSpheresTimer.Menu.timeattack.headline()
 {
+	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
 	s32 offset = 216
 	s32 px = getScreenWidth() / 0x02 - offset
 	
@@ -139,6 +154,9 @@ function void BlueSpheresTimer.Menu.timeattack.headline()
 
 function void BlueSpheresTimer.Menu.timeattack.items()
 {
+	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 46
 	
