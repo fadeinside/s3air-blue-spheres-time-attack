@@ -37,12 +37,12 @@ function void BlueSpheresTimer.Menu.lobby.items.keys(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
 	py -= 9
-	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x00, STRING_LOBBY_TIME_ATTACK)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
+	string button_time_attack = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x00, STRING_LOBBY_TIME_ATTACK)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_time_attack, 0x01)
 	
 	py += 18
-	string button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, STRING_LOBBY_GET_BLUE_SPHERES)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
+	string button_blue_spheres = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, STRING_LOBBY_GET_BLUE_SPHERES)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_blue_spheres, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.lobby.updateControl()

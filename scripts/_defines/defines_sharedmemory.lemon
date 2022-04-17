@@ -14,6 +14,7 @@ define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memor
 
 // Events
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
+define u8 bluespheres.timeattack.active	= u8[0x8e1216]	// Set to 0x01 when the Time Attack mode is active
 
 // Data
 // D.A. Garden active - 0x8e12ee

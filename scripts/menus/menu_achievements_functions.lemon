@@ -6,8 +6,8 @@ function void BlueSpheresTimer.Menu.achievements.headline()
 	s32 offset = 243
 	s32 px = getScreenWidth() / 0x02 - offset
 	
-	for (u8 A = 0x00; A < 0x05; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - (level.framecounter % offset) * 0x02, 25, 0xf000, 0x01, STRING_ACHIEVEMENTS_HEADLINE, 0x00)
+	for (u8 A = 0x00; A < 0x04; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, STRING_ACHIEVEMENTS_HEADLINE, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items()
@@ -61,8 +61,8 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 {
-	string button_0xff = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, STRING_BACK)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0xff, 0x01)
+	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, STRING_BACK)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 py)
@@ -83,9 +83,9 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	BlueSpheresTimer.Menu.achievements.items.scrollbar(px)
 	
 	py += 44
-	for (u8 B = 0x00; B <= bluespheres.achievements.total; ++B)
+	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
-		if (B != 0x00)
+		if (A != 0x00)
 			py += 26
 		
 		// This optimizes render by calculating only the data that is visible to the screen
@@ -93,20 +93,20 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		{
 			u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
 			
-			string achievement_status = BlueSpheresTimer.Achievements.isComplete(B) ? "icon_status_unlock" : "icon_status_lock"
+			string achievement_status = BlueSpheresTimer.Achievements.isComplete(A) ? "icon_status_unlock" : "icon_status_lock"
 			Renderer.drawCustomSprite(achievement_status, px, py, 0x00, 0x40, 0xf000, 0x00, alpha)
 			
 			// Make transparent for Locked/Unknown achievements
-			if (BlueSpheresTimer.Achievements.getTitle(B) == STRING_ACHIEVEMENTS_LOCKED || BlueSpheresTimer.Achievements.getTitle(B) == STRING_ACHIEVEMENTS_MOD_REQUIRE || BlueSpheresTimer.Achievements.getTitle(B) == STRING_ACHIEVEMENTS_UNKNOWN)
+			if (BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_LOCKED || BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_MOD_REQUIRE || BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_UNKNOWN)
 				alpha -= alpha / 0x02
 		
-			string achievement_tag = BlueSpheresTimer.Achievements.getTags(B)
+			string achievement_tag = BlueSpheresTimer.Achievements.getTags(A)
 			BlueSpheresTimer.Achievements.renderBasicTags(px + 16, py + 12, 0xf000, achievement_tag, alpha)
 		
-			string button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, B, BlueSpheresTimer.Achievements.getTitle(B))
+			string button_achievement = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, A, BlueSpheresTimer.Achievements.getTitle(A))
 			BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
 		
-			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(B), BlueSpheresTimer.Achievements.getValue(B)))
+			//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(A), BlueSpheresTimer.Achievements.getValue(A)))
 		}
 	}
 }

@@ -189,16 +189,16 @@ function void BlueSpheresTimer.Menu.timeattack.items.keys(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 {
 	px -= 128
-	u64 button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, STRING_TIME_ATTACK_OPTIONS)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x00, 0x01)
+	string button_options = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, STRING_TIME_ATTACK_OPTIONS)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_options, 0x01)
 	
 	px += 128
-	u64 button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x01, STRING_TIME_ATTACK_START)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x01, 0x01)
+	string button_start = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x01, STRING_TIME_ATTACK_START)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_start, 0x01)
 	
 	px += 128
-	u64 button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, STRING_TIME_ATTACK_ACHIEVEMENTS)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_0x02, 0x01)
+	string button_achievements = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, STRING_TIME_ATTACK_ACHIEVEMENTS)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
@@ -266,7 +266,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 	for (u8 A = 0x01; A <= 0x04; ++A)
 	{
 		py += 16
-		u64 name = (A == 0x01) ? "st" : ((A == 0x02) ? "nd" : ((A == 0x03) ? "rd" : ((A == 0x04) ? "th" : "")))
+		string name = (A == 0x01) ? "st" : ((A == 0x02) ? "nd" : ((A == 0x03) ? "rd" : ((A == 0x04) ? "th" : "")))
 		BlueSpheresTimer.Menu.timeattack.items.table(px, py, 0xf000, 0x02, stringformat("%d%s", A, name), BlueSpheresTimer.Records.getRecordTime(A))
 	}
 }
@@ -277,7 +277,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_CHARACTER, 0x01, "y", "")
 	BlueSpheresTimer.TextManager.drawText(px, py + 16, 0xf000, 0x01, "*    *", 0x02)
 	
-	u64 key
+	string key
 	if (bluespheres.timeattack.characterselected == 0x00)
 		key = "continue_icon_sonic"
 	else if (bluespheres.timeattack.characterselected == 0x01)
@@ -344,7 +344,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? STRING_TIME_ATTACK_SK : STRING_TIME_ATTACK_S3), 0x01, alpha)
 }
 
-function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 renderQueue, u8 align, u64 text, s32 input_data)
+function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 renderQueue, u8 align, string text, s32 input_data)
 {
 	px -= 12
 	BlueSpheresTimer.TextManager.drawText(px - 38, py, renderQueue, align, text, 0x01)

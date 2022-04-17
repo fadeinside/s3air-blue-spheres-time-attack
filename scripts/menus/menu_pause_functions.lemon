@@ -43,16 +43,16 @@ function void BlueSpheresTimer.Menu.pause.items.keys(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.pause.items.menu(s32 px, s32 py)
 {
 	py -= 18
-	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x00, STRING_PAUSE_CONTINUE)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
+	string button_continue = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x00, STRING_PAUSE_CONTINUE)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_continue, 0x01)
 	
 	py += 18
-	string button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x01, STRING_PAUSE_RESTART)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
+	string button_restart = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x01, STRING_PAUSE_RESTART)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_restart, 0x01)
 	
 	py += 18
-	string button_0x02 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, STRING_PAUSE_EXIT)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x02, 0x01)
+	string button_exit = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, STRING_PAUSE_EXIT)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_exit, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.pause.updateControl()
