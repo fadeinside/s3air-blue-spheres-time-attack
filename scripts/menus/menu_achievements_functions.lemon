@@ -113,6 +113,10 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 
 function void BlueSpheresTimer.Menu.achievements.items.scrollbar(s32 px)
 {
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
 	if (control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
 	{
 		bluespheres.scrollbar.alpha = 0xff

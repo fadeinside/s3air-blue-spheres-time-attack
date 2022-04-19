@@ -21,9 +21,26 @@ function void BlueSpheresTimer.Menu.timeattack.background()
 
 function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 {
-	// Ignore function if "Sonic and Knuckles" theme is enabled
+	// Let's make the background move from the bottom up if "Sonic and Knuckles" theme is enabled
 	if (SETTING_BS_MENU_BACKGROUND == 0x01)
+	{
+		D0 = (s16[0xffffe402] < 0x00) ? -0x400 : 0x400
+		D0 += u32[0xffffeed8]
+		
+		if (D0.s32 < -0x8000)
+			D0 = -0x8000
+		else if (D0.s32 > 0x8000)
+			D0 = 0x8000
+		
+		u32[0xffffeed8] = D0
+		camera.background.y += D0
+		camera.background.y.u16 &= 0xff
+		
+		fn059990()
+		
+		// Finish the function on this
 		return
+	}
 	
 	// We will make the ground static, as in the first release, when the menu optimization setting is active
 	if (SETTING_BS_MENU_OPTIMIZATION)
@@ -47,6 +64,8 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	
 		// Render ground
 		BlueSpheres.renderCustomGround()
+		
+		// Finish the function on this
 		return
 	}
 	
@@ -84,6 +103,8 @@ function void BlueSpheresTimer.Menu.timeattack.stagePreview()
 	if !(SETTING_BS_STAGE_PREVIEW_ENABLE)
 	{
 		bluespheres.direction = 0x40
+		
+		// Finish the function on this
 		return
 	}
 	
@@ -278,11 +299,11 @@ function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py
 	BlueSpheresTimer.TextManager.drawText(px, py + 16, 0xf000, 0x01, "*    *", 0x02)
 	
 	string key
-	if (bluespheres.timeattack.characterselected == 0x00)
+	if (bluespheres.timeattack.characterselected == CHARACTER_SONIC)
 		key = "continue_icon_sonic"
-	else if (bluespheres.timeattack.characterselected == 0x01)
+	else if (bluespheres.timeattack.characterselected == CHARACTER_TAILS)
 		key = "continue_icon_tails"
-	else if (bluespheres.timeattack.characterselected == 0x02)
+	else if (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES)
 		key = "continue_icon_knuckles"
 	else if (bluespheres.timeattack.characterselected == 0x03)
 		key = stringformat("continue_icon_slot%d", bluespheres.timeattack.xtracharselected)

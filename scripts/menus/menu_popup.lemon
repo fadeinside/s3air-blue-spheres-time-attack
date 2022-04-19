@@ -23,6 +23,59 @@ function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, stri
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text4, 0x01)
 }
 
+// - - - - - - - - - - - - - - - - - - - //
+// Popup (1 button) 				//
+// - - - - - - - - - - - - - - - - - - - //
+
+function void BlueSpheresTimer.Menu.popup.show(string text1, string text2, string text3, string text4, string button)
+{
+	bluespheres.popup.buttonselected = 0x00
+	
+	BlueSpheresTimer.Menu.popup.items(text1, text2, text3, text4, button)
+	BlueSpheresTimer.Menu.popup.background()
+}
+
+function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, string text3, string text4, string button)
+{
+	s32 px = getScreenWidth() / 0x02
+	s32 py = getScreenHeight() / 0x02
+	
+	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
+		py += 16
+	
+	if (text2 != "")
+		py += 0x08
+	if (text3 != "")
+		py += 0x08
+	if (text4 != "")
+		py += 0x08
+	
+	BlueSpheresTimer.Menu.popup.items.keys1(px, py)
+	BlueSpheresTimer.Menu.popup.items.menu(px, py, button)
+	
+	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
+}
+
+function void BlueSpheresTimer.Menu.popup.items.keys1(s32 px, s32 py)
+{
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+}
+
+function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, string button)
+{
+	py += 16
+	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
+}
+
+// - - - - - - - - - - - - - - - - - - - //
+// Popup (2 buttons)				//
+// - - - - - - - - - - - - - - - - - - - //
+
 function void BlueSpheresTimer.Menu.popup.show(string text1, string text2, string text3, string text4, string button1, string button2)
 {
 	// Button selection
@@ -64,13 +117,13 @@ function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, stri
 	if (text4 != "")
 		py += 0x08
 	
-	BlueSpheresTimer.Menu.popup.items.keys1(px, py)
+	BlueSpheresTimer.Menu.popup.items.keys2(px, py)
 	BlueSpheresTimer.Menu.popup.items.menu(px, py, button1, button2)
 	
 	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
 }
 
-function void BlueSpheresTimer.Menu.popup.items.keys1(s32 px, s32 py)
+function void BlueSpheresTimer.Menu.popup.items.keys2(s32 px, s32 py)
 {
 	// Set position
 	px = 18
@@ -93,49 +146,4 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, string butt
 	px += 128
 	string button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x01, button2)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
-}
-
-function void BlueSpheresTimer.Menu.popup.show(string text1, string text2, string text3, string text4, string button)
-{
-	bluespheres.popup.buttonselected = 0x00
-	
-	BlueSpheresTimer.Menu.popup.items(text1, text2, text3, text4, button)
-	BlueSpheresTimer.Menu.popup.background()
-}
-
-function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, string text3, string text4, string button)
-{
-	s32 px = getScreenWidth() / 0x02
-	s32 py = getScreenHeight() / 0x02
-	
-	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
-		py += 16
-	
-	if (text2 != "")
-		py += 0x08
-	if (text3 != "")
-		py += 0x08
-	if (text4 != "")
-		py += 0x08
-	
-	BlueSpheresTimer.Menu.popup.items.keys2(px, py)
-	BlueSpheresTimer.Menu.popup.items.menu(px, py, button)
-	
-	BlueSpheresTimer.Menu.popup.items.description(px, py, text1, text2, text3, text4)
-}
-
-function void BlueSpheresTimer.Menu.popup.items.keys2(s32 px, s32 py)
-{
-	// Set position
-	px = 18
-	py = getScreenHeight() - 18
-	
-	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
-}
-
-function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, string button)
-{
-	py += 16
-	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
 }
