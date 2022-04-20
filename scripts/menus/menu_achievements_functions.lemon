@@ -22,6 +22,7 @@ function void BlueSpheresTimer.Menu.achievements.items()
 	BlueSpheresTimer.Menu.achievements.items.menu(px, py)
 	
 	BlueSpheresTimer.Menu.achievements.items.achievements(px, py)
+	BlueSpheresTimer.Menu.achievements.items.unlocked(px, py)
 	BlueSpheresTimer.Menu.achievements.items.score(px, py)
 }
 
@@ -67,22 +68,15 @@ function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 py)
 {
-	if (bluespheres.achievements.buttonselected >= 0x02 && !(bluespheres.achievements.buttonselected == bluespheres.buttons.setup))
+	if (bluespheres.achievements.buttonselected >= 0x04 && !(bluespheres.achievements.buttonselected == bluespheres.buttons.setup))
 	{
-		for (u8 A = 0x00; A <= bluespheres.achievements.buttonselected - 0x02; ++A)
+		for (u8 A = 0x00; A <= bluespheres.achievements.buttonselected - 0x04; ++A)
 			py -= 26
 	}
 	
-	if (py >= -16)
-	{
-		u8 alpha = (py < 0x00) ? 48 : ((py < 16) ? 100 : ((py < 32) ? 150 : 255))
-		BlueSpheresTimer.Menu.achievements.items.unlocked(px, py, alpha)
-	}
-	
-	px -= 128
+	px -= 156
 	BlueSpheresTimer.Menu.achievements.items.scrollbar(px)
 	
-	py += 44
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
 		if (A != 0x00)
@@ -141,9 +135,12 @@ function void BlueSpheresTimer.Menu.achievements.items.scrollbar(s32 px)
 	Renderer.drawCustomSprite("icon_scrollbar", getScreenWidth(), 44 + scrollOffset, 0x00, 0x40, 0xf000, 0x00, bluespheres.scrollbar.alpha)
 }
 
-function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py, u8 alpha)
+function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_ACHIEVEMENTS_UNLOCKED, 0x01, alpha)
+	px += 128
+	py += 44
+	
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_ACHIEVEMENTS_UNLOCKED, 0x01)
 	
 	s32 unlocked_total
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
@@ -154,7 +151,7 @@ function void BlueSpheresTimer.Menu.achievements.items.unlocked(s32 px, s32 py, 
 	
 	py += 16
 	string sign_unlocked = (unlocked_total - 0x01 == bluespheres.achievements.total) ? STRING_ACHIEVEMENTS_ALL_UNLOCKED : stringformat("* %d / %d *", unlocked_total, bluespheres.achievements.total + 0x01)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, sign_unlocked, 0x01, alpha)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, sign_unlocked, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.score(s32 px, s32 py)

@@ -1,7 +1,8 @@
 // Follow the latest changes on GitHub: https://github.com/fadeinside/s3air-blue-spheres-time-attack
 
-// Update v1.0.3 - Untitled
-// Note: -
+// Release v1.0.3 - The Release 2
+// Note: Today's release includes multiple improvements in the custom menu design, more options in the mod settings for flexible menu customization, various optimizations, script refactoring, also several new achievements and bug fixes. It is planned to implement some cool ideas in the future, stay tuned! -Fade
+// + none.
 
 // Update v1.0.2a - The distorter fix
 // Note: I'm sorry for this absurdity. GitHub compressed some images, as a result of which they could not be read by the S3 A.I.R. compiler. This update fixes this. -Fade

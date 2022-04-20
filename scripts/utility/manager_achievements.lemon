@@ -646,7 +646,7 @@ function u8 BlueSpheresTimer.Achievements.writed()
 //? Sets a Completed status for the all Achievements ID's.
 function void BlueSpheresTimer.Achievements.cheat()
 {
-	if (Input.buttonDown(BUTTON_B) == 0x00  || global.game_mode == 0x34)
+	if (Input.buttonPressed(BUTTON_B) == 0x00 || global.game_mode == 0x34)
 		return
 	
 	// Total number of Achievements
