@@ -19,7 +19,7 @@
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
 	
 	// Scroll bar
-	"icon_scrollbar": { "File": "menu_icons.png", "Rect": "172,49,7,30", "Center": "4,0" }, 
+	"icon_scrollbar": { "File": "menu_icons.png", "Rect": "172,49,7,30", "Center": "4,0" },
 	
 	// Keyboard keys by egordorichev, check https://egordorichev.itch.io/key-set
 	"icon_key_x": { "File": "menu_icons.png", "Rect": "1,47,12,12", "Center": "6,6" },
@@ -31,6 +31,12 @@
 	"icon_key_down": { "File": "menu_icons.png", "Rect": "79,47,12,12", "Center": "6,6" },
 	"icon_key_right": { "File": "menu_icons.png", "Rect": "92,47,12,12", "Center": "6,6" },
 	"icon_key_start": { "File": "menu_icons.png", "Rect": "105,47,30,12", "Center": "6,6" },
+	
+	// White dot
+	"icon_whitedot": { "File": "menu_icons.png", "Rect": "0,0,1,1", "Center": "0,0" },
+	
+	// Sort empty list
+	"icon_completed_miles": { "File": "test.png", "Rect": "1,1,69,69", "Center": "0,38" },
 	
 	// Super emeralds
 	"icon_emerald_super_0x00": { "File": "menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },

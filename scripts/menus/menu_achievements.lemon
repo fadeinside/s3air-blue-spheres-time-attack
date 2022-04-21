@@ -3,8 +3,16 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 	// Global variables setup
 	level.framecounter = 0x00
 	bluespheres.buttons.scrollTimer = 0x00
-	bluespheres.buttons.setup = bluespheres.achievements.total + 0x01
-	bluespheres.achievements.buttonselected = bluespheres.buttons.setup
+	if (bluespheres.achievements.sortselected == 0x00)
+	{
+		bluespheres.buttons.setup = bluespheres.achievements.total + 0x01
+		bluespheres.achievements.buttonselected = bluespheres.buttons.setup
+	}
+	else
+	{
+		bluespheres.achievements.sortNeedUpdate = true
+		BlueSpheresTimer.Menu.achievements.updateControl()
+	}
 	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()

@@ -60,14 +60,14 @@ function void BlueSpheresTimer.Menu.options.items.menu(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
 {
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_OPTIONS_DATA, 0x01)
+	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, STRING_OPTIONS_DATA, 0x01)
 	
 	py += 16
 	string button_eraseAll = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x00, STRING_OPTIONS_ERASE_ALL_DATA)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_eraseAll, 0x01, (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
 	
 	py += 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, "-", 0x02, 0x90)
+	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x02, 0x90)
 	
 	py += 16
 	string button_eraseRecords = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x01, STRING_OPTIONS_ERASE_ALL_RECORDS)

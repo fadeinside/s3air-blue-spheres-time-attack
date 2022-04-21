@@ -10,17 +10,33 @@ function void BlueSpheresTimer.Menu.popup.background()
 
 function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, string text1, string text2, string text3, string text4)
 {
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text1, 0x01)
+	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x01, 0x90)
 	
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text2, 0x01)
-	
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text3, 0x01)
-	
-	py -= 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text4, 0x01)
+	if (text1 != "")
+	{
+		py -= 16
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text1, 0x01)
+	}
+	if (text2 != "")
+	{
+		py -= 16
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text2, 0x01)
+	}
+	if (text3 != "")
+	{
+		py -= 16
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text3, 0x01)
+	}
+	if (text4 != "")
+	{
+		py -= 16
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text4, 0x01)
+	}
+	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
+	{
+		py -= 16
+		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x01, 0x90)
+	}
 }
 
 // - - - - - - - - - - - - - - - - - - - //

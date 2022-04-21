@@ -295,7 +295,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.playerselect(s32 px, s32 py)
 {
 	px -= 128
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_CHARACTER, 0x01, "y", "")
+	BlueSpheresTimer.TextManager.drawTextWithKeys(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_CHARACTER, 0x01, "y", "")
 	BlueSpheresTimer.TextManager.drawText(px, py + 16, 0xf000, 0x01, "*    *", 0x02)
 	
 	string key
@@ -344,7 +344,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.emeralds(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.levelselect(s32 px, s32 py)
 {
 	px += 128
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LEVEL, 0x01, "up", "down")
+	BlueSpheresTimer.TextManager.drawTextWithKeys(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LEVEL, 0x01, "up", "down")
 	
 	py += 16
 	if (bluespheres.timeattack.levelselected == 0x07)
@@ -359,7 +359,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py
 	u8 alpha = BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked) ? 0xff : 0x90
 	
 	py +=  44
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LAYOUT, 0x01, alpha, "a", "")
+	BlueSpheresTimer.TextManager.drawTextWithKeys(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LAYOUT, 0x01, alpha, "a", "")
 	
 	py += 16
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? STRING_TIME_ATTACK_SK : STRING_TIME_ATTACK_S3), 0x01, alpha)
@@ -485,6 +485,7 @@ function void BlueSpheresTimer.Menu.timeattack.updateControl()
 			}
 		}
 	}
+	
 	// Change the levels layout from S3 to SK
 	if (Input.buttonPressed(BUTTON_X))
 	{

@@ -64,6 +64,8 @@
 	"font_regular.33": { "File": "menu_fonts.png", "Rect": "391,16,8,11", "Center": "0,5" }, // !
 	"font_regular.46": { "File": "menu_fonts.png", "Rect": "400,16,8,11", "Center": "0,5" }, // .
 	"font_regular.44": { "File": "menu_fonts.png", "Rect": "409,16,8,12", "Center": "0,5" }, // ,
+	"font_regular.40": { "File": "menu_fonts.png", "Rect": "418,16,8,12", "Center": "0,5" }, // (
+	"font_regular.41": { "File": "menu_fonts.png", "Rect": "427,16,8,12", "Center": "0,5" }, // )
 	"font_regular.32": { "File": "menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space
 	"font_regular.42": { "File": "menu_fonts.png", "Rect": "672,1,15,14", "Center": "0,7" }, // Star
 	
