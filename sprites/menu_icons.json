@@ -1,7 +1,8 @@
 {
-	// Achievement status
-	"icon_status_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
-	"icon_status_unlock": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
+	// Achievement icon
+	"icon_trophy": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
+	"icon_trophy_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
+	"icon_trophy_outline": { "File": "menu_icons.png", "Rect": "162,1,14,14", "Center": "7,7" },
 	
 	// Achievement tags
 	"icon_tag_none": { "File": "menu_icons.png", "Rect": "1,1,1,1", "Center": "0,0" },

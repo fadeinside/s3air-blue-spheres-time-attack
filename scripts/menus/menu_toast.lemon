@@ -53,7 +53,7 @@ function void BlueSpheresTimer.Menu.toast.items(string title)
 
 function void BlueSpheresTimer.Menu.toast.items.title(s32 px, s32 py, string title)
 {
-	Renderer.drawCustomSprite("icon_status_unlock", px + 16, py, 0x00, 0x40, 0xf000)
+	Renderer.drawCustomSprite("icon_trophy", px + 16, py, 0x00, 0x40, 0xf000)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x00, title, 0x01)
 }
 
