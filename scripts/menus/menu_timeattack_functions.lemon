@@ -348,7 +348,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelselect(s32 px, s32 py)
 	
 	py += 16
 	if (bluespheres.timeattack.levelselected == 0x07)
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_SECRET, 0x01)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", STRING_TIME_ATTACK_SECRET), 0x01)
 	else
 		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* 0%d *", bluespheres.timeattack.levelselected + 0x01), 0x02)
 }
@@ -362,7 +362,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py
 	BlueSpheresTimer.TextManager.drawTextWithKeys(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_LAYOUT, 0x01, alpha, "a", "")
 	
 	py += 16
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? STRING_TIME_ATTACK_SK : STRING_TIME_ATTACK_S3), 0x01, alpha)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, stringformat("* %s *", bluespheres.timeattack.layoutselected ? STRING_TIME_ATTACK_LAYOUT_SK : STRING_TIME_ATTACK_LAYOUT_S3), 0x01, alpha)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 renderQueue, u8 align, string text, s32 input_data)

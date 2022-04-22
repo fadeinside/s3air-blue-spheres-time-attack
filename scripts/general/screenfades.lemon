@@ -11,7 +11,7 @@ function void FadeScreenToWhiteBlocking()
 	}
 	
 	// Disable rendering of plane B prio
-	Renderer.enableDefaultPlane(0x03, false) // First frame
+	Renderer.enableDefaultPlane(0x03, false) // Used in one frame
 	
 	// Variables setup
 	palette_fade.range = 0x003f

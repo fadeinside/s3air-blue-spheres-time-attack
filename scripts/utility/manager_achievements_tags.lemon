@@ -110,6 +110,49 @@ function string BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 	return achievementTags
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// (Original) Tags with alignment				//
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//? Simplified BlueSpheresTimer.Achievements.Tags.drawTags() function without configurable transparency.
+function void BlueSpheresTimer.Achievements.Tags.drawTags(s32 px, s32 py, u16 renderQueue, u8 align, string tags)
+{
+	BlueSpheresTimer.Achievements.Tags.drawTags(px, py, renderQueue, align, tags, 255)
+}
+
+//? The full tags rendering code with text alignment.
+function void BlueSpheresTimer.Achievements.Tags.drawTags(s32 px, s32 py, u16 renderQueue, u8 align, string tags, u8 alpha)
+{
+	s32 tag_space
+	for (s32 A = 0x00; A < strlen(tags); ++A)
+	{
+		s32 tag = getchar(tags, A)
+		
+		string key = BlueSpheresTimer.Achievements.getTagSprite(tag)
+		if (Renderer.hasCustomSprite(key))
+			tag_space += BlueSpheresTimer.Achievements.getTagsSpacing(tag)
+	}
+	
+	// Alignment:
+	// - 0x00 - From Right
+	// - 0x01 - From Center
+	// - 0x02 - From Left
+	
+	s32 left
+	if (align == 0x00)
+		left = tag_space
+	else if (align == 0x01)
+		left = tag_space / 0x02
+	else if (align == 0x02)
+		left = 0x00
+	
+	BlueSpheresTimer.Achievements.renderBasicTags(px - left, py, renderQueue, tags, alpha)
+}
+
+// - - - - - - - - - - - - - - - - - - - //
+// Basic								   //
+// - - - - - - - - - - - - - - - - - - - //
+
 //? The basic code for tags rendering.
 function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u16 renderQueue, string tags, u8 alpha)
 {
@@ -132,7 +175,8 @@ function void BlueSpheresTimer.Achievements.renderSingleTag(s32 px, s32 py, u16 
 		return
 	
 	string key = BlueSpheresTimer.Achievements.getTagSprite(tag)
-	Renderer.drawCustomSprite(key, px + tag_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+	if (Renderer.hasCustomSprite(key))
+		Renderer.drawCustomSprite(key, px + tag_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
 }
 
 //? Returns the tag sprite.
