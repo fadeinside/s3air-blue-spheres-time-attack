@@ -67,6 +67,9 @@ function void fn009b62()
 	// Timer update
 	BlueSpheresTimer.updateTimer()
 	
+	// Let us make the achievements that depend on the completion of the stage
+	BlueSpheresTimer.Achievements.stageEventsChecks()
+	
 	// Time over
 	if (bluespheres.timeOver == 0x01 && u8[0xffffe44c] == 0x00)
 	{
@@ -263,6 +266,7 @@ function void fn009b62()
 		}
 	}
 	
+	// Ignore the base call when receiving an emerald in Time attack mode
 	if (u8[0xffffe44c] != 0x00 && bluespheres.timeattack.active)
 		return
 	
@@ -271,15 +275,13 @@ function void fn009b62()
 }
 
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
-//# address-hook(0x009580) end(0x00972c)
-function void fn009580()
+//# address-hook(0x00972e) end(0x0098ae)
+function void fn00972e()
 {
-	base.fn009580() // Call the base function
+	BlueSpheresTimer.Achievements.spheresChecks()
 	
-	if ((u8[0xffffe432] & 0x80) == 0x00 && u8[0xffffe44c] == 0x00)
-	{
-		BlueSpheresTimer.Achievements.spheresChecks()
-	}
+	// Call the base function
+	base.fn00972e()
 }
 
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
