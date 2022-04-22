@@ -17,7 +17,7 @@ function void GameModeControlLoop()
 
 	while (true)
 	{
-		@EntryPoint:
+	@EntryPoint:
 	
 		#if STANDALONE
 			if ((global.game_mode & 0x03 || (global.game_mode & 0x7f) > 0x50) && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))

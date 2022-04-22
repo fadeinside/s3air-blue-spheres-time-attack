@@ -128,9 +128,9 @@ function void BlueSpheresTimer.Achievements.Tags.drawTags(s32 px, s32 py, u16 re
 	{
 		s32 tag = getchar(tags, A)
 		
-		string key = BlueSpheresTimer.Achievements.getTagSprite(tag)
+		string key = BlueSpheresTimer.Achievements.Tags.getSprite(tag)
 		if (Renderer.hasCustomSprite(key))
-			tag_space += BlueSpheresTimer.Achievements.getTagsSpacing(tag)
+			tag_space += BlueSpheresTimer.Achievements.Tags.getSpacing(tag)
 	}
 	
 	// Alignment:
@@ -146,7 +146,7 @@ function void BlueSpheresTimer.Achievements.Tags.drawTags(s32 px, s32 py, u16 re
 	else if (align == 0x02)
 		left = 0x00
 	
-	BlueSpheresTimer.Achievements.renderBasicTags(px - left, py, renderQueue, tags, alpha)
+	BlueSpheresTimer.Achievements.Tags.basic(px - left, py, renderQueue, tags, alpha)
 }
 
 // - - - - - - - - - - - - - - - - - - - //
@@ -154,33 +154,33 @@ function void BlueSpheresTimer.Achievements.Tags.drawTags(s32 px, s32 py, u16 re
 // - - - - - - - - - - - - - - - - - - - //
 
 //? The basic code for tags rendering.
-function void BlueSpheresTimer.Achievements.renderBasicTags(s32 px, s32 py, u16 renderQueue, string tags, u8 alpha)
+function void BlueSpheresTimer.Achievements.Tags.basic(s32 px, s32 py, u16 renderQueue, string tags, u8 alpha)
 {
 	s32 tag_space
 	for (s32 A = 0x00; A < strlen(tags); ++A)
 	{
 		s32 tag = getchar(tags, A)
 		
-		BlueSpheresTimer.Achievements.renderSingleTag(px, py, renderQueue, tag, tag_space, alpha)
-		tag_space += BlueSpheresTimer.Achievements.getTagsSpacing(tag)
+		BlueSpheresTimer.Achievements.Tags.renderTag(px, py, renderQueue, tag, tag_space, alpha)
+		tag_space += BlueSpheresTimer.Achievements.Tags.getSpacing(tag)
 	}
 }
 
 //? Single tag rendering function. Some optimizations are also used here to fasted rendering.
-function void BlueSpheresTimer.Achievements.renderSingleTag(s32 px, s32 py, u16 renderQueue, string tag, s32 tag_space, u8 alpha)
+function void BlueSpheresTimer.Achievements.Tags.renderTag(s32 px, s32 py, u16 renderQueue, string tag, s32 tag_space, u8 alpha)
 {
 	if ((px + tag_space) >= getScreenWidth() || (px + tag_space) <= -0x12)
 		return
 	if (py >= getScreenHeight() || py <= 0x00)
 		return
 	
-	string key = BlueSpheresTimer.Achievements.getTagSprite(tag)
+	string key = BlueSpheresTimer.Achievements.Tags.getSprite(tag)
 	if (Renderer.hasCustomSprite(key))
 		Renderer.drawCustomSprite(key, px + tag_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
 }
 
 //? Returns the tag sprite.
-function string BlueSpheresTimer.Achievements.getTagSprite(string tag)
+function string BlueSpheresTimer.Achievements.Tags.getSprite(string tag)
 {
 	string tag_sprite
 	if (tag == getChar("1"))
@@ -208,7 +208,7 @@ function string BlueSpheresTimer.Achievements.getTagSprite(string tag)
 }
 
 //? Returns the width of the tag sprite.
-function u8 BlueSpheresTimer.Achievements.getTagsSpacing(string tag)
+function u8 BlueSpheresTimer.Achievements.Tags.getSpacing(string tag)
 {
 	u8 tag_space
 	if (tag == getChar("1"))

@@ -74,11 +74,17 @@ define string STRING_ACHIEVEMENTS_UNKNOWN	= "Unknown Achievement"
 define string STRING_ACHIEVEMENTS_TOAST_COMPLETE	= "Achievement complete!"
 define string STRING_ACHIEVEMENTS_MOD_NAME_REQUIRE	= "Require a `%s` mod."
 define string STRING_ACHIEVEMENTS_YOU_CAN_INSTALL	= "You can install it from:"
+
+// "Achievements" sort strings
 define string STRING_ACHIEVEMENTS_SORT	= "Sort"
 define string STRING_ACHIEVEMENTS_SORT_ALL	= "All achievements"
 define string STRING_ACHIEVEMENTS_SORT_COMPLETED	= "Completed"
 define string STRING_ACHIEVEMENTS_SORT_STARTED	= "Started"
 define string STRING_ACHIEVEMENTS_SORT_LOCKED	= "Not started"
+define string STRING_ACHIEVEMENTS_SORT_EMPTY_COMPLETED	= "You don't have^completed achievements"
+define string STRING_ACHIEVEMENTS_SORT_EMPTY_STARTED	= "You don't have^started achievements"
+define string STRING_ACHIEVEMENTS_SORT_EMPTY_LOCKED	= "You completed^all achievements"
+define string STRING_ACHIEVEMENTS_SORT_EMPTY_LOCKED2	= "There are no more^available achievements here"
 
 // Achievements names
 define string STRING_ACHIEVEMENT_BS_GET_100_BLUE_SPHERES	= "Collect 100 Blue spheres"
@@ -132,7 +138,7 @@ define string STRING_ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE.LINE2	= "Blue spheres ex
 define string STRING_ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE.LINE1	= "in any level."
 define string STRING_ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2.LINE2	= "Ran into Red sphere,"
 define string STRING_ACHIEVEMENT_BS_RAN_INTO_RED_SPHERE2.LINE1	= "for 00'00`30."
-define string STRING_ACHIEVEMENT_BS_DA_GARDEN_EDITION.LINE2	= "Starting the game with the"
+define string STRING_ACHIEVEMENT_BS_DA_GARDEN_EDITION.LINE2	= "Beat any stage with the" // "Starting the game with the"
 define string STRING_ACHIEVEMENT_BS_DA_GARDEN_EDITION.LINE1	= "`%s` mod."
 define string STRING_ACHIEVEMENT_BS_GREEN_SPHERE.LINE2	= "Turn the Green sphere"
 define string STRING_ACHIEVEMENT_BS_GREEN_SPHERE.LINE1	= "to the Blue sphere."

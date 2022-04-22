@@ -654,4 +654,7 @@ function void BlueSpheresTimer.Achievements.cheat()
 	{
 		BlueSpheresTimer.Achievements.setComplete(A)
 	}
+	
+	// Update achievements sorted list
+	bluespheres.achievements.sortNeedUpdate = true
 }
