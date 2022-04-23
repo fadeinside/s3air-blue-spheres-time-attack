@@ -10,6 +10,8 @@ define string STRING_CLOSE	= "CLOSE"
 define string STRING_LOBBY_HEADLINE	= "CHOOSE A GAME!"
 define string STRING_LOBBY_TIME_ATTACK	= "Time Attack"
 define string STRING_LOBBY_GET_BLUE_SPHERES	= "Get Blue Spheres"
+define string STRING_LOBBY_BLUE_SPHERES	= "Blue Spheres"
+define string STRING_LOBBY_SONIC_3K	= "Sonic 3K"
 
 // "Time Attack" strings
 define string STRING_TIME_ATTACK_HEADLINE	= "TIME ATTACK!"

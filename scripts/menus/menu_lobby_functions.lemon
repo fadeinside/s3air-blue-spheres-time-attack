@@ -36,13 +36,33 @@ function void BlueSpheresTimer.Menu.lobby.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
-	py -= 9
+	// "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
+	py -= Mods.isModActive("Blue Sphere Plus") ? 18 : 9
 	string button_time_attack = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x00, STRING_LOBBY_TIME_ATTACK)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_time_attack, 0x01)
 	
 	py += 18
-	string button_blue_spheres = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, STRING_LOBBY_GET_BLUE_SPHERES)
+	string button_blue_spheres = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, Mods.isModActive("Blue Sphere Plus") ? STRING_LOBBY_BLUE_SPHERES : STRING_LOBBY_GET_BLUE_SPHERES)
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_blue_spheres, 0x01)
+	
+	// Do not render the "Sonic 3K" button if BS Plus is not active
+	if !(Mods.isModActive("Blue Sphere Plus"))
+		return
+	
+	py += 18
+	string button_sonic_3k = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x02, STRING_LOBBY_SONIC_3K)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_sonic_3k, 0x01)
+	
+	px += 64
+	Renderer.drawCustomSprite((u8[0x801101] & 0x01) ? "icon_marathon_outline" : "icon_marathon_lock", px, py, 0x00, 0x40, 0xf000)
+	px += 16
+	Renderer.drawCustomSprite((u8[0x801101] & 0x02) ? "icon_marathon_outline" : "icon_marathon_lock", px, py, 0x00, 0x40, 0xf000)
+	px += 16
+	Renderer.drawCustomSprite((u8[0x801101] & 0x04) ? "icon_marathon_outline" : "icon_marathon_lock", px, py, 0x00, 0x40, 0xf000)
+	px += 16
+	Renderer.drawCustomSprite((u8[0x801101] & 0x08) ? "icon_marathon_outline" : "icon_marathon_lock", px, py, 0x00, 0x40, 0xf000)
+	px += 16
+	Renderer.drawCustomSprite((u8[0x801101] & 0x10) ? "icon_marathon_outline" : "icon_marathon_lock", px, py, 0x00, 0x40, 0xf000)
 }
 
 function void BlueSpheresTimer.Menu.lobby.updateControl()
@@ -89,6 +109,22 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			
 			levelselect.characters = CHARS_SONIC_ALONE
 			u8[0xffffffa1] = 0x00
+			bluespheregame.menu_selection = 0x00
+			control.pad1.state = CONTROL_START
+			fn04ceb6()
+			
+			VDP.Config.setActiveDisplay(false)
+			global.game_mode = 0x2c
+		}
+		if (bluespheres.lobby.buttonselected == 0x02)
+		{
+			bluespheres.minigame_mode = 0x01
+			FadeOutScreenBlocking()
+			
+			levelselect.characters = CHARS_SONIC_ALONE
+			u8[0xffffffa1] = 0x00
+			bluespheregame.menu_selection = 0x01
+			control.pad1.state = CONTROL_START
 			fn04ceb6()
 			
 			VDP.Config.setActiveDisplay(false)

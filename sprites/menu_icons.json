@@ -16,6 +16,10 @@
 	"icon_tag_challenge": { "File": "menu_icons.png", "Rect": "54,38,44,8", "Center": "0,4" },
 	"icon_tag_easy": { "File": "menu_icons.png", "Rect": "99,38,25,8", "Center": "0,4" },
 	
+	// Marathon icon (Needed Blue Sphere Plus mod)
+	"icon_marathon_lock": { "File": "menu_icons.png", "Rect": "136,38,13,13", "Center": "6,7" },
+	"icon_marathon_outline": { "File": "menu_icons.png", "Rect": "150,38,15,15", "Center": "7,8" },
+	
 	// Copyright
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
 	

@@ -2,12 +2,17 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
-	bluespheres.buttons.setup = 0x01
+	bluespheres.buttons.setup = Mods.isModActive("Blue Sphere Plus") ? 0x02 : 0x01
 	if (SETTING_BS_DEFAULT_CHARACTER != 0x00 && bluespheres.character_defined != 0x01)
 	{
 		bluespheres.timeattack.characterselected = SETTING_BS_DEFAULT_CHARACTER
 		bluespheres.character_defined = 0x01
 	}
+	
+	// "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
+	// Load additional data from Shared Memory for work with BS Plus
+	if (Mods.isModActive("Blue Sphere Plus"))
+		System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
 	
 	// Play Blue Sphere game music
 	playMusic(0x28)
