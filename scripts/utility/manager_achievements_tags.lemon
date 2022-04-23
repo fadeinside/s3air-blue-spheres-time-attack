@@ -100,6 +100,10 @@ function string BlueSpheresTimer.Achievements.getTags(u32 achievementId)
 		achievementTags = "36" // Tag: Hard, Rare
 	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
 		achievementTags = "37" // Tag: Hard, Super rare
+	
+	else if (achievementId == ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
+		achievementTags = "458" // Tag: Special, Challenge, Unique
+		
 	else if (achievementId == ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES)
 		achievementTags = "85" // Tag: Challenge, Unique
 	else if (achievementId == ACHIEVEMENT_BS_ACHIEVE_10_ACHIEVEMENTS)

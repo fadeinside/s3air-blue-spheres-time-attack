@@ -21,11 +21,11 @@ function void BlueSpheresTimer.Menu.achievements.items()
 	BlueSpheresTimer.Menu.achievements.items.keys(px, py)
 	BlueSpheresTimer.Menu.achievements.items.menu(px, py)
 	
-	BlueSpheresTimer.Menu.achievements.items.achievements(px, py)
-	
 	BlueSpheresTimer.Menu.achievements.items.unlocked(px, py)
 	BlueSpheresTimer.Menu.achievements.items.score(px, py)
 	BlueSpheresTimer.Menu.achievements.items.sort(px, py)
+	
+	BlueSpheresTimer.Menu.achievements.items.achievements(px, py)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
@@ -819,6 +819,18 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 		
 		BlueSpheresTimer.Menu.popup.show(stringformat(STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10.LINE1, target), STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10.LINE2, "", "", STRING_CLOSE)
 		BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), target)
+	}
+	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
+	{
+		if (Mods.isModActive("Blue Sphere Plus") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
+		{
+			BlueSpheresTimer.Menu.popup.show(stringformat(STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE1, "Blue Sphere Plus"), STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE2, STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE3, "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.achievements.status()
+		}
+		else
+		{
+			BlueSpheresTimer.Menu.popup.show("https://gamebanana.com/mods/297356", STRING_ACHIEVEMENTS_YOU_CAN_INSTALL, stringformat(STRING_ACHIEVEMENTS_MOD_NAME_REQUIRE, "Blue Sphere Plus"), "", STRING_CLOSE)
+		}
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES)
 	{

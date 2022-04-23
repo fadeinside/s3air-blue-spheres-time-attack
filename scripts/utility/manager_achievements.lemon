@@ -103,6 +103,9 @@ function void BlueSpheresTimer.Achievements.update()
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100)
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220) >= 220)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
+	
+	if (Mods.isModActive("Blue Sphere Plus") && u8[0x801101] == 31)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
 }
 
 //? Checking for matches at the stage.
@@ -457,6 +460,11 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	else if (achievementId == ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
 	{
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100) ? STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220 : STRING_ACHIEVEMENTS_LOCKED
+	}
+	else if (achievementId == ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
+	{
+		bool targetMod_active = Mods.isModActive("Blue Sphere Plus")
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON) ? STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON : (targetMod_active ? STRING_ACHIEVEMENTS_LOCKED : STRING_ACHIEVEMENTS_MOD_REQUIRE)
 	}
 	else if (achievementId == ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES)
 	{
