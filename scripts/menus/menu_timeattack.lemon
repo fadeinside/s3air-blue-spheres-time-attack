@@ -37,7 +37,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 			break
 		
 		// Checking control buttons
-		BlueSpheresTimer.Menu.timeattack.updateControl() 
+		BlueSpheresTimer.Menu.timeattack.updateControl()
 		
 		// Unlockables checking
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))

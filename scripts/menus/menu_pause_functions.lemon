@@ -134,7 +134,7 @@ function void BlueSpheresTimer.Menu.pause.updateControl()
 			bluespheres.timeattack.active = 0x00
 			BlueSpheresTimer.EntryFunctions.Menu.timeattack()
 		}
-	} 
+	}
 }
 
 function void BlueSpheresTimer.Menu.pause.renderStageObjects()

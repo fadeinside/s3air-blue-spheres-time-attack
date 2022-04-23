@@ -1,5 +1,5 @@
 // Achievements
-// Addresses - from 0x8a1016 to 0x8a1318
+// Addresses - from 0x8a1016 to 0x8a1386
 define u32 bluespheres.achievementsDataAddress	= 0x8a1000	// Address in Shared Memory save data's to save achievements
 
 // Records
@@ -12,11 +12,11 @@ define u32 bluespheres.recordDataAddress	= 0x8c1000	// Address in Shared Memory 
 // D.A. Garden active - from 0x8e1116 to 0x8e11b0
 define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memory save data's to save emeralds
 
-// Events
+// Events (here so that other mods can use this)
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
 define u8 bluespheres.timeattack.active	= u8[0x8e1216]	// Set to 0x01 when the Time Attack mode is active
 
-// Data
+// Data (Unlocks)
 // D.A. Garden active - 0x8e12ee
 define u32 bluespheres.stage8Unlocked	= 0x8e11ee	// Set to 0x01 when 7 Chaos emeralds are received
 // D.A. Garden active - 0x8e12fe

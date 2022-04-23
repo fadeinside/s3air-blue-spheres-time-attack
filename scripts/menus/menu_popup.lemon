@@ -8,8 +8,6 @@ function void BlueSpheresTimer.Menu.popup.background()
 		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (global.game_mode == 0x88) ? 0xdb : 0xca)
 }
 
-global s32 bluespheres.popup.offsetDescription
-
 function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, string text1, string text2, string text3, string text4)
 {
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x01, 0x90)

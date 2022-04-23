@@ -167,7 +167,6 @@ function void BlueSpheresTimer.Menu.options.popups()
 		return
 	
 	// A reset is needed here, because if there is no reset, then the saved values in the variables will activate BlueSpheresTimer.Achievements.update() again
-	bluespheres.tempValue1 = 0x00
 	bluespheres.blue_collected = 0x00
 	BlueSpheresTimer.resetTimer()
 	
@@ -233,16 +232,16 @@ function void BlueSpheresTimer.Menu.options.popups()
 				playSound(0x68)
 				BlueSpheresTimer.Achievements.reset()
 				
-				// This check, actually, allows me not to fix some bugs related to get emeralds at the stage
-				if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+				if !(BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
+					BlueSpheresTimer.Emeralds.replaceAll(0x00)
+				else
 				{
 					BlueSpheresTimer.Emeralds.replaceAll(0x02)
 					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS, 0xfa2)
 				}
-				else
-				{
-					BlueSpheresTimer.Emeralds.replaceAll(0x00)
-				}
+				
+				if (u8[0x801101] == 31)
+					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON, 0xfa2)
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00

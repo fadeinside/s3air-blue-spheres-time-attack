@@ -30,7 +30,7 @@ global u8 bluespheres.achievements.lastButton	// Sets the ID of the last button 
 global u8 bluespheres.achievements.nextButton	// Sets the ID of the next button (next achievement) in a sorted achievements list
 global u8 bluespheres.achievements.preButton	// Sets the ID of the previous button (previous achievement) in a sorted achievements list
 global u8 bluespheres.achievements.totalButtons	// Sets the total number of available buttons (achievements) in a sorted achievements list
-global u8 bluespheres.achievements.currentButtonScroll
+global u8 bluespheres.achievements.currentButtonScroll	// Sets the current scroll position in a sorted achievements list
 
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere
@@ -38,13 +38,9 @@ global u8 bluespheres.notEnoughRings	// Set to 0x01 when not enough rings for ge
 global s32 bluespheres.timeOver.timeout	// Counter before returning to the level. Activated when Time over
 
 // Checks
-global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
 global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 global u8 bluespheres.character_defined	// Set to 0x01 when the default character was defined and sets once
 global u8 bluespheres.pause.hideMenu	// Sets 0x01 when items are hidden in the pause menu
-
-// Temp vars
-global u8 bluespheres.tempValue1	// Used in some cases
 
 // Counters
 global u8 bluespheres.blue_collected	// Counter of collected blue spheres
@@ -55,6 +51,10 @@ global u8 bluespheres.toast.frames	// The counter is used for animation
 global u8 bluespheres.toast.timeout	// Waiting counter. The limit is determined from SETTING_BS_TOAST_DURATION
 global string bluespheres.toast.show	// Sets the name of the achievement when it was completed
 
+// Popup
+global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
+global s32 bluespheres.popup.offsetDescription	// Sets the description offset from the screen center
+
 // Scroll bar
-global u8 bluespheres.scrollbar.alpha
-global u8 bluespheres.scrollbar.timer
+global u8 bluespheres.scrollbar.alpha	// Sets the scroll transparency every time when the user is inactive
+global u8 bluespheres.scrollbar.timer	// Timer to count down the time when the user is inactive

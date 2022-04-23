@@ -170,6 +170,7 @@ function void BlueSpheresTimer.Achievements.characterActionsCheck()
 	D1.u16 <<= 0x05
 	D1.u8 |= D0.u8
 	A1 += D1.s16
+	D2.u8 = u8[A1]
 	
 	// Jump achievements check
 	if ((u8[0xffffe432] & 0x80) == 0x00 && u8[0xffffe44c] == 0x00 && (control.pad1.pressed & CONTROL_ABC))
@@ -184,7 +185,7 @@ function void BlueSpheresTimer.Achievements.characterActionsCheck()
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_1000_TIMES, 0x01)
 		
 		// Red sphere achievements checks
-		if (u8[A1] == 0x01)
+		if (D2.u8 == 0x01)
 		{
 			if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10))
 				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10, 0x01)
@@ -465,14 +466,6 @@ function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	{
 		bool targetMod_active = Mods.isModActive("Blue Sphere Plus")
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON) ? STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON : (targetMod_active ? STRING_ACHIEVEMENTS_LOCKED : STRING_ACHIEVEMENTS_MOD_REQUIRE)
-	}
-	else if (achievementId == ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES)
-	{
-		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES) ? STRING_ACHIEVEMENT_BS_ACHIEVE_5_CHALLENGES : STRING_ACHIEVEMENTS_LOCKED
-	}
-	else if (achievementId == ACHIEVEMENT_BS_ACHIEVE_10_ACHIEVEMENTS)
-	{
-		achievementTitle = (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_ACHIEVE_10_ACHIEVEMENTS) >= 0x01) ? STRING_ACHIEVEMENT_BS_ACHIEVE_10_ACHIEVEMENTS : STRING_ACHIEVEMENTS_LOCKED
 	}
 	else
 	{
