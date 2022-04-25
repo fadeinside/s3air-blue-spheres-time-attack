@@ -1,0 +1,192 @@
+function void BlueSpheresTimer.Menu.medals.headline()
+{
+	s32 offset = 148
+	s32 px = getScreenWidth() / 0x02 - offset
+	
+	for (u8 A = 0x00; A < 0x04; ++A)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, STRING_MEDALS_HEADLINE, 0x00)
+}
+
+function void BlueSpheresTimer.Menu.medals.items()
+{
+	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
+	s32 px = getScreenWidth() / 0x02
+	s32 py = 46
+	
+	BlueSpheresTimer.Menu.medals.items.menu(px, py)
+	BlueSpheresTimer.Menu.medals.items.medals(px, py)
+}
+
+function void BlueSpheresTimer.Menu.medals.items.menu(s32 px, s32 py)
+{
+	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.medals.buttonselected, bluespheres.buttons.setup, STRING_BACK)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+}
+
+function void BlueSpheresTimer.Menu.medals.items.medals(s32 px, s32 py)
+{
+	if (bluespheres.medals.buttonselected >= 0x01 && !(bluespheres.medals.buttonselected >= bluespheres.buttons.setup))
+	{
+		for (u8 A = 0x00; A <= bluespheres.medals.buttonselected - 0x01; ++A)
+			py -= 76
+	}
+	
+	px -= 164
+	py += 0x08
+	for (u8 A = 0x00; A <= bluespheres.buttons.setup; ++A)
+	{
+		if (A != 0x00)
+			py += 76
+		
+		u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
+		
+		if (A == 0x00)
+			BlueSpheresTimer.Menu.medals.items.tableAchievements(px, py, 0xf000, alpha)
+		else if (A == 0x01)
+			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_SONIC, alpha)
+		else if (A == 0x02)
+			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_TAILS, alpha)
+		else if (A == 0x03)
+			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_KNUCKLES, alpha)
+		
+	}
+}
+
+function void BlueSpheresTimer.Menu.medals.items.tableRecords(s32 px, s32 py, u16 renderQueue, u8 character, u8 alpha)
+{
+	string sign_title = stringformat("Records (%s)", character == CHARACTER_SONIC ? "Sonic" : (character == CHARACTER_TAILS ? "Tails" : (character == CHARACTER_KNUCKLES ? "Knuckles" : STRING_RETRY)))
+	BlueSpheresTimer.Menu.medals.items.tableTitle(px, py, renderQueue, sign_title, alpha)
+	
+	px += 0x07
+	py += 32
+	for (u8 A = 0x00; A < 0x07; ++A)
+	{
+		if (A != 0x00)
+			px += 46
+		
+		// - Unfinished
+		
+		// Draw medal sprite
+		Renderer.drawCustomSprite("icon_medal_lock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
+	}
+}
+
+function void BlueSpheresTimer.Menu.medals.items.tableAchievements(s32 px, s32 py, u16 renderQueue, u8 alpha)
+{
+	// Complete all achievements related to the get blue spheres
+	bool medal_BlueSphere = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES))
+	// Complete all the rings-related achievements
+	bool medal_OhSparkles = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS))
+	// Complete all jump-related achievements
+	bool medal_likeJumping = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_50_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_200_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES))
+	// Complete emeralds-related achievements
+	bool medal_MyPower = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
+	// Complete all DAGE-related achievements
+	bool medal_DAGE = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES))
+	// Complete all achievements that have the Challenge tag
+	bool medal_Challenger = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_50_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON))
+	// Complete all achievements that require third-party mods
+	bool medal_Features = (medal_DAGE && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON))
+	// Complete all achievements (just all achievements)
+	bool medal_Longplay = ((BlueSpheresTimer.Achievements.writed() - 0x01) == bluespheres.achievements.total)
+	
+	BlueSpheresTimer.Menu.medals.items.tableTitle(px, py, renderQueue, "Achievements", alpha)
+	
+	px += 0x07
+	py += 32
+	for (u8 A = 0x00; A < 0x08; ++A)
+	{
+		if (A != 0x00)
+			px += 40
+		
+		string key
+		bool islock
+		if (A == 0x00)
+		{
+			key = "icon_medal_BlueSphere"
+			islock = medal_BlueSphere ? false : true
+		}
+		else if (A == 0x01)
+		{
+			key = "icon_medal_OhSparkles"
+			islock = medal_OhSparkles ? false : true
+		}
+		else if (A == 0x02)
+		{
+			key = "icon_medal_likeJumping"
+			islock = medal_MyPower ? false : true
+		}
+		else if (A == 0x03)
+		{
+			key = "icon_medal_MyPower"
+			islock = medal_MyPower ? false : true
+		}
+		else if (A == 0x04)
+		{
+			key = "icon_medal_DAGE"
+			islock = medal_DAGE ? false : true
+		}
+		else if (A == 0x05)
+		{
+			key = "icon_medal_Challenger"
+			islock = medal_Challenger ? false : true
+		}
+		else if (A == 0x06)
+		{
+			key = "icon_medal_Features"
+			islock = medal_Features ? false : true
+		}
+		else if (A == 0x07)
+		{
+			key = "icon_medal_Longplay"
+			islock = medal_Longplay ? false : true
+		}
+		
+		// Draw medal sprite
+		Renderer.drawCustomSprite(islock ? "icon_medal_lock" : key, px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
+	}
+}
+
+function void BlueSpheresTimer.Menu.medals.items.tableTitle(s32 px, s32 py, u16 renderQueue, string text, u8 alpha)
+{
+	BlueSpheresTimer.TextManager.drawText(px - 0x06, py, renderQueue, 0x02, "*", 0x01, alpha)
+	
+	px += 16
+	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, renderQueue, 0x03, text, 0x01, alpha)
+}
+
+function void BlueSpheresTimer.Menu.medals.updateControl()
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Button selection
+	if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+	{
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_UP)
+		{
+			if (bluespheres.medals.buttonselected != 0x00)
+				--bluespheres.medals.buttonselected
+			else
+				bluespheres.medals.buttonselected = bluespheres.buttons.setup
+		}
+		else if (control.pad1.pressed & CONTROL_DOWN)
+		{
+			if (bluespheres.medals.buttonselected < bluespheres.buttons.setup)
+				++bluespheres.medals.buttonselected
+			else
+				bluespheres.medals.buttonselected = 0x00
+		}
+	}
+	
+	// Go back to the achievements menu
+	if (control.pad1.pressed & CONTROL_B)
+	{
+		playSound(0xad)
+		global.game_mode = 0x88
+	}
+}

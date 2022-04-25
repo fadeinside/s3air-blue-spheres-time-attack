@@ -73,6 +73,10 @@ function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 {
 	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, STRING_BACK)
 	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+	
+	px += 128
+	string button_medals = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup + 0x01, STRING_ACHIEVEMENTS_MEDALS)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_medals, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 py)
@@ -86,7 +90,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	
 	if (SortAll)
 	{
-		if (bluespheres.achievements.buttonselected >= 0x02 && !(bluespheres.achievements.buttonselected == bluespheres.buttons.setup))
+		if (bluespheres.achievements.buttonselected >= 0x02 && !(bluespheres.achievements.buttonselected >= bluespheres.buttons.setup))
 		{
 			for (u8 A = 0x00; A <= bluespheres.achievements.buttonselected - 0x02; ++A)
 				py -= 26
@@ -94,7 +98,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 	}
 	else if (bluespheres.achievements.totalButtons > 0x00)
 	{
-		if (bluespheres.achievements.currentButtonScroll >= 0x02 && !(bluespheres.achievements.buttonselected == bluespheres.buttons.setup))
+		if (bluespheres.achievements.currentButtonScroll >= 0x02 && !(bluespheres.achievements.buttonselected >= bluespheres.buttons.setup))
 		{
 			for (u8 A = 0x00; A <= bluespheres.achievements.currentButtonScroll - 0x02; ++A)
 				py -= 26
@@ -309,7 +313,7 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 		return
 	
 	// Button selection with scrolling
-	if (control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
+	if (!(bluespheres.achievements.buttonselected > bluespheres.buttons.setup) && (control.pad1.state & (CONTROL_UP | CONTROL_DOWN)))
 	{
 		bool SortAll = bluespheres.achievements.sortselected == 0x00
 		bool SortCompleted = bluespheres.achievements.sortselected == 0x01
@@ -418,7 +422,7 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 	}
 	
 	// Button selection
-	if (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN))
+	if (!(bluespheres.achievements.buttonselected > bluespheres.buttons.setup) && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
 	{
 		bool SortAll = bluespheres.achievements.sortselected == 0x00
 		bool SortCompleted = bluespheres.achievements.sortselected == 0x01
@@ -510,6 +514,28 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 					bluespheres.achievements.buttonselected = bluespheres.achievements.firstButton
 				}
 			}
+		}
+	}
+	
+	// Button selection
+	if ((bluespheres.achievements.buttonselected >= bluespheres.buttons.setup) && (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT)))
+	{
+		u8 buttons.extra = bluespheres.buttons.setup + 0x01
+		
+		playSound(0x5b)
+		if (control.pad1.pressed & CONTROL_LEFT)
+		{
+			if (bluespheres.achievements.buttonselected != bluespheres.buttons.setup)
+				--bluespheres.achievements.buttonselected
+			else
+				bluespheres.achievements.buttonselected = buttons.extra
+		}
+		else if (control.pad1.pressed & CONTROL_RIGHT)
+		{
+			if (bluespheres.achievements.buttonselected < buttons.extra)
+				++bluespheres.achievements.buttonselected
+			else
+				bluespheres.achievements.buttonselected = bluespheres.buttons.setup
 		}
 	}
 	
@@ -615,7 +641,11 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 			playSound(0x63)
 			global.game_mode = 0x85
 		}
-		
+		if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup + 0x01)
+		{
+			playSound(0x63)
+			global.game_mode = 0x8a
+		}
 		for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 		{
 			if (bluespheres.achievements.buttonselected == A && (bluespheres.achievements.buttonselected != bluespheres.buttons.setup))

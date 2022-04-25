@@ -22,6 +22,7 @@ global u8 bluespheres.timeattack.characterselected	// The selected character in 
 global u8 bluespheres.timeattack.xtracharselected	// The selected extra character in the Time Attack menu (0x01 - Character 1, 0x02 - Character 2, 0x03 - Character 3)
 global u8 bluespheres.timeattack.levelselected	// Selected level (0x00 .. 0x07)
 global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0x00 - Sonic 3, 0x01 - Sonic & Knuckles)
+global u8 bluespheres.medals.buttonselected	// The currently active button in the Medals menu
 
 // Achievements sort
 global bool bluespheres.achievements.sortNeedUpdate	// Sets to "true" when sorted achievements list data needs to be updated

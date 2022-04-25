@@ -1,0 +1,46 @@
+function void BlueSpheresTimer.Menu.medals.setup()
+{
+	// Global variables setup
+	level.framecounter = 0x00
+	bluespheres.buttons.setup = 0x04
+	bluespheres.medals.buttonselected = bluespheres.buttons.setup
+	
+	// VRAM stuff
+	BlueSpheresTimer.VRAMClear()
+	BlueSpheresTimer.VRAMLoad_stagePreview()
+	
+	// Screen fades
+	FadeOutScreenBlocking()
+	
+	// Main loop
+	while (true)
+	{
+		global.frame_state = 0x12
+		waitForNextFrame()
+		
+		// Start counting arrival frames in the menu
+		++level.framecounter
+		
+		// End the current loop if the mode don't match
+		if (global.game_mode != 0x8a)
+			break
+		
+		// Checking control buttons
+		BlueSpheresTimer.Menu.medals.updateControl()
+		
+		// Checking the activity of achievements
+		BlueSpheresTimer.Achievements.update()
+		
+		// Screen items
+		BlueSpheresTimer.Menu.medals.headline()
+		BlueSpheresTimer.Menu.medals.items()
+		
+		BlueSpheresTimer.Menu.timeattack.background()
+		
+		// Screen fades
+		BlueSpheresTimer.FadeInFromWhite()
+		
+		// Clear sprites every frame
+		RenderSprites()
+	}
+}

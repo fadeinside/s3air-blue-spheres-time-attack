@@ -76,6 +76,10 @@ define string STRING_ACHIEVEMENTS_UNKNOWN	= "Unknown Achievement"
 define string STRING_ACHIEVEMENTS_TOAST_COMPLETE	= "Achievement complete!"
 define string STRING_ACHIEVEMENTS_MOD_NAME_REQUIRE	= "Require a `%s` mod."
 define string STRING_ACHIEVEMENTS_YOU_CAN_INSTALL	= "You can install it from:"
+define string STRING_ACHIEVEMENTS_MEDALS	= "Medals"
+
+// "Medals" strings
+define string STRING_MEDALS_HEADLINE	= "MEDALS!"
 
 // "Achievements" sort strings
 define string STRING_ACHIEVEMENTS_SORT	= "Sort"

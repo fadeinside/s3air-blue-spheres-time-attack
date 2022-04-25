@@ -16,9 +16,20 @@
 	"icon_tag_challenge": { "File": "menu_icons.png", "Rect": "54,38,44,8", "Center": "0,4" },
 	"icon_tag_easy": { "File": "menu_icons.png", "Rect": "99,38,25,8", "Center": "0,4" },
 	
-	// Marathon icon (Needed Blue Sphere Plus mod)
+	// Marathon star icon (Needed Blue Sphere Plus mod)
 	"icon_marathon_lock": { "File": "menu_icons.png", "Rect": "136,38,13,13", "Center": "6,7" },
 	"icon_marathon_outline": { "File": "menu_icons.png", "Rect": "150,38,15,15", "Center": "7,8" },
+	
+	// Medals icon
+	"icon_medal_lock": { "File": "menu_icons.png", "Rect": "1,60,35,40", "Center": "0,17" },
+	"icon_medal_BlueSphere": { "File": "menu_icons.png", "Rect": "37,60,35,40", "Center": "0,17" },
+	"icon_medal_OhSparkles": { "File": "menu_icons.png", "Rect": "73,60,35,40", "Center": "0,17" },
+	"icon_medal_MyPower": { "File": "menu_icons.png", "Rect": "109,60,35,40", "Center": "0,17" },
+	"icon_medal_DAGE": { "File": "menu_icons.png", "Rect": "1,101,35,40", "Center": "0,17" },
+	"icon_medal_Longplay": { "File": "menu_icons.png", "Rect": "37,101,35,40", "Center": "0,17" },
+	"icon_medal_Challenger": { "File": "menu_icons.png", "Rect": "73,101,35,40", "Center": "0,17" },
+	"icon_medal_Features": { "File": "menu_icons.png", "Rect": "109,101,35,40", "Center": "0,17" },
+	"icon_medal_likeJumping": { "File": "menu_icons.png", "Rect": "145,101,35,40", "Center": "0,17" },
 	
 	// Copyright
 	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },

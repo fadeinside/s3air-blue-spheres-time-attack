@@ -41,6 +41,8 @@ function void GameModeControlLoop()
 			BlueSpheresTimer.Menu.achievements.setup()
 		else if (global.game_mode == 0x89)
 			BlueSpheresTimer.Menu.lobby.setup()
+		else if (global.game_mode == 0x8a)
+			BlueSpheresTimer.Menu.medals.setup()
 		else
 		{
 			D0.u16 = global.game_mode & 0x7c
