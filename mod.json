@@ -3,8 +3,8 @@
 	{
 		"Name": "Blue Sphere Time Attack",
 		"Author": "FadeInside",
-		"Description": "Run through exciting levels of Special Stages in Time Attack mode! Play on your favorite stages, record your time passed, collect emeralds, get achievements, and unlock all unlockable.",
-		"URL": "https://gamebanana.com/mods/362325",
+		"Description": "Run through exciting levels of Special Stages in Time Attack mode! Play on your favorite stages, record your time passed, collect emeralds, get achievements, and unlock some unlockable items.",
+		"URL": "https://github.com/fadeinside/s3air-blue-spheres-time-attack/",
 		"ModVersion": "1.0.3",
 		"GameVersion": "21.09.28.0"
 	},
@@ -15,7 +15,7 @@
 			{
 				"Category": "Menu appearance",
 				"InternalName": "SETTING_BS_DEFAULT_CHARACTER",
-				"DisplayName": "Default selected character:",
+				"DisplayName": "Default character:",
 				"Variable": "SETTING_BS_DEFAULT_CHARACTER",
 				"DefaultValue": "1",
 				"Options":
@@ -27,9 +27,9 @@
 			},
 			{
 				"Category": "Menu appearance",
-				"InternalName": "SETTING_BS_STAGE_PREVIEW_ENABLE",
-				"DisplayName": "Show stage spheres in menu:",
-				"Variable": "SETTING_BS_STAGE_PREVIEW_ENABLE",
+				"InternalName": "SETTING_BS_SHOW_KEYBOARD_KEYS",
+				"DisplayName": "Show menu hot-keys:",
+				"Variable": "SETTING_BS_SHOW_KEYBOARD_KEYS",
 				"DefaultValue": "1",
 				"Options":
 				{
@@ -39,9 +39,9 @@
 			},
 			{
 				"Category": "Menu appearance",
-				"InternalName": "SETTING_BS_SHOW_KEYBOARD_KEYS",
-				"DisplayName": "Show hot-keys in menu:",
-				"Variable": "SETTING_BS_SHOW_KEYBOARD_KEYS",
+				"InternalName": "SETTING_BS_STAGE_PREVIEW_ENABLE",
+				"DisplayName": "Stage spheres in menu:",
+				"Variable": "SETTING_BS_STAGE_PREVIEW_ENABLE",
 				"DefaultValue": "1",
 				"Options":
 				{
@@ -57,20 +57,8 @@
 				"DefaultValue": "1",
 				"Options":
 				{
-					"0": "Stage ground",
+					"0": "Special Stage ground",
 					"1": "\"Sonic and Knuckles\" (Default)"
-				}
-			},
-			{
-				"Category": "Menu appearance",
-				"InternalName": "SETTING_BS_MENU_OPTIMIZATION",
-				"DisplayName": "Menu optimization:",
-				"Variable": "SETTING_BS_MENU_OPTIMIZATION",
-				"DefaultValue": "0",
-				"Options":
-				{
-					"0": "Disabled (Default)",
-					"1": "Enable"
 				}
 			},
 			{
@@ -110,7 +98,7 @@
 				}
 			},
 			{
-				"Category": "Additional",
+				"Category": "Main game Special stages",
 				"InternalName": "SETTING_BS_ACHIEVEMENTS_ENABLE",
 				"DisplayName": "Achievements in Main stages:",
 				"Variable": "SETTING_BS_ACHIEVEMENTS_ENABLE",
@@ -122,10 +110,22 @@
 				}
 			},
 			{
-				"Category": "Additional",
+				"Category": "Main game Special stages",
 				"InternalName": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
 				"DisplayName": "Time bonus in Main stages:",
 				"Variable": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Disabled (Default)",
+					"1": "Enable"
+				}
+			},
+			{
+				"Category": "Additional",
+				"InternalName": "SETTING_BS_MENU_OPTIMIZATION",
+				"DisplayName": "Menu optimization:",
+				"Variable": "SETTING_BS_MENU_OPTIMIZATION",
 				"DefaultValue": "0",
 				"Options":
 				{
