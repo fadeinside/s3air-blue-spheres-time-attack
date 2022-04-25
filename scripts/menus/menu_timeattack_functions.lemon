@@ -288,7 +288,7 @@ function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 	{
 		py += 16
 		string name = (A == 0x01) ? "st" : ((A == 0x02) ? "nd" : ((A == 0x03) ? "rd" : ((A == 0x04) ? "th" : "")))
-		BlueSpheresTimer.Menu.timeattack.items.table(px, py, 0xf000, 0x02, stringformat("%d%s", A, name), BlueSpheresTimer.Records.getRecordTime(A))
+		BlueSpheresTimer.Menu.timeattack.items.table(px, py, 0xf000, 0x02, stringformat("%d", A), BlueSpheresTimer.Records.getRecordTime(A))
 	}
 }
 
@@ -367,8 +367,9 @@ function void BlueSpheresTimer.Menu.timeattack.items.levelslayout(s32 px, s32 py
 
 function void BlueSpheresTimer.Menu.timeattack.items.table(s32 px, s32 py, u16 renderQueue, u8 align, string text, s32 input_data)
 {
-	px -= 12
-	BlueSpheresTimer.TextManager.drawText(px - 38, py, renderQueue, align, text, 0x01)
+	px -= 14
+	BlueSpheresTimer.TextManager.drawText(px - 32, py, renderQueue, align, text, 0x01)
+	Renderer.drawCustomSprite("icon_clock", px - 22, py, 0x40, 0x00, renderQueue)
 	
 	if (input_data == 0x00)
 	{

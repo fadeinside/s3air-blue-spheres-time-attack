@@ -37,6 +37,9 @@
 	// Scroll bar
 	"icon_scrollbar": { "File": "menu_icons.png", "Rect": "172,49,7,30", "Center": "4,0" },
 	
+	// Clock icon
+	"icon_clock": { "File": "menu_icons.png", "Rect": "166,38,11,11", "Center": "0,5" },
+	
 	// Keyboard keys by egordorichev, check https://egordorichev.itch.io/key-set
 	"icon_key_x": { "File": "menu_icons.png", "Rect": "1,47,12,12", "Center": "6,6" },
 	"icon_key_y": { "File": "menu_icons.png", "Rect": "14,47,12,12", "Center": "6,6" },

@@ -5,7 +5,7 @@ function void FadeScreenToWhiteBlocking()
 	// We will make some changes to this fade, for good work with the custom pause menu
 	if !(bluespheres.timeattack.active)
 	{
-		// Return the base function
+		// Call the base function
 		base.FadeScreenToWhiteBlocking()
 		return
 	}
@@ -27,32 +27,6 @@ function void FadeScreenToWhiteBlocking()
 		Renderer.enableDefaultPlane(0x03, false)
 		
 		FadePaletteToWhite()
-		LoadRequiredSpritePatterns()
-		--D4.s16
-	}
-}
-
-//@ Function taken from sonic3air_dev/scripts/general/screenfades.lemon
-//# address-hook(0x003be4) end(0x003c02)
-function void FadeOutScreenBlocking()
-{
-	// Setup variables
-	palette_fade.range = 0x003f
-	D4.u16 = 0x15
-	
-	// Main loop
-	while (D4.s16 >= 0x00)
-	{
-	#if STANDALONE
-		// Preserve former custom plane setup
-		enableCustomPlaneReset = false
-	#endif
-
-		global.frame_state = 0x12
-		waitForNextFrame()
-
-	@EntryPoint:
-		FadeOutPalette()
 		LoadRequiredSpritePatterns()
 		--D4.s16
 	}

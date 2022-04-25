@@ -40,7 +40,7 @@ function void BlueSpheresTimer.Menu.medals.items.medals(s32 px, s32 py)
 		if (A != 0x00)
 			py += 76
 		
-		u8 alpha = (py < 16 || py > getScreenHeight() - 16) ? 48 : ((py < 32 || py > getScreenHeight() - 32) ? 100 : ((py < 48 || py > getScreenHeight() - 48) ? 150 : ((py < 64 || py > getScreenHeight() - 64) ? 200 : 255)))
+		u8 alpha = (py < 54 || py > getScreenHeight() - 54) ? 48 : ((py >= 130) ? 150 : 255)
 		
 		if (A == 0x00)
 			BlueSpheresTimer.Menu.medals.items.tableAchievements(px, py, 0xf000, alpha)
@@ -50,7 +50,6 @@ function void BlueSpheresTimer.Menu.medals.items.medals(s32 px, s32 py)
 			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_TAILS, alpha)
 		else if (A == 0x03)
 			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_KNUCKLES, alpha)
-		
 	}
 }
 
