@@ -40,6 +40,7 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 	
 	// Bools
 	bool isBackButton = bluespheres.achievements.buttonselected == bluespheres.buttons.setup
+	bool isExtraButtom = bluespheres.achievements.extraselected
 	bool isAvailableAchievement = false
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
@@ -49,11 +50,11 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 				isAvailableAchievement = true
 		}
 	}
-	bool showStartButton = isAvailableAchievement || isBackButton
+	bool showStartButton = isAvailableAchievement || isBackButton || isExtraButtom
 	
 	bool SortAll = bluespheres.achievements.sortselected == 0x00
 	bool isSortAvailableButtons = !(SortAll) && (bluespheres.achievements.totalButtons > 0x00)
-	bool showUpDownButtons = SortAll || isSortAvailableButtons
+	bool showUpDownButtons = (SortAll || isSortAvailableButtons) && !isExtraButtom
 	
 	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "b")
 	px += 13
@@ -126,7 +127,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		}
 		
 		string achievement_sort = SortAll ? STRING_ACHIEVEMENTS_SORT_ALL : (SortCompleted ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_COMPLETED, completed_total) : (SortStarted ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_STARTED, started_total) : (SortLocked ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_LOCKED, not_started_total) : STRING_RETRY)))
-		BlueSpheresTimer.TextManager.drawTextWithLine(px + 16, py, 0xf000, 0x03, achievement_sort, 0x01, alpha)
+		BlueSpheresTimer.TextManager.drawTextWithLine2(px + 16, py, 0xf000, 0x03, achievement_sort, 0x01, alpha)
 	}
 	
 	if (!(SortAll) && (bluespheres.achievements.totalButtons == 0x00))
@@ -187,7 +188,7 @@ function void BlueSpheresTimer.Menu.achievements.items.scrollbar()
 	
 	if (SortAll)
 	{
-		if (control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
+		if (!bluespheres.achievements.extraselected && (control.pad1.state & (CONTROL_UP | CONTROL_DOWN)))
 		{
 			if ((bluespheres.achievements.buttonselected >= 0x02 && (bluespheres.achievements.buttonselected != bluespheres.buttons.setup)) || (bluespheres.achievements.buttonselected > 0x02 && (bluespheres.achievements.buttonselected == bluespheres.buttons.setup) && control.pad1.state & CONTROL_DOWN))
 			{
@@ -198,7 +199,7 @@ function void BlueSpheresTimer.Menu.achievements.items.scrollbar()
 	}
 	else if (bluespheres.achievements.totalButtons > 0x00)
 	{
-		if (control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
+		if (!bluespheres.achievements.extraselected && (control.pad1.state & (CONTROL_UP | CONTROL_DOWN)))
 		{
 			if ((bluespheres.achievements.currentButtonScroll >= 0x02 && (bluespheres.achievements.currentButtonScroll != bluespheres.achievements.totalButtons + 0x01)) || (bluespheres.achievements.totalButtons > 0x02 && (bluespheres.achievements.currentButtonScroll == bluespheres.achievements.totalButtons + 0x01) && control.pad1.state & CONTROL_DOWN))
 			{
@@ -313,7 +314,7 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 		return
 	
 	// Button selection with scrolling
-	if (!(bluespheres.achievements.buttonselected > bluespheres.buttons.setup) && (control.pad1.state & (CONTROL_UP | CONTROL_DOWN)))
+	if (!bluespheres.achievements.extraselected && (control.pad1.state & (CONTROL_UP | CONTROL_DOWN)))
 	{
 		bool SortAll = bluespheres.achievements.sortselected == 0x00
 		bool SortCompleted = bluespheres.achievements.sortselected == 0x01
@@ -422,7 +423,7 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 	}
 	
 	// Button selection
-	if (!(bluespheres.achievements.buttonselected > bluespheres.buttons.setup) && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
+	if (!bluespheres.achievements.extraselected && (control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)))
 	{
 		bool SortAll = bluespheres.achievements.sortselected == 0x00
 		bool SortCompleted = bluespheres.achievements.sortselected == 0x01
@@ -521,8 +522,12 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 	if ((bluespheres.achievements.buttonselected >= bluespheres.buttons.setup) && (control.pad1.pressed & (CONTROL_LEFT | CONTROL_RIGHT)))
 	{
 		u8 buttons.extra = bluespheres.buttons.setup + 0x01
-		
 		playSound(0x5b)
+		
+		++bluespheres.achievements.extraselected
+		if (bluespheres.achievements.extraselected > 0x01)
+			bluespheres.achievements.extraselected = 0x00
+		
 		if (control.pad1.pressed & CONTROL_LEFT)
 		{
 			if (bluespheres.achievements.buttonselected != bluespheres.buttons.setup)
@@ -589,7 +594,10 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 					bluespheres.buttons.setup = A + 0x01
 					
 					bluespheres.achievements.currentButtonScroll = bluespheres.achievements.totalButtons + 0x01
-					bluespheres.achievements.buttonselected = bluespheres.buttons.setup
+					if (bluespheres.achievements.extraselected)
+						bluespheres.achievements.buttonselected = bluespheres.buttons.setup + 0x01
+					else
+						bluespheres.achievements.buttonselected = bluespheres.buttons.setup
 					
 					bluespheres.achievements.lastButton = A
 					bluespheres.achievements.preButton = A
@@ -625,7 +633,10 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 		{
 			// Define the "Back" button if there are no buttons in the sorted achievements
 			bluespheres.buttons.setup = 0x01
-			bluespheres.achievements.buttonselected = bluespheres.buttons.setup
+			if (bluespheres.achievements.extraselected)
+				bluespheres.achievements.buttonselected = bluespheres.buttons.setup + 0x01
+			else
+				bluespheres.achievements.buttonselected = bluespheres.buttons.setup
 		}
 		
 		// After all these steps, reset the sort update if it is active
@@ -648,7 +659,7 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 		}
 		for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 		{
-			if (bluespheres.achievements.buttonselected == A && (bluespheres.achievements.buttonselected != bluespheres.buttons.setup))
+			if (bluespheres.achievements.buttonselected == A && (bluespheres.achievements.buttonselected < bluespheres.buttons.setup))
 			{
 				if !(BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_LOCKED || BlueSpheresTimer.Achievements.getTitle(A) == STRING_ACHIEVEMENTS_UNKNOWN)
 				{

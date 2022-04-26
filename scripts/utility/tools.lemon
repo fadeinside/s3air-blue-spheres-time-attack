@@ -112,7 +112,7 @@ function string BlueSpheresTimer.getFormatTime(s32 input_minutes, s32 input_seco
 	string stringseconds = stringformat("%d", input_seconds)
 	string stringcentiseconds = stringformat("%d", input_centiseconds)
 	
-	string time = stringformat("%s'%s`%s", ((input_minutes != 0x00) ? ((strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes) : "--"), (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
+	string time = stringformat("%s'%s`%s", ((strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes), (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
 	
 	return time
 }
@@ -128,7 +128,7 @@ function string BlueSpheresTimer.getFormatTime(s32 input_data)
 	string stringseconds = stringformat("%d", seconds)
 	string stringcentiseconds = stringformat("%d", centiseconds)
 	
-	string time = stringformat("%s'%s`%s", ((minutes != 0x00) ? ((strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes) : "--"), (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
+	string time = stringformat("%s'%s`%s", ((strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes), (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
 	
 	return time
 }

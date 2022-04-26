@@ -2,6 +2,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	bluespheres.achievements.extraselected = 0x00
 	bluespheres.buttons.setup = Mods.isModActive("Blue Sphere Plus") ? 0x02 : 0x01
 	if (SETTING_BS_DEFAULT_CHARACTER != 0x00 && bluespheres.character_defined != 0x01)
 	{

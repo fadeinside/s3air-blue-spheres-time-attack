@@ -20,10 +20,13 @@
 	"icon_marathon_lock": { "File": "menu_icons.png", "Rect": "136,38,13,13", "Center": "6,7" },
 	"icon_marathon_outline": { "File": "menu_icons.png", "Rect": "150,38,15,15", "Center": "7,8" },
 	
+	// Medals border
+	"icon_medal_borderBlock": { "File": "menu_icons.png", "Rect": "141,142,39,44", "Center": "2,19" },
+	
 	// Medals icon
 	"icon_medal_lock": { "File": "menu_icons.png", "Rect": "1,60,35,40", "Center": "0,17" },
 	"icon_medal_BlueSphere": { "File": "menu_icons.png", "Rect": "37,60,35,40", "Center": "0,17" },
-	"icon_medal_OhSparkles": { "File": "menu_icons.png", "Rect": "73,60,35,40", "Center": "0,17" },
+	"icon_medal_OhShiny": { "File": "menu_icons.png", "Rect": "73,60,35,40", "Center": "0,17" },
 	"icon_medal_MyPower": { "File": "menu_icons.png", "Rect": "109,60,35,40", "Center": "0,17" },
 	"icon_medal_DAGE": { "File": "menu_icons.png", "Rect": "1,101,35,40", "Center": "0,17" },
 	"icon_medal_Longplay": { "File": "menu_icons.png", "Rect": "37,101,35,40", "Center": "0,17" },

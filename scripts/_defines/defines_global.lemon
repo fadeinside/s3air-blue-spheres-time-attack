@@ -17,12 +17,15 @@ global u8 bluespheres.pause.buttonselected	// The currently active button in the
 global u8 bluespheres.popup.buttonselected	// The currently active button in the popup menu
 global u8 bluespheres.achievements.buttonselected	// The currently active button in the Achievements menu
 global u8 bluespheres.achievements.sortselected	// Selected achievements list sort type (0x00 - All, 0x01 - Completed, 0x02 - Started, 0x03 - Locked)
+global u8 bluespheres.achievements.extraselected	// Selected extra button (0x00 - on Back button, 0x01 - on Medals button)
 global u8 bluespheres.lobby.buttonselected	// The currently active button in the Lobby menu
 global u8 bluespheres.timeattack.characterselected	// The selected character in the Time Attack menu (0x00 - Sonic, 0x01 - Miles, 0x02 - Knuckles, 0x03 - Extra character)
 global u8 bluespheres.timeattack.xtracharselected	// The selected extra character in the Time Attack menu (0x01 - Character 1, 0x02 - Character 2, 0x03 - Character 3)
 global u8 bluespheres.timeattack.levelselected	// Selected level (0x00 .. 0x07)
 global u8 bluespheres.timeattack.layoutselected	// Selected level layout type (0x00 - Sonic 3, 0x01 - Sonic & Knuckles)
 global u8 bluespheres.medals.buttonselected	// The currently active button in the Medals menu
+global u8 bluespheres.medals.medalselected	// Selected medal in the list
+global u8 bluespheres.medals.medals.setup	// Sets the number of medals buttons in the current row
 
 // Achievements sort
 global bool bluespheres.achievements.sortNeedUpdate	// Sets to "true" when sorted achievements list data needs to be updated

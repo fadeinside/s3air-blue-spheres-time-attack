@@ -63,7 +63,7 @@ function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, stri
 	if (text4 != "")
 		py += 0x08
 		
-	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
+	if ((global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE)) || global.game_mode == 0x8a)
 	{
 		bluespheres.popup.offsetDescription = py
 		py += 16

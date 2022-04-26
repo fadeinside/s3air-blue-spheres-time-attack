@@ -2,8 +2,9 @@ function void BlueSpheresTimer.Menu.medals.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
-	bluespheres.buttons.setup = 0x04
+	bluespheres.buttons.setup = 0x01
 	bluespheres.medals.buttonselected = bluespheres.buttons.setup
+	bluespheres.medals.medalselected = 0x01
 	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()
@@ -32,6 +33,7 @@ function void BlueSpheresTimer.Menu.medals.setup()
 		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
+		BlueSpheresTimer.Menu.medals.popups()
 		BlueSpheresTimer.Menu.medals.headline()
 		BlueSpheresTimer.Menu.medals.items()
 		
