@@ -78,7 +78,7 @@ define string STRING_ACHIEVEMENTS_MOD_NAME_REQUIRE	= "Require a `%s` mod."
 define string STRING_ACHIEVEMENTS_YOU_CAN_INSTALL	= "You can install it from:"
 define string STRING_ACHIEVEMENTS_MEDALS	= "Medals"
 
-// "Character" strings
+// Character names
 define string STRING_CHARACTER_SONIC	= "Sonic"
 define string STRING_CHARACTER_TAILS	= "Tails"
 define string STRING_CHARACTER_MILES	= "Miles"
@@ -90,6 +90,14 @@ define string STRING_CHARACTER_RAY	= "Ray"
 define string STRING_MEDALS_HEADLINE	= "MEDALS!"
 
 // Medals descriptions (Line position: 4 - Top, 1 - Bottom)
+define string STRING_MEDAL_ACHIEVEMENTS5.LINE1	= "Complete 5 achievements."
+define string STRING_MEDAL_ACHIEVEMENTS10.LINE1	= "Complete 10 achievements."
+define string STRING_MEDAL_ACHIEVEMENTS15.LINE1	= "Complete 15 achievements."
+define string STRING_MEDAL_ACHIEVEMENTS20.LINE1	= "Complete 20 achievements."
+define string STRING_MEDAL_ACHIEVEMENTS25.LINE1	= "Complete 25 achievements."
+define string STRING_MEDAL_ACHIEVEMENTS30.LINE1	= "Complete 30 achievements."
+define string STRING_MEDAL_ACHIEVEMENTS35.LINE1	= "Complete 35 achievements."
+define string STRING_MEDAL_LONGPLAY.LINE1	= "Complete all achievements."
 define string STRING_MEDAL_BLUE_SPHERE.LINE2	= "Complete all achievements"
 define string STRING_MEDAL_BLUE_SPHERE.LINE1	= "related to the get blue spheres."
 define string STRING_MEDAL_OH_SHINY.LINE2	= "Complete all the"
@@ -103,7 +111,6 @@ define string STRING_MEDAL_CHALLENGES.LINE2	= "Complete all achievements"
 define string STRING_MEDAL_CHALLENGES.LINE1	= "that have the `Challenge` tag."
 define string STRING_MEDAL_FEATURES.LINE2	= "Complete all achievements"
 define string STRING_MEDAL_FEATURES.LINE1	= "that require third-party mods."
-define string STRING_MEDAL_LONGPLAY.LINE1	= "Complete all achievements."
 
 // "Achievements" sort strings
 define string STRING_ACHIEVEMENTS_SORT	= "Sort"

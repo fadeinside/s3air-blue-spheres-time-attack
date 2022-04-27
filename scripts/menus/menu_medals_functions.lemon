@@ -101,17 +101,27 @@ function void BlueSpheresTimer.Menu.medals.items.tableAchievements(s32 px, s32 p
 	
 	px += 0x07
 	py += 32
-	for (u8 A = 0x01; A <= 0x08; ++A)
+	for (u8 A = 0x01; A <= 0x0f; ++A)
 	{
 		// Draw border
-		if ((bluespheres.medals.medalselected == A) && (bluespheres.medals.buttonselected == 0x00))
+		if ((bluespheres.medals.medalselected == A) && (bluespheres.medals.buttonselected == 0x00) && (level.framecounter & 0x08))
 			Renderer.drawCustomSprite("icon_medal_borderBlock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
 		
 		// Draw medal sprite
 		Renderer.drawCustomSprite(BlueSpheresTimer.Medals.isUnlocked(0x00, A) ? BlueSpheresTimer.Medals.getSprite(0x00, A) : "icon_medal_lock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
-		
+	
 		// Offset for the next object
-		px += 40
+		if (A > 0x08)
+			px += 47
+		else
+			px += 40
+			
+		// Offset for the next row
+		if (A == 0x08)
+		{
+			px -= (40 * 0x08)
+			py += 48
+		}
 	}
 }
 
@@ -151,7 +161,7 @@ function void BlueSpheresTimer.Menu.medals.updateControl()
 		}
 		
 		if (bluespheres.medals.buttonselected == 0x00)
-			bluespheres.medals.medals.setup = 0x08
+			bluespheres.medals.medals.setup = 0x0f
 	}
 	
 	// Button selection
@@ -224,35 +234,63 @@ function void BlueSpheresTimer.Menu.medals.popups()
 	{
 		if (bluespheres.medals.medalselected == 0x01)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_BLUE_SPHERE.LINE1, STRING_MEDAL_BLUE_SPHERE.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS5.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x02)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_OH_SHINY.LINE1, STRING_MEDAL_OH_SHINY.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS10.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x03)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_LIKE_JUMPING.LINE1, STRING_MEDAL_LIKE_JUMPING.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS15.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x04)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_MY_POWER.LINE1, "", "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS20.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x05)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_DAGE.LINE1, STRING_MEDAL_DAGE.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS25.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x06)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_CHALLENGES.LINE1, STRING_MEDAL_CHALLENGES.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS30.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x07)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_FEATURES.LINE1, STRING_MEDAL_FEATURES.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS35.LINE1, "", "", "", STRING_CLOSE)
 		}
 		else if (bluespheres.medals.medalselected == 0x08)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_LONGPLAY.LINE1, "", "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x09)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_BLUE_SPHERE.LINE1, STRING_MEDAL_BLUE_SPHERE.LINE2, "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x0a)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_OH_SHINY.LINE1, STRING_MEDAL_OH_SHINY.LINE2, "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x0b)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_LIKE_JUMPING.LINE1, STRING_MEDAL_LIKE_JUMPING.LINE2, "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x0c)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_MY_POWER.LINE1, "", "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x0d)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_DAGE.LINE1, STRING_MEDAL_DAGE.LINE2, "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x0e)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_CHALLENGES.LINE1, STRING_MEDAL_CHALLENGES.LINE2, "", "", STRING_CLOSE)
+		}
+		else if (bluespheres.medals.medalselected == 0x0f)
+		{
+			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_FEATURES.LINE1, STRING_MEDAL_FEATURES.LINE2, "", "", STRING_CLOSE)
 		}
 	}
 }

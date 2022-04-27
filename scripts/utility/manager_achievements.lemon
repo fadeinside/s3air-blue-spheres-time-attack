@@ -645,6 +645,25 @@ function void BlueSpheresTimer.Achievements.reset()
 	}
 }
 
+//? Returns the number of Achievements that are completed.
+function u8 BlueSpheresTimer.Achievements.completed()
+{
+	u8 achievements_complete
+	
+	// Total number of Achievements
+	for (u8 A = 0x00; A < bluespheres.achievements.total; ++A)
+	{
+		// Add +1 to variable if Achievement complete
+		if (BlueSpheresTimer.Achievements.isComplete(A))
+		{
+			achievements_complete += 0x01
+		}
+	}
+	
+	// Return the value
+	return achievements_complete
+}
+
 //? Returns the number of Achievements memory addresses that are greater than 0x00.
 function u8 BlueSpheresTimer.Achievements.writed()
 {

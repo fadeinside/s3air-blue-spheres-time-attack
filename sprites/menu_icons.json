@@ -2,46 +2,53 @@
 	// Achievement icon
 	"icon_trophy": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
 	"icon_trophy_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
-	"icon_trophy_outline": { "File": "menu_icons.png", "Rect": "162,1,14,14", "Center": "7,7" },
+	"icon_trophy_outline": { "File": "menu_icons.png", "Rect": "151,1,14,14", "Center": "7,7" },
 	
 	// Achievement tags
 	"icon_tag_none": { "File": "menu_icons.png", "Rect": "1,1,1,1", "Center": "0,0" },
 	"icon_tag_unknown": { "File": "menu_icons.png", "Rect": "1,29,41,8", "Center": "0,4" },
 	"icon_tag_common": { "File": "menu_icons.png", "Rect": "43,29,37,8", "Center": "0,4" },
-	"icon_tag_hard": { "File": "menu_icons.png", "Rect": "151,20,24,8", "Center": "0,4" },
+	"icon_tag_hard": { "File": "menu_icons.png", "Rect": "141,29,24,8", "Center": "0,4" },
 	"icon_tag_special": { "File": "menu_icons.png", "Rect": "106,29,34,8", "Center": "0,4" },
-	"icon_tag_unique": { "File": "menu_icons.png", "Rect": "141,29,32,8", "Center": "0,4" },
+	"icon_tag_unique": { "File": "menu_icons.png", "Rect": "125,38,32,8", "Center": "0,4" },
 	"icon_tag_rare": { "File": "menu_icons.png", "Rect": "81,29,24,8", "Center": "0,4" },
 	"icon_tag_superrare": { "File": "menu_icons.png", "Rect": "1,38,52,8", "Center": "0,4" },
 	"icon_tag_challenge": { "File": "menu_icons.png", "Rect": "54,38,44,8", "Center": "0,4" },
 	"icon_tag_easy": { "File": "menu_icons.png", "Rect": "99,38,25,8", "Center": "0,4" },
 	
 	// Marathon star icon (Needed Blue Sphere Plus mod)
-	"icon_marathon_lock": { "File": "menu_icons.png", "Rect": "136,38,13,13", "Center": "6,7" },
-	"icon_marathon_outline": { "File": "menu_icons.png", "Rect": "150,38,15,15", "Center": "7,8" },
+	"icon_marathon_lock": { "File": "menu_icons.png", "Rect": "168,17,13,13", "Center": "6,7" },
+	"icon_marathon_outline": { "File": "menu_icons.png", "Rect": "166,1,15,15", "Center": "7,8" },
 	
 	// Medals border
-	"icon_medal_borderBlock": { "File": "menu_icons.png", "Rect": "141,142,39,44", "Center": "2,19" },
+	"icon_medal_borderBlock": { "File": "menu_icons.png", "Rect": "145,56,39,44", "Center": "2,19" },
 	
 	// Medals icon
-	"icon_medal_lock": { "File": "menu_icons.png", "Rect": "1,60,35,40", "Center": "0,17" },
-	"icon_medal_BlueSphere": { "File": "menu_icons.png", "Rect": "37,60,35,40", "Center": "0,17" },
-	"icon_medal_OhShiny": { "File": "menu_icons.png", "Rect": "73,60,35,40", "Center": "0,17" },
-	"icon_medal_MyPower": { "File": "menu_icons.png", "Rect": "109,60,35,40", "Center": "0,17" },
+	"icon_medal_lock": { "File": "menu_icons.png", "Rect": "145,101,35,40", "Center": "0,17" },
+	"icon_medal_achievements_5": { "File": "menu_icons.png", "Rect": "1,142,35,40", "Center": "0,17" },
+	"icon_medal_achievements_10": { "File": "menu_icons.png", "Rect": "37,142,35,40", "Center": "0,17" },
+	"icon_medal_achievements_15": { "File": "menu_icons.png", "Rect": "73,142,35,40", "Center": "0,17" },
+	"icon_medal_achievements_20": { "File": "menu_icons.png", "Rect": "109,142,35,40", "Center": "0,17" },
+	"icon_medal_achievements_25": { "File": "menu_icons.png", "Rect": "145,142,35,40", "Center": "0,17" },
+	"icon_medal_achievements_30": { "File": "menu_icons.png", "Rect": "1,183,35,40", "Center": "0,17" },
+	"icon_medal_achievements_35": { "File": "menu_icons.png", "Rect": "37,183,35,40", "Center": "0,17" },
+	"icon_medal_longplay": { "File": "menu_icons.png", "Rect": "37,101,35,40", "Center": "0,17" },
+	"icon_medal_blue_sphere": { "File": "menu_icons.png", "Rect": "1,60,35,40", "Center": "0,17" },
+	"icon_medal_oh_shiny": { "File": "menu_icons.png", "Rect": "37,60,35,40", "Center": "0,17" },
+	"icon_medal_like_jumping": { "File": "menu_icons.png", "Rect": "73,60,35,40", "Center": "0,17" },
+	"icon_medal_my_power": { "File": "menu_icons.png", "Rect": "109,60,35,40", "Center": "0,17" },
 	"icon_medal_DAGE": { "File": "menu_icons.png", "Rect": "1,101,35,40", "Center": "0,17" },
-	"icon_medal_Longplay": { "File": "menu_icons.png", "Rect": "37,101,35,40", "Center": "0,17" },
-	"icon_medal_Challenger": { "File": "menu_icons.png", "Rect": "73,101,35,40", "Center": "0,17" },
-	"icon_medal_Features": { "File": "menu_icons.png", "Rect": "109,101,35,40", "Center": "0,17" },
-	"icon_medal_likeJumping": { "File": "menu_icons.png", "Rect": "145,101,35,40", "Center": "0,17" },
+	"icon_medal_challenger": { "File": "menu_icons.png", "Rect": "73,101,35,40", "Center": "0,17" },
+	"icon_medal_featured": { "File": "menu_icons.png", "Rect": "109,101,35,40", "Center": "0,17" },
 	
 	// Copyright
-	"icon_copyright": { "File": "menu_icons.png", "Rect": "151,1,10,10", "Center": "5,5" },
+	"icon_copyright": { "File": "menu_icons.png", "Rect": "136,49,8,10", "Center": "4,5" },
 	
 	// Scroll bar
-	"icon_scrollbar": { "File": "menu_icons.png", "Rect": "172,49,7,30", "Center": "4,0" },
+	"icon_scrollbar": { "File": "menu_icons.png", "Rect": "182,1,7,30", "Center": "4,0" },
 	
 	// Clock icon
-	"icon_clock": { "File": "menu_icons.png", "Rect": "166,38,11,11", "Center": "0,5" },
+	"icon_clock": { "File": "menu_icons.png", "Rect": "151,16,11,11", "Center": "0,5" },
 	
 	// Keyboard keys by egordorichev, check https://egordorichev.itch.io/key-set
 	"icon_key_x": { "File": "menu_icons.png", "Rect": "1,47,12,12", "Center": "6,6" },
