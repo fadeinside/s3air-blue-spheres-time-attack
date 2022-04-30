@@ -25,7 +25,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 		if (global.game_mode != 0x34)
 			break
 		
-		// Checking control buttons
+		// Control update
 		BlueSpheresTimer.Menu.pause.updateControl()
 		
 		// Screen items

@@ -37,10 +37,10 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		if (global.game_mode != 0x88)
 			break
 		
-		// Checking control buttons
+		// Control update
 		BlueSpheresTimer.Menu.achievements.updateControl()
 		
-		// Checking the activity of achievements
+		// Achievements update
 		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
@@ -48,7 +48,8 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		BlueSpheresTimer.Menu.achievements.headline()
 		BlueSpheresTimer.Menu.achievements.items()
 		
-		BlueSpheresTimer.Menu.timeattack.background()
+		// Background update
+		BlueSpheresTimer.BackgroundManager.update()
 		
 		// Screen fades
 		BlueSpheresTimer.FadeInFromWhite()

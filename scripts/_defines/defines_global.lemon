@@ -45,6 +45,7 @@ global s32 bluespheres.timeOver.timeout	// Counter before returning to the level
 global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 global u8 bluespheres.character_defined	// Set to 0x01 when the default character was defined and sets once
 global u8 bluespheres.pause.hideMenu	// Sets 0x01 when items are hidden in the pause menu
+global u8 bluespheres.timeattack.knuxSelected	// Устанавливается 0x01 когда Наклз был выбран с включеным DAGE
 
 // Counters
 global u8 bluespheres.blue_collected	// Counter of collected blue spheres

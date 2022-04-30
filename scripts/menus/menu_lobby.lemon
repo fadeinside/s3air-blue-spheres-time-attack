@@ -38,17 +38,18 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 		if (global.game_mode != 0x89)
 			break
 		
-		// Checking control buttons
+		// Control update
 		BlueSpheresTimer.Menu.lobby.updateControl()
 		
-		// Checking the activity of achievements
+		// Achievements update
 		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.lobby.headline()
 		BlueSpheresTimer.Menu.lobby.items()
 		
-		BlueSpheresTimer.Menu.timeattack.background()
+		// Background update
+		BlueSpheresTimer.BackgroundManager.update()
 		
 		// Screen fades
 		BlueSpheresTimer.FadeInFromWhite()

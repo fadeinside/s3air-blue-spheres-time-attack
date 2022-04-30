@@ -36,7 +36,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		if (global.game_mode != 0x85)
 			break
 		
-		// Checking control buttons
+		// Control update
 		BlueSpheresTimer.Menu.timeattack.updateControl()
 		
 		// Unlockables checking
@@ -45,7 +45,7 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) && !BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 			bluespheres.popup.show = 0x01
 		
-		// Checking the activity of achievements
+		// Achievements update
 		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
@@ -53,7 +53,8 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		BlueSpheresTimer.Menu.timeattack.headline()
 		BlueSpheresTimer.Menu.timeattack.items()
 		
-		BlueSpheresTimer.Menu.timeattack.background()
+		// Background update
+		BlueSpheresTimer.BackgroundManager.update()
 		
 		// Screen fades
 		BlueSpheresTimer.FadeInFromWhite()

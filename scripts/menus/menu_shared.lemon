@@ -28,18 +28,19 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		// End the current loop if the mode don't match
 		if (global.game_mode != 0x87)
 			break
-			
-		// Checking control buttons
+		
+		// Control update
 		BlueSpheresTimer.Menu.shared.updateControl()
 		
-		// Checking the activity of achievements
+		// Achievements update
 		BlueSpheresTimer.Achievements.update()
 		
 		// Screen items
 		BlueSpheresTimer.Menu.shared.headline()
 		BlueSpheresTimer.Menu.shared.items()
 		
-		BlueSpheresTimer.Menu.timeattack.background()
+		// Background update
+		BlueSpheresTimer.BackgroundManager.update()
 		
 		// Screen fades
 		BlueSpheresTimer.FadeInFromWhite()
