@@ -46,6 +46,7 @@ global u8 bluespheres.continue_granted	// Set to 0x01 when Continue granted
 global u8 bluespheres.character_defined	// Set to 0x01 when the default character was defined and sets once
 global u8 bluespheres.pause.hideMenu	// Sets 0x01 when items are hidden in the pause menu
 global u8 bluespheres.timeattack.knuxSelected	// Sets 0x01 when Knuckles has been selected with DAGE enabled
+global u8 bluespheres.backToLobby	// Sets the 0x01 when Achievements have been called from the Lobby menu
 
 // Counters
 global u8 bluespheres.blue_collected	// Counter of collected blue spheres

@@ -1,0 +1,15 @@
+//@ Function taken from sonic3air_dev/scripts/standalone/audio.lemon
+function void Standalone.playAudio(u8 sfxId)
+{
+	// Fix duplicate sound when like in Mini-game via Lobby
+	if (sfxId == 0x63 && (global.game_mode == 0x89 && bluespheres.minigame_mode == 0x01))
+	{
+		// Do nothing
+		return
+	}
+	else
+	{
+		// Call the base function
+		base.Standalone.playAudio(sfxId)
+	}
+}

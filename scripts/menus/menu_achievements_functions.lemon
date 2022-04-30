@@ -679,7 +679,10 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 	if (control.pad1.pressed & CONTROL_B)
 	{
 		playSound(0xad)
-		global.game_mode = 0x85
+		if (bluespheres.backToLobby)
+			global.game_mode = 0x89
+		else
+			global.game_mode = 0x85
 	}
 }
 
