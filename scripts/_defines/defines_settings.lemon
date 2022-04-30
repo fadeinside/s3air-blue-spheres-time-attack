@@ -11,4 +11,5 @@ global u8 SETTING_BS_TOAST_DURATION	// Sets the duration of the toast (128 - Fas
 global u8 SETTING_BS_ACHIEVEMENTS_ENABLE	// When enabled, achievements can be obtained in usual Special stages of the Main levels
 global u8 SETTING_BS_TIME_BONUSES_ON_SPECIALS	// When enabled, timer appears at the usual Special stages of the Main levels, and at the end, a time bonus will appear on the Results screen
 
+global u8 SETTING_BS_NOT_ENOUGH_RINGS	// When enabled, every time you don't collect all the rings in the stage until you get the emerald, "Not Enough Rings" will be shown
 global u8 SETTING_BS_MENU_OPTIMIZATION	// When enabled, the background in menu will be replaced with a static ground (Like the first release) and during the active popup all rear objects will not be rendered (Optimization method for weak devices)

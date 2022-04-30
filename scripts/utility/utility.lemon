@@ -180,6 +180,14 @@ function void fn009b62()
 			// Skip the emerald if all the rings are not collected
 			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00 && !Mods.isModActive("Sonic 3: D.A. Garden Edition")))
 			{
+				// Skip "Not Enough Rings" if the option is disabled
+				if !(SETTING_BS_NOT_ENOUGH_RINGS)
+				{
+					// Go to the shared menu
+					global.game_mode = 0x87
+					return
+				}
+				
 				// I'm just using "Time Over" dependencies to create "Not Enough Rings"
 				bluespheres.notEnoughRings = 0x01
 				bluespheres.timeOver = 0x01

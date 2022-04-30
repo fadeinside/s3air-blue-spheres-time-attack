@@ -123,6 +123,18 @@
 			},
 			{
 				"Category": "Additional",
+				"InternalName": "SETTING_BS_NOT_ENOUGH_RINGS",
+				"DisplayName": "\"Not Enough Rings:\"",
+				"Variable": "SETTING_BS_NOT_ENOUGH_RINGS",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Enable (Default)"
+				}
+			},
+			{
+				"Category": "Additional",
 				"InternalName": "SETTING_BS_MENU_OPTIMIZATION",
 				"DisplayName": "Menu optimization:",
 				"Variable": "SETTING_BS_MENU_OPTIMIZATION",
