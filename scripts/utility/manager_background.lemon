@@ -42,11 +42,8 @@ function void BlueSpheresTimer.BackgroundManager.overlay()
 	}
 	
 	// Draw a gradient so that the objects are more clearly visible on the background
-	if (SETTING_BS_MENU_BACKGROUND != 0x01) // Do not render this if the "Sonic and Knuckles" theme is enabled
-	{
-		for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-			Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000)
-	}
+	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (SETTING_BS_MENU_BACKGROUND == 0x01) ? 0xba : 0xff)
 }
 
 function void BlueSpheresTimer.BackgroundManager.stagePreview()

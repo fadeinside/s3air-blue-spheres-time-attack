@@ -37,6 +37,11 @@ function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, stri
 		py -= 16
 		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x01, 0x90)
 	}
+	if (global.game_mode == 0x8a)
+	{
+		py -= 16
+		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "     ", 0x01, 0x90)
+	}
 }
 
 // - - - - - - - - - - - - - - - - - - - //
@@ -126,15 +131,18 @@ function void BlueSpheresTimer.Menu.popup.items(string text1, string text2, stri
 	s32 px = getScreenWidth() / 0x02
 	s32 py = getScreenHeight() / 0x02
 	
-	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
-		py += 16
-	
 	if (text2 != "")
 		py += 0x08
 	if (text3 != "")
 		py += 0x08
 	if (text4 != "")
 		py += 0x08
+		
+	if ((global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE)) || global.game_mode == 0x8a)
+	{
+		bluespheres.popup.offsetDescription = py
+		py += 16
+	}
 	
 	BlueSpheresTimer.Menu.popup.items.keys2(px, py)
 	BlueSpheresTimer.Menu.popup.items.menu(px, py, button1, button2)

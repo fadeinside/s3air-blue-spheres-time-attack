@@ -15,8 +15,57 @@ function void BlueSpheresTimer.Menu.medals.items()
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 46
 	
+	BlueSpheresTimer.Menu.medals.items.keys(px, py)
 	BlueSpheresTimer.Menu.medals.items.menu(px, py)
+	
 	BlueSpheresTimer.Menu.medals.items.medals(px, py)
+}
+
+function void BlueSpheresTimer.Menu.medals.items.keys(s32 px, s32 py)
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	// Set position
+	px = 18
+	py = getScreenHeight() - 18
+	
+	// Bools
+	bool isBackButton = bluespheres.medals.buttonselected == bluespheres.buttons.setup
+	bool isUnlockedMedal = false
+	for (u8 A = 0x00; A <= bluespheres.medals.medals.setup; ++A)
+	{
+		if (bluespheres.medals.medalselected == A)
+		{
+			if (BlueSpheresTimer.Medals.isUnlocked(bluespheres.medals.buttonselected, A))
+				isUnlockedMedal = true
+		}
+	}
+	bool showStartButton = isUnlockedMedal || isBackButton
+	bool showLeftRightButtons = !isBackButton
+	
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "b")
+	px += 13
+	if (showStartButton)
+	{
+		BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+		px += 18 // Additional offset by "start"
+		px += 13
+	}
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "up", "down", 0x00)
+	px += 11 // Additional offset by second key ^
+	px += 13
+	if (showLeftRightButtons)
+	{
+		BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "left", "right", 0x00)
+	}
+}
+
+function void BlueSpheresTimer.Menu.medals.items.menu(s32 px, s32 py)
+{
+	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.medals.buttonselected, bluespheres.buttons.setup, STRING_BACK)
+	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.medals.items.menu(s32 px, s32 py)
@@ -27,41 +76,66 @@ function void BlueSpheresTimer.Menu.medals.items.menu(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.medals.items.medals(s32 px, s32 py)
 {
+	BlueSpheresTimer.Menu.medals.items.scrollbar()
+	
 	if (bluespheres.medals.buttonselected >= 0x01 && !(bluespheres.medals.buttonselected >= bluespheres.buttons.setup))
 	{
 		for (u8 A = 0x00; A <= bluespheres.medals.buttonselected - 0x01; ++A)
-			py -= 76
-		
-		if (bluespheres.medals.buttonselected >= 0x02)
-		{
-			for (u8 A = 0x00; A <= bluespheres.medals.buttonselected - 0x02; ++A)
-				py -= 52 // = 128 - 76
-		}
+			py -= 128
 	}
 	
 	px -= 164
 	py += 0x08
 	for (u8 A = 0x00; A < bluespheres.buttons.setup; ++A)
 	{
-		if (A >= 0x02)
-			py += 128
-		else if (A != 0x00)
-			py += 76
+		u8 alpha = (py < 54 || py > getScreenHeight() - 54) ? 48 : ((py >= 130) ? 150 : 255)
 		
-		if !(py >= getScreenHeight() || py <= 0x00)
+		if (A == 0x00)
+			BlueSpheresTimer.Menu.medals.items.tableAchievements(px, py, 0xf000, alpha)
+		else if (A == 0x01)
+			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_SONIC, alpha)
+		else if (A == 0x02)
+			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_TAILS, alpha)
+		else if (A == 0x03)
+			BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_KNUCKLES, alpha)
+		
+		// Offset for the next category
+		py += 128
+	}
+}
+
+function void BlueSpheresTimer.Menu.medals.items.scrollbar()
+{
+	// Ignore if popup menu active
+	if (bluespheres.popup.show)
+		return
+	
+	if (control.pad1.state & (CONTROL_UP | CONTROL_DOWN))
+	{
+		if ((bluespheres.medals.buttonselected >= 0x01 && (bluespheres.medals.buttonselected != bluespheres.buttons.setup)) || (bluespheres.medals.buttonselected > 0x01 && (bluespheres.medals.buttonselected == bluespheres.buttons.setup) && control.pad1.state & CONTROL_DOWN))
 		{
-			u8 alpha = (py < 54 || py > getScreenHeight() - 54) ? 48 : ((py >= 130) ? 150 : 255)
-			
-			if (A == 0x00)
-				BlueSpheresTimer.Menu.medals.items.tableAchievements(px, py, 0xf000, alpha)
-			else if (A == 0x01)
-				BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_SONIC, alpha)
-			else if (A == 0x02)
-				BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_TAILS, alpha)
-			else if (A == 0x03)
-				BlueSpheresTimer.Menu.medals.items.tableRecords(px, py, 0xf000, CHARACTER_KNUCKLES, alpha)
+			bluespheres.scrollbar.alpha = 0xff
+			bluespheres.scrollbar.timer = 0x00
 		}
 	}
+	
+	if (bluespheres.scrollbar.alpha != 0x00)
+	{
+		++bluespheres.scrollbar.timer
+		if (bluespheres.scrollbar.timer >= 0x0a)
+		{
+			bluespheres.scrollbar.alpha -= bluespheres.scrollbar.timer
+			if (bluespheres.scrollbar.timer >= 0x5a)
+			{
+				bluespheres.scrollbar.alpha = 0x00
+				bluespheres.scrollbar.timer = 0x00
+			}
+		}
+	}
+	
+	s32 scrollOffset = ((getScreenHeight() - 88) / bluespheres.buttons.setup) * ((bluespheres.medals.buttonselected == bluespheres.buttons.setup) ? 0x00 : bluespheres.medals.buttonselected)
+	
+	Renderer.drawCustomSprite("icon_scrollbar", getScreenWidth(), 44 + scrollOffset, 0x00, 0x40, 0xf000, 0x00, bluespheres.scrollbar.alpha)
 }
 
 function void BlueSpheresTimer.Menu.medals.items.tableRecords(s32 px, s32 py, u16 renderQueue, u8 character, u8 alpha)
@@ -72,26 +146,24 @@ function void BlueSpheresTimer.Menu.medals.items.tableRecords(s32 px, s32 py, u1
 	
 	px += 0x07
 	py += 32
-	for (u8 A = 0x01; A <= 0x07; ++A)
+	for (u8 A = 0x01; A <= 0x10; ++A)
 	{
-		// - Unfinished yet
+		// Draw border
+		if ((bluespheres.medals.medalselected == A) && !(bluespheres.medals.buttonselected >= bluespheres.buttons.setup) && (py == 86 || py == 134) && ((bluespheres.buttons.scrollTimer < 25) ? (level.framecounter & 0x08) : true))
+			Renderer.drawCustomSprite("icon_medal_borderBlock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
+		
 		// Draw medal sprite
 		Renderer.drawCustomSprite("icon_medal_lock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
 		
 		// Offset for the next object
-		px += 46
-	}
-	
-	px -= (46 * 0x07)
-	py += 48
-	for (u8 A = 0x01; A <= 0x07; ++A)
-	{
-		// - Unfinished yet
-		// Draw medal sprite
-		Renderer.drawCustomSprite("icon_medal_lock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
-		
-		// Offset for the next object
-		px += 46
+		px += 40
+			
+		// Offset for the next row
+		if (A == 0x08)
+		{
+			px -= (40 * 0x08)
+			py += 48
+		}
 	}
 }
 
@@ -104,7 +176,7 @@ function void BlueSpheresTimer.Menu.medals.items.tableAchievements(s32 px, s32 p
 	for (u8 A = 0x01; A <= 0x0f; ++A)
 	{
 		// Draw border
-		if ((bluespheres.medals.medalselected == A) && (bluespheres.medals.buttonselected == 0x00) && (level.framecounter & 0x08))
+		if ((bluespheres.medals.medalselected == A) && !(bluespheres.medals.buttonselected >= bluespheres.buttons.setup) && (py == 86 || py == 134) && ((bluespheres.buttons.scrollTimer < 25) ? (level.framecounter & 0x08) : true))
 			Renderer.drawCustomSprite("icon_medal_borderBlock", px, py, 0x40, 0x00, renderQueue, 0x00, alpha)
 		
 		// Draw medal sprite
@@ -123,6 +195,15 @@ function void BlueSpheresTimer.Menu.medals.items.tableAchievements(s32 px, s32 p
 			py += 48
 		}
 	}
+}
+
+function void BlueSpheresTimer.Menu.medals.status()
+{
+	s32 px = getScreenWidth() / 0x02
+	s32 py = 76 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
+	
+	// Draw medal sprite
+	Renderer.drawCustomSprite(BlueSpheresTimer.Medals.getSprite(bluespheres.medals.buttonselected, bluespheres.medals.medalselected), px - 18, py, 0x40, 0x00, 0xf001)
 }
 
 function void BlueSpheresTimer.Menu.medals.items.tableTitle(s32 px, s32 py, u16 renderQueue, string text, u8 alpha)
@@ -162,6 +243,39 @@ function void BlueSpheresTimer.Menu.medals.updateControl()
 		
 		if (bluespheres.medals.buttonselected == 0x00)
 			bluespheres.medals.medals.setup = 0x0f
+	}
+	
+	// Button selection with scrolling
+	if (!(bluespheres.medals.buttonselected >= bluespheres.buttons.setup) && (control.pad1.state & (CONTROL_LEFT | CONTROL_RIGHT)))
+	{
+		++bluespheres.buttons.scrollTimer
+		if (bluespheres.buttons.scrollTimer >= 25)
+		{
+			if (bluespheres.buttons.scrollTimer >= 30)
+			{
+				playSound(0x5b)
+				if (control.pad1.state & CONTROL_LEFT)
+				{
+					if (bluespheres.medals.medalselected != 0x01)
+						--bluespheres.medals.medalselected
+					else
+						bluespheres.medals.medalselected = bluespheres.medals.medals.setup
+				}
+				else if (control.pad1.state & CONTROL_RIGHT)
+				{
+					if (bluespheres.medals.medalselected < bluespheres.medals.medals.setup)
+						++bluespheres.medals.medalselected
+					else
+						bluespheres.medals.medalselected = 0x01
+				}
+				
+				bluespheres.buttons.scrollTimer = 25
+			}
+		}
+	}
+	else
+	{
+		bluespheres.buttons.scrollTimer = 0x00
 	}
 	
 	// Button selection
@@ -230,67 +344,68 @@ function void BlueSpheresTimer.Menu.medals.popups()
 		bluespheres.popup.show = 0x00
 	}
 	
+	s32 target
 	if (bluespheres.medals.buttonselected == 0x00)
 	{
-		if (bluespheres.medals.medalselected == 0x01)
+		if (bluespheres.medals.medalselected >= 0x01 && bluespheres.medals.medalselected <= 0x07)
 		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS5.LINE1, "", "", "", STRING_CLOSE)
-		}
-		else if (bluespheres.medals.medalselected == 0x02)
-		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS10.LINE1, "", "", "", STRING_CLOSE)
-		}
-		else if (bluespheres.medals.medalselected == 0x03)
-		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS15.LINE1, "", "", "", STRING_CLOSE)
-		}
-		else if (bluespheres.medals.medalselected == 0x04)
-		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS20.LINE1, "", "", "", STRING_CLOSE)
-		}
-		else if (bluespheres.medals.medalselected == 0x05)
-		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS25.LINE1, "", "", "", STRING_CLOSE)
-		}
-		else if (bluespheres.medals.medalselected == 0x06)
-		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS30.LINE1, "", "", "", STRING_CLOSE)
-		}
-		else if (bluespheres.medals.medalselected == 0x07)
-		{
-			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_ACHIEVEMENTS35.LINE1, "", "", "", STRING_CLOSE)
+			if (bluespheres.medals.medalselected == 0x01)
+				target = 0x05
+			else if (bluespheres.medals.medalselected == 0x02)
+				target = 10
+			else if (bluespheres.medals.medalselected == 0x03)
+				target = 15
+			else if (bluespheres.medals.medalselected == 0x04)
+				target = 20
+			else if (bluespheres.medals.medalselected == 0x05)
+				target = 25
+			else if (bluespheres.medals.medalselected == 0x06)
+				target = 30
+			else if (bluespheres.medals.medalselected == 0x07)
+				target = 35
+			
+			BlueSpheresTimer.Menu.popup.show(stringformat(STRING_MEDAL_ACHIEVEMENTS5.LINE1, target), "", "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x08)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_LONGPLAY.LINE1, "", "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x09)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_BLUE_SPHERE.LINE1, STRING_MEDAL_BLUE_SPHERE.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x0a)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_OH_SHINY.LINE1, STRING_MEDAL_OH_SHINY.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x0b)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_LIKE_JUMPING.LINE1, STRING_MEDAL_LIKE_JUMPING.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x0c)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_MY_POWER.LINE1, "", "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x0d)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_DAGE.LINE1, STRING_MEDAL_DAGE.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x0e)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_CHALLENGES.LINE1, STRING_MEDAL_CHALLENGES.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 		else if (bluespheres.medals.medalselected == 0x0f)
 		{
 			BlueSpheresTimer.Menu.popup.show(STRING_MEDAL_FEATURES.LINE1, STRING_MEDAL_FEATURES.LINE2, "", "", STRING_CLOSE)
+			BlueSpheresTimer.Menu.medals.status()
 		}
 	}
 }
