@@ -47,9 +47,9 @@ function void BlueSpheresTimer.Data.reset(u32 address)
 }
 
 //? Returns the number of Data memory addresses that are greater than 0x00.
-function s32 BlueSpheresTimer.Data.writed(u32 address)
+function u8 BlueSpheresTimer.Data.writed(u32 address)
 {
-	s32 writed_addresses
+	u8 writed_addresses
 	
 	// D.A. Garden Edition (0x00 .. 0x01)
 	for (u8 A = 0x00; A <= 0x01; ++A)

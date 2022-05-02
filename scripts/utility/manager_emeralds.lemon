@@ -6,7 +6,7 @@ function void BlueSpheresTimer.Emeralds.update()
 		return
 	
 	// Do not perform any actions if all the rings are not collected at the stage. Ignore for Stage 7 S3, there no rings
-	if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00))
+	if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00 && !Mods.isModActive("Sonic 3: D.A. Garden Edition")))
 		return
 	
 	// Get an emerald for the currently selected level, if it is not received, and if these are S3 stages
@@ -19,10 +19,10 @@ function void BlueSpheresTimer.Emeralds.update()
 }
 
 //? Returns the icon of the specified emerald ID.
-function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
+function string BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 {
 	// Determine whether the status of the specified emerald ID is of chaos type or not
-	u64 emeraldType
+	string emeraldType
 	if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x00 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x01)
 		emeraldType = "chaos"
 	else if (BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x02 || BlueSpheresTimer.Emeralds.getStatus(emeraldId) == 0x03)
@@ -48,7 +48,7 @@ function u64 BlueSpheresTimer.Emeralds.getEmerald(u8 emeraldId)
 #endif
 	
 	// Build key
-	u64 key = stringformat("icon_emerald_%s_0x%02x", emeraldType, emeraldColor)
+	string key = stringformat("icon_emerald_%s_0x%02x", emeraldType, emeraldColor)
 	
 	// Return sprite key
 	return key
@@ -139,9 +139,9 @@ function void BlueSpheresTimer.Emeralds.reset()
 }
 
 //? Returns the number of Emerald memory addresses that are greater than 0x00.
-function s32 BlueSpheresTimer.Emeralds.writed()
+function u8 BlueSpheresTimer.Emeralds.writed()
 {
-	s32 writed_addresses
+	u8 writed_addresses
 	
 	// Number of emeralds (0x00 .. 0x07)
 	for (u8 A = 0x00; A <= 0x07; ++A)

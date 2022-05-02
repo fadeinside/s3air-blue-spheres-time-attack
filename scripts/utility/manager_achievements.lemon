@@ -36,7 +36,7 @@ function void BlueSpheresTimer.Achievements.update()
 			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) >= 150)
 			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES)
-			if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) >= 400)
+		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) >= 400)
 			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES)
 		if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) >= 720)
 			BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES)
@@ -293,9 +293,9 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 }
 
 //? Returns the title of the specified Achievement ID.
-function u64 BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
+function string BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 {
-	u64 achievementTitle
+	string achievementTitle
 	
 	if (achievementId == ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
 	{
@@ -598,7 +598,7 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 		{
 			bluespheres.toast.show = BlueSpheresTimer.Achievements.getTitle(achievementId)
 			
-			u64 achievementTitle = (bluespheres.toast.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : STRING_ACHIEVEMENTS_TOAST_COMPLETE
+			string achievementTitle = (bluespheres.toast.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : STRING_ACHIEVEMENTS_TOAST_COMPLETE
 			BlueSpheresTimer.Menu.toast.setup(achievementTitle)
 		}
 	}
@@ -681,20 +681,4 @@ function u8 BlueSpheresTimer.Achievements.writed()
 	
 	// Return the value
 	return writed_address
-}
-
-//? Sets a Completed status for the all Achievements ID's.
-function void BlueSpheresTimer.Achievements.cheat()
-{
-	if (Input.buttonPressed(BUTTON_B) == 0x00 || global.game_mode == 0x34)
-		return
-	
-	// Total number of Achievements
-	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
-	{
-		BlueSpheresTimer.Achievements.setComplete(A)
-	}
-	
-	// Update achievements sorted list
-	bluespheres.achievements.sortNeedUpdate = true
 }
