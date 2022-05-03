@@ -2,7 +2,7 @@
 // Text with alignment and line  			 	//
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-//? Simplified BlueSpheresTimer.TextManager.drawText() function without configurable transparency.
+//? Simplified BlueSpheresTimer.TextManager.drawTextWithLine() function without configurable transparency.
 function void BlueSpheresTimer.TextManager.drawTextWithLine(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font)
 {
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, renderQueue, align, text, font, 255)
@@ -10,34 +10,14 @@ function void BlueSpheresTimer.TextManager.drawTextWithLine(s32 px, s32 py, u16 
 
 function void BlueSpheresTimer.TextManager.drawTextWithLine(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha)
 {
-	s32 character_space
-	for (s32 A = 0x00; A < strlen(text); ++A)
-	{
-		u8 character = getchar(text, A)
-		
-		if (character >= getChar("a") && character <= getChar("z"))
-			character -= 32
-		if (character == getChar("^"))
-			 character_space = 0x00
-		
-		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
-		if (Renderer.hasCustomSprite(key))
-			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
-	}
+	s32 text_width = BlueSpheresTimer.TextManager.getTextWidth(text, font)
+	s32 left = (align == 0x00) ? text_width : ((align == 0x01) ? text_width / 0x02 : 0x00)
 	
 	// Alignment:
 	// - 0x00 - From Right
 	// - 0x01 - From Center
 	// - 0x02 - From Left
 	
-	s32 left
-	if (align == 0x00)
-		left = character_space
-	else if (align == 0x01)
-		left = character_space / 0x02
-	else if (align == 0x02 || align == 0x03)
-		left = 0x00
-		
 	BlueSpheresTimer.TextManager.basic(px - left, py, renderQueue, text, font, alpha)
 	
 	s32 left2 // Left line
@@ -45,16 +25,16 @@ function void BlueSpheresTimer.TextManager.drawTextWithLine(s32 px, s32 py, u16 
 	s32 offset = (text == "") ? 0x04 : 12
 	
 	if (align == 0x00)
-		left2 = ((px - getScreenExtend()) - character_space) - 0x08
+		left2 = ((px - getScreenExtend()) - text_width) - 0x08
 	else if (align == 0x01)
 	{
-		left2 = ((px - getScreenExtend()) - (character_space / 0x02)) - 0x08
-		left3 = (((getScreenWidth() - getScreenExtend()) - px) - (character_space / 0x02)) - 0x08
+		left2 = ((px - getScreenExtend()) - (text_width / 0x02)) - 0x08
+		left3 = (((getScreenWidth() - getScreenExtend()) - px) - (text_width / 0x02)) - 0x08
 	}
 	else if (align == 0x02)
 		left2 = (px - getScreenExtend()) - 0x08
 	else if (align == 0x03)
-		left3 = (((getScreenWidth() - getScreenExtend()) - px) - character_space) - 0x08
+		left3 = (((getScreenWidth() - getScreenExtend()) - px) - text_width) - 0x08
 	
 	if !(align == 0x03)
 		Renderer.drawCustomSpriteWithTransform("icon_whitedot", getScreenExtend() + 12, py, 0x00, 0x40, renderQueue, 0x80ffffff, 0x10000 * (left2 - offset), 0x00, 0x00, 0x10000)
@@ -67,7 +47,7 @@ function void BlueSpheresTimer.TextManager.drawTextWithLine(s32 px, s32 py, u16 
 // Text with alignment and line (0x88)		 //
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-//? Simplified BlueSpheresTimer.TextManager.drawText() function without configurable transparency.
+//? Simplified BlueSpheresTimer.TextManager.drawTextWithLine2() function without configurable transparency.
 function void BlueSpheresTimer.TextManager.drawTextWithLine2(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font)
 {
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, renderQueue, align, text, font, 255)
@@ -75,34 +55,14 @@ function void BlueSpheresTimer.TextManager.drawTextWithLine2(s32 px, s32 py, u16
 
 function void BlueSpheresTimer.TextManager.drawTextWithLine2(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha)
 {
-	s32 character_space
-	for (s32 A = 0x00; A < strlen(text); ++A)
-	{
-		u8 character = getchar(text, A)
-		
-		if (character >= getChar("a") && character <= getChar("z"))
-			character -= 32
-		if (character == getChar("^"))
-			 character_space = 0x00
-		
-		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
-		if (Renderer.hasCustomSprite(key))
-			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
-	}
+	s32 text_width = BlueSpheresTimer.TextManager.getTextWidth(text, font)
+	s32 left = (align == 0x00) ? text_width : ((align == 0x01) ? text_width / 0x02 : 0x00)
 	
 	// Alignment:
 	// - 0x00 - From Right
 	// - 0x01 - From Center
 	// - 0x02 - From Left
 	
-	s32 left
-	if (align == 0x00)
-		left = character_space
-	else if (align == 0x01)
-		left = character_space / 0x02
-	else if (align == 0x02 || align == 0x03)
-		left = 0x00
-		
 	BlueSpheresTimer.TextManager.basic(px - left, py, renderQueue, text, font, alpha)
 	
 	s32 left2 // Left line
@@ -111,16 +71,16 @@ function void BlueSpheresTimer.TextManager.drawTextWithLine2(s32 px, s32 py, u16
 	bool allComplete = ((BlueSpheresTimer.Achievements.writed() - 0x01) == bluespheres.achievements.total)
 	
 	if (align == 0x00)
-		left2 = ((px - getScreenExtend()) - character_space) - 0x08
+		left2 = ((px - getScreenExtend()) - text_width) - 0x08
 	else if (align == 0x01)
 	{
-		left2 = ((px - getScreenExtend()) - (character_space / 0x02)) - 0x08
-		left3 = (((getScreenWidth() - getScreenExtend()) - px) - (character_space / 0x02)) - 0x08
+		left2 = ((px - getScreenExtend()) - (text_width / 0x02)) - 0x08
+		left3 = (((getScreenWidth() - getScreenExtend()) - px) - (text_width / 0x02)) - 0x08
 	}
 	else if (align == 0x02)
 		left2 = (px - getScreenExtend()) - 0x08
 	else if (align == 0x03)
-		left3 = (((getScreenWidth() - (74 - (bluespheres.achievements.sortselected != 0x00 ? 26 : (allComplete ? 0x05 : 0x00) )) - getScreenExtend()) - px) - character_space) - 0x08
+		left3 = (((getScreenWidth() - (74 - (bluespheres.achievements.sortselected != 0x00 ? 26 : (allComplete ? 0x05 : 0x00) )) - getScreenExtend()) - px) - text_width) - 0x08
 	
 	if !(align == 0x03)
 		Renderer.drawCustomSpriteWithTransform("icon_whitedot", getScreenExtend() + 12, py, 0x00, 0x40, renderQueue, 0x80ffffff, 0x10000 * (left2 - offset), 0x00, 0x00, 0x10000)
@@ -133,7 +93,7 @@ function void BlueSpheresTimer.TextManager.drawTextWithLine2(s32 px, s32 py, u16
 // Text with alignment and keys 			 	//
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-//? Simplified BlueSpheresTimer.TextManager.drawText() function with the key and without configurable transparency.
+//? Simplified BlueSpheresTimer.TextManager.drawTextWithKeys() function with the key and without configurable transparency.
 function void BlueSpheresTimer.TextManager.drawTextWithKeys(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, string key1, string key2)
 {
 	BlueSpheresTimer.TextManager.drawTextWithKeys(px, py, renderQueue, align, text, font, 255, key1, key2)
@@ -141,28 +101,8 @@ function void BlueSpheresTimer.TextManager.drawTextWithKeys(s32 px, s32 py, u16 
 
 function void BlueSpheresTimer.TextManager.drawTextWithKeys(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha, string key1, string key2)
 {
-	s32 character_space
-	for (s32 A = 0x00; A < strlen(text); ++A)
-	{
-		u8 character = getchar(text, A)
-		
-		if (character >= getChar("a") && character <= getChar("z"))
-			character -= 32
-		if (character == getChar("^"))
-			 character_space = 0x00
-		
-		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
-		if (Renderer.hasCustomSprite(key))
-			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
-	}
-	
-	s32 left
-	if (align == 0x00)
-		left = 0x00
-	else if (align == 0x01)
-		left = character_space / 0x02
-	else if (align == 0x02)
-		left = character_space
+	s32 text_width = BlueSpheresTimer.TextManager.getTextWidth(text, font)
+	s32 left = (align == 0x00) ? 0x00 : ((align == 0x01) ? text_width / 0x02 : text_width)
 	
 	if (global.game_mode != 0x87)
 		BlueSpheresTimer.TextManager.drawKeyboard_dual(px + left + 12, py, renderQueue, key1, key2, 0x00)
@@ -264,33 +204,13 @@ function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u16 renderQu
 //? The full text rendering code with text alignment.
 function void BlueSpheresTimer.TextManager.drawText(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha)
 {
-	s32 character_space
-	for (s32 A = 0x00; A < strlen(text); ++A)
-	{
-		u8 character = getchar(text, A)
-		
-		if (character >= getChar("a") && character <= getChar("z"))
-			character -= 32
-		if (character == getChar("^"))
-			 character_space = 0x00
-		
-		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
-		if (Renderer.hasCustomSprite(key))
-			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
-	}
+	s32 text_width = BlueSpheresTimer.TextManager.getTextWidth(text, font)
+	s32 left = (align == 0x00) ? text_width : ((align == 0x01) ? text_width / 0x02 : 0x00)
 	
 	// Alignment:
 	// - 0x00 - From Right
 	// - 0x01 - From Center
 	// - 0x02 - From Left
-	
-	s32 left
-	if (align == 0x00)
-		left = character_space
-	else if (align == 0x01)
-		left = character_space / 0x02
-	else if (align == 0x02)
-		left = 0x00
 	
 	BlueSpheresTimer.TextManager.basic(px - left, py, renderQueue, text, font, alpha)
 }
@@ -314,7 +234,7 @@ function string BlueSpheresTimer.TextManager.getMenuItem(u8 button_var, u8 butto
 //? The basic code for rendering text.
 function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u16 renderQueue, string text, u8 font, u8 alpha)
 {
-	s32 character_space
+	s32 text_width
 	for (s32 A = 0x00; A < strlen(text); ++A)
 	{
 		s32 character = getchar(text, A)
@@ -323,27 +243,48 @@ function void BlueSpheresTimer.TextManager.basic(s32 px, s32 py, u16 renderQueue
 			character -= 32
 		if (character == getChar("^"))
 		{
-			character_space = 0x00
+			text_width = 0x00
 			py += 16
 		}
 		
-		BlueSpheresTimer.TextManager.renderCharacter(px, py, renderQueue, character, character_space, text, font, alpha)
+		BlueSpheresTimer.TextManager.renderCharacter(px, py, renderQueue, character, text_width, text, font, alpha)
 		if !(character == getChar("^"))
-			character_space += BlueSpheresTimer.TextManager.getSpacing(font, character)
+			text_width += BlueSpheresTimer.TextManager.getSpacing(font, character)
 	}
 }
 
 //? Single character rendering function. Some optimizations are also used here to fasted rendering.
-function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u16 renderQueue, s32 character, s32 character_space, string text, u8 font, u8 alpha)
+function void BlueSpheresTimer.TextManager.renderCharacter(s32 px, s32 py, u16 renderQueue, s32 character, s32 text_width, string text, u8 font, u8 alpha)
 {
-	if ((px + character_space) >= getScreenWidth() || (px + character_space) <= -0x12)
+	if ((px + text_width) >= getScreenWidth() || (px + text_width) <= -0x12)
 		return
 	if (py >= getScreenHeight() || py <= 0x00)
 		return
 	
 	string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
 	if (Renderer.hasCustomSprite(key))
-		Renderer.drawCustomSprite(key, px + character_space, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+		Renderer.drawCustomSprite(key, px + text_width, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+}
+
+//? Returns the total width of the entire text.
+function s32 BlueSpheresTimer.TextManager.getTextWidth(string text, u8 font)
+{
+	s32 text_width
+	for (s32 A = 0x00; A < strlen(text); ++A)
+	{
+		u8 character = getchar(text, A)
+		
+		if (character >= getChar("a") && character <= getChar("z"))
+			character -= 32
+		if (character == getChar("^"))
+			 text_width = 0x00
+		
+		string key = stringformat("%s.%02d", BlueSpheresTimer.TextManager.getFont(font), character)
+		if (Renderer.hasCustomSprite(key))
+			text_width += BlueSpheresTimer.TextManager.getSpacing(font, character)
+	}
+	
+	return text_width
 }
 
 //? Returns the font name.
@@ -363,50 +304,52 @@ function string BlueSpheresTimer.TextManager.getFont(u8 font)
 //? Returns the width of the character of the specified parameters.
 function u8 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
 {
-	u8 character_space
+	u8 character_width
 	if (font == 0x00) // Headline font
 	{
 		if (character == getChar("A") || character == getChar("Q"))
-			character_space = 18
+			character_width = 18
 		else if (character == getChar("M"))
-			character_space = 17
+			character_width = 17
 		else if (character == getChar("B") || character == getChar("E") || character == getChar("F") || character == getChar("H") || character == getChar("K") || character == getChar("N") || character == getChar("O") || character == getChar("X"))
-			character_space = 16
+			character_width = 16
 		else if (character == getChar("C") || character == getChar("D") || character == getChar("G") || character == getChar("I") || character == getChar("P") || character == getChar("R") || character == getChar("T") || character == getChar("W") || character == getChar("Y") || character == getChar(":") || character == getChar("'")  || character == getChar("`") || character == getChar("!") || character == getChar("?"))
-			character_space = 15
+			character_width = 15
 		else if (character == getChar("(") || character == getChar(")"))
-			character_space = 12
+			character_width = 12
 		else
-			character_space = 14
+			character_width = 14
 	}
 	else if (font == 0x01) // Regular font
 	{
 		if (character == getChar("*"))
-			character_space = 15
+			character_width = 15
 		else if (character == getChar("M") || character == getChar("W"))
-			character_space = 11
+			character_width = 11
 		else if (character == getChar("N"))
-			character_space = 10
+			character_width = 10
 		else if (character == getChar("K") || character == getChar("Q") || character == getChar("X") || character == getChar("Z"))
-			character_space = 9
+			character_width = 9
 		else
-			character_space = 8
+			character_width = 8
 	}
 	else if (font == 0x02) // Thin font
 	{
 		if (character == getChar("*"))
-			character_space = 15
+			character_width = 15
 		else if (character == getChar("'") || character == getChar("`"))
-			character_space = 6
+			character_width = 6
 		else
-			character_space = 8
+			character_width = 8
 	}
 	
-	return character_space
+	// Return value
+	return character_width
 }
 
 //? Simplified view of the getchar() function without the second parameter.
 function u8 getChar(string character)
 {
+	// Return character ASCII value
 	return getchar(character, 0x00)
 }
