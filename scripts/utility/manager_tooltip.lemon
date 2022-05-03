@@ -1,0 +1,51 @@
+//? Checks whether there is available text in the variable, if there is, then show it.
+function void BlueSpheresTimer.TooltipManager.update()
+{
+	// Tooltip show
+	if (bluespheres.tooltip.show != "")
+	{
+		if (bluespheres.tooltip.faster)
+			bluespheres.tooltip.timeout += 0x02
+		
+		// Tooltip with two sheets
+		if (bluespheres.tooltip.show_next != "")
+		{
+			BlueSpheresTimer.Menu.tooltip.setup(bluespheres.tooltip.color, bluespheres.tooltip.icon, (bluespheres.tooltip.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? bluespheres.tooltip.show_next : bluespheres.tooltip.show)
+			return
+		}
+		
+		// Tooltip with one sheet
+		BlueSpheresTimer.Menu.tooltip.setup(bluespheres.tooltip.color, bluespheres.tooltip.icon, bluespheres.tooltip.show)
+	}
+}
+
+//? Resets tooltip variables, applies appearance, and sets the text.
+function void BlueSpheresTimer.TooltipManager.setupTooltip(u8 faster, string color, string icon, string title, string title_next)
+{
+	// Reset the tooltip if it was in the process
+	BlueSpheresTimer.TooltipManager.resetTooltip()
+	
+	// Setup appearance
+	bluespheres.tooltip.icon = icon
+	bluespheres.tooltip.color = color
+	bluespheres.tooltip.faster = faster
+	
+	// Setup text
+	bluespheres.tooltip.show = title
+	bluespheres.tooltip.show_next = title_next
+}
+
+//? Resets tooltip variables.
+function void BlueSpheresTimer.TooltipManager.resetTooltip()
+{
+	bluespheres.tooltip.show = ""
+	bluespheres.tooltip.show_next = ""
+	bluespheres.tooltip.icon = ""
+	bluespheres.tooltip.color = ""
+	
+	bluespheres.tooltip.state = 0x00
+	bluespheres.tooltip.frames = 0x00
+	bluespheres.tooltip.timeout = 0x00
+	
+	bluespheres.tooltip.faster = 0x00
+}

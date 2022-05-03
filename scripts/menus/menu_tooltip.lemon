@@ -33,9 +33,14 @@ function void BlueSpheresTimer.Menu.tooltip.setup(string color, string icon, str
 	// Reset vars
 	if (bluespheres.tooltip.state == 0x03)
 	{
+		bluespheres.tooltip.show = ""
+		bluespheres.tooltip.show_next = ""
+		bluespheres.tooltip.icon = ""
+		bluespheres.tooltip.color = ""
+		
+		bluespheres.tooltip.faster = 0x00
 		bluespheres.tooltip.frames = 0x00
 		bluespheres.tooltip.timeout = 0x00
-		bluespheres.tooltip.icon = ""
 		
 		bluespheres.tooltip.state = 0x04
 	}
@@ -47,7 +52,8 @@ function void BlueSpheresTimer.Menu.tooltip.setup(string color, string icon, str
 function void BlueSpheresTimer.Menu.tooltip.callTooltip(string color, string icon, string title)
 {
 	s32 px = getScreenWidth() / 0x02
-	s32 offset = bluespheres.toast.show == "" ? 32 : 16
+	
+	s32 offset = (bluespheres.toast.show == "") ? 32 : 16
 	s32 py = !SETTING_BS_TOAST_POSITION ? (getScreenHeight() - (bluespheres.tooltip.frames * 0x04) + offset) : ((bluespheres.tooltip.frames * 0x04) - offset)
 	
 	if (SETTING_BS_TOAST_POSITION && py >= getScreenHeight() / 0x02)

@@ -2,6 +2,8 @@ function void BlueSpheresTimer.Menu.pause.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	BlueSpheresTimer.TooltipManager.resetTooltip()
+	
 	bluespheres.buttons.setup = 0x02
 	bluespheres.pause.buttonselected = 0x00
 	
@@ -27,6 +29,9 @@ function void BlueSpheresTimer.Menu.pause.setup()
 		
 		// Control update
 		BlueSpheresTimer.Menu.pause.updateControl()
+		
+		// Tooltip update
+		BlueSpheresTimer.TooltipManager.update()
 		
 		// Screen items
 		if (bluespheres.pause.hideMenu)

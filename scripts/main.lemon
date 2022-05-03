@@ -9,19 +9,3 @@ include general/?
 
 // Utility
 include utility/?
-
-//? Sets a Completed status for the all Achievements ID's.
-function void BlueSpheresTimer.Achievements.cheat()
-{
-	if (Input.buttonPressed(BUTTON_B) == 0x00 || global.game_mode == 0x34)
-		return
-	
-	// Total number of Achievements
-	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
-	{
-		BlueSpheresTimer.Achievements.setComplete(A)
-	}
-	
-	// Update achievements sorted list
-	bluespheres.achievements.sortNeedUpdate = true
-}

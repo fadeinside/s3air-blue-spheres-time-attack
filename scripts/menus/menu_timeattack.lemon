@@ -2,6 +2,8 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	BlueSpheresTimer.TooltipManager.resetTooltip()
+	
 	bluespheres.buttons.setup = 0x02
 	
 	// Play Blue Sphere game music
@@ -38,6 +40,9 @@ function void BlueSpheresTimer.Menu.timeattack.setup()
 		
 		// Control update
 		BlueSpheresTimer.Menu.timeattack.updateControl()
+		
+		// Tooltip update
+		BlueSpheresTimer.TooltipManager.update()
 		
 		// Unlockables checking
 		if (BlueSpheresTimer.Emeralds.allEqual(0x01) && !BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked))

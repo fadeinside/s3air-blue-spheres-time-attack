@@ -216,12 +216,6 @@ function void BlueSpheresTimer.Menu.medals.items.tableTitle(s32 px, s32 py, u16 
 
 function void BlueSpheresTimer.Menu.medals.updateControl()
 {
-	// Tooltip show
-	if (bluespheres.tooltip.show != "")
-	{
-		BlueSpheresTimer.Menu.tooltip.setup("gray", "icon_tooltip_info", (bluespheres.tooltip.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? STRING_TOOLTIP_READ_FAQ : bluespheres.tooltip.show)
-	}
-	
 	// Ignore if popup menu active
 	if (bluespheres.popup.show)
 		return
@@ -327,14 +321,8 @@ function void BlueSpheresTimer.Menu.medals.updateControl()
 				{
 					playSound(0x7b)
 					
-					// Reset the tooltip if it was in the process
-					bluespheres.tooltip.show = ""
-					bluespheres.tooltip.state = 0x00
-					bluespheres.tooltip.frames = 0x00
-					bluespheres.tooltip.timeout = 0x00
-					
-					// Show new tooltip
-					bluespheres.tooltip.show = STRING_TOOLTIP_MEDAL_NOT_RECEIVED
+					// Setup tooltip
+					BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_warning", STRING_TOOLTIP_MEDAL_NOT_RECEIVED, STRING_TOOLTIP_READ_FAQ)
 				}
 			}
 		}

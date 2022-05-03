@@ -2,6 +2,8 @@ function void BlueSpheresTimer.Menu.shared.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	BlueSpheresTimer.TooltipManager.resetTooltip()
+	
 	bluespheres.buttons.setup = 0x01
 	bluespheres.shared.buttonselected = 0x00
 	
@@ -31,6 +33,9 @@ function void BlueSpheresTimer.Menu.shared.setup()
 		
 		// Control update
 		BlueSpheresTimer.Menu.shared.updateControl()
+		
+		// Tooltip update
+		BlueSpheresTimer.TooltipManager.update()
 		
 		// Achievements update
 		BlueSpheresTimer.Achievements.update()

@@ -1,8 +1,6 @@
 //? Sets the Completed status of the specified Achievement ID's in case of matches
 function void BlueSpheresTimer.Achievements.update()
 {
-	BlueSpheresTimer.Achievements.cheat()
-	
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return

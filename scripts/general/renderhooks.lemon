@@ -10,11 +10,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 	// Notify in mini-game menu
 	if (objA0.update_address == 0x04d648)
 	{
-		// Tooltip show
-		if (bluespheres.tooltip.show != "")
-		{
-			BlueSpheresTimer.Menu.tooltip.setup("gray", "icon_tooltip_info", bluespheres.tooltip.show)
-		}
+		BlueSpheresTimer.TooltipManager.update()
 	}
 	
 	// Time over text (consists of two objects)
