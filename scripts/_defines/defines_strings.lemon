@@ -95,6 +95,14 @@ define string STRING_TOOLTIP_MINI_GAME_NOTIFY	= "Achievements are unavailable in
 define string STRING_TOOLTIP_SK_LEVELS	= "SK levels are not unlocked"
 define string STRING_TOOLTIP_READ_FAQ	= "Read FAQ on Github repo for details."
 
+// Advertisement strings
+define string STRING_TOOLTIP_ADS_RATE_1 	= "Hey! Did you like this mod?"
+define string STRING_TOOLTIP_ADS_RATE_2 	= "Like it on the page gamebanana.com!"
+define string STRING_TOOLTIP_ADS_BUG_1	= "Notice a bug or there are ideas?"
+define string STRING_TOOLTIP_ADS_BUG_2	= "Contact us at gamebanana.com!"
+define string STRING_TOOLTIP_ADS_REPO_1	= "You knew we had Github repository?"
+define string STRING_TOOLTIP_ADS_REPO_2	= "Star this to track changes!"
+
 // "Medals" strings
 define string STRING_MEDALS_HEADLINE	= "MEDALS!"
 

@@ -1,6 +1,8 @@
 //? Checks whether there is available text in the variable, if there is, then show it.
 function void BlueSpheresTimer.TooltipManager.update()
 {
+	BlueSpheresTimer.TooltipManager.showRandomAds()
+	
 	// Tooltip show
 	if (bluespheres.tooltip.show != "")
 	{
@@ -22,6 +24,10 @@ function void BlueSpheresTimer.TooltipManager.update()
 //? Resets tooltip variables, applies appearance, and sets the text.
 function void BlueSpheresTimer.TooltipManager.setupTooltip(u8 faster, string color, string icon, string title, string title_next)
 {
+	// Do not render other tooltips if ads are currently showing
+	if (BlueSpheresTimer.TooltipManager.isAds())
+		return
+	
 	// Reset the tooltip if it was in the process
 	BlueSpheresTimer.TooltipManager.resetTooltip()
 	
@@ -38,14 +44,80 @@ function void BlueSpheresTimer.TooltipManager.setupTooltip(u8 faster, string col
 //? Resets tooltip variables.
 function void BlueSpheresTimer.TooltipManager.resetTooltip()
 {
+	// Do not reset the tooltip if it is an advertisement
+	if (BlueSpheresTimer.TooltipManager.isAds())
+		return
+	
+	// Identify a random number until an ad is shown
+	if (bluespheres.tooltip.showADS != 0xff)
+		global.level_random_base = System.rand() % 640
+	
+	// Reset appearance
 	bluespheres.tooltip.show = ""
 	bluespheres.tooltip.show_next = ""
 	bluespheres.tooltip.icon = ""
 	bluespheres.tooltip.color = ""
 	
+	// Reset variables
 	bluespheres.tooltip.state = 0x00
 	bluespheres.tooltip.frames = 0x00
 	bluespheres.tooltip.timeout = 0x00
 	
 	bluespheres.tooltip.faster = 0x00
+}
+
+//? Determines which ad should be shown based on the range of random numbers.
+function void BlueSpheresTimer.TooltipManager.showRandomAds()
+{
+	if (bluespheres.tooltip.showADS != 0x00)
+		return
+	
+	if (global.level_random_base >= 32 && global.level_random_base <= 33)
+	{
+		// Setup text
+		bluespheres.tooltip.show = STRING_TOOLTIP_ADS_RATE_1
+		bluespheres.tooltip.show_next = STRING_TOOLTIP_ADS_RATE_2
+		
+		// Set random number
+		bluespheres.tooltip.showADS = global.level_random_base 
+	}
+	
+	if (global.level_random_base >= 56 && global.level_random_base <= 57)
+	{
+		// Setup text
+		bluespheres.tooltip.show = STRING_TOOLTIP_ADS_BUG_1
+		bluespheres.tooltip.show_next = STRING_TOOLTIP_ADS_BUG_2
+		
+		// Set random number
+		bluespheres.tooltip.showADS = global.level_random_base
+	}
+	
+	if (global.level_random_base >= 208 && global.level_random_base <= 209)
+	{
+		// Setup text
+		bluespheres.tooltip.show = STRING_TOOLTIP_ADS_REPO_1
+		bluespheres.tooltip.show_next = STRING_TOOLTIP_ADS_REPO_2
+		
+		// Set random number
+		bluespheres.tooltip.showADS = global.level_random_base
+	}
+	
+	if (bluespheres.tooltip.showADS != 0x00)
+	{
+		// Setup appearance
+		bluespheres.tooltip.icon = "icon_tooltip_point"
+		bluespheres.tooltip.color = "gray"
+		bluespheres.tooltip.faster = 0x00
+	}
+}
+
+//? Returns true if an ad is currently showing.
+function bool BlueSpheresTimer.TooltipManager.isAds()
+{
+	if (bluespheres.tooltip.showADS == 0xff) // Hidden after the show
+		return false
+	else if (bluespheres.tooltip.showADS != 0x00) // Now shows
+		return true
+	else
+		return false
 }

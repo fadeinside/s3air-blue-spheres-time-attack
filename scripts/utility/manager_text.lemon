@@ -385,7 +385,7 @@ function u8 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
 	{
 		if (character == getChar("M") || character == getChar("W"))
 			character_width = 6
-		else if (character == getChar(".") || character == getChar(",") || character == getChar("I"))
+		else if (character == getChar(".") || character == getChar(",") || character == getChar("I") || character == getChar("!"))
 			character_width = 2
 		else
 			character_width = 4

@@ -41,6 +41,8 @@ function void BlueSpheresTimer.Menu.tooltip.setup(string color, string icon, str
 		bluespheres.tooltip.faster = 0x00
 		bluespheres.tooltip.frames = 0x00
 		bluespheres.tooltip.timeout = 0x00
+		if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+			bluespheres.tooltip.showADS = 0xff
 		
 		bluespheres.tooltip.state = 0x04
 	}
