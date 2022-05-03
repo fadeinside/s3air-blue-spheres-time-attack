@@ -2,6 +2,8 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	bluespheres.tooltip.show = ""
+	
 	bluespheres.buttons.scrollTimer = 0x00
 	if (bluespheres.achievements.sortselected == 0x00)
 	{

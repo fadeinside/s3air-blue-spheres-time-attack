@@ -1,4 +1,41 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Small text with alignment and bg			//
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//? Simplified BlueSpheresTimer.TextManager.drawSmallTexWithBG() function without configurable transparency.
+function void BlueSpheresTimer.TextManager.drawSmallTexWithBG(s32 px, s32 py, u16 renderQueue, u8 align, string color, string icon, string text)
+{
+	BlueSpheresTimer.TextManager.drawSmallTexWithBG(px, py, renderQueue, align, color, icon, text, 255)
+}
+
+function void BlueSpheresTimer.TextManager.drawSmallTexWithBG(s32 px, s32 py, u16 renderQueue, u8 align, string color, string icon, string text, u32 alpha)
+{
+	s32 icon_offset = ((icon != "") ? (0x09 + 0x03) : 0x00) // Icon width + small space
+	s32 text_width = icon_offset + BlueSpheresTimer.TextManager.getTextWidth(text, 0x03)
+	
+	// Alignment:
+	// - 0x00 - From Right
+	// - 0x01 - From Center
+	// - 0x02 - From Left
+	
+	s32 left = (align == 0x00) ? text_width : ((align == 0x01) ? text_width / 0x02 : 0x00)
+	px -= left
+	
+	// Icon and text
+	if (Renderer.hasCustomSprite(icon) && icon != "")
+		Renderer.drawCustomSprite(icon, px, py - 0x01, 0x00, 0x40, renderQueue)
+	BlueSpheresTimer.TextManager.drawText(px + icon_offset, py, renderQueue, 0x02, text, 0x03, alpha)
+	
+	// Tooltip background
+	if (color == "gray")
+		alpha /= 0x02
+	Renderer.drawCustomSprite(stringformat("icon_tooltip_%s_start", color), px, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+	Renderer.drawCustomSpriteWithTransform(stringformat("icon_tooltip_%s_front", color), px, py, 0x00, 0x00, renderQueue, alpha * 0x1000000 + 0xffffff, 0x10000 * text_width, 0x00, 0x00, 0x10000)
+	px += text_width
+	Renderer.drawCustomSprite(stringformat("icon_tooltip_%s_end", color), px, py, 0x00, 0x40, renderQueue, 0x00, alpha)
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // Text with alignment and line  			 	//
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -297,6 +334,8 @@ function string BlueSpheresTimer.TextManager.getFont(u8 font)
 		font_name = "font_regular"
 	else if (font == 0x02)
 		font_name = "font_thin"
+	else if (font == 0x03)
+		font_name = "font_small"
 	
 	return font_name
 }
@@ -341,6 +380,15 @@ function u8 BlueSpheresTimer.TextManager.getSpacing(u8 font, u8 character)
 			character_width = 6
 		else
 			character_width = 8
+	}
+	else if (font == 0x03) // Small font
+	{
+		if (character == getChar("M") || character == getChar("W"))
+			character_width = 6
+		else if (character == getChar(".") || character == getChar(",") || character == getChar("I"))
+			character_width = 2
+		else
+			character_width = 4
 	}
 	
 	// Return value

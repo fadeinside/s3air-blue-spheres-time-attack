@@ -2,6 +2,8 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	bluespheres.tooltip.show = ""
+	
 	bluespheres.minigame_mode = 0x00
 	
 	bluespheres.achievements.extraselected = 0x00

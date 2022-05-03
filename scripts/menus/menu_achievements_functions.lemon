@@ -309,6 +309,12 @@ function void BlueSpheresTimer.Menu.achievements.status()
 
 function void BlueSpheresTimer.Menu.achievements.updateControl()
 {
+	// Tooltip show
+	if (bluespheres.tooltip.show != "")
+	{
+		BlueSpheresTimer.Menu.tooltip.setup("gray", "icon_tooltip_info", (bluespheres.tooltip.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? STRING_TOOLTIP_READ_FAQ : bluespheres.tooltip.show)
+	}
+	
 	// Ignore if popup menu active
 	if (bluespheres.popup.show)
 		return
@@ -650,7 +656,10 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 		if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup)
 		{
 			playSound(0x63)
-			global.game_mode = 0x85
+			if (bluespheres.backToLobby)
+				global.game_mode = 0x89
+			else
+				global.game_mode = 0x85
 		}
 		if (bluespheres.achievements.buttonselected == bluespheres.buttons.setup + 0x01)
 		{
@@ -670,6 +679,15 @@ function void BlueSpheresTimer.Menu.achievements.updateControl()
 				else
 				{
 					playSound(0x7b)
+					
+					// Reset the tooltip if it was in the process
+					bluespheres.tooltip.show = ""
+					bluespheres.tooltip.state = 0x00
+					bluespheres.tooltip.frames = 0x00
+					bluespheres.tooltip.timeout = 0x00
+					
+					// Show new tooltip
+					bluespheres.tooltip.show = STRING_TOOLTIP_ACHIEVEMENT_LOCKED
 				}
 			}
 		}

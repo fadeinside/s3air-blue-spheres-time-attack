@@ -122,6 +122,17 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			fn04ceb6()
 			
 			VDP.Config.setActiveDisplay(false)
+			
+			// Reset the tooltip if it was in the process
+			bluespheres.tooltip.show = ""
+			bluespheres.tooltip.state = 0x00
+			bluespheres.tooltip.frames = 0x00
+			bluespheres.tooltip.timeout = 0x00
+			
+			// Show new tooltip
+			bluespheres.tooltip.show = STRING_TOOLTIP_MINI_GAME_NOTIFY
+			
+			// Go to mini-game menu
 			global.game_mode = 0x2c
 		}
 		if (bluespheres.lobby.buttonselected == 0x04)
@@ -143,6 +154,17 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			fn04ceb6()
 			
 			VDP.Config.setActiveDisplay(false)
+			
+			// Reset the tooltip if it was in the process
+			bluespheres.tooltip.show = ""
+			bluespheres.tooltip.state = 0x00
+			bluespheres.tooltip.frames = 0x00
+			bluespheres.tooltip.timeout = 0x00
+			
+			// Show new tooltip
+			bluespheres.tooltip.show = STRING_TOOLTIP_MINI_GAME_NOTIFY
+			
+			// Go to mini-game menu
 			global.game_mode = 0x2c
 		}
 	}

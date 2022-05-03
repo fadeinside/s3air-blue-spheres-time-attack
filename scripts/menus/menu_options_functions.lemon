@@ -80,6 +80,13 @@ function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.options.updateControl()
 {
+	// Tooltip show
+	if (bluespheres.tooltip.show != "")
+	{
+		BlueSpheresTimer.Menu.tooltip.setup("gray", bluespheres.tooltip.icon, bluespheres.tooltip.show)
+		bluespheres.tooltip.timeout += 0x02
+	}
+	
 	// Ignore if popup menu active
 	if (bluespheres.popup.show)
 		return
@@ -118,6 +125,16 @@ function void BlueSpheresTimer.Menu.options.updateControl()
 			else
 			{
 				playSound(0x7b)
+				
+				// Reset the tooltip if it was in the process
+				bluespheres.tooltip.show = ""
+				bluespheres.tooltip.state = 0x00
+				bluespheres.tooltip.frames = 0x00
+				bluespheres.tooltip.timeout = 0x00
+				
+				// Show new tooltip
+				bluespheres.tooltip.show = STRING_TOOLTIP_NO_DATA
+				bluespheres.tooltip.icon = "icon_tooltip_warning"
 			}
 		}
 		if (bluespheres.options.buttonselected == 0x01)
@@ -131,6 +148,16 @@ function void BlueSpheresTimer.Menu.options.updateControl()
 			else
 			{
 				playSound(0x7b)
+				
+				// Reset the tooltip if it was in the process
+				bluespheres.tooltip.show = ""
+				bluespheres.tooltip.state = 0x00
+				bluespheres.tooltip.frames = 0x00
+				bluespheres.tooltip.timeout = 0x00
+				
+				// Show new tooltip
+				bluespheres.tooltip.show = STRING_TOOLTIP_NO_DATA
+				bluespheres.tooltip.icon = "icon_tooltip_warning"
 			}
 		}
 		if (bluespheres.options.buttonselected == 0x02)
@@ -144,6 +171,16 @@ function void BlueSpheresTimer.Menu.options.updateControl()
 			else
 			{
 				playSound(0x7b)
+				
+				// Reset the tooltip if it was in the process
+				bluespheres.tooltip.show = ""
+				bluespheres.tooltip.state = 0x00
+				bluespheres.tooltip.frames = 0x00
+				bluespheres.tooltip.timeout = 0x00
+				
+				// Show new tooltip
+				bluespheres.tooltip.show = STRING_TOOLTIP_NO_DATA
+				bluespheres.tooltip.icon = "icon_tooltip_warning"
 			}
 		}
 		if (bluespheres.options.buttonselected == bluespheres.buttons.setup)
@@ -197,6 +234,16 @@ function void BlueSpheresTimer.Menu.options.popups()
 					bluespheres.timeattack.levelselected = 0x06
 				if (bluespheres.timeattack.layoutselected)
 					bluespheres.timeattack.layoutselected = 0x00
+					
+				// Reset the tooltip if it was in the process
+				bluespheres.tooltip.show = ""
+				bluespheres.tooltip.state = 0x00
+				bluespheres.tooltip.frames = 0x00
+				bluespheres.tooltip.timeout = 0x00
+				
+				// Show new tooltip
+				bluespheres.tooltip.show = STRING_TOOLTIP_SUCCESSFULLY_DELETED
+				bluespheres.tooltip.icon = "icon_tooltip_successful"
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00
@@ -214,6 +261,16 @@ function void BlueSpheresTimer.Menu.options.popups()
 			{
 				playSound(0x68)
 				BlueSpheresTimer.Records.reset()
+				
+				// Reset the tooltip if it was in the process
+				bluespheres.tooltip.show = ""
+				bluespheres.tooltip.state = 0x00
+				bluespheres.tooltip.frames = 0x00
+				bluespheres.tooltip.timeout = 0x00
+				
+				// Show new tooltip
+				bluespheres.tooltip.show = STRING_TOOLTIP_SUCCESSFULLY_DELETED
+				bluespheres.tooltip.icon = "icon_tooltip_successful"
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00
@@ -242,6 +299,16 @@ function void BlueSpheresTimer.Menu.options.popups()
 				
 				if (u8[0x801101] == 31)
 					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON, 0xfa2)
+					
+				// Reset the tooltip if it was in the process
+				bluespheres.tooltip.show = ""
+				bluespheres.tooltip.state = 0x00
+				bluespheres.tooltip.frames = 0x00
+				bluespheres.tooltip.timeout = 0x00
+				
+				// Show new tooltip
+				bluespheres.tooltip.show = STRING_TOOLTIP_SUCCESSFULLY_DELETED
+				bluespheres.tooltip.icon = "icon_tooltip_successful"
 				
 				bluespheres.popup.show = 0x00
 				bluespheres.popup.buttonselected = 0x00

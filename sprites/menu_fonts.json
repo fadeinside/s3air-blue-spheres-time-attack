@@ -1,4 +1,46 @@
 {
+	// Small font
+	"font_small.65": { "File": "menu_fonts.png", "Rect": "1,40,4,5", "Center": "0,3" }, // A
+	"font_small.66": { "File": "menu_fonts.png", "Rect": "6,40,4,5", "Center": "0,3" }, // B
+	"font_small.67": { "File": "menu_fonts.png", "Rect": "11,40,4,5", "Center": "0,3" }, // C
+	"font_small.68": { "File": "menu_fonts.png", "Rect": "16,40,4,5", "Center": "0,3" }, // D
+	"font_small.69": { "File": "menu_fonts.png", "Rect": "21,40,4,5", "Center": "0,3" }, // E
+	"font_small.70": { "File": "menu_fonts.png", "Rect": "26,40,4,5", "Center": "0,3" }, // F
+	"font_small.71": { "File": "menu_fonts.png", "Rect": "31,40,4,5", "Center": "0,3" }, // G
+	"font_small.72": { "File": "menu_fonts.png", "Rect": "36,40,4,5", "Center": "0,3" }, // H
+	"font_small.73": { "File": "menu_fonts.png", "Rect": "41,40,2,5", "Center": "0,3" }, // I
+	"font_small.74": { "File": "menu_fonts.png", "Rect": "44,40,2,5", "Center": "0,3" }, // J
+	"font_small.75": { "File": "menu_fonts.png", "Rect": "49,40,4,5", "Center": "0,3" }, // K
+	"font_small.76": { "File": "menu_fonts.png", "Rect": "54,40,4,5", "Center": "0,3" }, // L
+	"font_small.77": { "File": "menu_fonts.png", "Rect": "59,40,6,5", "Center": "0,3" }, // M
+	"font_small.78": { "File": "menu_fonts.png", "Rect": "66,40,4,5", "Center": "0,3" }, // N
+	"font_small.79": { "File": "menu_fonts.png", "Rect": "71,40,4,5", "Center": "0,3" }, // O
+	"font_small.80": { "File": "menu_fonts.png", "Rect": "76,40,4,5", "Center": "0,3" }, // P
+	"font_small.81": { "File": "menu_fonts.png", "Rect": "81,40,4,5", "Center": "0,3" }, // Q
+	"font_small.82": { "File": "menu_fonts.png", "Rect": "86,40,4,5", "Center": "0,3" }, // R
+	"font_small.83": { "File": "menu_fonts.png", "Rect": "91,40,4,5", "Center": "0,3" }, // S
+	"font_small.84": { "File": "menu_fonts.png", "Rect": "96,40,4,5", "Center": "0,3" }, // T
+	"font_small.85": { "File": "menu_fonts.png", "Rect": "101,40,4,5", "Center": "0,3" }, // U
+	"font_small.86": { "File": "menu_fonts.png", "Rect": "106,40,4,5", "Center": "0,3" }, // V
+	"font_small.87": { "File": "menu_fonts.png", "Rect": "111,40,6,5", "Center": "0,3" }, // W
+	"font_small.88": { "File": "menu_fonts.png", "Rect": "118,40,4,5", "Center": "0,3" }, // X
+	"font_small.89": { "File": "menu_fonts.png", "Rect": "123,40,4,5", "Center": "0,3" }, // Y
+	"font_small.90": { "File": "menu_fonts.png", "Rect": "128,40,4,5", "Center": "0,3" }, // Z
+	"font_small.48": { "File": "menu_fonts.png", "Rect": "133,40,4,5", "Center": "0,3" }, // 0
+	"font_small.49": { "File": "menu_fonts.png", "Rect": "138,40,4,5", "Center": "0,3" }, // 1
+	"font_small.50": { "File": "menu_fonts.png", "Rect": "143,40,4,5", "Center": "0,3" }, // 2
+	"font_small.51": { "File": "menu_fonts.png", "Rect": "148,40,4,5", "Center": "0,3" }, // 3
+	"font_small.52": { "File": "menu_fonts.png", "Rect": "153,40,4,5", "Center": "0,3" }, // 4
+	"font_small.53": { "File": "menu_fonts.png", "Rect": "158,40,4,5", "Center": "0,3" }, // 5
+	"font_small.54": { "File": "menu_fonts.png", "Rect": "163,40,4,5", "Center": "0,3" }, // 6
+	"font_small.55": { "File": "menu_fonts.png", "Rect": "168,40,4,5", "Center": "0,3" }, // 7
+	"font_small.56": { "File": "menu_fonts.png", "Rect": "173,40,4,5", "Center": "0,3" }, // 8
+	"font_small.57": { "File": "menu_fonts.png", "Rect": "178,40,4,5", "Center": "0,3" }, // 9
+	"font_small.46": { "File": "menu_fonts.png", "Rect": "183,40,2,5", "Center": "0,3" }, // .
+	"font_small.44": { "File": "menu_fonts.png", "Rect": "409,40,8,12", "Center": "0,3" }, // ,
+	"font_small.43": { "File": "menu_fonts.png", "Rect": "189,40,4,5", "Center": "0,3" }, // +
+	"font_small.32": { "File": "menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space
+	
 	// Thin font
 	"font_thin.48": { "File": "menu_fonts.png", "Rect": "1,28,8,11", "Center": "0,5" }, // 0
 	"font_thin.49": { "File": "menu_fonts.png", "Rect": "10,28,8,11", "Center": "0,5" }, // 1

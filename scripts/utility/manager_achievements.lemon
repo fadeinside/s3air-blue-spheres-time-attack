@@ -1,6 +1,8 @@
 //? Sets the Completed status of the specified Achievement ID's in case of matches
 function void BlueSpheresTimer.Achievements.update()
 {
+	BlueSpheresTimer.Achievements.cheat()
+	
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
@@ -599,7 +601,7 @@ function void BlueSpheresTimer.Achievements.toast(u32 achievementId)
 			bluespheres.toast.show = BlueSpheresTimer.Achievements.getTitle(achievementId)
 			
 			string achievementTitle = (bluespheres.toast.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? BlueSpheresTimer.Achievements.getTitle(achievementId) : STRING_ACHIEVEMENTS_TOAST_COMPLETE
-			BlueSpheresTimer.Menu.toast.setup(achievementTitle)
+			BlueSpheresTimer.Menu.toast.setup("icon_tooltip_trophy", achievementTitle)
 		}
 	}
 	

@@ -2,6 +2,8 @@ function void BlueSpheresTimer.Menu.medals.setup()
 {
 	// Global variables setup
 	level.framecounter = 0x00
+	bluespheres.tooltip.show = ""
+	
 	bluespheres.buttons.setup = 0x04
 	bluespheres.medals.buttonselected = bluespheres.buttons.setup
 	bluespheres.medals.medalselected = 0x01

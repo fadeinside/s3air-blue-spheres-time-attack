@@ -1,0 +1,57 @@
+function void BlueSpheresTimer.Menu.tooltip.setup(string color, string icon, string title)
+{
+	// Slide in
+	if (bluespheres.tooltip.state == 0x00)
+	{
+		if !(global.game.paused)
+			++bluespheres.tooltip.frames
+		if (bluespheres.tooltip.frames == 0x01)
+			Audio.playAudio("menuwoosh", AudioContext.CONTEXT_SOUND)
+		
+		if (bluespheres.tooltip.frames >= 14)
+			bluespheres.tooltip.state = 0x01
+	}
+	
+	// Waiting
+	if (bluespheres.tooltip.state == 0x01)
+	{
+		if !(global.game.paused)
+			++bluespheres.tooltip.timeout
+		if (bluespheres.tooltip.timeout >= SETTING_BS_TOAST_DURATION)
+			bluespheres.tooltip.state = 0x02
+	}
+	
+	// Slide out
+	if (bluespheres.tooltip.state == 0x02)
+	{
+		if !(global.game.paused)
+			--bluespheres.tooltip.frames
+		if (bluespheres.tooltip.frames <= 0x00)
+			bluespheres.tooltip.state = 0x03
+	}
+	
+	// Reset vars
+	if (bluespheres.tooltip.state == 0x03)
+	{
+		bluespheres.tooltip.frames = 0x00
+		bluespheres.tooltip.timeout = 0x00
+		bluespheres.tooltip.icon = ""
+		
+		bluespheres.tooltip.state = 0x04
+	}
+	
+	// Main object render
+	BlueSpheresTimer.Menu.tooltip.callTooltip(color, icon, title)
+}
+
+function void BlueSpheresTimer.Menu.tooltip.callTooltip(string color, string icon, string title)
+{
+	s32 px = getScreenWidth() / 0x02
+	s32 offset = bluespheres.toast.show == "" ? 32 : 16
+	s32 py = !SETTING_BS_TOAST_POSITION ? (getScreenHeight() - (bluespheres.tooltip.frames * 0x04) + offset) : ((bluespheres.tooltip.frames * 0x04) - offset)
+	
+	if (SETTING_BS_TOAST_POSITION && py >= getScreenHeight() / 0x02)
+		return
+	
+	BlueSpheresTimer.TextManager.drawSmallTexWithBG(px, py, 0xf00a, 0x01, color, icon, title)
+}

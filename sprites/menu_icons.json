@@ -20,6 +20,25 @@
 	"icon_marathon_lock": { "File": "menu_icons.png", "Rect": "168,17,13,13", "Center": "6,7" },
 	"icon_marathon_outline": { "File": "menu_icons.png", "Rect": "166,1,15,15", "Center": "7,8" },
 	
+	// Tooltip
+	"icon_tooltip_blue_start": { "File": "menu_icons.png", "Rect": "166,32,3,11", "Center": "3,6" },
+	"icon_tooltip_blue_front": { "File": "menu_icons.png", "Rect": "170,32,1,11", "Center": "0,6" },
+	"icon_tooltip_blue_end": { "File": "menu_icons.png", "Rect": "174,32,3,11", "Center": "0,6" },
+	"icon_tooltip_red_start": { "File": "menu_icons.png", "Rect": "166,32,3,10", "Center": "3,5" },
+	"icon_tooltip_red_front": { "File": "menu_icons.png", "Rect": "170,32,1,10", "Center": "0,5" },
+	"icon_tooltip_red_end": { "File": "menu_icons.png", "Rect": "174,32,3,10", "Center": "0,5" },
+	"icon_tooltip_gray_start": { "File": "menu_icons.png", "Rect": "178,44,3,11", "Center": "3,6" },
+	"icon_tooltip_gray_front": { "File": "menu_icons.png", "Rect": "182,44,1,11", "Center": "0,6" },
+	"icon_tooltip_gray_end": { "File": "menu_icons.png", "Rect": "186,44,3,11", "Center": "0,6" },
+	
+	// Tooltip icons
+	"icon_tooltip_trophy": { "File": "menu_icons.png", "Rect": "154,47,9,8", "Center": "0,4" },
+	"icon_tooltip_medal": { "File": "menu_icons.png", "Rect": "145,47,8,8", "Center": "0,4" },
+	"icon_tooltip_danger": { "File": "menu_icons.png", "Rect": "164,47,3,8", "Center": "-4,4" },
+	"icon_tooltip_warning": { "File": "menu_icons.png", "Rect": "168,47,3,8", "Center": "-4,4" },
+	"icon_tooltip_info": { "File": "menu_icons.png", "Rect": "172,47,3,8", "Center": "-4,4" },
+	"icon_tooltip_successful": { "File": "menu_icons.png", "Rect": "158,38,7,8", "Center": "-1,4" },
+	
 	// Medals border
 	"icon_medal_borderBlock": { "File": "menu_icons.png", "Rect": "145,56,39,44", "Center": "2,19" },
 	
