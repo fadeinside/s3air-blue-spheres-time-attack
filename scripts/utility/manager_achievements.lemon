@@ -106,6 +106,9 @@ function void BlueSpheresTimer.Achievements.update()
 	
 	if (Mods.isModActive("Blue Sphere Plus") && (u8[0x801101] == 0x1f || u8[0x801101] == 0xff))
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
+	
+	// Call here medals update
+	BlueSpheresTimer.Medals.update()
 }
 
 //? Checking for matches at the stage.
@@ -651,7 +654,7 @@ function u8 BlueSpheresTimer.Achievements.completed()
 	u8 achievements_complete
 	
 	// Total number of Achievements
-	for (u8 A = 0x00; A < bluespheres.achievements.total; ++A)
+	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
 		// Add +1 to variable if Achievement complete
 		if (BlueSpheresTimer.Achievements.isComplete(A))

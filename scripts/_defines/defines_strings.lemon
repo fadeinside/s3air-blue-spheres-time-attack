@@ -105,6 +105,10 @@ define string STRING_TOOLTIP_ADS_REPO_2	= "Star this to track changes!"
 
 // "Medals" strings
 define string STRING_MEDALS_HEADLINE	= "MEDALS!"
+define string STRING_MEDALS_NOT_RECEIVED 	= "???"
+define string STRING_MEDALS_RECEIVED 	= "Received"
+define string STRING_MEDALS_TOAST_RECEIVED_1	= "Medal received!"
+define string STRING_MEDALS_TOAST_RECEIVED_2	= "Go to the Medals menu to check."
 
 // Medals descriptions (Line position: 4 - Top, 1 - Bottom)
 define string STRING_MEDAL_ACHIEVEMENTS5.LINE1	= "Complete %d achievements."

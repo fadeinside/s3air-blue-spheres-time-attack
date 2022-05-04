@@ -16,7 +16,11 @@ define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memor
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
 define u8 bluespheres.timeattack.active	= u8[0x8e1216]	// Set to 0x01 when the Time Attack mode is active
 
-// Data (Unlocks)
+// Data
+define u8 bluespheres.achievements.lastSaved	= 0x8e121a
+define u8 bluespheres.medals.lastSaved	= 0x8e121a
+
+// Unlocks
 // D.A. Garden active - 0x8e12ee
 define u32 bluespheres.stage8Unlocked	= 0x8e11ee	// Set to 0x01 when 7 Chaos emeralds are received
 // D.A. Garden active - 0x8e12fe

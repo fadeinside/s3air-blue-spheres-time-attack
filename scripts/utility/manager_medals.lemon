@@ -1,3 +1,14 @@
+//? Update the number of medals received.
+function void BlueSpheresTimer.Medals.update()
+{
+	// Just show a toast if a medal has been received
+	BlueSpheresTimer.Medals.toast()
+	
+	// Update saved medal data following live-time data (The number of medals will decrease if you erase achievements, for example, so this needs to be updated)
+	if (BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved) > BlueSpheresTimer.Medals.received())
+		BlueSpheresTimer.Data.setValue(bluespheres.medals.lastSaved, BlueSpheresTimer.Medals.received())
+}
+
 //? Returns the status (true - Unlocked, false - Locked) of the specified medal.
 function bool BlueSpheresTimer.Medals.isUnlocked(u8 category, u8 medal)
 {
@@ -28,7 +39,7 @@ function bool BlueSpheresTimer.Medals.isUnlocked(u8 category, u8 medal)
 			medal_status = (BlueSpheresTimer.Achievements.completed() >= 35)
 		// Complete all achievements (just all achievements)
 		if (medal == 0x08)
-			medal_status = (BlueSpheresTimer.Achievements.completed() == bluespheres.achievements.total)
+			medal_status = ((BlueSpheresTimer.Achievements.completed() - 0x01) == bluespheres.achievements.total)
 		// Complete all achievements related to the get blue spheres
 		if (medal == 0x09)
 			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES))
@@ -96,4 +107,65 @@ function string BlueSpheresTimer.Medals.getSprite(u8 category, u8 medal)
 	}
 	
 	return medal_sprite
+}
+
+//? Show a toast when a medal is received.
+function void BlueSpheresTimer.Medals.toast()
+{
+	// Check if need to show a toast
+	if (BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved) < BlueSpheresTimer.Medals.received())
+	{
+		// Show toast if it doesn't show anything or shows a medal toast
+		if (bluespheres.toast.show == "" || bluespheres.toast.show == STRING_MEDALS_TOAST_RECEIVED_1)
+		{
+			bluespheres.toast.show = STRING_MEDALS_TOAST_RECEIVED_1
+			
+			string medalTitle = (bluespheres.toast.timeout >= (SETTING_BS_TOAST_DURATION / 0x02)) ? STRING_MEDALS_TOAST_RECEIVED_2 : STRING_MEDALS_TOAST_RECEIVED_1
+			BlueSpheresTimer.Menu.toast.setup("icon_tooltip_medal", medalTitle)
+		}
+	}
+	
+	// If the medal does not require a toast and it is not equal to the current one shown, then ignore
+	if (BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved) == BlueSpheresTimer.Medals.received() && bluespheres.toast.show != STRING_MEDALS_TOAST_RECEIVED_1)
+		return
+	
+	// If the medal is equal to the current one shown and the state of the toast is equal to 0x04
+	if (bluespheres.toast.show == STRING_MEDALS_TOAST_RECEIVED_1 && bluespheres.toast.state == 0x04)
+	{
+		// If the medals counter is updated, then reset the shown toast
+		if (BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved) == BlueSpheresTimer.Medals.received())
+		{
+			bluespheres.toast.show = ""
+			bluespheres.toast.state = 0x00
+		}
+		else
+		{
+			// Otherwise, update medals counter
+			BlueSpheresTimer.Data.setValue(bluespheres.medals.lastSaved, BlueSpheresTimer.Medals.received())
+		}
+	}
+}
+
+//? Returns the number of medals that are received.
+function u8 BlueSpheresTimer.Medals.received()
+{
+	u8 medals_received
+	
+	// Number of categories (0x00 ... 0x00)
+	for (u8 A = 0x00; A <= 0x00; ++A)
+	{
+		// Total number of medals
+		u8 maxMedals = (A == 0x00) ? 0x0f : 0x00
+		for (u8 B = 0x01; B <= maxMedals; ++B)
+		{
+			// Add +1 to variable if Achievement complete
+			if (BlueSpheresTimer.Medals.isUnlocked(A, B))
+			{
+				medals_received += 0x01
+			}
+		}
+	}
+	
+	// Return the value
+	return medals_received
 }

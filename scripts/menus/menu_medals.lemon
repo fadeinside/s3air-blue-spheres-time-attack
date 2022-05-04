@@ -4,7 +4,7 @@ function void BlueSpheresTimer.Menu.medals.setup()
 	level.framecounter = 0x00
 	BlueSpheresTimer.TooltipManager.resetTooltip()
 	
-	bluespheres.buttons.setup = 0x04
+	bluespheres.buttons.setup = 0x01
 	bluespheres.medals.buttonselected = bluespheres.buttons.setup
 	bluespheres.medals.medalselected = 0x01
 	
