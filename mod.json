@@ -142,7 +142,8 @@
 				"Options":
 				{
 					"0": "Disabled (Default)",
-					"1": "Enable"
+					"1": "Enable (Level 1)",
+					"2": "Enable (Level 2)"
 				}
 			}
 		]

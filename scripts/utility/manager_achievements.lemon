@@ -104,7 +104,7 @@ function void BlueSpheresTimer.Achievements.update()
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220) >= 220)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220)
 	
-	if (Mods.isModActive("Blue Sphere Plus") && u8[0x801101] == 31)
+	if (Mods.isModActive("Blue Sphere Plus") && (u8[0x801101] == 0x1f || u8[0x801101] == 0xff))
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
 }
 

@@ -21,6 +21,12 @@ function void BlueSpheresTimer.Menu.shared.headline()
 	else if (bluespheres.timer.currentTime >= 50000)
 		headline = STRING_SHARED_LESSON_IN_SPEED
 	
+	if (SETTING_BS_MENU_OPTIMIZATION == 0x02)
+	{
+		BlueSpheresTimer.TextManager.drawText(getScreenWidth() / 0x02, 25, 0xf000, 0x01, headline, 0x00)
+		return
+	}
+	
 	for (u8 A = 0x00; A < 0x04; ++A)
 		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, headline, 0x00)
 }

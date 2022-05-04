@@ -65,7 +65,7 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview()
 	copyMemory(A2 + 0x70, A1, 0x10)
 	
 	// We will make the ground static, as in the first release, when the menu optimization setting is active
-	if (SETTING_BS_MENU_OPTIMIZATION)
+	if (SETTING_BS_MENU_OPTIMIZATION == 0x02)
 	{
 		bluespheres.position.x = 1024
 		bluespheres.position.y = 1024

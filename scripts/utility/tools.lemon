@@ -40,7 +40,7 @@ function void BlueSpheresTimer.VRAMLoad_stagePreview()
 	}
 	
 	// Ignore if this setting is disabled
-	if !(SETTING_BS_STAGE_PREVIEW_ENABLE || SETTING_BS_MENU_OPTIMIZATION)
+	if !(SETTING_BS_STAGE_PREVIEW_ENABLE || SETTING_BS_MENU_OPTIMIZATION == 0x02)
 		return
 		
 	copyMemory(0xffffe480, 0x00a10a, 0x70)

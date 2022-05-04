@@ -1,5 +1,14 @@
 function void BlueSpheresTimer.Menu.medals.headline()
 {
+	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
+		return
+	
+	if (SETTING_BS_MENU_OPTIMIZATION == 0x02)
+	{
+		BlueSpheresTimer.TextManager.drawText(getScreenWidth() / 0x02, 25, 0xf000, 0x01, STRING_MEDALS_HEADLINE, 0x00)
+		return
+	}
+	
 	s32 offset = 146
 	s32 px = getScreenWidth() / 0x02 - offset
 	

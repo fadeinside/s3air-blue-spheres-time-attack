@@ -3,6 +3,12 @@ function void BlueSpheresTimer.Menu.options.headline()
 	if (bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
 		return
 	
+	if (SETTING_BS_MENU_OPTIMIZATION == 0x02)
+	{
+		BlueSpheresTimer.TextManager.drawText(getScreenWidth() / 0x02, 25, 0xf000, 0x01, STRING_OPTIONS_HEADLINE, 0x00)
+		return
+	}
+	
 	s32 offset = 150
 	s32 px = getScreenWidth() / 0x02 - offset
 	
@@ -105,7 +111,7 @@ function void BlueSpheresTimer.Menu.options.updateControl()
 	}
 	
 	// Perform the action of selected button when start pressed
-	if (control.pad1.pressed == CONTROL_START)
+	if (control.pad1.pressed & CONTROL_START)
 	{
 		if (bluespheres.options.buttonselected == 0x00)
 		{
@@ -247,16 +253,10 @@ function void BlueSpheresTimer.Menu.options.popups()
 				playSound(0x68)
 				BlueSpheresTimer.Achievements.reset()
 				
-				if !(BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
-					BlueSpheresTimer.Emeralds.replaceAll(0x00)
-				else
-				{
+				if (BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked))
 					BlueSpheresTimer.Emeralds.replaceAll(0x02)
-					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS, 0xfa2)
-				}
-				
-				if (u8[0x801101] == 31)
-					BlueSpheresTimer.Achievements.setValue(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON, 0xfa2)
+				else
+					BlueSpheresTimer.Emeralds.replaceAll(0x00)
 					
 				// Setup tooltip
 				BlueSpheresTimer.TooltipManager.setupTooltip(0x01, "gray", "icon_tooltip_successful", STRING_TOOLTIP_SUCCESSFULLY_DELETED, "")
