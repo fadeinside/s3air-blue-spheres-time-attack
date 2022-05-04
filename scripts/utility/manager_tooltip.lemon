@@ -1,6 +1,7 @@
 //? Checks whether there is available text in the variable, if there is, then show it.
 function void BlueSpheresTimer.TooltipManager.update()
 {
+	// Define ad content
 	BlueSpheresTimer.TooltipManager.showRandomAds()
 	
 	// Tooltip show
@@ -49,8 +50,8 @@ function void BlueSpheresTimer.TooltipManager.resetTooltip()
 		return
 	
 	// Identify a random number until an ad is shown
-	if (bluespheres.tooltip.showADS != 0xff)
-		global.level_random_base = System.rand() % 640
+	if (bluespheres.tooltip.sessionADS && bluespheres.tooltip.showADS != 0xffff)
+		global.level_random_base = System.rand() % 920
 	
 	// Reset appearance
 	bluespheres.tooltip.show = ""
@@ -69,6 +70,9 @@ function void BlueSpheresTimer.TooltipManager.resetTooltip()
 //? Determines which ad should be shown based on the range of random numbers.
 function void BlueSpheresTimer.TooltipManager.showRandomAds()
 {
+	if !(bluespheres.tooltip.sessionADS)
+		return
+	
 	if (bluespheres.tooltip.showADS != 0x00)
 		return
 	
@@ -114,9 +118,15 @@ function void BlueSpheresTimer.TooltipManager.showRandomAds()
 //? Returns true if an ad is currently showing.
 function bool BlueSpheresTimer.TooltipManager.isAds()
 {
-	if (bluespheres.tooltip.showADS == 0xff) // Hidden after the show
+	// Ads are not shown in this session
+	if !(bluespheres.tooltip.sessionADS)
 		return false
-	else if (bluespheres.tooltip.showADS != 0x00) // Now shows
+	
+	// Hidden after the show
+	if (bluespheres.tooltip.showADS == 0xffff)
+		return false
+	// Now shows
+	else if (bluespheres.tooltip.showADS != 0x00)
 		return true
 	else
 		return false

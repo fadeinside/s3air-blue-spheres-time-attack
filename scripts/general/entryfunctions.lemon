@@ -78,5 +78,6 @@ function void BlueSpheresTimer.EntryFunctions.Menu.lobby()
 
 function void EntryFunctions.blueSphereGame()
 {
+	bluespheres.tooltip.sessionADS = System.rand() % 0x02
 	BlueSpheresTimer.EntryFunctions.Menu.lobby()
 }

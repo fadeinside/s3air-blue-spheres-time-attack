@@ -124,6 +124,8 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			VDP.Config.setActiveDisplay(false)
 			
 			// Setup tooltip
+			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+				bluespheres.tooltip.showADS = 0xffff
 			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
@@ -150,6 +152,8 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			VDP.Config.setActiveDisplay(false)
 			
 			// Setup tooltip
+			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+				bluespheres.tooltip.showADS = 0xffff
 			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu

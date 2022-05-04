@@ -91,7 +91,7 @@ define string STRING_TOOLTIP_ACHIEVEMENT_LOCKED	= "This achievement is locked"
 define string STRING_TOOLTIP_MEDAL_NOT_RECEIVED	= "This medal is not received"
 define string STRING_TOOLTIP_SUCCESSFULLY_DELETED	= "Data is successfully deleted."
 define string STRING_TOOLTIP_NO_DATA	= "There is no data to delete."
-define string STRING_TOOLTIP_MINI_GAME_NOTIFY	= "Achievements are unavailable in mini-game mode."
+define string STRING_TOOLTIP_MINI_GAME_NOTIFY	= "Achievements are unavailable in mini game mode."
 define string STRING_TOOLTIP_SK_LEVELS	= "SK levels are not unlocked"
 define string STRING_TOOLTIP_READ_FAQ	= "Read FAQ on Github repo for details."
 

@@ -63,7 +63,8 @@ global u8 bluespheres.tooltip.frames	// The counter is used for animation
 global u8 bluespheres.tooltip.timeout	// Waiting counter. The limit is determined from SETTING_BS_TOAST_DURATION
 global string bluespheres.tooltip.show	// Sets the text of the current tooltip
 global string bluespheres.tooltip.show_next	// Sets the next text of the current tooltip
-global u8 bluespheres.tooltip.showADS	// Sets a random number that is part of the ad random range (0x00 - Not set, 0xff - Hide/reset)
+global u16 bluespheres.tooltip.showADS	// Sets a random number that is part of the ad random range (0x00 - Not set, 0xffff - Hide/reset)
+global u8 bluespheres.tooltip.sessionADS	// Sets 0x01 if an advertisement is shown in the current session
 global string bluespheres.tooltip.icon	// Icon on the left (If left blank, the offset for the icon will not be displayed)
 global string bluespheres.tooltip.color	// Background color tooltip ("blue", "red", "gray")
 global u8 bluespheres.tooltip.faster	// Sets 0x01 when the current tooltip should disappear faster
