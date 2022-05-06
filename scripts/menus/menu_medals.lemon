@@ -8,12 +8,12 @@ function void BlueSpheresTimer.Menu.medals.setup()
 	bluespheres.medals.buttonselected = bluespheres.buttons.setup
 	bluespheres.medals.medalselected = 0x01
 	
+	// Screen fades
+	FadeOutScreenBlocking()
+	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()
 	BlueSpheresTimer.VRAMLoad_stagePreview()
-	
-	// Screen fades
-	FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)

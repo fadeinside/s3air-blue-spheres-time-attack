@@ -3,6 +3,14 @@ function void BlueSpheresTimer.BackgroundManager.update()
 	// SK logo and Copyright
 	BlueSpheresTimer.BackgroundManager.overlay()
 	
+	if (SETTING_BS_MENU_BACKGROUND == 0x02)
+	{
+		UpdateGameObjects()
+		
+		// Finish the function on this
+		return
+	}
+	
 	// Let's make the background move from the bottom up if "Sonic and Knuckles" theme is enabled
 	if (SETTING_BS_MENU_BACKGROUND == 0x01)
 	{
@@ -33,20 +41,18 @@ function void BlueSpheresTimer.BackgroundManager.update()
 
 function void BlueSpheresTimer.BackgroundManager.overlay()
 {
+	// Copyright
+	Renderer.drawCustomSprite("icon_copyright", getScreenWidth() - 104, 210, 0x00, 0x40, 0xf00a)
+	Renderer.drawCustomSprite("title_screen_cr", getScreenWidth() - 92, 206, 0x40, 0x00, 0xf00a)
+	
 	// SK Blue Sphere logo
 	if (SETTING_BS_MENU_BACKGROUND != 0x01) // Do not render this if the "Sonic and Knuckles" theme is enabled
 		Renderer.drawCustomSprite("sklogo", getScreenWidth() / 0x02, 40, 0x40, 0x00, 0xf000)
 	
-	// Copyright
-	if !(bluespheres.popup.show && SETTING_BS_MENU_OPTIMIZATION)
-	{
-		Renderer.drawCustomSprite("icon_copyright", getScreenWidth() - 104, 210, 0x00, 0x40, 0xff00)
-		Renderer.drawCustomSprite("title_screen_cr", getScreenWidth() - 92, 206, 0x40, 0x00, 0xff00)
-	}
-	
 	// Draw a gradient so that the objects are more clearly visible on the background
+	u8 alpha = (SETTING_BS_MENU_BACKGROUND == 0x02) ? 0x55 : ((SETTING_BS_MENU_BACKGROUND == 0x01) ? 0xba : 0xff)
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (SETTING_BS_MENU_BACKGROUND == 0x01) ? 0xba : 0xff)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, alpha)
 }
 
 function void BlueSpheresTimer.BackgroundManager.stagePreview()

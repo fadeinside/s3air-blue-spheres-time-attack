@@ -7,12 +7,12 @@ function void BlueSpheresTimer.Menu.options.setup()
 	bluespheres.buttons.setup = 0x03
 	bluespheres.options.buttonselected = bluespheres.buttons.setup
 	
+	// Screen fades
+	FadeOutScreenBlocking()
+	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()
 	BlueSpheresTimer.VRAMLoad_stagePreview()
-	
-	// Screen fades
-	FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)

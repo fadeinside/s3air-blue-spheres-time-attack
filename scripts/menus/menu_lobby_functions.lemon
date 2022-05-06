@@ -120,6 +120,7 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			bluespheres.minigame_mode = 0x01
 			FadeOutScreenBlocking()
 			
+			u8[0xffffffab] = 0x00
 			levelselect.characters = CHARS_SONIC_ALONE
 			u8[0xffffffa1] = 0x00
 			
@@ -146,6 +147,7 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			global.sk_bluespheres = 0x00
 			global.lock_on_state = 0x00
 			
+			u8[0xffffffab] = 0x00
 			levelselect.characters = CHARS_SONIC_ALONE
 			u8[0xffffffa1] = 0x00
 			bluespheregame.current_stage = 0x00

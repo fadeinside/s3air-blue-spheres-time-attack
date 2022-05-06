@@ -11,12 +11,12 @@ function void BlueSpheresTimer.Menu.shared.setup()
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
 		playMusic(0xac) // Play Continue song when a new record
 	
+	// Screen fades
+	SetPaletteToWhite()
+	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()
 	BlueSpheresTimer.VRAMLoad_stagePreview()
-	
-	// Screen fades
-	SetPaletteToWhite()
 	
 	// Main loop
 	while (true)

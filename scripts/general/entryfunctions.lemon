@@ -79,5 +79,8 @@ function void BlueSpheresTimer.EntryFunctions.Menu.lobby()
 function void EntryFunctions.blueSphereGame()
 {
 	bluespheres.tooltip.sessionADS = System.rand() % 0x02
-	BlueSpheresTimer.EntryFunctions.Menu.lobby()
+	
+	EntryFunctions.sharedInit()
+	global.game_mode = 0x89
+	System.setupCallFrame("GameModeControlLoop", "@EntryPoint")
 }

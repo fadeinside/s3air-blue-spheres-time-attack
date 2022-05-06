@@ -21,11 +21,53 @@ function void BlueSpheresTimer.VRAMClear()
 	VDP.fillVRAMbyDMA(0x00, 0x0000, 0x40)
 	VDP.fillVRAMbyDMA(0x00, 0xc000, 0x2000)
 	VDP.fillVRAMbyDMA(0x00, 0xe000, 0x2000)
+	
+	zeroMemory(0xffffac00, 0x400)
+	zeroMemory(0xffffb000, 0x2000)
+	
+	// Load some Persistent Data
+	BlueSpheresTimer.Records.loadPersistentData()
+	BlueSpheresTimer.Achievements.loadPersistentData()
 }
 
 //? Loads some data into VRAM related with menu background.
 function void BlueSpheresTimer.VRAMLoad_stagePreview()
 {
+	// "Get Blue Spheres" background stuff
+	if (SETTING_BS_MENU_BACKGROUND == 0x02)
+	{
+		fn04cca6() // This seems to be a check for Sonic 1 lock-on
+		if !(bluespheres.timeattack.active)
+			fn04c8e4()
+		
+		u8[0xffffffa1] = 0x01
+		u8[0xffffffab] = 0x00 // Set the 0x01 if you want to use the "Inactive" color theme
+		
+		A1 = (u8[0xffffffab] == 0x00) ? 0x04cb36 : 0x04cbb6
+		A2 = 0xfffffc80
+		copyMemory(A2, A1, 0x80)
+		
+		// Animated Tails eyes, Sonic hand, Knuckles smirk and Eggman head
+		Kosinski.decompress(0x187d1c, 0xffff0000)
+		Kosinski.decompress(0x188f1e, A1)
+		updateSpritePattern(0xffff0000, 0x00, A1.u16 >> 0x01)
+		
+		// Static art
+		Enigma.decompress(0x187cb0, 0xffff8000, 0x2000)
+		A1 = 0xffff8000
+		D0 = 0x43800003
+		D1 = 0x27
+		D2 = 0x0f
+		CopyRectToVRAM()
+		
+		// Move planes a bit to the right
+		for (u8 i = 0x00; i < getScreenHeight(); ++i)
+			u32[0xffffe000 + i * 0x04] = getScreenExtend() * 0x10001
+		
+		u32[0xffffb094] = 0x04d986
+		return
+	}
+	
 	// "Sonic and Knuckles" background stuff
 	if (SETTING_BS_MENU_BACKGROUND == 0x01)
 	{

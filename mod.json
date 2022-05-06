@@ -54,11 +54,12 @@
 				"InternalName": "SETTING_BS_MENU_BACKGROUND",
 				"DisplayName": "Menu background:",
 				"Variable": "SETTING_BS_MENU_BACKGROUND",
-				"DefaultValue": "1",
+				"DefaultValue": "2",
 				"Options":
 				{
 					"0": "Special Stage ground",
-					"1": "\"Sonic and Knuckles\" (Default)"
+					"1": "\"Sonic and Knuckles\"",
+					"2": "\"Get Blue Spheres\" (Default)"
 				}
 			},
 			{

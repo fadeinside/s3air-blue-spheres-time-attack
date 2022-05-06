@@ -19,12 +19,12 @@ function void BlueSpheresTimer.Menu.achievements.setup()
 		BlueSpheresTimer.Menu.achievements.updateControl()
 	}
 	
+	// Screen fades
+	FadeOutScreenBlocking()
+	
 	// VRAM stuff
 	BlueSpheresTimer.VRAMClear()
 	BlueSpheresTimer.VRAMLoad_stagePreview()
-	
-	// Screen fades
-	FadeOutScreenBlocking()
 	
 	// Main loop
 	while (true)

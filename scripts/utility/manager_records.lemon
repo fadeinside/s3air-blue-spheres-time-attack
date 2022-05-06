@@ -60,7 +60,7 @@ function u32 BlueSpheresTimer.Records.getRecordAddress(u8 place)
 function s32 BlueSpheresTimer.Records.getRecordTime(u32 place)
 {
 	u32 recordOffset = BlueSpheresTimer.Records.getRecordAddress(place)
-	System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+	//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
 	
 	// Return the value
 	return s32[recordOffset]
@@ -108,7 +108,7 @@ function void BlueSpheresTimer.Records.reset()
 						if (s32[recordOffset] > 0x00)
 						{
 							s32[recordOffset] = 0x00
-							System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
+							//System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
 						}
 					}
 				}
@@ -144,7 +144,7 @@ function s32 BlueSpheresTimer.Records.writed()
 						u32 mods = 0x10000 * E
 						
 						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-						System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+						//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
 						
 						// Add +1 to variable if address greater than 0x00
 						if (s32[recordOffset] > 0x00)
@@ -159,4 +159,37 @@ function s32 BlueSpheresTimer.Records.writed()
 	
 	// Return the value
 	return writed_address
+}
+
+//? Load data about saved records into memory.
+function void BlueSpheresTimer.Records.loadPersistentData()
+{
+	// Number of stages (0x00 .. 0x07)
+	for (u8 A = 0x00; A <= 0x07; ++A)
+	{
+		// Number of record places (0x01 .. 0x04)
+		for (u8 B = 0x01; B <= 0x04; ++B)
+		{
+			// Number of characters (0x00 .. 0x06)
+			for (u8 C = 0x00; C <= 0x06; ++C)
+			{
+				// "Sonic & Knuckles" level layout (0x00 .. 0x01)
+				for (u8 D = 0x00; D <= 0x01; ++D)
+				{
+					// D.A. Garden Edition (0x00 .. 0x01)
+					for (u8 E = 0x00; E <= 0x01; ++E)
+					{
+						u32 recordplace = 0x1024 * B
+						u32 character = 0x128 * (C + 0x01)
+						u32 stage = 0x16 * (A + 0x01)
+						u32 layout = 0x08 * D
+						u32 mods = 0x10000 * E
+						
+						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+						System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+					}
+				}
+			}
+		}
+	}
 }

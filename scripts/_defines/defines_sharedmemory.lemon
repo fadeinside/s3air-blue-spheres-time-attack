@@ -17,7 +17,7 @@ define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is ov
 define u8 bluespheres.timeattack.active	= u8[0x8e1216]	// Set to 0x01 when the Time Attack mode is active
 
 // Data
-define u8 bluespheres.achievements.lastSaved	= 0x8e121a
+define u8 bluespheres.achievements.lastSaved	= 0x8e1218 // Unused
 define u8 bluespheres.medals.lastSaved	= 0x8e121a
 
 // Unlocks

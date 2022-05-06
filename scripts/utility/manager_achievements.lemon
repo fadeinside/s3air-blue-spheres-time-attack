@@ -529,7 +529,7 @@ function u32 BlueSpheresTimer.Achievements.getAddress(u32 achievementId)
 function s32 BlueSpheresTimer.Achievements.getValue(u32 achievementId)
 {
 	u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(achievementId)
-	System.loadPersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), 0x04)
+	//System.loadPersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), 0x04)
 	
 	// Return the value
 	return s32[achievementOffset]
@@ -684,4 +684,15 @@ function u8 BlueSpheresTimer.Achievements.writed()
 	
 	// Return the value
 	return writed_address
+}
+
+//? Load data about saved achievements into memory.
+function void BlueSpheresTimer.Achievements.loadPersistentData()
+{
+	// Total number of Achievements
+	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
+	{
+		u32 achievementOffset = BlueSpheresTimer.Achievements.getAddress(A)
+		System.loadPersistentData(achievementOffset, stringformat("SRAM_BlueSpheresTimer_Achievement_0x%06x", achievementOffset), 0x04)
+	}
 }
