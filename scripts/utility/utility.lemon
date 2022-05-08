@@ -1,3 +1,38 @@
+//@ Function taken from sonic3air_dev/scripts/standalone/standalone.lemon
+function void waitForNextFrame()
+{
+	// Update achievements in the Special stage results menu (i.e. continue show toast if it was received at the time of moving to the result menu)
+	if ((global.game_mode & 0x7f) == 0x48)
+	{
+		BlueSpheresTimer.Achievements.update()
+	}
+	
+	// Call the base function
+	base.waitForNextFrame()
+}
+
+//? Modified waitForNextFrame(), which should reduce the number of operations for each frame.
+//@ Original function taken from sonic3air_dev/scripts/standalone/standalone.lemon
+function void BlueSpheresTimer.waitForNextFrame()
+{
+	// V-Int
+	VInt.InnerUpdate()
+	
+	// Apply global tint color for screen fades
+	Renderer.setGlobalComponentTint(globalComponentTintColorR, globalComponentTintColorG, globalComponentTintColorB, globalComponentAddedColorR, globalComponentAddedColorG, globalComponentAddedColorB)
+	
+	// Enough for this frame
+	yieldExecution()
+
+	// Start of the next frame: Update controllers
+	{
+		control.pad1.state = Input.getController(0x00)
+		control.pad1.pressed = control.pad1.state & ~Input.getControllerPrevious(0x00)
+		control.pad2.state = Input.getController(0x01)
+		control.pad2.pressed = control.pad2.state & ~Input.getControllerPrevious(0x01)
+	}
+}
+
 //@ Function taken from sonic3air_dev/scripts/objects/basics/giantring.lemon
 //# address-hook(0x061682) end(0x061690)
 function void GiantRing.BaseUpdate()
@@ -9,7 +44,12 @@ function void GiantRing.BaseUpdate()
 	
 	// Reset the timer when the character jumps into a special ring
 	if (objA0.base_state == 0x04)
+	{
 		BlueSpheresTimer.resetTimer()
+		
+		// Load some Persistent Data
+		System.setupCallFrame("BlueSpheresTimer.VRAMClear", "@loadPersistentData")
+	}
 	
 	// Call the base function
 	base.GiantRing.BaseUpdate()
@@ -47,6 +87,12 @@ function void fn009ea0()
 {
 	bluespheres.blue_collected = 0x00
 	bluespheres.continue_granted = 0x00
+	
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
+	{
+		// Load some Persistent Data
+		System.setupCallFrame("BlueSpheresTimer.VRAMClear", "@loadPersistentData") 
+	}
 	
 	// Call the base function
 	base.fn009ea0()

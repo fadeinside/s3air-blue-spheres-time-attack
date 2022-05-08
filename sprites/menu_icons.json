@@ -1,4 +1,32 @@
 {
+	// Bumper select  
+	"bump_sonic_0x00":  { "File": "menu_bumpers.png", "Rect": "1,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x01":  { "File": "menu_bumpers.png", "Rect": "18,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x02":  { "File": "menu_bumpers.png", "Rect": "35,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x03":  { "File": "menu_bumpers.png", "Rect": "52,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x04":  { "File": "menu_bumpers.png", "Rect": "69,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x05":  { "File": "menu_bumpers.png", "Rect": "86,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x06":  { "File": "menu_bumpers.png", "Rect": "103,1,16,16", "Center": "8,8" },
+	"bump_sonic_0x07":  { "File": "menu_bumpers.png", "Rect": "120,1,16,16", "Center": "8,8" },
+	
+	"bump_tails_0x00":  { "File": "menu_bumpers.png", "Rect": "1,18,16,16", "Center": "8,8" },
+	"bump_tails_0x01":  { "File": "menu_bumpers.png", "Rect": "18,18,16,16", "Center": "8,8" },
+	"bump_tails_0x02":  { "File": "menu_bumpers.png", "Rect": "35,18,16,16", "Center": "8,8" },
+	"bump_tails_0x03":  { "File": "menu_bumpers.png", "Rect": "52,18,16,16", "Center": "8,8" },
+	"bump_tails_0x04":  { "File": "menu_bumpers.png", "Rect": "69,18,16,16", "Center": "8,8" },
+	"bump_tails_0x05":  { "File": "menu_bumpers.png", "Rect": "86,18,16,16", "Center": "8,8" },
+	"bump_tails_0x06":  { "File": "menu_bumpers.png", "Rect": "103,18,16,16", "Center": "8,8" },
+	"bump_tails_0x07":  { "File": "menu_bumpers.png", "Rect": "120,18,16,16", "Center": "8,8" },
+	
+	"bump_knuckles_0x00":  { "File": "menu_bumpers.png", "Rect": "1,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x01":  { "File": "menu_bumpers.png", "Rect": "18,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x02":  { "File": "menu_bumpers.png", "Rect": "35,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x03":  { "File": "menu_bumpers.png", "Rect": "52,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x04":  { "File": "menu_bumpers.png", "Rect": "69,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x05":  { "File": "menu_bumpers.png", "Rect": "86,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x06":  { "File": "menu_bumpers.png", "Rect": "103,35,16,16", "Center": "8,8" },
+	"bump_knuckles_0x07":  { "File": "menu_bumpers.png", "Rect": "120,35,16,16", "Center": "8,8" },
+	
 	// Achievement icon
 	"icon_trophy": { "File": "menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
 	"icon_trophy_lock": { "File": "menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },

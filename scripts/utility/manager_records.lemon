@@ -102,13 +102,13 @@ function void BlueSpheresTimer.Records.reset()
 						u32 mods = 0x10000 * E
 						
 						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-						System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+						//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
 						
 						// Set the 0x00 for an address if it is greater than 0x00
 						if (s32[recordOffset] > 0x00)
 						{
 							s32[recordOffset] = 0x00
-							//System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
+							System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
 						}
 					}
 				}

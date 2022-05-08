@@ -1,3 +1,15 @@
+//? Update the bumper animation of the selected item in the menu.
+function void BlueSpheresTimer.bumperFramerate()
+{
+	--bluespheres.bumperselect.timer
+	if (s8(bluespheres.bumperselect.timer) < 0x00)
+	{
+		bluespheres.bumperselect.timer = 0x02
+		++bluespheres.bumperselect.sprite
+		bluespheres.bumperselect.sprite &= 0x07
+	}
+}
+
 //? Resets the values of some global variables and the timer.
 function void BlueSpheresTimer.resetTimer()
 {
@@ -11,8 +23,6 @@ function void BlueSpheresTimer.resetTimer()
 	bluespheres.gameOver = 0x00
 	bluespheres.timeOver = 0x00
 	bluespheres.timeOver.timeout = 0x00
-	
-	//System.writeDisplayLine("Timer reset")
 }
 
 //? Clear some data from the VRAM.
@@ -25,6 +35,7 @@ function void BlueSpheresTimer.VRAMClear()
 	zeroMemory(0xffffac00, 0x400)
 	zeroMemory(0xffffb000, 0x2000)
 	
+@loadPersistentData:
 	// Load some Persistent Data
 	BlueSpheresTimer.Records.loadPersistentData()
 	BlueSpheresTimer.Achievements.loadPersistentData()

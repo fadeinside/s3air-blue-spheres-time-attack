@@ -1,14 +1,14 @@
 function void BlueSpheresTimer.Menu.pause.background()
 {
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, 0xaa)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf0e0, 0x00, 0xaa)
 }
 
 function void BlueSpheresTimer.Menu.pause.headline()
 {
 	if (SETTING_BS_MENU_OPTIMIZATION == 0x02)
 	{
-		BlueSpheresTimer.TextManager.drawText(getScreenWidth() / 0x02, 25, 0xf000, 0x01, STRING_PAUSE_HEADLINE, 0x00)
+		BlueSpheresTimer.TextManager.drawText(getScreenWidth() / 0x02, 25, 0xf0e0, 0x01, STRING_PAUSE_HEADLINE, 0x00)
 		return
 	}
 	
@@ -16,7 +16,7 @@ function void BlueSpheresTimer.Menu.pause.headline()
 	s32 px = getScreenWidth() / 0x02 - offset
 	
 	for (u8 A = 0x00; A < 0x04; ++A)
-		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf000, 0x01, STRING_PAUSE_HEADLINE, 0x00)
+		BlueSpheresTimer.TextManager.drawText(px + (offset * A) - ((level.framecounter * 0x02) % offset), 25, 0xf0e0, 0x01, STRING_PAUSE_HEADLINE, 0x00)
 }
 
 function void BlueSpheresTimer.Menu.pause.items()
@@ -38,27 +38,24 @@ function void BlueSpheresTimer.Menu.pause.items.keys(s32 px, s32 py)
 	px = 18
 	py = getScreenHeight() - 18
 	
-	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "y")
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf0e0, "y")
 	px += 13
-	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf0e0, "start")
 	px += 18 // Additional offset by "start"
 	px += 13
-	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "up", "down", 0x00)
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf0e0, "up", "down", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.pause.items.menu(s32 px, s32 py)
 {
 	py -= 18
-	string button_continue = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x00, STRING_PAUSE_CONTINUE)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_continue, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf0e0, 0x01, STRING_PAUSE_CONTINUE, 0x01, bluespheres.pause.buttonselected, 0x00)
 	
 	py += 18
-	string button_restart = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x01, STRING_PAUSE_RESTART)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_restart, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf0e0, 0x01, STRING_PAUSE_RESTART, 0x01, bluespheres.pause.buttonselected, 0x01)
 	
 	py += 18
-	string button_exit = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.pause.buttonselected, 0x02, STRING_PAUSE_EXIT)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_exit, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf0e0, 0x01, STRING_PAUSE_EXIT, 0x01, bluespheres.pause.buttonselected, 0x02)
 }
 
 function void BlueSpheresTimer.Menu.pause.updateControl()

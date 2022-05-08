@@ -22,7 +22,7 @@ function void BlueSpheresTimer.Menu.shared.setup()
 	while (true)
 	{
 		global.frame_state = 0x12
-		waitForNextFrame()
+		BlueSpheresTimer.waitForNextFrame()
 		
 		// Start counting arrival frames in the menu
 		++level.framecounter

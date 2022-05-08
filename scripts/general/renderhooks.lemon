@@ -34,40 +34,43 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 		return true
 	}
 	
-	// Special stage result + fade to main game afterwards && check enabled Time bonus
-	if (((global.game_mode & 0x7f) == 0x48 || (global.game_mode & 0x7f) == 0x0c) && SETTING_BS_TIME_BONUSES_ON_SPECIALS)
+	// Special stage result + fade to main game afterwards
+	if ((global.game_mode & 0x7f) == 0x48 || (global.game_mode & 0x7f) == 0x0c)
 	{
 		// Special stage result texts
 		if (objA0.update_address == 0x02ea50)
 		{
-			py -= 0x10
-			bool isSKStage = (global.lock_on_state == 0x00 && global.sk_bluespheres)
-			
-			if (objA0.animation.sprite == 0x19 || objA0.animation.sprite == 0x33 || objA0.animation.sprite == 0x38)
+			if (SETTING_BS_TIME_BONUSES_ON_SPECIALS)
 			{
-				u64 key
-				if !(Mods.isModActive("Sonic Mania HUD"))
-					key = isSKStage ? "hud_text_time_superstage" : "hud_text_time_chaosstage"
-				else
-					key = "hud_text_time"
+				py -= 0x10
+				bool isSKStage = (global.lock_on_state == 0x00 && global.sk_bluespheres)
 				
-				Renderer.drawCustomSprite(key, px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				Renderer.drawCustomSprite(isSKStage ? "hud_text_bonus_superstage" : "hud_text_bonus_chaosstage", px + 0x28, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				HUD.drawNumber(isSKStage ? "hud_digit_%d" : "hud_digit_%d_chaosstage", bluespheres.timer.bonus * 0x0a, px + 0xb8, py, renderQueue)
-				Renderer.drawCustomSprite(getCharacterBonusTextIcon(getMainCharacter()), px + 0x4d, py - 0x05, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				
-				py += 0x10
-				Renderer.drawCustomSprite(isSKStage ? "hud_text_perfect_superstage" : "hud_text_perfect_chaosstage", px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				HUD.drawNumber(isSKStage ? "hud_digit_%d" : "hud_digit_%d_chaosstage", results.time_bonus * 0x0a, px + 0xb8, py, renderQueue)
-				Renderer.drawCustomSprite(getCharacterBonusTextIcon(getMainCharacter()), px + 0x34, py - 0x05, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				return true
-			}
-			else if (objA0.animation.sprite == 0x1a || objA0.animation.sprite == 0x34 || objA0.animation.sprite == 0x39)
-			{
-				py += 0x18
-				Renderer.drawCustomSprite(isSKStage ? "hud_text_continue_superstage" : "hud_text_continue_chaosstage", px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				Renderer.drawCustomSprite(getCharacterBonusTextIcon(getMainCharacter()), px + 0x3c, py - 0x05, 0x00, SPRITE_FLAG_PRIO, renderQueue)
-				return true
+				if (objA0.animation.sprite == 0x19 || objA0.animation.sprite == 0x33 || objA0.animation.sprite == 0x38)
+				{
+					u64 key
+					if !(Mods.isModActive("Sonic Mania HUD"))
+						key = isSKStage ? "hud_text_time_superstage" : "hud_text_time_chaosstage"
+					else
+						key = "hud_text_time"
+					
+					Renderer.drawCustomSprite(key, px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					Renderer.drawCustomSprite(isSKStage ? "hud_text_bonus_superstage" : "hud_text_bonus_chaosstage", px + 0x28, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					HUD.drawNumber(isSKStage ? "hud_digit_%d" : "hud_digit_%d_chaosstage", bluespheres.timer.bonus * 0x0a, px + 0xb8, py, renderQueue)
+					Renderer.drawCustomSprite(getCharacterBonusTextIcon(getMainCharacter()), px + 0x4d, py - 0x05, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					
+					py += 0x10
+					Renderer.drawCustomSprite(isSKStage ? "hud_text_perfect_superstage" : "hud_text_perfect_chaosstage", px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					HUD.drawNumber(isSKStage ? "hud_digit_%d" : "hud_digit_%d_chaosstage", results.time_bonus * 0x0a, px + 0xb8, py, renderQueue)
+					Renderer.drawCustomSprite(getCharacterBonusTextIcon(getMainCharacter()), px + 0x34, py - 0x05, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					return true
+				}
+				else if (objA0.animation.sprite == 0x1a || objA0.animation.sprite == 0x34 || objA0.animation.sprite == 0x39)
+				{
+					py += 0x18
+					Renderer.drawCustomSprite(isSKStage ? "hud_text_continue_superstage" : "hud_text_continue_chaosstage", px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					Renderer.drawCustomSprite(getCharacterBonusTextIcon(getMainCharacter()), px + 0x3c, py - 0x05, 0x00, SPRITE_FLAG_PRIO, renderQueue)
+					return true
+				}
 			}
 		}
 	}

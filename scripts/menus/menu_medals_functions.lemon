@@ -73,14 +73,7 @@ function void BlueSpheresTimer.Menu.medals.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.medals.items.menu(s32 px, s32 py)
 {
-	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.medals.buttonselected, bluespheres.buttons.setup, STRING_BACK)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
-}
-
-function void BlueSpheresTimer.Menu.medals.items.menu(s32 px, s32 py)
-{
-	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.medals.buttonselected, bluespheres.buttons.setup, STRING_BACK)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_BACK, 0x01, bluespheres.medals.buttonselected, bluespheres.buttons.setup)
 }
 
 function void BlueSpheresTimer.Menu.medals.items.medals(s32 px, s32 py)
@@ -215,7 +208,7 @@ function void BlueSpheresTimer.Menu.medals.status()
 	s32 py = 76 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
 	
 	// Draw medal sprite
-	Renderer.drawCustomSprite(BlueSpheresTimer.Medals.getSprite(bluespheres.medals.buttonselected, bluespheres.medals.medalselected), px - 18, py, 0x40, 0x00, 0xf001)
+	Renderer.drawCustomSprite(BlueSpheresTimer.Medals.getSprite(bluespheres.medals.buttonselected, bluespheres.medals.medalselected), px - 18, py, 0x40, 0x00, 0xf0ea)
 }
 
 function void BlueSpheresTimer.Menu.medals.items.tableTitle(s32 px, s32 py, u16 renderQueue, string text, u8 alpha)

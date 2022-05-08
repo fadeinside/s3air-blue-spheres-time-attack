@@ -1,5 +1,8 @@
 function void BlueSpheresTimer.BackgroundManager.update()
 {
+	// Bumper select animation update
+	BlueSpheresTimer.bumperFramerate()
+	
 	// SK logo and Copyright
 	BlueSpheresTimer.BackgroundManager.overlay()
 	

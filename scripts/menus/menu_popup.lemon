@@ -5,42 +5,42 @@ function void BlueSpheresTimer.Menu.popup.background()
 		return
 	
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, (global.game_mode == 0x88) ? 0xdb : 0xca)
+		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf0e0, 0x00, (global.game_mode == 0x88) ? 0xdb : 0xca)
 }
 
 function void BlueSpheresTimer.Menu.popup.items.description(s32 px, s32 py, string text1, string text2, string text3, string text4)
 {
-	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x01, 0x90)
+	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf0e0, 0x01, "", 0x01, 0x90)
 	
 	if (text1 != "")
 	{
 		py -= 16
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text1, 0x01)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf0e0, 0x01, text1, 0x01)
 	}
 	if (text2 != "")
 	{
 		py -= 16
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text2, 0x01)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf0e0, 0x01, text2, 0x01)
 	}
 	if (text3 != "")
 	{
 		py -= 16
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text3, 0x01)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf0e0, 0x01, text3, 0x01)
 	}
 	if (text4 != "")
 	{
 		py -= 16
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, text4, 0x01)
+		BlueSpheresTimer.TextManager.drawText(px, py, 0xf0e0, 0x01, text4, 0x01)
 	}
 	if (global.game_mode == 0x88 && !(BlueSpheresTimer.Achievements.getTitle(bluespheres.achievements.buttonselected) == STRING_ACHIEVEMENTS_MOD_REQUIRE))
 	{
 		py -= 16
-		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x01, 0x90)
+		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf0e0, 0x01, "", 0x01, 0x90)
 	}
 	if (global.game_mode == 0x8a)
 	{
 		py -= 16
-		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "     ", 0x01, 0x90)
+		BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf0e0, 0x01, "     ", 0x01, 0x90)
 	}
 }
 
@@ -86,14 +86,13 @@ function void BlueSpheresTimer.Menu.popup.items.keys1(s32 px, s32 py)
 	px = 18
 	py = getScreenHeight() - 18
 	
-	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf0e0, "start")
 }
 
 function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, string button)
 {
 	py += 16
-	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf0e0, 0x01, button, 0x01, bluespheres.popup.buttonselected, 0x00)
 }
 
 // - - - - - - - - - - - - - - - - - - - //
@@ -156,10 +155,10 @@ function void BlueSpheresTimer.Menu.popup.items.keys2(s32 px, s32 py)
 	px = 18
 	py = getScreenHeight() - 18
 	
-	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "start")
+	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf0e0, "start")
 	px += 18 // Additional offset by "start"
 	px += 13
-	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "left", "right", 0x00)
+	BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf0e0, "left", "right", 0x00)
 }
 
 function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, string button1, string button2)
@@ -167,10 +166,8 @@ function void BlueSpheresTimer.Menu.popup.items.menu(s32 px, s32 py, string butt
 	py += 16
 	
 	px -= 64
-	string button_0x00 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x00, button1)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x00, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf0e0, 0x01, button1, 0x01, bluespheres.popup.buttonselected, 0x00)
 	
 	px += 128
-	string button_0x01 = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.popup.buttonselected, 0x01, button2)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_0x01, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf0e0, 0x01, button2, 0x01, bluespheres.popup.buttonselected, 0x01)
 }

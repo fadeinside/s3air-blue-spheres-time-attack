@@ -44,19 +44,16 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
 	// "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
 	py -= (Mods.isModActive("Blue Sphere Plus") ? 18 : 0x09) + 0x09
-	string button_time_attack = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x02, STRING_LOBBY_TIME_ATTACK)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_time_attack, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_TIME_ATTACK, 0x01, bluespheres.lobby.buttonselected, 0x02)
 	
 	py += 18
-	string button_blue_spheres = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x03, Mods.isModActive("Blue Sphere Plus") ? STRING_LOBBY_BLUE_SPHERES : STRING_LOBBY_GET_BLUE_SPHERES)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_blue_spheres, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, Mods.isModActive("Blue Sphere Plus") ? STRING_LOBBY_BLUE_SPHERES : STRING_LOBBY_GET_BLUE_SPHERES, 0x01, bluespheres.lobby.buttonselected, 0x03)
 	
 	py += 16
 	// Render the "Sonic 3K" button if BS Plus is active
 	if (Mods.isModActive("Blue Sphere Plus"))
 	{
-		string button_sonic_3k = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x04, STRING_LOBBY_SONIC_3K)
-		BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_sonic_3k, 0x01)
+		BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_SONIC_3K, 0x01, bluespheres.lobby.buttonselected, 0x04)
 	
 		Renderer.drawCustomSprite((u8[0x801101] & 0x01) ? "icon_marathon_outline" : "icon_marathon_lock", px + 64, py, 0x00, 0x40, 0xf000)
 		Renderer.drawCustomSprite((u8[0x801101] & 0x02) ? "icon_marathon_outline" : "icon_marathon_lock", px + 80, py, 0x00, 0x40, 0xf000)
@@ -69,8 +66,7 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x02, 0x90)
 	
 	py += 16
-	string button_achievements = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.lobby.buttonselected, 0x01, STRING_TIME_ATTACK_ACHIEVEMENTS)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_achievements, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_ACHIEVEMENTS, 0x01, bluespheres.lobby.buttonselected, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.lobby.updateControl()

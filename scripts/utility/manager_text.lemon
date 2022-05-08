@@ -1,4 +1,59 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Text with alignment and bumper 			//
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+//? Simplified BlueSpheresTimer.TextManager.drawTextMenuItem() function without configurable transparency.
+function void BlueSpheresTimer.TextManager.drawTextMenuItem(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 selected, u8 target)
+{
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, renderQueue, align, text, font, 255, selected, target)
+}
+
+function void BlueSpheresTimer.TextManager.drawTextMenuItem(s32 px, s32 py, u16 renderQueue, u8 align, string text, u8 font, u8 alpha, u8 selected, u8 target)
+{
+	s32 text_width = BlueSpheresTimer.TextManager.getTextWidth(text, font)
+	s32 left = (align == 0x00) ? text_width : ((align == 0x01) ? text_width / 0x02 : 0x00) 
+	
+	// Alignment:
+	// - 0x00 - From Right
+	// - 0x01 - From Center
+	// - 0x02 - From Left
+	
+	if (selected == target)
+	{
+		s32 left2 = (align == 0x00) ? 0x00 : ((align == 0x01) ? text_width / 0x02 : text_width)
+		string key = BlueSpheresTimer.TextManager.getCharacterBumper()
+		
+		if (Renderer.hasCustomSprite(key))
+		{
+			Renderer.drawCustomSprite(key, px - (left + 0x0e) , py, 0x00, 0x00, renderQueue)
+			Renderer.drawCustomSprite(key, px + (left2 + 0x0d), py, 0x00, SPRITE_FLAG_FLIP_X, renderQueue)
+		}
+	} 
+	
+	BlueSpheresTimer.TextManager.basic(px - left, py, renderQueue, text, font, alpha)
+}
+
+function string BlueSpheresTimer.TextManager.getCharacterBumper()
+{
+	string key
+	
+	if (bluespheres.timeattack.characterselected == CHARACTER_SONIC)
+		key = stringformat("bump_sonic_0x%02x", bluespheres.bumperselect.sprite) 
+	else if (bluespheres.timeattack.characterselected == CHARACTER_TAILS)
+		key = stringformat("bump_tails_0x%02x", bluespheres.bumperselect.sprite) 
+	else if (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES)
+		key = stringformat("bump_knuckles_0x%02x", bluespheres.bumperselect.sprite) 
+	else if (bluespheres.timeattack.characterselected == 0x03)
+	{
+		key = stringformat("bump_slot%d_0x%02x", bluespheres.timeattack.xtracharselected, bluespheres.bumperselect.sprite)
+		if !(Renderer.hasCustomSprite(key))
+			key = stringformat("bump_sonic_0x%02x", bluespheres.bumperselect.sprite)
+	}
+	
+	return key
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // Small text with alignment and bg			//
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

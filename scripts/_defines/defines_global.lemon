@@ -76,3 +76,7 @@ global s32 bluespheres.popup.offsetDescription	// Sets the description offset fr
 // Scroll bar
 global u8 bluespheres.scrollbar.alpha	// Sets the scroll transparency every time when the user is inactive
 global u8 bluespheres.scrollbar.timer	// Timer to count down the time when the user is inactive
+
+// Bumper select
+global u8 bluespheres.bumperselect.timer
+global u8 bluespheres.bumperselect.sprite

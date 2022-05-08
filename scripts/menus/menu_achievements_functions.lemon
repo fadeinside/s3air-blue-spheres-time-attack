@@ -78,12 +78,10 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.achievements.items.menu(s32 px, s32 py)
 {
-	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup, STRING_BACK)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_BACK, 0x01, bluespheres.achievements.buttonselected, bluespheres.buttons.setup)
 	
 	px += 128
-	string button_medals = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, bluespheres.buttons.setup + 0x01, STRING_ACHIEVEMENTS_MEDALS)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_medals, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_ACHIEVEMENTS_MEDALS, 0x01, bluespheres.achievements.buttonselected, bluespheres.buttons.setup + 0x01)
 }
 
 function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 py)
@@ -174,8 +172,7 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 				string achievement_tag = BlueSpheresTimer.Achievements.getTags(A)
 				BlueSpheresTimer.Achievements.Tags.drawTags(px + 16, py + 12, 0xf000, 0x02, achievement_tag, alpha)
 				
-				string button_achievement = (bluespheres.popup.show ? BlueSpheresTimer.Achievements.getTitle(A) : BlueSpheresTimer.TextManager.getMenuItem(bluespheres.achievements.buttonselected, A, BlueSpheresTimer.Achievements.getTitle(A)))
-				BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, button_achievement, 0x01, alpha)
+				BlueSpheresTimer.TextManager.drawTextMenuItem(px + ((bluespheres.achievements.buttonselected == A) ? 32 : 16), py, 0xf000, 0x02, BlueSpheresTimer.Achievements.getTitle(A), 0x01, alpha, bluespheres.achievements.buttonselected, A)
 				
 				//debugLog(stringformat("Loaded RAM 0x%06x: %d", BlueSpheresTimer.Achievements.getAddress(A), BlueSpheresTimer.Achievements.getValue(A)))
 			}
@@ -288,14 +285,14 @@ function void BlueSpheresTimer.Menu.achievements.status(s32 data, s32 target)
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 58 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
 	
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf001, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf0ea, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
 	
 	py += 16
 	string sign_status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? STRING_ACHIEVEMENTS_COMPLETE : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? stringformat("%d / %d", data, target): STRING_ACHIEVEMENTS_NOT_STARTED)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf001, 0x01, stringformat("* %s *", sign_status), 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf0ea, 0x01, stringformat("* %s *", sign_status), 0x01)
 	
 	py += 16
-	BlueSpheresTimer.Achievements.Tags.drawTags(px - 0x01, py, 0xf001, 0x01, BlueSpheresTimer.Achievements.getTags(bluespheres.achievements.buttonselected))
+	BlueSpheresTimer.Achievements.Tags.drawTags(px - 0x01, py, 0xf0ea, 0x01, BlueSpheresTimer.Achievements.getTags(bluespheres.achievements.buttonselected))
 }
 
 function void BlueSpheresTimer.Menu.achievements.status()
@@ -303,14 +300,14 @@ function void BlueSpheresTimer.Menu.achievements.status()
 	s32 px = getScreenWidth() / 0x02
 	s32 py = 58 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
 	
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf001, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf0ea, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
 	
 	py += 16
 	string sign_status = BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected) ? STRING_ACHIEVEMENTS_COMPLETE : ((BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected) > 0x00) ? STRING_ACHIEVEMENTS_STARTED : STRING_ACHIEVEMENTS_NOT_STARTED)
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf001, 0x01, stringformat("* %s *", sign_status), 0x01)
+	BlueSpheresTimer.TextManager.drawText(px, py, 0xf0ea, 0x01, stringformat("* %s *", sign_status), 0x01)
 	
 	py += 16
-	BlueSpheresTimer.Achievements.Tags.drawTags(px - 0x01, py, 0xf001, 0x01, BlueSpheresTimer.Achievements.getTags(bluespheres.achievements.buttonselected))
+	BlueSpheresTimer.Achievements.Tags.drawTags(px - 0x01, py, 0xf0ea, 0x01, BlueSpheresTimer.Achievements.getTags(bluespheres.achievements.buttonselected))
 }
 
 function void BlueSpheresTimer.Menu.achievements.updateControl()

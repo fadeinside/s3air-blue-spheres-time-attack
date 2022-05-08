@@ -15,7 +15,7 @@ function void BlueSpheresTimer.Menu.pause.setup()
 	while (global.game.paused)
 	{
 		FadeInFromWhite()
-		waitForNextFrame()
+		BlueSpheresTimer.waitForNextFrame()
 		
 		// Silence the stage music
 		Audio.playOverride("silencepause", AudioContext.CONTEXT_MUSIC, 0x01, 0x00)
@@ -46,6 +46,9 @@ function void BlueSpheresTimer.Menu.pause.setup()
 			BlueSpheresTimer.Menu.pause.items()
 			BlueSpheresTimer.Menu.pause.background()
 		}
+		
+		// Bumper select animation update
+		BlueSpheresTimer.bumperFramerate()
 		
 		// Re-render stage objects
 		BlueSpheresTimer.Menu.pause.renderStageObjects()

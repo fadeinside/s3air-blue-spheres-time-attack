@@ -48,11 +48,9 @@ function void BlueSpheresTimer.Menu.shared.items()
 
 function void BlueSpheresTimer.Menu.shared.items.menu(s32 px, s32 py)
 {
-	string button_retry = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x00, STRING_RETRY)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py - 16, 0xf000, 0x01, button_retry, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py - 16, 0xf000, 0x01, STRING_RETRY, 0x01, bluespheres.shared.buttonselected, 0x00)
 	
-	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.shared.buttonselected, 0x01, STRING_BACK)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_BACK, 0x01, bluespheres.shared.buttonselected, 0x01)
 }
 
 function void BlueSpheresTimer.Menu.shared.items.betstime(s32 px, s32 py)

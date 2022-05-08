@@ -60,8 +60,7 @@ function void BlueSpheresTimer.Menu.options.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.options.items.menu(s32 px, s32 py)
 {
-	string button_back = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, bluespheres.buttons.setup, STRING_BACK)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_back, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_BACK, 0x01, bluespheres.options.buttonselected, bluespheres.buttons.setup)
 }
 
 function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
@@ -69,19 +68,16 @@ function void BlueSpheresTimer.Menu.options.items.list(s32 px, s32 py)
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, STRING_OPTIONS_DATA, 0x01)
 	
 	py += 16
-	string button_eraseAll = (bluespheres.popup.show ? STRING_OPTIONS_ERASE_ALL_DATA : BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x00, STRING_OPTIONS_ERASE_ALL_DATA))
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_eraseAll, 0x01, (BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_OPTIONS_ERASE_ALL_DATA, 0x01, ((BlueSpheresTimer.Records.writed() > 0x00 || BlueSpheresTimer.Emeralds.writed() > 0x00 || BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90), bluespheres.options.buttonselected, 0x00)
 	
 	py += 16
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x02, 0x90)
 	
 	py += 16
-	string button_eraseRecords = (bluespheres.popup.show ? STRING_OPTIONS_ERASE_ALL_RECORDS : BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x01, STRING_OPTIONS_ERASE_ALL_RECORDS))
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_eraseRecords, 0x01, (BlueSpheresTimer.Records.writed() > 0x00) ? 0xff : 0x90)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_OPTIONS_ERASE_ALL_RECORDS, 0x01, ((BlueSpheresTimer.Records.writed() > 0x00) ? 0xff : 0x90), bluespheres.options.buttonselected, 0x01)
 	
 	py += 16
-	string button_eraseAchievements = (bluespheres.popup.show ? STRING_OPTIONS_ERASE_ALL_ACHIEVEMENTS : BlueSpheresTimer.TextManager.getMenuItem(bluespheres.options.buttonselected, 0x02, STRING_OPTIONS_ERASE_ALL_ACHIEVEMENTS))
-	BlueSpheresTimer.TextManager.drawText(px, py, 0xf000, 0x01, button_eraseAchievements, 0x01, (BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_OPTIONS_ERASE_ALL_ACHIEVEMENTS, 0x01, ((BlueSpheresTimer.Achievements.writed() > 0x00) ? 0xff : 0x90), bluespheres.options.buttonselected, 0x02)
 }
 
 function void BlueSpheresTimer.Menu.options.updateControl()

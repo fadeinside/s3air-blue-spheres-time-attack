@@ -58,16 +58,13 @@ function void BlueSpheresTimer.Menu.timeattack.items.keys(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.timeattack.items.menu(s32 px, s32 py)
 {
 	px -= 128
-	string button_options = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x00, STRING_TIME_ATTACK_OPTIONS)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_options, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_TIME_ATTACK_OPTIONS, 0x01, bluespheres.timeattack.buttonselected, 0x00)
 	
 	px += 128
-	string button_start = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x01, STRING_TIME_ATTACK_START)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_start, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_TIME_ATTACK_START, 0x01, bluespheres.timeattack.buttonselected, 0x01)
 	
 	px += 128
-	string button_achievements = BlueSpheresTimer.TextManager.getMenuItem(bluespheres.timeattack.buttonselected, 0x02, STRING_TIME_ATTACK_ACHIEVEMENTS)
-	BlueSpheresTimer.TextManager.drawText(px, getScreenHeight() - py, 0xf000, 0x01, button_achievements, 0x01)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, getScreenHeight() - py, 0xf000, 0x01, STRING_TIME_ATTACK_ACHIEVEMENTS, 0x01, bluespheres.timeattack.buttonselected, 0x02)
 }
 
 function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
