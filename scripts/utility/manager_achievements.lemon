@@ -1,6 +1,20 @@
 //? Sets the Completed status of the specified Achievement ID's in case of matches
 function void BlueSpheresTimer.Achievements.update()
 {
+	// Check if you want to show the achievement toast outside of the game in a special stage (i.e. in menu). This is one of the optimization methods where we do not check the target value, but only the value for showing the toast
+	if ((global.game_mode & 0x7f) != 0x34)
+	{
+		// Total number of Achievements
+		for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
+		{
+			if (BlueSpheresTimer.Achievements.getValue(A) == 0xfa1)
+				BlueSpheresTimer.Achievements.setComplete(A)
+		}
+		
+		// Finish the function on this
+		return
+	}
+	
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return

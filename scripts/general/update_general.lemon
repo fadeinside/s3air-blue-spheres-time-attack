@@ -30,6 +30,7 @@ function void GameModeControlLoop()
 		// global.game_mode = 0x87	->	Blue Spheres Timer: Shared menu
 		// global.game_mode = 0x88	->	Blue Spheres Timer: Achievements menu
 		// global.game_mode = 0x89	->	Blue Spheres Timer: Lobby menu
+		// global.game_mode = 0x8a	->	Blue Spheres Timer: Medals menu
 	
 		if (global.game_mode == 0x85)
 			BlueSpheresTimer.Menu.timeattack.setup()

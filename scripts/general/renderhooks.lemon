@@ -10,6 +10,15 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 	// Notify in mini-game menu
 	if (objA0.update_address == 0x04d648)
 	{
+		// Render here the decor elements of the Green Sphere game menu
+		if (bluespheres.greenspheres.active)
+		{
+			if (MOD_BS_PLUS_ACTIVE)
+				Renderer.drawCustomSprite("hcz_watertint", 0x00, 0x00, 0x00, 0x00, 0x1701, 0x00, 80)
+			Renderer.drawCustomSprite("sklogo_green", getScreenWidth() / 0x02, 40 - scrolloffset.y.planeB, 0x00, 0x00, 0x1701)
+		}
+		
+		// Tooltip update
 		BlueSpheresTimer.TooltipManager.update()
 	}
 	
