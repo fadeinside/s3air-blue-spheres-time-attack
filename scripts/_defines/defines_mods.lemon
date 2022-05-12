@@ -1,0 +1,3 @@
+// Mods check
+define bool MOD_DAGE_ACTIVE	= Mods.isModActive("Sonic 3: D.A. Garden Edition")
+define bool MOD_BS_PLUS_ACTIVE	= Mods.isModActive("Blue Sphere Plus")

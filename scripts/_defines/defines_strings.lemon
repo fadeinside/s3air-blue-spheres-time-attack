@@ -12,7 +12,7 @@ define string STRING_LOBBY_TIME_ATTACK	= "Time Attack"
 define string STRING_LOBBY_GET_BLUE_SPHERES	= "Get Blue Spheres"
 define string STRING_LOBBY_BLUE_SPHERES	= "Blue Spheres"
 define string STRING_LOBBY_SONIC_3K	= "Sonic 3K"
-
+define string STRING_LOBBY_GREEN_SPHERES	= "Green Spheres"
 // "Time Attack" strings
 define string STRING_TIME_ATTACK_HEADLINE	= "TIME ATTACK!"
 define string STRING_TIME_ATTACK_OPTIONS	= "Options"

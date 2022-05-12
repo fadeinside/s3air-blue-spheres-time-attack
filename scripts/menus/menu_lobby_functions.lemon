@@ -63,6 +63,13 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 		py += 18
 	}
 	
+	// Render the "Green Spheres" button if DAGE is active
+	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+	{
+		BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_GREEN_SPHERES, 0x01, bluespheres.lobby.buttonselected, Mods.isModActive("Blue Sphere Plus") ? 0x05 : 0x04)
+		py += 18
+	}
+	
 	BlueSpheresTimer.TextManager.drawTextWithLine(px, py, 0xf000, 0x01, "", 0x02, 0x90)
 	
 	py += 16
@@ -129,12 +136,12 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			// Setup tooltip
 			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
 				bluespheres.tooltip.showADS = 0xffff
-			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			//BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c
 		}
-		if (bluespheres.lobby.buttonselected == 0x04)
+		if (bluespheres.lobby.buttonselected == 0x04 && MOD_BS_PLUS_ACTIVE)
 		{
 			bluespheres.minigame_mode = 0x01
 			FadeOutScreenBlocking()
@@ -158,7 +165,31 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			// Setup tooltip
 			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
 				bluespheres.tooltip.showADS = 0xffff
-			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			//BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			
+			// Go to mini-game menu
+			global.game_mode = 0x2c
+		}
+		if ((bluespheres.lobby.buttonselected == 0x04 && !MOD_BS_PLUS_ACTIVE) || bluespheres.lobby.buttonselected == 0x05)
+		{
+			bluespheres.minigame_mode = 0x01
+			bluespheres.greenspheres.active = 0x01
+			FadeOutScreenBlocking()
+			
+			u8[0xffffffab] = 0x00
+			levelselect.characters = CHARS_SONIC_ALONE
+			u8[0xffffffa1] = 0x00
+			
+			bluespheregame.menu_selection = 0x00
+			control.pad1.state = CONTROL_START
+			fn04ceb6()
+			
+			VDP.Config.setActiveDisplay(false)
+			
+			// Setup tooltip
+			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+				bluespheres.tooltip.showADS = 0xffff
+			//BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c

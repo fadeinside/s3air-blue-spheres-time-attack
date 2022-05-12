@@ -5,9 +5,14 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	BlueSpheresTimer.TooltipManager.resetTooltip()
 	
 	bluespheres.minigame_mode = 0x00
+	bluespheres.greenspheres.active = 0x00
 	
 	bluespheres.achievements.extraselected = 0x00
-	bluespheres.buttons.setup = Mods.isModActive("Blue Sphere Plus") ? 0x04 : 0x03
+	bluespheres.buttons.setup = 0x03
+	if (Mods.isModActive("Blue Sphere Plus"))
+		bluespheres.buttons.setup += 0x01
+	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+		bluespheres.buttons.setup += 0x01
 	
 	if (bluespheres.lobby.buttonselected == 0x00)
 		bluespheres.lobby.buttonselected = 0x02
@@ -23,6 +28,7 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	// Load additional data from Shared Memory for work with BS Plus
 	if (Mods.isModActive("Blue Sphere Plus"))
 		System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+	zeroMemory(0xffffffa6, 0x04)
 	
 	// Play Blue Sphere game music
 	playMusic(0x28)

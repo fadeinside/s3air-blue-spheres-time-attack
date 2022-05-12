@@ -16,21 +16,16 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 	// Time over text (consists of two objects)
 	if ((objA0.update_address == 0x008f24 || objA0.update_address == 0x008eec) && bluespheres.timeOver)
 	{
+		string key = "display_text_timeover_"
+		
 		// "Not Enough Rings"
 		if (bluespheres.notEnoughRings)
 		{
 			px += 0x02
-			if (objA0.animation.sprite == 0x02) // Part 1
-				Renderer.drawCustomSprite("display_text_notenoughrings_1", px, py, 0x00, 0x00, renderQueue)
-			if (objA0.animation.sprite == 0x03) // Part 2
-				Renderer.drawCustomSprite("display_text_notenoughrings_2", px, py, 0x00, 0x00, renderQueue)
-			return true
+			key = "display_text_notenoughrings_"
 		}
 		
-		if (objA0.animation.sprite == 0x02) // Part 1
-			Renderer.drawCustomSprite("display_text_timeover_1", px, py, 0x00, 0x00, renderQueue)
-		if (objA0.animation.sprite == 0x03) // Part 2
-			Renderer.drawCustomSprite("display_text_timeover_2", px, py, 0x00, 0x00, renderQueue)
+		Renderer.drawCustomSprite(stringformat("%s%d", key, objA0.animation.sprite), px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
 		return true
 	}
 	

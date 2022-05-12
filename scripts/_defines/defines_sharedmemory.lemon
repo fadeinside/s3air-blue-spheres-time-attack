@@ -15,6 +15,7 @@ define u32 bluespheres.emeraldsDataAddress	= 0x8e1000	// Address in Shared Memor
 // Events (here so that other mods can use this)
 define u8 bluespheres.timeOver	= u8[0x8e1214]	// Set to 0x01 when the time is over
 define u8 bluespheres.timeattack.active	= u8[0x8e1216]	// Set to 0x01 when the Time Attack mode is active
+define u8 bluespheres.greenspheres.active	= u8[0x8e1218]	// Set to 0x01 when the Green Spheres mode is active
 
 // Data
 define u8 bluespheres.achievements.lastSaved	= 0x8e1218 // Unused

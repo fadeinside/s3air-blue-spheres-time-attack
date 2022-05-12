@@ -1,4 +1,8 @@
 {
+	// Sonic & Knuckles Logo
+	"sklogo_green": { "File": "sklogo_green.png", "Rect": "0,0,96,64", "Center": "48,32" },
+	"sklogo": { "File": "sklogo.png", "Rect": "0,0,96,64", "Center": "48,32" },
+
 	// Bumper select  
 	"bump_sonic_0x00":  { "File": "menu_bumpers.png", "Rect": "1,1,16,16", "Center": "8,8" },
 	"bump_sonic_0x01":  { "File": "menu_bumpers.png", "Rect": "18,1,16,16", "Center": "8,8" },

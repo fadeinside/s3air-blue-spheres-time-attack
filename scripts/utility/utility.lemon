@@ -1,3 +1,121 @@
+//@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
+//# address-hook(0x04c97e) end(0x04cb18)
+function void fn04c97e()
+{
+#if STANDALONE
+	if !(bluespheres.greenspheres.active)
+	{
+		// Assuming a white screen here
+		globalComponentAddedColorR = 0xff
+		globalComponentAddedColorG = 0xff
+		globalComponentAddedColorB = 0xff
+	}
+#endif
+
+	playMusic(MUSIC_CTRL_FADEOUT)
+	FadeOutScreenBlocking()
+
+	fn04c8e4()
+	fn04cca6()
+	
+	// Only for Green Spheres mode
+	if (bluespheres.greenspheres.active)
+	{
+		System.loadPersistentData(0xffffffa6, "DAGE_GreenSphereGame", 0x04)
+		
+		// Switch to the correct seed for this stage
+		BlueSphere.setGeneratedStage(bluespheregame.current_stage)
+	}
+	else if !(bluespheres.lobby.buttonselected == 0x04 && MOD_BS_PLUS_ACTIVE)
+	{
+		SRAM.load(0xffffffa6, 0x50, 0x04) // Try to load progress from SRAM
+		System.loadPersistentData(0xffffffa6, "SRAM_BlueSphereProgress", 0x04)
+		
+		// Switch to the correct seed for this stage
+		BlueSphere.setGeneratedStage(bluespheregame.current_stage)
+	}
+
+	A2 = 0xfffffc80
+	fn04cb1a()
+
+	Nemesis.loadDataToVRAM(0x0dde34, 0xb7e0)
+	Nemesis.loadDataToVRAM(0x189c7c, 0x32e0)
+	
+#if STANDALONE
+	Nemesis.loadDataToVRAM(0x38d3e0, 0x2f3 << 0x05)	// Load more letters to use for new options
+	Nemesis.loadDataToVRAM(0x05d788, 0x319 << 0x05)	// Load more numbers to use for new options
+#endif
+
+	Kosinski.decompress(0x187d1c, 0xffff0000)
+	Kosinski.decompress(0x188f1e, A1)
+	updateSpritePattern(0xffff0000, 0, A1.u16 >> 1)
+
+	Kosinski.decompress(0x1897de, 0xffff4000)
+	updateSpritePattern(0xffff4000, 0xa9c0, 0x06d0)
+
+	Enigma.decompress(0x187cb0, 0xffff8000, 0x2000)
+
+	//copyRectToVRAM(0xffff8000, 0xc380, 0x28, 0x10)	// Should be the same as below, needs to be tested
+	A1 = 0xffff8000
+	D0 = 0x43800003
+	D1 = 0x27
+	D2 = 0x0f
+	CopyRectToVRAM()
+
+	Enigma.decompress(0x189c4e, 0xffff8000, 0x4197)
+
+	//copyRectToVRAM(0xffff8000, 0xe09c, 0x0c, 0x08)	// Should be the same as below, but something is wrong
+	A1 = 0xffff8000
+	D0 = 0x609c0003
+	D1 = 0x0b
+	D2 = 0x07
+	CopyRectToVRAM()
+
+	A1 = 0x04cc62
+	if (u8[0xffffffa1] == 0)
+	{
+		A1 = 0x04cc36
+		levelselect.characters = CHARS_SONIC_ALONE
+		scrolloffset.y.both = 0xfff0fff8
+	}
+
+	D2.u16 = 0x0100
+	D6.u16 = 0x05bf
+	fn05b318()
+	if (bluespheregame.fully_unlocked == 0)
+	{
+		scrolloffset.y.both = 0xfff0fff8
+	}
+
+	u32[0xffffb000] = 0x04ceaa
+	u32[0xffffb04a] = 0x04da30
+	u32[0xffffb094] = 0x04d986
+	UpdateGameObjects()
+	RenderSprites()
+
+	playMusic(0x28)
+
+	VDP.Config.setActiveDisplay(true)
+
+	Menu.FadeInAfterInit()
+
+	while (true)
+	{
+		global.frame_state = 0x1a
+		Kosinski.ProcessDecompressionQueue()
+
+		waitForNextFrame()
+
+		fn04cc96()
+		UpdateGameObjects()
+		RenderSprites()
+		Kosinski.ProcessModules()
+
+		if (global.game_mode != 0x2c)
+			break
+	}
+}
+
 //@ Function taken from sonic3air_dev/scripts/standalone/standalone.lemon
 function void waitForNextFrame()
 {
