@@ -1,6 +1,14 @@
 //? Sets the Completed status of the specified Achievement ID's in case of matches
 function void BlueSpheresTimer.Achievements.update()
 {
+	// Ignore for Rolling Demo and Blue Sphere game
+	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
+		return
+	
+	// Ignore for Main Special stages if Achievements disabled
+	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
+		return
+	
 	// Check if you want to show the achievement toast outside of the game in a special stage (i.e. in menu). This is one of the optimization methods where we do not check the target value, but only the value for showing the toast
 	if ((global.game_mode & 0x7f) != 0x34)
 	{
@@ -14,14 +22,6 @@ function void BlueSpheresTimer.Achievements.update()
 		// Finish the function on this
 		return
 	}
-	
-	// Ignore for Rolling Demo and Blue Sphere game
-	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
-		return
-	
-	// Ignore for Main Special stages if Achievements disabled
-	if (SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00 && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
-		return
 	
 	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) >= 100)
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES)
@@ -267,7 +267,7 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	}
 	
 	// Bumper achievements checks
-	if (D2.u8 == 0x03 && bluespheres.movement_speed > 0x00)
+	if (D2.u8 == 0x03 && bluespheres.movement_speed < 0x00)
 	{
 		if (u8[0xffffe42b] == 0x00 && u8[0xffffe44c] == 0x00 && (u8[0xffffe432] & 0x80) == 0x00)
 		{
@@ -665,23 +665,33 @@ function void BlueSpheresTimer.Achievements.reset()
 	}
 }
 
-//? Returns the number of Achievements that are completed.
-function u8 BlueSpheresTimer.Achievements.completed()
+//? Returns the number of Achievements by sort.
+function u8 BlueSpheresTimer.Achievements.getValueBySort(u8 sort)
 {
-	u8 achievements_complete
+	u8 total_completed
+	u8 total_started
+	u8 total_not_started
 	
-	// Total number of Achievements
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
-		// Add +1 to variable if Achievement complete
 		if (BlueSpheresTimer.Achievements.isComplete(A))
-		{
-			achievements_complete += 0x01
-		}
+			total_completed += 0x01
+		else if (BlueSpheresTimer.Achievements.getValue(A) > 0x00)
+			total_started += 0x01
+		else if (BlueSpheresTimer.Achievements.getValue(A) == 0x00)
+			total_not_started += 0x01
 	}
 	
 	// Return the value
-	return achievements_complete
+	if (sort == 0x01)
+		return total_completed
+	if (sort == 0x02)
+		return total_started
+	if (sort == 0x03)
+		return total_not_started
+	
+	// Failsave value
+	return 0xff
 }
 
 //? Returns the number of Achievements memory addresses that are greater than 0x00.

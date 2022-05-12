@@ -39,7 +39,7 @@
 	"font_small.46": { "File": "menu_fonts.png", "Rect": "183,40,2,5", "Center": "0,3" }, // .
 	"font_small.44": { "File": "menu_fonts.png", "Rect": "186,40,2,6", "Center": "0,3" }, // ,
 	"font_small.43": { "File": "menu_fonts.png", "Rect": "189,40,4,5", "Center": "0,3" }, // +
-	"font_small.58": { "File": "menu_fonts.png", "Rect": "194,40,4,5", "Center": "0,3" }, // -
+	"font_small.45": { "File": "menu_fonts.png", "Rect": "194,40,4,5", "Center": "0,3" }, // -
 	"font_small.63": { "File": "menu_fonts.png", "Rect": "199,40,4,5", "Center": "0,3" }, // ?
 	"font_small.33": { "File": "menu_fonts.png", "Rect": "204,40,2,5", "Center": "0,3" }, // !
 	"font_small.32": { "File": "menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space

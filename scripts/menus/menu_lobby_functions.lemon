@@ -42,16 +42,21 @@ function void BlueSpheresTimer.Menu.lobby.items.keys(s32 px, s32 py)
 
 function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 {
-	// "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
-	py -= (Mods.isModActive("Blue Sphere Plus") ? 18 : 0x09) + 0x09
+	// Make the list higher if there are additional buttons
+	if (MOD_BS_PLUS_ACTIVE)
+		py -= 0x09
+	if (MOD_DAGE_ACTIVE)
+		py -= 0x09
+	
+	py -= 18
 	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_TIME_ATTACK, 0x01, bluespheres.lobby.buttonselected, 0x02)
 	
 	py += 18
-	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, Mods.isModActive("Blue Sphere Plus") ? STRING_LOBBY_BLUE_SPHERES : STRING_LOBBY_GET_BLUE_SPHERES, 0x01, bluespheres.lobby.buttonselected, 0x03)
+	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, MOD_BS_PLUS_ACTIVE ? STRING_LOBBY_BLUE_SPHERES : STRING_LOBBY_GET_BLUE_SPHERES, 0x01, bluespheres.lobby.buttonselected, 0x03)
 	
 	py += 16
 	// Render the "Sonic 3K" button if BS Plus is active
-	if (Mods.isModActive("Blue Sphere Plus"))
+	if (MOD_BS_PLUS_ACTIVE)
 	{
 		BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_SONIC_3K, 0x01, bluespheres.lobby.buttonselected, 0x04)
 	
@@ -64,9 +69,9 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	}
 	
 	// Render the "Green Spheres" button if DAGE is active
-	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+	if (MOD_DAGE_ACTIVE)
 	{
-		BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_GREEN_SPHERES, 0x01, bluespheres.lobby.buttonselected, Mods.isModActive("Blue Sphere Plus") ? 0x05 : 0x04)
+		BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_GREEN_SPHERES, 0x01, bluespheres.lobby.buttonselected, MOD_BS_PLUS_ACTIVE ? 0x05 : 0x04)
 		py += 18
 	}
 	
@@ -74,6 +79,17 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	
 	py += 16
 	BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_TIME_ATTACK_ACHIEVEMENTS, 0x01, bluespheres.lobby.buttonselected, 0x01)
+	
+	py += 18
+	string total_completed = stringformat("%s - %d", STRING_ACHIEVEMENTS_SORT_COMPLETED, BlueSpheresTimer.Achievements.getValueBySort(0x01))
+	string total_started = stringformat("%s - %d", STRING_ACHIEVEMENTS_SORT_STARTED, BlueSpheresTimer.Achievements.getValueBySort(0x02))
+	string total_not_started = stringformat("%s - %d", STRING_ACHIEVEMENTS_SORT_LOCKED, BlueSpheresTimer.Achievements.getValueBySort(0x03))
+	string total_received = stringformat("%s - %d", STRING_MEDALS_RECEIVED, BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved))
+	
+	s32 timer = (level.framecounter % 880)
+	string sign_main = (timer < 220) ? total_completed : ((timer < 440) ? total_started : ((timer < 660) ? total_not_started : ((timer < 880) ? total_received : STRING_RETRY)))
+	
+	BlueSpheresTimer.TextManager.drawSmallTexWithBG(px, py, 0xf000, 0x01, "gray", (timer < 660) ? "icon_tooltip_trophy" : "icon_tooltip_medal", sign_main)
 }
 
 function void BlueSpheresTimer.Menu.lobby.updateControl()

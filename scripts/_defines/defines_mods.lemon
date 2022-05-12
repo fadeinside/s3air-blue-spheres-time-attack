@@ -1,3 +1,5 @@
 // Mods check
+// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
 define bool MOD_DAGE_ACTIVE	= Mods.isModActive("Sonic 3: D.A. Garden Edition")
+// "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
 define bool MOD_BS_PLUS_ACTIVE	= Mods.isModActive("Blue Sphere Plus")

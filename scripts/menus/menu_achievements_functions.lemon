@@ -46,7 +46,7 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 	
 	// Bools
 	bool isBackButton = bluespheres.achievements.buttonselected == bluespheres.buttons.setup
-	bool isExtraButtom = bluespheres.achievements.extraselected
+	bool isExtraButton = bluespheres.achievements.extraselected
 	bool isAvailableAchievement = false
 	for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
 	{
@@ -56,11 +56,13 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 				isAvailableAchievement = true
 		}
 	}
-	bool showStartButton = isAvailableAchievement || isBackButton || isExtraButtom
+	bool showStartButton = isAvailableAchievement || isBackButton || isExtraButton
 	
 	bool SortAll = bluespheres.achievements.sortselected == 0x00
 	bool isSortAvailableButtons = !(SortAll) && (bluespheres.achievements.totalButtons > 0x00)
-	bool showUpDownButtons = (SortAll || isSortAvailableButtons) && !isExtraButtom
+	bool showUpDownButtons = (SortAll || isSortAvailableButtons) && !isExtraButton
+	
+	bool showLeftRightButtons = isBackButton || isExtraButton
 	
 	BlueSpheresTimer.TextManager.drawKeyboard(px, py, 0xf000, "b")
 	px += 13
@@ -73,6 +75,12 @@ function void BlueSpheresTimer.Menu.achievements.items.keys(s32 px, s32 py)
 	if (showUpDownButtons)
 	{
 		BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "up", "down", 0x00)
+		px += 11 // Additional offset by second key ^
+		px += 13
+	}
+	if (showLeftRightButtons)
+	{
+		BlueSpheresTimer.TextManager.drawKeyboard_dual(px, py, 0xf000, "left", "right", 0x00)
 	}
 }
 

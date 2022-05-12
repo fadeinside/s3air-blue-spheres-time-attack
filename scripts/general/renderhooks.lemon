@@ -13,8 +13,9 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 		// Render here the decor elements of the Green Sphere game menu
 		if (bluespheres.greenspheres.active)
 		{
-			if (MOD_BS_PLUS_ACTIVE)
+			if (MOD_BS_PLUS_ACTIVE && (Mods.getModPriority("Sonic 3: D.A. Garden Edition") < Mods.getModPriority("Blue Sphere Plus")))
 				Renderer.drawCustomSprite("hcz_watertint", 0x00, 0x00, 0x00, 0x00, 0x1701, 0x00, 80)
+			
 			Renderer.drawCustomSprite("sklogo_green", getScreenWidth() / 0x02, 40 - scrolloffset.y.planeB, 0x00, 0x00, 0x1701)
 		}
 		

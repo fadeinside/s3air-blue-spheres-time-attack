@@ -18,28 +18,28 @@ function bool BlueSpheresTimer.Medals.isUnlocked(u8 category, u8 medal)
 	{
 		// Complete 5 achievements
 		if (medal == 0x01)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 0x05)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 0x05)
 		// Complete 10 achievements
 		if (medal == 0x02)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 10)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 10)
 		// Complete 15 achievements
 		if (medal == 0x03)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 15)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 15)
 		// Complete 20 achievements
 		if (medal == 0x04)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 20)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 20)
 		// Complete 25 achievements
 		if (medal == 0x05)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 25)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 25)
 		// Complete 30 achievements
 		if (medal == 0x06)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 30)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 30)
 		// Complete 35 achievements
 		if (medal == 0x07)
-			medal_status = (BlueSpheresTimer.Achievements.completed() >= 35)
+			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 35)
 		// Complete all achievements (just all achievements)
 		if (medal == 0x08)
-			medal_status = ((BlueSpheresTimer.Achievements.completed() - 0x01) == bluespheres.achievements.total)
+			medal_status = ((BlueSpheresTimer.Achievements.getValueBySort(0x01) - 0x01) == bluespheres.achievements.total)
 		// Complete all achievements related to the get blue spheres
 		if (medal == 0x09)
 			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES))
