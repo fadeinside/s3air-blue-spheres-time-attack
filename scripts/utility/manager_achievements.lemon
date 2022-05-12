@@ -255,12 +255,15 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	// Bumper achievements checks
 	if (D2.u8 == 0x03 && bluespheres.movement_speed > 0x00)
 	{
-		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
-			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES, 0x01)
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
-			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES, 0x01)
-		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES))
-			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES, 0x01)
+		if (u8[0xffffe42b] == 0x00 && u8[0xffffe44c] == 0x00 && (u8[0xffffe432] & 0x80) == 0x00)
+		{
+			if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES, 0x01)
+			if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES))
+				BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES, 0x01)
+		}
 	}
 	
 	// Yellow sphere achievements checks
@@ -278,7 +281,7 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	}
 	
 	// D.A. Garden Green sphere achievements checks
-	if (D2.u8 == 0x05 && (u8[0xffffef7c] && 0x01))
+	if (D2.u8 == 0x0e)
 	{
 		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_GREEN_SPHERE, 0x01)

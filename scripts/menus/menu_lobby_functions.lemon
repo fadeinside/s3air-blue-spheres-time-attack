@@ -136,7 +136,7 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			// Setup tooltip
 			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
 				bluespheres.tooltip.showADS = 0xffff
-			//BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c
@@ -165,7 +165,7 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			// Setup tooltip
 			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
 				bluespheres.tooltip.showADS = 0xffff
-			//BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c
@@ -189,7 +189,7 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			// Setup tooltip
 			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
 				bluespheres.tooltip.showADS = 0xffff
-			//BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c

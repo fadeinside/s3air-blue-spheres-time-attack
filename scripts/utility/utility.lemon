@@ -220,6 +220,13 @@ function void fn009ea0()
 //# address-hook(0x009b62) end(0x009d1c)
 function void fn009b62()
 {
+	// If the toast was shown in the mini-game menu, then reset it
+	if (bluespheres.minigame_mode)
+	{
+		if (bluespheres.tooltip.show == STRING_TOOLTIP_MINI_GAME_NOTIFY)
+			BlueSpheresTimer.TooltipManager.resetTooltip()
+	}
+	
 	// Ignore for Rolling Demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 	{
