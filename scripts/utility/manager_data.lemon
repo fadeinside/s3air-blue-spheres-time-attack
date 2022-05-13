@@ -11,7 +11,7 @@ function u32 BlueSpheresTimer.Data.getAddress(u32 address)
 function u8 BlueSpheresTimer.Data.getValue(u32 address)
 {
 	u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
-	System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+	System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x01)
 	
 	// Return the value
 	return u8[addressOffset]
@@ -23,7 +23,7 @@ function void BlueSpheresTimer.Data.setValue(u32 address, u8 value)
 	u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
 	u8[addressOffset] = value
 	
-	System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+	System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x01)
 }
 
 //? Sets 0x00 for all Data memory addresses that are greater than 0x00.
@@ -35,7 +35,7 @@ function void BlueSpheresTimer.Data.reset(u32 address)
 		u32 mods = 0x100 * A
 		
 		u32 addressOffset = address + mods
-		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x01)
 		
 		// Set the 0x00 for an address if it is greater than 0x00
 		if (u8[addressOffset] > 0x00)
@@ -57,7 +57,7 @@ function u8 BlueSpheresTimer.Data.writed(u32 address)
 		u32 mods = 0x100 * A
 		
 		u32 addressOffset = address + mods
-		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x04)
+		System.loadPersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x01)
 		
 		// Set the 0x00 for an address if it is greater than 0x00
 		if (u8[addressOffset] > 0x00)

@@ -46,10 +46,13 @@ function u32 BlueSpheresTimer.Records.getRecordAddress(u8 place)
 	u8 gangMain = (bluespheres.timeattack.characterselected + 0x01)
 	u8 gangExtra = bluespheres.timeattack.characterselected == 0x03 ? (bluespheres.timeattack.xtracharselected - 0x01) : 0x00
 	
+	// Define offset for hard Knux layout (DAGE part)
+	u8 knuxLayout = (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES && bluespheres.knuckles_layout) ? 0x04 : 0x00
+	
 	u32 recordplace = 0x1024 * place
 	u32 character = 0x128 * (gangMain + gangExtra)
 	u32 stage = 0x16 * (bluespheres.timeattack.levelselected + 0x01)
-	u32 layout = 0x08 * bluespheres.timeattack.layoutselected
+	u32 layout = 0x08 * bluespheres.timeattack.layoutselected + knuxLayout
 	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
 	
 	// Return the assembled address
@@ -95,20 +98,24 @@ function void BlueSpheresTimer.Records.reset()
 					// D.A. Garden Edition (0x00 .. 0x01)
 					for (u8 E = 0x00; E <= 0x01; ++E)
 					{
-						u32 recordplace = 0x1024 * B
-						u32 character = 0x128 * (C + 0x01)
-						u32 stage = 0x16 * (A + 0x01)
-						u32 layout = 0x08 * D
-						u32 mods = 0x10000 * E
-						
-						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-						//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
-						
-						// Set the 0x00 for an address if it is greater than 0x00
-						if (s32[recordOffset] > 0x00)
+						// Hard Knux layout (0x00 .. 0x01)
+						for (u8 F = 0x00; F <= 0x01; ++F)
 						{
-							s32[recordOffset] = 0x00
-							System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
+							u32 recordplace = 0x1024 * B
+							u32 character = 0x128 * (C + 0x01)
+							u32 stage = 0x16 * (A + 0x01)
+							u32 layout = 0x08 * D + (0x04 * F)
+							u32 mods = 0x10000 * E
+							
+							u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+							//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+							
+							// Set the 0x00 for an address if it is greater than 0x00
+							if (s32[recordOffset] > 0x00)
+							{
+								s32[recordOffset] = 0x00
+								System.savePersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x00)
+							}
 						}
 					}
 				}
@@ -137,19 +144,23 @@ function s32 BlueSpheresTimer.Records.writed()
 					// D.A. Garden Edition (0x00 .. 0x01)
 					for (u8 E = 0x00; E <= 0x01; ++E)
 					{
-						u32 recordplace = 0x1024 * B
-						u32 character = 0x128 * (C + 0x01)
-						u32 stage = 0x16 * (A + 0x01)
-						u32 layout = 0x08 * D
-						u32 mods = 0x10000 * E
-						
-						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-						//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
-						
-						// Add +1 to variable if address greater than 0x00
-						if (s32[recordOffset] > 0x00)
+						// Hard Knux layout (0x00 .. 0x01)
+						for (u8 F = 0x00; F <= 0x01; ++F)
 						{
-							writed_address += 0x01
+							u32 recordplace = 0x1024 * B
+							u32 character = 0x128 * (C + 0x01)
+							u32 stage = 0x16 * (A + 0x01)
+							u32 layout = 0x08 * D + (0x04 * F)
+							u32 mods = 0x10000 * E
+							
+							u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+							//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+							
+							// Add +1 to variable if address greater than 0x00
+							if (s32[recordOffset] > 0x00)
+							{
+								writed_address += 0x01
+							}
 						}
 					}
 				}
@@ -179,14 +190,18 @@ function void BlueSpheresTimer.Records.loadPersistentData()
 					// D.A. Garden Edition (0x00 .. 0x01)
 					for (u8 E = 0x00; E <= 0x01; ++E)
 					{
-						u32 recordplace = 0x1024 * B
-						u32 character = 0x128 * (C + 0x01)
-						u32 stage = 0x16 * (A + 0x01)
-						u32 layout = 0x08 * D
-						u32 mods = 0x10000 * E
-						
-						u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-						System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+						// Hard Knux layout (0x00 .. 0x01)
+						for (u8 F = 0x00; F <= 0x01; ++F)
+						{
+							u32 recordplace = 0x1024 * B
+							u32 character = 0x128 * (C + 0x01)
+							u32 stage = 0x16 * (A + 0x01)
+							u32 layout = 0x08 * D + (0x04 * F)
+							u32 mods = 0x10000 * E
+							
+							u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
+							System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+						}
 					}
 				}
 			}

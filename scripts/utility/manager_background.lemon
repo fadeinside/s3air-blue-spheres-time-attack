@@ -65,7 +65,7 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview()
 	if (bluespheres.timeattack.layoutselected)
 		A1 += 0x0130
 	
-	if (Mods.isModActive("Sonic 3: D.A. Garden Edition"))
+	if (MOD_DAGE_ACTIVE)
 		A1 += 0x2cb80e
 	
 	u32[0xffffe446] = A1
@@ -122,7 +122,7 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview_Spheres()
 	// Main game stages
 	Kosinski.decompress(u32[0x1e4078], 0xffff0000)
 	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
-	if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02) // Knuckles has a different level layout in DAGE
+	if (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES && MOD_DAGE_ACTIVE && bluespheres.knuckles_layout) // Knuckles has a different level layout in DAGE
 		Kosinski.decompress(0x2d3ad0, 0xffff0000)
 	
 	// Load level layout, either from S3 or S&K
@@ -131,7 +131,7 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview_Spheres()
 	if !(bluespheres.timeattack.layoutselected)
 	{
 		A2 += 0x200000
-		if (Mods.isModActive("Sonic 3: D.A. Garden Edition") && bluespheres.timeattack.characterselected == 0x02) // Knuckles has a different level layout in DAGE
+		if (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES && MOD_DAGE_ACTIVE && bluespheres.knuckles_layout) // Knuckles has a different level layout in DAGE
 			A2 += 0x0679b0
 	}
 	
@@ -143,8 +143,8 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview_Spheres()
 	// Bools
 	bool stageChanged = control.pad1.pressed & (CONTROL_UP | CONTROL_DOWN)
 	bool layoutChanged = Input.buttonPressed(BUTTON_X) && BlueSpheresTimer.Data.getValue(bluespheres.skUnlocked)
-	bool characterChanged = Input.buttonPressed(BUTTON_Y) && (bluespheres.timeattack.characterselected != 0x02 && Mods.isModActive("Sonic 3: D.A. Garden Edition")) && bluespheres.timeattack.knuxSelected
-	bool characterChangedKnux = Input.buttonPressed(BUTTON_Y) && (bluespheres.timeattack.characterselected == 0x02 && Mods.isModActive("Sonic 3: D.A. Garden Edition")) // Knuckles has a different level layout in DAGE
+	bool characterChanged = Input.buttonPressed(BUTTON_Y) && (bluespheres.timeattack.characterselected != CHARACTER_KNUCKLES && MOD_DAGE_ACTIVE) && bluespheres.timeattack.knuxSelected
+	bool characterChangedKnux = Input.buttonPressed(BUTTON_Y) && (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES && MOD_DAGE_ACTIVE && bluespheres.knuckles_layout) // Knuckles has a different level layout in DAGE
 	
 	// Sets the camera in the right place
 	if (global.game_mode == 0x85 && !bluespheres.popup.show && (stageChanged || layoutChanged || characterChanged || characterChangedKnux))

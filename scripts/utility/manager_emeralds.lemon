@@ -98,7 +98,7 @@ function u8 BlueSpheresTimer.Emeralds.getStatus(u8 emeraldId)
 	// - 0x03 - Super Emerald collected
 	
 	u32 emeraldOffset = BlueSpheresTimer.Emeralds.getAddress(emeraldId)
-	System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+	System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x01)
 	
 	// Return the value
 	return u8[emeraldOffset]
@@ -110,7 +110,7 @@ function void BlueSpheresTimer.Emeralds.setStatus(u8 emeraldId, u8 status)
 	u32 emeraldOffset = BlueSpheresTimer.Emeralds.getAddress(emeraldId)
 	u8[emeraldOffset] = status
 	
-	System.savePersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+	System.savePersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x01)
 }
 
 //? Sets 0x00 for all Emerald memory addresses that are greater than 0x00.
@@ -126,7 +126,7 @@ function void BlueSpheresTimer.Emeralds.reset()
 			u32 mods = 0x100 * B
 			
 			u32 emeraldOffset = bluespheres.emeraldsDataAddress + emeraldID + mods
-			System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+			System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x01)
 			
 			// Set the 0x00 for an address if it is greater than 0x00
 			if (u8[emeraldOffset] > 0x00)
@@ -153,7 +153,7 @@ function u8 BlueSpheresTimer.Emeralds.writed()
 			u32 mods = 0x100 * B
 			
 			u32 emeraldOffset = bluespheres.emeraldsDataAddress + emeraldID + mods
-			System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x04)
+			System.loadPersistentData(emeraldOffset, stringformat("SRAM_BlueSpheresTimer_Emerald_0x%06x", emeraldOffset), 0x01)
 			
 			// Add +1 to variable if address greater than 0x00
 			if (u8[emeraldOffset] > 0x00)

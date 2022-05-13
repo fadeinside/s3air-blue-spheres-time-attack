@@ -119,6 +119,8 @@ function void fn04c97e()
 //@ Function taken from sonic3air_dev/scripts/standalone/standalone.lemon
 function void waitForNextFrame()
 {
+	debugLog(stringformat("%d", bluespheres.knuckles_layout))
+	
 	// Update achievements in the Special stage results menu (i.e. continue show toast if it was received at the time of moving to the result menu)
 	if ((global.game_mode & 0x7f) == 0x48)
 	{
@@ -133,6 +135,8 @@ function void waitForNextFrame()
 //@ Original function taken from sonic3air_dev/scripts/standalone/standalone.lemon
 function void BlueSpheresTimer.waitForNextFrame()
 {
+	debugLog(stringformat("%d", bluespheres.knuckles_layout))
+	
 	// V-Int
 	VInt.InnerUpdate()
 	

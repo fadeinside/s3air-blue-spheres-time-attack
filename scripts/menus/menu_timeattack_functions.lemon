@@ -78,6 +78,9 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 	u8 gangMain = (bluespheres.timeattack.characterselected + 0x01)
 	u8 gangExtra = bluespheres.timeattack.characterselected == 0x03 ? (bluespheres.timeattack.xtracharselected - 0x01) : 0x00
 	
+	// Define offset for hard Knux layout (DAGE part)
+	u8 knuxLayout = (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES && bluespheres.knuckles_layout) ? 0x04 : 0x00
+	
 	// Number of stages (0x00 .. 0x06, 0x07)
 	u8 maxStages = BlueSpheresTimer.Data.getValue(bluespheres.stage8Unlocked) ? 0x07 : 0x06
 	for (u8 A = 0x00; A <= maxStages; ++A)
@@ -88,11 +91,11 @@ function void BlueSpheresTimer.Menu.timeattack.items.total(s32 px, s32 py)
 			u32 recordplace = 0x1024 * B
 			u32 character = 0x128 * (gangMain + gangExtra)
 			u32 stage = 0x16 * (A + 0x01)
-			u32 layout = 0x08 * bluespheres.timeattack.layoutselected
+			u32 layout = 0x08 * bluespheres.timeattack.layoutselected + knuxLayout
 			u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
 			
 			u32 recordOffset = bluespheres.recordDataAddress + recordplace + character + stage + layout + mods
-			System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
+			//System.loadPersistentData(recordOffset, stringformat("SRAM_BlueSpheresTimer_Record_0x%06x", recordOffset), 0x04)
 			
 			// Get parsed data from address value
 			s32 minutes = s32[recordOffset] / 10000
@@ -132,7 +135,6 @@ function void BlueSpheresTimer.Menu.timeattack.items.recordslist(s32 px, s32 py)
 	for (u8 A = 0x01; A <= 0x04; ++A)
 	{
 		py += 16
-		string name = (A == 0x01) ? "st" : ((A == 0x02) ? "nd" : ((A == 0x03) ? "rd" : ((A == 0x04) ? "th" : "")))
 		BlueSpheresTimer.Menu.timeattack.items.table(px, py, 0xf000, 0x02, stringformat("%d", A), BlueSpheresTimer.Records.getRecordTime(A))
 	}
 }
