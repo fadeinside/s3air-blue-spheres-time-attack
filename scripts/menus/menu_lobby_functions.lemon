@@ -60,11 +60,11 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	{
 		BlueSpheresTimer.TextManager.drawTextMenuItem(px, py, 0xf000, 0x01, STRING_LOBBY_SONIC_3K, 0x01, bluespheres.lobby.buttonselected, 0x04)
 	
-		Renderer.drawCustomSprite((u8[0x801101] & 0x01) ? "icon_marathon_outline" : "icon_marathon_lock", px + 64, py, 0x00, 0x40, 0xf000)
-		Renderer.drawCustomSprite((u8[0x801101] & 0x02) ? "icon_marathon_outline" : "icon_marathon_lock", px + 80, py, 0x00, 0x40, 0xf000)
-		Renderer.drawCustomSprite((u8[0x801101] & 0x04) ? "icon_marathon_outline" : "icon_marathon_lock", px + 96, py, 0x00, 0x40, 0xf000)
-		Renderer.drawCustomSprite((u8[0x801101] & 0x08) ? "icon_marathon_outline" : "icon_marathon_lock", px + 112, py, 0x00, 0x40, 0xf000)
-		Renderer.drawCustomSprite((u8[0x801101] & 0x10) ? "icon_marathon_outline" : "icon_marathon_lock", px + 128, py, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite((bluespheregame.marathon_sonic3k.complete & 0x01) ? "icon_marathon_outline" : "icon_marathon_lock", px + 64, py, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite((bluespheregame.marathon_sonic3k.complete & 0x02) ? "icon_marathon_outline" : "icon_marathon_lock", px + 80, py, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite((bluespheregame.marathon_sonic3k.complete & 0x04) ? "icon_marathon_outline" : "icon_marathon_lock", px + 96, py, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite((bluespheregame.marathon_sonic3k.complete & 0x08) ? "icon_marathon_outline" : "icon_marathon_lock", px + 112, py, 0x00, 0x40, 0xf000)
+		Renderer.drawCustomSprite((bluespheregame.marathon_sonic3k.complete & 0x10) ? "icon_marathon_outline" : "icon_marathon_lock", px + 128, py, 0x00, 0x40, 0xf000)
 		py += 18
 	}
 	
@@ -170,7 +170,7 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			levelselect.characters = CHARS_SONIC_ALONE
 			u8[0xffffffa1] = 0x00
 			bluespheregame.current_stage = 0x00
-			u8[0x801101] |= 0xe0 // I'm not sure if it's needed here
+			bluespheregame.marathon_sonic3k.complete |= 0xe0 // I'm not sure if it's needed here
 			
 			bluespheregame.menu_selection = 0x01
 			control.pad1.state = CONTROL_START

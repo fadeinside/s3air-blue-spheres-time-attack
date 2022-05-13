@@ -36,6 +36,11 @@ global u8 bluespheres.achievements.preButton	// Sets the ID of the previous butt
 global u8 bluespheres.achievements.totalButtons	// Sets the total number of available buttons (achievements) in a sorted achievements list
 global u8 bluespheres.achievements.currentButtonScroll	// Sets the current scroll position in a sorted achievements list
 
+// Blue Sphere Plus stuff
+global u8 bluespheregame.max_gamespeed	// Determines special stages starting speed
+global u8 bluespheregame.perfect_counter	// Counts the number of perfect runs the player has finished
+global u8 bluespheregame.marathon_sonic3k.complete	// Records progress of various objectives in Sonic 3 & Knuckles Special Stage mode
+
 // Events
 global u8 bluespheres.gameOver	// Set to 0x01 when character has touched the Red sphere
 global u8 bluespheres.notEnoughRings	// Set to 0x01 when not enough rings for get emerald

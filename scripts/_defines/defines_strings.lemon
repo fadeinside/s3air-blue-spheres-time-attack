@@ -5,6 +5,8 @@ define string STRING_CANCEL	= "CANCEL"
 define string STRING_RESET	= "RESET"
 define string STRING_BACK	= "BACK"
 define string STRING_CLOSE	= "CLOSE"
+define string STRING_ON	= "ON"
+define string STRING_OFF	= "OFF"
 
 // "Lobby" strings
 define string STRING_LOBBY_HEADLINE	= "CHOOSE A GAME!"
@@ -13,6 +15,7 @@ define string STRING_LOBBY_GET_BLUE_SPHERES	= "Get Blue Spheres"
 define string STRING_LOBBY_BLUE_SPHERES	= "Blue Spheres"
 define string STRING_LOBBY_SONIC_3K	= "Sonic 3K"
 define string STRING_LOBBY_GREEN_SPHERES	= "Green Spheres"
+
 // "Time Attack" strings
 define string STRING_TIME_ATTACK_HEADLINE	= "TIME ATTACK!"
 define string STRING_TIME_ATTACK_OPTIONS	= "Options"
@@ -27,6 +30,11 @@ define string STRING_TIME_ATTACK_SECRET	= "Secret"
 define string STRING_TIME_ATTACK_LAYOUT	= "Levels layout"
 define string STRING_TIME_ATTACK_LAYOUT_SK	= "SK"
 define string STRING_TIME_ATTACK_LAYOUT_S3	= "S3"
+
+// "Mini-game" strings
+define string STRING_MINI_GAME_MAX_SPEED	= "Max speed"
+define string STRING_MINI_GAME_PERFECT	= "Perfect"
+define string STRING_MINI_GAME_LEVEL	= "Level"
 
 // "Unlocks" strings
 define string STRING_UNLOCK_NOW_UNLOCKED	= "now unlocked!"

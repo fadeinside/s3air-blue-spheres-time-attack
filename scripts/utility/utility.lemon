@@ -14,7 +14,7 @@ function void fn04c97e()
 
 	playMusic(MUSIC_CTRL_FADEOUT)
 	FadeOutScreenBlocking()
-
+	
 	fn04c8e4()
 	fn04cca6()
 	
@@ -34,6 +34,14 @@ function void fn04c97e()
 		// Switch to the correct seed for this stage
 		BlueSphere.setGeneratedStage(bluespheregame.current_stage)
 	}
+	
+	// Load additional data from Shared Memory for work with Blue Sphere Plus
+	if (MOD_BS_PLUS_ACTIVE)
+	{
+		System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+		bluespheregame.perfect_counter = u8[0x801100]
+		bluespheregame.marathon_sonic3k.complete = u8[0x801101]
+	}
 
 	A2 = 0xfffffc80
 	fn04cb1a()
@@ -41,10 +49,13 @@ function void fn04c97e()
 	Nemesis.loadDataToVRAM(0x0dde34, 0xb7e0)
 	Nemesis.loadDataToVRAM(0x189c7c, 0x32e0)
 	
-#if STANDALONE
-	Nemesis.loadDataToVRAM(0x38d3e0, 0x2f3 << 0x05)	// Load more letters to use for new options
-	Nemesis.loadDataToVRAM(0x05d788, 0x319 << 0x05)	// Load more numbers to use for new options
-#endif
+	if (MOD_BS_PLUS_ACTIVE)
+	{
+		// Load more letters to use for new options
+		Nemesis.loadDataToVRAM(0x38d3e0, 0x2f3 << 0x05)
+		// Load more numbers to use for new options
+		Nemesis.loadDataToVRAM(0x05d788, 0x319 << 0x05)
+	}
 
 	Kosinski.decompress(0x187d1c, 0xffff0000)
 	Kosinski.decompress(0x188f1e, A1)
@@ -119,8 +130,6 @@ function void fn04c97e()
 //@ Function taken from sonic3air_dev/scripts/standalone/standalone.lemon
 function void waitForNextFrame()
 {
-	debugLog(stringformat("%d", bluespheres.knuckles_layout))
-	
 	// Update achievements in the Special stage results menu (i.e. continue show toast if it was received at the time of moving to the result menu)
 	if ((global.game_mode & 0x7f) == 0x48)
 	{
@@ -135,8 +144,6 @@ function void waitForNextFrame()
 //@ Original function taken from sonic3air_dev/scripts/standalone/standalone.lemon
 function void BlueSpheresTimer.waitForNextFrame()
 {
-	debugLog(stringformat("%d", bluespheres.knuckles_layout))
-	
 	// V-Int
 	VInt.InnerUpdate()
 	

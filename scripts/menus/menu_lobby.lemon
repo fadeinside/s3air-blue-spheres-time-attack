@@ -24,9 +24,13 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	}
 	bluespheres.backToLobby = 0x00
 	
-	// Load additional data from Shared Memory for work with BS Plus
+	// Load additional data from Shared Memory for work with Blue Sphere Plus
 	if (MOD_BS_PLUS_ACTIVE)
+	{
 		System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+		bluespheregame.perfect_counter = u8[0x801100]
+		bluespheregame.marathon_sonic3k.complete = u8[0x801101]
+	}
 	zeroMemory(0xffffffa6, 0x04)
 	
 	// Play Blue Sphere game music

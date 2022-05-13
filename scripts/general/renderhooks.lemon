@@ -1,13 +1,36 @@
+//@ Function taken from sonic3air_dev/scripts/standalone/rendering/renderhooks.lemon
 function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 {
-	// Display HUD
-	if (objA0.update_address == 0x008e2a)
+	// "Level" counter in mini-game menu
+	if (objA0.update_address == 0x04d09e)
 	{
-		// This is the best I could come up with, for a better view. If I insert it inside the script in another place, it will be invisible for about one frame before it appears
-		BlueSpheresTimer.renderTimer(px, py, renderQueue)
+		if (MOD_BS_PLUS_ACTIVE)
+		{
+			py -= 0x02
+			BlueSpheresTimer.TextManager.drawText(px, py, renderQueue, 0x01, STRING_MINI_GAME_LEVEL, 0x01)
+			
+			BlueSpheresTimer.TextManager.drawText(px - 138, py, renderQueue, 0x01, STRING_MINI_GAME_PERFECT, 0x01)
+			
+			string perfect_counter = stringformat("*%d*", bluespheregame.perfect_counter)
+			BlueSpheresTimer.TextManager.drawText(px - 138, py + 16, renderQueue, 0x01, perfect_counter, 0x01)
+			
+			if ((u8[0xffffbd4c + 0x04] & 0x01) == 0x00 && Input.buttonPressed(BUTTON_Y) && u8[0xffffffa1] != 0x00)
+			{
+				bluespheregame.max_gamespeed++
+				if (bluespheregame.max_gamespeed > 0x01)
+					bluespheregame.max_gamespeed = 0x00
+			}
+			
+			BlueSpheresTimer.TextManager.drawText(px + 138, py, renderQueue, 0x01, STRING_MINI_GAME_MAX_SPEED, 0x01)
+			
+			string speed_selected = stringformat("%s", bluespheregame.max_gamespeed ? STRING_ON : STRING_OFF)
+			BlueSpheresTimer.TextManager.drawText(px + 138, py + 16, renderQueue, 0x01, speed_selected, 0x01)
+			BlueSpheresTimer.TextManager.drawText(px + 138, py + 16, renderQueue, 0x01, "*   *", 0x01)
+			return true
+		}
 	}
 	
-	// Notify in mini-game menu
+	// "Start" button in mini-game menu
 	if (objA0.update_address == 0x04d648)
 	{
 		// Render here the decor elements of the Green Sphere game menu
@@ -18,9 +41,20 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 			
 			Renderer.drawCustomSprite("sklogo_green", getScreenWidth() / 0x02, 40 - scrolloffset.y.planeB, 0x00, 0x00, 0x1701)
 		}
+		else
+		{
+			Renderer.drawCustomSprite("sklogo", getScreenWidth() / 0x02, 40 - scrolloffset.y.planeB, 0x00, 0x00, 0x1701)
+		}
 		
-		// Tooltip update
+		// Tooltip update (Notify about unavailable achievements in mini-game mode)
 		BlueSpheresTimer.TooltipManager.update()
+	} 
+	
+	// Display HUD
+	if (objA0.update_address == 0x008e2a)
+	{
+		// This is the best I could come up with, for a better view. If I insert it inside the script in another place, it will be invisible for about one frame before it appears
+		BlueSpheresTimer.renderTimer(px, py, renderQueue)
 	}
 	
 	// Time over text (consists of two objects)
@@ -80,5 +114,6 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 		}
 	}
 	
+	// Return the base function
 	return base.Standalone.onWriteToSpriteTable(px, py, renderQueue)
 }
