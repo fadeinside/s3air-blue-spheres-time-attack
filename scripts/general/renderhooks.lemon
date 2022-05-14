@@ -23,9 +23,8 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 			
 			BlueSpheresTimer.TextManager.drawText(px + 138, py, renderQueue, 0x01, STRING_MINI_GAME_MAX_SPEED, 0x01)
 			
-			string speed_selected = stringformat("%s", bluespheregame.max_gamespeed ? STRING_ON : STRING_OFF)
+			string speed_selected = stringformat("*%s*", bluespheregame.max_gamespeed ? STRING_ON : STRING_OFF)
 			BlueSpheresTimer.TextManager.drawText(px + 138, py + 16, renderQueue, 0x01, speed_selected, 0x01)
-			BlueSpheresTimer.TextManager.drawText(px + 138, py + 16, renderQueue, 0x01, "*   *", 0x01)
 			return true
 		}
 	}

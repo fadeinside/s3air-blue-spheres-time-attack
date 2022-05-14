@@ -13,6 +13,9 @@ function void BlueSphereGame.advanceStages(u8 numStages)
 		if (bluespheregame.current_stage == 0x00 && u8[0xffffffa1] == 0x00)
 		{
 			System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+			bluespheregame.marathon_sonic3k.complete = u8[0x801101]
+			
+			// Back to the Lobby
 			global.game_mode = 0x89
 		}
 		
@@ -53,7 +56,8 @@ function void BlueSphereGame.advanceStages(u8 numStages)
 			++bluespheregame.perfect_counter
 		
 		u8[0x801100] = bluespheregame.perfect_counter
-		System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x01)
+		u8[0x801101] = bluespheregame.marathon_sonic3k.complete
+		System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
 	}
 }
 
@@ -62,7 +66,7 @@ function void BlueSphereGame.advanceStages(u8 numStages)
 function void fn04c97e()
 {
 #if STANDALONE
-	if !(bluespheres.greenspheres.active)
+	if (!bluespheres.greenspheres.active || (bluespheres.greenspheres.active && bluespheres.blue_remaining > 0x00))
 	{
 		// Assuming a white screen here
 		globalComponentAddedColorR = 0xff
