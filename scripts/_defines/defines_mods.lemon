@@ -1,5 +1,12 @@
 // Mods check
 // "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
-define bool MOD_DAGE_ACTIVE	= Mods.isModActive("Sonic 3: D.A. Garden Edition")
+global bool MOD_DAGE_ACTIVE	// Sets true when "Sonic 3: D.A. Garden Edition" is active
+
 // "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
-define bool MOD_BS_PLUS_ACTIVE	= Mods.isModActive("Blue Sphere Plus")
+global bool MOD_BS_PLUS_ACTIVE	// Sets true when "Blue Sphere Plus" is active
+
+// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
+global bool MOD_EXTRA_MIGHTY_ACTIVE	// Sets true when "Extra Slot Mighty" is active
+
+// "Extra Slot Ray" by iCloudius, check https://gamebanana.com/mods/336038
+global bool MOD_EXTRA_RAY_ACTIVE	// Sets true when "Extra Slot Ray" is active

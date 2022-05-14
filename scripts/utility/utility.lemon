@@ -1,3 +1,13 @@
+//@ Function taken from sonic3air_dev/scripts/standalone/enginecallbacks.lemon
+function void Init()
+{
+	// Check the activity of mods and assign a value to globals
+	BlueSpheresTimer.modsCheck()
+	
+	// Call the base function
+	base.Init()
+}
+
 //@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
 function void BlueSphereGame.advanceStages(u8 numStages)
 {

@@ -1,3 +1,16 @@
+//? Check the activity of mods and assign a value to globals.
+function void BlueSpheresTimer.modsCheck()
+{
+	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
+	MOD_DAGE_ACTIVE	= Mods.isModActive("Sonic 3: D.A. Garden Edition")
+	// "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
+	MOD_BS_PLUS_ACTIVE	= Mods.isModActive("Blue Sphere Plus")
+	// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
+	MOD_EXTRA_MIGHTY_ACTIVE	= Mods.isModActive("Extra Slot Mighty")
+	// "Extra Slot Ray" by iCloudius, check https://gamebanana.com/mods/336038
+	MOD_EXTRA_RAY_ACTIVE	= Mods.isModActive("Extra Slot Ray")
+}
+
 //? Overload function from Sonic 3: D.A. Garden Edition..
 function void RenderSKLogoFullBG()
 {
