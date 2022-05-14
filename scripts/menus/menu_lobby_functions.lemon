@@ -170,7 +170,8 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			levelselect.characters = CHARS_SONIC_ALONE
 			u8[0xffffffa1] = 0x00
 			bluespheregame.current_stage = 0x00
-			bluespheregame.marathon_sonic3k.complete |= 0xe0 // I'm not sure if it's needed here
+			bluespheregame.perfect_counter = 0x00
+			bluespheregame.marathon_sonic3k.complete |= 0xe0
 			
 			bluespheregame.menu_selection = 0x01
 			control.pad1.state = CONTROL_START

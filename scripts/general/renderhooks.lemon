@@ -14,7 +14,7 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 			string perfect_counter = stringformat("*%d*", bluespheregame.perfect_counter)
 			BlueSpheresTimer.TextManager.drawText(px - 138, py + 16, renderQueue, 0x01, perfect_counter, 0x01)
 			
-			if ((u8[0xffffbd4c + 0x04] & 0x01) == 0x00 && Input.buttonPressed(BUTTON_Y) && u8[0xffffffa1] != 0x00)
+			if ((u8[0xffffbd4c + 0x04] & 0x01) == 0x00 && (global.game_mode & 0x7f) == 0x2c && Input.buttonPressed(BUTTON_Y) && u8[0xffffffa1] != 0x00)
 			{
 				bluespheregame.max_gamespeed++
 				if (bluespheregame.max_gamespeed > 0x01)

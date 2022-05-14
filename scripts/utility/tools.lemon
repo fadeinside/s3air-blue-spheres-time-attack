@@ -1,3 +1,39 @@
+//? Overload function from Sonic 3: D.A. Garden Edition..
+function void RenderSKLogoFullBG()
+{
+	// Only for Green Spheres mode
+	if !(bluespheres.greenspheres.active)
+		return
+	
+	Renderer.drawCustomSprite("hcz_watertint", 0x00, 0x00, 0x00, 0x00, 0x1701, 0x00, 40)
+	
+	Renderer.drawCustomSprite("sklogo_green", -80, 32, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 48, 32, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 176, 32, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 304, 32, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 432, 32, 0x00, 0x00, 0x1700)
+	
+	Renderer.drawCustomSprite("sklogo_green", -144, 96, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", -16, 96, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 112, 96, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 240, 96, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 368, 96, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 496, 96, 0x00, 0x00, 0x1700)
+	
+	Renderer.drawCustomSprite("sklogo_green", -80, 160, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 48, 160, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 176, 160, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 304, 160, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 432, 160, 0x00, 0x00, 0x1700)
+	
+	Renderer.drawCustomSprite("sklogo_green", -144, 224, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", -16, 224, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 112, 224, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 240, 224, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 368, 224, 0x00, 0x00, 0x1700)
+	Renderer.drawCustomSprite("sklogo_green", 496, 224, 0x00, 0x00, 0x1700)
+}
+
 //? Update the bumper animation of the selected item in the menu.
 function void BlueSpheresTimer.bumperFramerate()
 {

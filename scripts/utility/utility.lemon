@@ -1,4 +1,63 @@
 //@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
+function void BlueSphereGame.advanceStages(u8 numStages)
+{
+	if (bluespheres.lobby.buttonselected == 0x04 && MOD_BS_PLUS_ACTIVE)
+	{
+		if (bluespheres.rings_remaining == 0x00 && bluespheregame.perfect_counter <= 0xff)
+			++bluespheregame.perfect_counter
+		
+		// Call the base function
+		base.BlueSphereGame.advanceStages(numStages)
+		
+		// Save progress and log out to Lobby after completing the marathon
+		if (bluespheregame.current_stage == 0x00 && u8[0xffffffa1] == 0x00)
+		{
+			System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+			global.game_mode = 0x89
+		}
+		
+		// Finish the function on this
+		return
+	}
+	
+	A2 = 0xffffffa2
+	bluespheregame.current_stage += numStages
+	
+	for (u8 A = 0x00; A < numStages; ++A)
+	{
+		u32[A2] += 0x01030507
+		u8[A2] &= 0x7f
+		
+		if (u8[A2 + 0x01] >= 0x7f)
+			u8[A2 + 0x01] -= 0x7f
+		if (u8[A2 + 0x02] >= 0x7e)
+			u8[A2 + 0x02] -= 0x7e
+		if (u8[A2 + 0x03] >= 0x7d)
+			u8[A2 + 0x03] -= 0x7d
+	}
+	
+	// Only for Green Sphere game
+	if (bluespheres.greenspheres.active)
+	{
+		System.savePersistentData(0xffffffa6, "DAGE_GreenSphereGame", 0x04)
+	}
+	else
+	{
+		SRAM.save(0xffffffa6, 0x50, 0x04) // Save progress to SRAM
+		System.savePersistentData(0xffffffa6, "SRAM_BlueSphereProgress", 0x04) 
+	}
+	
+	if (MOD_BS_PLUS_ACTIVE)
+	{
+		if (bluespheres.rings_remaining == 0x00 && bluespheregame.perfect_counter <= 0xff)
+			++bluespheregame.perfect_counter
+		
+		u8[0x801100] = bluespheregame.perfect_counter
+		System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x01)
+	}
+}
+
+//@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
 //# address-hook(0x04c97e) end(0x04cb18)
 function void fn04c97e()
 {
@@ -11,14 +70,14 @@ function void fn04c97e()
 		globalComponentAddedColorB = 0xff
 	}
 #endif
-
+	
 	playMusic(MUSIC_CTRL_FADEOUT)
 	FadeOutScreenBlocking()
 	
 	fn04c8e4()
 	fn04cca6()
 	
-	// Only for Green Spheres mode
+	// Only for Green Sphere game
 	if (bluespheres.greenspheres.active)
 	{
 		System.loadPersistentData(0xffffffa6, "DAGE_GreenSphereGame", 0x04)
@@ -33,16 +92,16 @@ function void fn04c97e()
 		
 		// Switch to the correct seed for this stage
 		BlueSphere.setGeneratedStage(bluespheregame.current_stage)
+		
+		// Load additional data from Shared Memory for work with Blue Sphere Plus
+		if (MOD_BS_PLUS_ACTIVE)
+		{
+			System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+			bluespheregame.perfect_counter = u8[0x801100]
+			bluespheregame.marathon_sonic3k.complete = u8[0x801101]
+		}
 	}
 	
-	// Load additional data from Shared Memory for work with Blue Sphere Plus
-	if (MOD_BS_PLUS_ACTIVE)
-	{
-		System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
-		bluespheregame.perfect_counter = u8[0x801100]
-		bluespheregame.marathon_sonic3k.complete = u8[0x801101]
-	}
-
 	A2 = 0xfffffc80
 	fn04cb1a()
 
@@ -59,7 +118,7 @@ function void fn04c97e()
 
 	Kosinski.decompress(0x187d1c, 0xffff0000)
 	Kosinski.decompress(0x188f1e, A1)
-	updateSpritePattern(0xffff0000, 0, A1.u16 >> 1)
+	updateSpritePattern(0xffff0000, 0x00, A1.u16 >> 1)
 
 	Kosinski.decompress(0x1897de, 0xffff4000)
 	updateSpritePattern(0xffff4000, 0xa9c0, 0x06d0)
