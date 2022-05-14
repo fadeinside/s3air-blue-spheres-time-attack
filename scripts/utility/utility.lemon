@@ -43,21 +43,27 @@ function void BlueSphereGame.advanceStages(u8 numStages)
 	if (bluespheres.greenspheres.active)
 	{
 		System.savePersistentData(0xffffffa6, "DAGE_GreenSphereGame", 0x04)
+		
+		if (MOD_BS_PLUS_ACTIVE)
+		{
+			if (bluespheres.rings_remaining == 0x00 && BlueSpheresTimer.Data.getValue(greenspheregame.perfect_counter) < 0xff)
+				BlueSpheresTimer.Data.addValue(greenspheregame.perfect_counter, 0x01)
+		}
 	}
 	else
 	{
 		SRAM.save(0xffffffa6, 0x50, 0x04) // Save progress to SRAM
 		System.savePersistentData(0xffffffa6, "SRAM_BlueSphereProgress", 0x04) 
-	}
 	
-	if (MOD_BS_PLUS_ACTIVE)
-	{
-		if (bluespheres.rings_remaining == 0x00 && bluespheregame.perfect_counter <= 0xff)
-			++bluespheregame.perfect_counter
-		
-		u8[0x801100] = bluespheregame.perfect_counter
-		u8[0x801101] = bluespheregame.marathon_sonic3k.complete
-		System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+		if (MOD_BS_PLUS_ACTIVE)
+		{
+			if (bluespheres.rings_remaining == 0x00 && bluespheregame.perfect_counter <= 0xff)
+				++bluespheregame.perfect_counter
+			
+			u8[0x801100] = bluespheregame.perfect_counter
+			u8[0x801101] = bluespheregame.marathon_sonic3k.complete
+			System.savePersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+		}
 	}
 }
 

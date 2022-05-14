@@ -26,6 +26,18 @@ function void BlueSpheresTimer.Data.setValue(u32 address, u8 value)
 	System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x01)
 }
 
+//? Add a new value for the specified address.
+function void BlueSpheresTimer.Data.addValue(u32 address, u8 value)
+{
+	u32 addressOffset = BlueSpheresTimer.Data.getAddress(address)
+	u8 math = BlueSpheresTimer.Data.getValue(address) + value
+	u8[addressOffset] = math
+	
+	System.savePersistentData(addressOffset, stringformat("SRAM_BlueSpheresTimer_Data_0x%06x", addressOffset), 0x01)
+	
+	//System.writeDisplayLine(stringformat("Added value %d and saved in 0x%06x RAM", value, addressOffset))
+}
+
 //? Sets 0x00 for all Data memory addresses that are greater than 0x00.
 function void BlueSpheresTimer.Data.reset(u32 address)
 {

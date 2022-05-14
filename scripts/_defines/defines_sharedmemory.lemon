@@ -19,7 +19,8 @@ define u8 bluespheres.greenspheres.active	= u8[0x8e1218]	// Set to 0x01 when the
 define u8 bluespheres.knuckles_layout	= u8[0x8e121c]	// Set to 0x01 when Knuckles uses Green spheres stages (DAGE part)
 
 // Data
-define u8 bluespheres.medals.lastSaved	= 0x8e121a
+define u32 bluespheres.medals.lastSaved	= 0x8e121a	// Counter of medals received
+define u32 greenspheregame.perfect_counter	= 0x8e121e	// Counts the number of perfect runs the player has finished
 
 // Unlocks
 // D.A. Garden active - 0x8e12ee
