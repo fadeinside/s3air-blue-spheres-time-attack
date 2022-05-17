@@ -188,6 +188,7 @@ define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_50	= "Careful!"
 define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_100	= "Good response!"
 define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_220	= "To the other side"
 define string STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON	= "Marathon runner"
+define string STRING_ACHIEVEMENT_BS_FIND_A_SECRET	= "Find a secret"
 
 // Achievements descriptions (Line position: 4 - Top, 1 - Bottom)
 define string STRING_ACHIEVEMENT_BS_GET_100_BLUE_SPHERES.LINE1	= "Collect the Blue sphere %d times."
@@ -221,3 +222,5 @@ define string STRING_ACHIEVEMENT_BS_JUMP_OVER_REDSPHERE_10.LINE1	= "avoiding los
 define string STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE3	= "Complete the SONIC 3K Marathon"
 define string STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE2	= "with 5-th stars in"
 define string STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE1	= "`%s` mod."
+define string STRING_ACHIEVEMENT_BS_FIND_A_SECRET.LINE2	= "Use the cheat code in"
+define string STRING_ACHIEVEMENT_BS_FIND_A_SECRET.LINE1	= "the secret image menu."

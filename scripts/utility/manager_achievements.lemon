@@ -120,6 +120,9 @@ function void BlueSpheresTimer.Achievements.update()
 	
 	if (Mods.isModActive("Blue Sphere Plus") && (u8[0x801101] == 0x1f || u8[0x801101] == 0xff))
 		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
+		
+	if (BlueSpheresTimer.Achievements.getValue(ACHIEVEMENT_BS_FIND_A_SECRET) == 0xfa1)
+		BlueSpheresTimer.Achievements.setComplete(ACHIEVEMENT_BS_FIND_A_SECRET)
 	
 	// Call here medals update
 	BlueSpheresTimer.Medals.update()
@@ -252,7 +255,7 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 	D2.u8 = u8[A1]
 	
 	// Ring achievements checks
-	if (D2.u8 == 0x04 && (bluespheres.rings_flags & 0x80))
+	if (D2.u8 == 0x04)
 	{
 		if !(BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_COLLECT_400_RINGS, 0x01)
@@ -486,6 +489,10 @@ function string BlueSpheresTimer.Achievements.getTitle(u32 achievementId)
 	{
 		bool targetMod_active = Mods.isModActive("Blue Sphere Plus")
 		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON) ? STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON : (targetMod_active ? STRING_ACHIEVEMENTS_LOCKED : STRING_ACHIEVEMENTS_MOD_REQUIRE)
+	}
+	else if (achievementId == ACHIEVEMENT_BS_FIND_A_SECRET)
+	{
+		achievementTitle = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_FIND_A_SECRET) ? STRING_ACHIEVEMENT_BS_FIND_A_SECRET : STRING_ACHIEVEMENTS_LOCKED
 	}
 	else
 	{

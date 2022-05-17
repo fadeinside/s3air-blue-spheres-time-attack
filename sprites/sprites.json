@@ -1,0 +1,350 @@
+{
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites/sprites_bluespheres_text.png		 //
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Special stage result texts
+	"hud_text_time_superstage": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "103,1,40,12" },
+	"hud_text_time_chaosstage": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "144,1,40,12" },
+	
+	// "Time over" Display text
+	"display_text_timeover_2": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "1,1,50,16", "Center": "50,8" },
+	"display_text_timeover_3": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "52,1,50,16", "Center": "0,8" },
+	
+	// "Not enough rings" Display text
+	"display_text_notenoughrings_2": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "1,18,80,16", "Center": "80,8" },
+	"display_text_notenoughrings_3": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "82,18,76,16", "Center": "0,8" },
+
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites/sprites_menu_fonts.png				//
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Small font
+	"font_small.65": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,40,4,5", "Center": "0,3" }, // A
+	"font_small.66": { "File": "sprites/sprites_menu_fonts.png", "Rect": "6,40,4,5", "Center": "0,3" }, // B
+	"font_small.67": { "File": "sprites/sprites_menu_fonts.png", "Rect": "11,40,4,5", "Center": "0,3" }, // C
+	"font_small.68": { "File": "sprites/sprites_menu_fonts.png", "Rect": "16,40,4,5", "Center": "0,3" }, // D
+	"font_small.69": { "File": "sprites/sprites_menu_fonts.png", "Rect": "21,40,4,5", "Center": "0,3" }, // E
+	"font_small.70": { "File": "sprites/sprites_menu_fonts.png", "Rect": "26,40,4,5", "Center": "0,3" }, // F
+	"font_small.71": { "File": "sprites/sprites_menu_fonts.png", "Rect": "31,40,4,5", "Center": "0,3" }, // G
+	"font_small.72": { "File": "sprites/sprites_menu_fonts.png", "Rect": "36,40,4,5", "Center": "0,3" }, // H
+	"font_small.73": { "File": "sprites/sprites_menu_fonts.png", "Rect": "41,40,2,5", "Center": "0,3" }, // I
+	"font_small.74": { "File": "sprites/sprites_menu_fonts.png", "Rect": "44,40,4,5", "Center": "0,3" }, // J
+	"font_small.75": { "File": "sprites/sprites_menu_fonts.png", "Rect": "49,40,4,5", "Center": "0,3" }, // K
+	"font_small.76": { "File": "sprites/sprites_menu_fonts.png", "Rect": "54,40,4,5", "Center": "0,3" }, // L
+	"font_small.77": { "File": "sprites/sprites_menu_fonts.png", "Rect": "59,40,6,5", "Center": "0,3" }, // M
+	"font_small.78": { "File": "sprites/sprites_menu_fonts.png", "Rect": "66,40,4,5", "Center": "0,3" }, // N
+	"font_small.79": { "File": "sprites/sprites_menu_fonts.png", "Rect": "71,40,4,5", "Center": "0,3" }, // O
+	"font_small.80": { "File": "sprites/sprites_menu_fonts.png", "Rect": "76,40,4,5", "Center": "0,3" }, // P
+	"font_small.81": { "File": "sprites/sprites_menu_fonts.png", "Rect": "81,40,4,5", "Center": "0,3" }, // Q
+	"font_small.82": { "File": "sprites/sprites_menu_fonts.png", "Rect": "86,40,4,5", "Center": "0,3" }, // R
+	"font_small.83": { "File": "sprites/sprites_menu_fonts.png", "Rect": "91,40,4,5", "Center": "0,3" }, // S
+	"font_small.84": { "File": "sprites/sprites_menu_fonts.png", "Rect": "96,40,4,5", "Center": "0,3" }, // T
+	"font_small.85": { "File": "sprites/sprites_menu_fonts.png", "Rect": "101,40,4,5", "Center": "0,3" }, // U
+	"font_small.86": { "File": "sprites/sprites_menu_fonts.png", "Rect": "106,40,4,5", "Center": "0,3" }, // V
+	"font_small.87": { "File": "sprites/sprites_menu_fonts.png", "Rect": "111,40,6,5", "Center": "0,3" }, // W
+	"font_small.88": { "File": "sprites/sprites_menu_fonts.png", "Rect": "118,40,4,5", "Center": "0,3" }, // X
+	"font_small.89": { "File": "sprites/sprites_menu_fonts.png", "Rect": "123,40,4,5", "Center": "0,3" }, // Y
+	"font_small.90": { "File": "sprites/sprites_menu_fonts.png", "Rect": "128,40,4,5", "Center": "0,3" }, // Z
+	"font_small.48": { "File": "sprites/sprites_menu_fonts.png", "Rect": "133,40,4,5", "Center": "0,3" }, // 0
+	"font_small.49": { "File": "sprites/sprites_menu_fonts.png", "Rect": "138,40,4,5", "Center": "0,3" }, // 1
+	"font_small.50": { "File": "sprites/sprites_menu_fonts.png", "Rect": "143,40,4,5", "Center": "0,3" }, // 2
+	"font_small.51": { "File": "sprites/sprites_menu_fonts.png", "Rect": "148,40,4,5", "Center": "0,3" }, // 3
+	"font_small.52": { "File": "sprites/sprites_menu_fonts.png", "Rect": "153,40,4,5", "Center": "0,3" }, // 4
+	"font_small.53": { "File": "sprites/sprites_menu_fonts.png", "Rect": "158,40,4,5", "Center": "0,3" }, // 5
+	"font_small.54": { "File": "sprites/sprites_menu_fonts.png", "Rect": "163,40,4,5", "Center": "0,3" }, // 6
+	"font_small.55": { "File": "sprites/sprites_menu_fonts.png", "Rect": "168,40,4,5", "Center": "0,3" }, // 7
+	"font_small.56": { "File": "sprites/sprites_menu_fonts.png", "Rect": "173,40,4,5", "Center": "0,3" }, // 8
+	"font_small.57": { "File": "sprites/sprites_menu_fonts.png", "Rect": "178,40,4,5", "Center": "0,3" }, // 9
+	"font_small.46": { "File": "sprites/sprites_menu_fonts.png", "Rect": "183,40,2,5", "Center": "0,3" }, // .
+	"font_small.44": { "File": "sprites/sprites_menu_fonts.png", "Rect": "186,40,2,6", "Center": "0,3" }, // ,
+	"font_small.43": { "File": "sprites/sprites_menu_fonts.png", "Rect": "189,40,4,5", "Center": "0,3" }, // +
+	"font_small.45": { "File": "sprites/sprites_menu_fonts.png", "Rect": "194,40,4,5", "Center": "0,3" }, // -
+	"font_small.63": { "File": "sprites/sprites_menu_fonts.png", "Rect": "199,40,4,5", "Center": "0,3" }, // ?
+	"font_small.33": { "File": "sprites/sprites_menu_fonts.png", "Rect": "204,40,2,5", "Center": "0,3" }, // !
+	"font_small.39": { "File": "sprites/sprites_menu_fonts.png", "Rect": "207,40,2,5", "Center": "0,3" }, // '
+	"font_small.32": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space
+	
+	// Thin font
+	"font_thin.48": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,28,8,11", "Center": "0,5" }, // 0
+	"font_thin.49": { "File": "sprites/sprites_menu_fonts.png", "Rect": "10,28,8,11", "Center": "0,5" }, // 1
+	"font_thin.50": { "File": "sprites/sprites_menu_fonts.png", "Rect": "19,28,8,11", "Center": "0,5" }, // 2
+	"font_thin.51": { "File": "sprites/sprites_menu_fonts.png", "Rect": "28,28,8,11", "Center": "0,5" }, // 3
+	"font_thin.52": { "File": "sprites/sprites_menu_fonts.png", "Rect": "37,28,8,11", "Center": "0,5" }, // 4
+	"font_thin.53": { "File": "sprites/sprites_menu_fonts.png", "Rect": "46,28,8,11", "Center": "0,5" }, // 5
+	"font_thin.54": { "File": "sprites/sprites_menu_fonts.png", "Rect": "55,28,8,11", "Center": "0,5" }, // 6
+	"font_thin.55": { "File": "sprites/sprites_menu_fonts.png", "Rect": "64,28,8,11", "Center": "0,5" }, // 7
+	"font_thin.56": { "File": "sprites/sprites_menu_fonts.png", "Rect": "73,28,8,11", "Center": "0,5" }, // 8
+	"font_thin.57": { "File": "sprites/sprites_menu_fonts.png", "Rect": "82,28,8,11", "Center": "0,5" }, // 9
+	"font_thin.45": { "File": "sprites/sprites_menu_fonts.png", "Rect": "98,28,8,11", "Center": "0,5" }, // :
+	"font_thin.58": { "File": "sprites/sprites_menu_fonts.png", "Rect": "91,28,6,11", "Center": "0,5" }, // -
+	"font_thin.39": { "File": "sprites/sprites_menu_fonts.png", "Rect": "114,28,6,11", "Center": "0,7" }, // `
+	"font_thin.96": { "File": "sprites/sprites_menu_fonts.png", "Rect": "107,28,6,11", "Center": "0,7" }, // '
+	"font_thin.47": { "File": "sprites/sprites_menu_fonts.png", "Rect": "373,16,8,11", "Center": "0,5" }, // /
+	"font_thin.32": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space
+	"font_thin.42": { "File": "sprites/sprites_menu_fonts.png", "Rect": "672,1,15,14", "Center": "0,7" }, // Star
+	
+	// Regular font
+	"font_regular.65": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,16,8,11", "Center": "0,5" }, // A
+	"font_regular.66": { "File": "sprites/sprites_menu_fonts.png", "Rect": "10,16,8,11", "Center": "0,5" }, // B
+	"font_regular.67": { "File": "sprites/sprites_menu_fonts.png", "Rect": "19,16,8,11", "Center": "0,5" }, // C
+	"font_regular.68": { "File": "sprites/sprites_menu_fonts.png", "Rect": "28,16,8,11", "Center": "0,5" }, // D
+	"font_regular.69": { "File": "sprites/sprites_menu_fonts.png", "Rect": "37,16,8,11", "Center": "0,5" }, // E
+	"font_regular.70": { "File": "sprites/sprites_menu_fonts.png", "Rect": "46,16,8,11", "Center": "0,5" }, // F
+	"font_regular.71": { "File": "sprites/sprites_menu_fonts.png", "Rect": "55,16,8,11", "Center": "0,5" }, // G
+	"font_regular.72": { "File": "sprites/sprites_menu_fonts.png", "Rect": "64,16,8,11", "Center": "0,5" }, // H
+	"font_regular.73": { "File": "sprites/sprites_menu_fonts.png", "Rect": "73,16,8,11", "Center": "0,5" }, // I
+	"font_regular.74": { "File": "sprites/sprites_menu_fonts.png", "Rect": "82,16,8,11", "Center": "0,5" }, // J
+	"font_regular.75": { "File": "sprites/sprites_menu_fonts.png", "Rect": "91,16,9,11", "Center": "0,5" }, // K
+	"font_regular.76": { "File": "sprites/sprites_menu_fonts.png", "Rect": "101,16,8,11", "Center": "0,5" }, // L
+	"font_regular.77": { "File": "sprites/sprites_menu_fonts.png", "Rect": "110,16,11,11", "Center": "0,5" }, // M
+	"font_regular.78": { "File": "sprites/sprites_menu_fonts.png", "Rect": "122,16,10,11", "Center": "0,5" }, // N
+	"font_regular.79": { "File": "sprites/sprites_menu_fonts.png", "Rect": "133,16,8,11", "Center": "0,5" }, // O
+	"font_regular.80": { "File": "sprites/sprites_menu_fonts.png", "Rect": "142,16,8,11", "Center": "0,5" }, // P
+	"font_regular.81": { "File": "sprites/sprites_menu_fonts.png", "Rect": "151,16,9,11", "Center": "0,5" }, // Q
+	"font_regular.82": { "File": "sprites/sprites_menu_fonts.png", "Rect": "161,16,8,11", "Center": "0,5" }, // R
+	"font_regular.83": { "File": "sprites/sprites_menu_fonts.png", "Rect": "170,16,8,11", "Center": "0,5" }, // S
+	"font_regular.84": { "File": "sprites/sprites_menu_fonts.png", "Rect": "179,16,8,11", "Center": "0,5" }, // T
+	"font_regular.85": { "File": "sprites/sprites_menu_fonts.png", "Rect": "188,16,8,11", "Center": "0,5" }, // U
+	"font_regular.86": { "File": "sprites/sprites_menu_fonts.png", "Rect": "197,16,8,11", "Center": "0,5" }, // V
+	"font_regular.87": { "File": "sprites/sprites_menu_fonts.png", "Rect": "206,16,11,11", "Center": "0,5" }, // W
+	"font_regular.88": { "File": "sprites/sprites_menu_fonts.png", "Rect": "218,16,9,11", "Center": "0,5" }, // X
+	"font_regular.89": { "File": "sprites/sprites_menu_fonts.png", "Rect": "228,16,8,11", "Center": "0,5" }, // Y
+	"font_regular.90": { "File": "sprites/sprites_menu_fonts.png", "Rect": "237,16,9,11", "Center": "0,5" }, // Z
+	"font_regular.48": { "File": "sprites/sprites_menu_fonts.png", "Rect": "247,16,8,11", "Center": "0,5" }, // 0
+	"font_regular.49": { "File": "sprites/sprites_menu_fonts.png", "Rect": "256,16,8,11", "Center": "0,5" }, // 1
+	"font_regular.50": { "File": "sprites/sprites_menu_fonts.png", "Rect": "265,16,8,11", "Center": "0,5" }, // 2
+	"font_regular.51": { "File": "sprites/sprites_menu_fonts.png", "Rect": "274,16,8,11", "Center": "0,5" }, // 3
+	"font_regular.52": { "File": "sprites/sprites_menu_fonts.png", "Rect": "283,16,8,11", "Center": "0,5" }, // 4
+	"font_regular.53": { "File": "sprites/sprites_menu_fonts.png", "Rect": "292,16,8,11", "Center": "0,5" }, // 5
+	"font_regular.54": { "File": "sprites/sprites_menu_fonts.png", "Rect": "301,16,8,11", "Center": "0,5" }, // 6
+	"font_regular.55": { "File": "sprites/sprites_menu_fonts.png", "Rect": "310,16,8,11", "Center": "0,5" }, // 7
+	"font_regular.56": { "File": "sprites/sprites_menu_fonts.png", "Rect": "319,16,8,11", "Center": "0,5" }, // 8
+	"font_regular.57": { "File": "sprites/sprites_menu_fonts.png", "Rect": "328,16,8,11", "Center": "0,5" }, // 9
+	"font_regular.45": { "File": "sprites/sprites_menu_fonts.png", "Rect": "337,16,8,11", "Center": "0,5" }, // :
+	"font_regular.58": { "File": "sprites/sprites_menu_fonts.png", "Rect": "346,16,8,11", "Center": "0,5" }, // -
+	"font_regular.39": { "File": "sprites/sprites_menu_fonts.png", "Rect": "355,16,8,11", "Center": "0,7" }, // '
+	"font_regular.96": { "File": "sprites/sprites_menu_fonts.png", "Rect": "364,16,8,11", "Center": "0,7" }, // `
+	"font_regular.47": { "File": "sprites/sprites_menu_fonts.png", "Rect": "373,16,8,11", "Center": "0,5" }, // /
+	"font_regular.63": { "File": "sprites/sprites_menu_fonts.png", "Rect": "382,16,8,11", "Center": "0,5" }, // ?
+	"font_regular.33": { "File": "sprites/sprites_menu_fonts.png", "Rect": "391,16,8,11", "Center": "0,5" }, // !
+	"font_regular.46": { "File": "sprites/sprites_menu_fonts.png", "Rect": "400,16,8,11", "Center": "0,5" }, // .
+	"font_regular.44": { "File": "sprites/sprites_menu_fonts.png", "Rect": "409,16,8,12", "Center": "0,5" }, // ,
+	"font_regular.40": { "File": "sprites/sprites_menu_fonts.png", "Rect": "418,16,8,12", "Center": "0,5" }, // (
+	"font_regular.41": { "File": "sprites/sprites_menu_fonts.png", "Rect": "427,16,8,12", "Center": "0,5" }, // )
+	"font_regular.32": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space
+	"font_regular.42": { "File": "sprites/sprites_menu_fonts.png", "Rect": "672,1,15,14", "Center": "0,7" }, // Star
+	
+	// Headline font
+	"font_headline.65": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,1,18,14", "Center": "0,7" }, // A
+	"font_headline.66": { "File": "sprites/sprites_menu_fonts.png", "Rect": "20,1,16,14", "Center": "0,7" }, // B
+	"font_headline.67": { "File": "sprites/sprites_menu_fonts.png", "Rect": "37,1,15,14", "Center": "0,7" }, // C
+	"font_headline.68": { "File": "sprites/sprites_menu_fonts.png", "Rect": "53,1,15,14", "Center": "0,7" }, // D
+	"font_headline.69": { "File": "sprites/sprites_menu_fonts.png", "Rect": "69,1,16,14", "Center": "0,7" }, // E
+	"font_headline.70": { "File": "sprites/sprites_menu_fonts.png", "Rect": "86,1,16,14", "Center": "0,7" }, // F
+	"font_headline.71": { "File": "sprites/sprites_menu_fonts.png", "Rect": "103,1,15,14", "Center": "0,7" }, // G
+	"font_headline.72": { "File": "sprites/sprites_menu_fonts.png", "Rect": "119,1,16,14", "Center": "0,7" }, // H
+	"font_headline.73": { "File": "sprites/sprites_menu_fonts.png", "Rect": "136,1,15,14", "Center": "0,7" }, // I
+	"font_headline.74": { "File": "sprites/sprites_menu_fonts.png", "Rect": "152,1,14,14", "Center": "0,7" }, // J
+	"font_headline.75": { "File": "sprites/sprites_menu_fonts.png", "Rect": "167,1,16,14", "Center": "0,7" }, // K
+	"font_headline.76": { "File": "sprites/sprites_menu_fonts.png", "Rect": "184,1,14,14", "Center": "0,7" }, // L
+	"font_headline.77": { "File": "sprites/sprites_menu_fonts.png", "Rect": "199,1,17,14", "Center": "0,7" }, // M
+	"font_headline.78": { "File": "sprites/sprites_menu_fonts.png", "Rect": "217,1,16,14", "Center": "0,7" }, // N
+	"font_headline.79": { "File": "sprites/sprites_menu_fonts.png", "Rect": "234,1,16,14", "Center": "0,7" }, // O
+	"font_headline.80": { "File": "sprites/sprites_menu_fonts.png", "Rect": "251,1,15,14", "Center": "0,7" }, // P
+	"font_headline.81": { "File": "sprites/sprites_menu_fonts.png", "Rect": "267,1,18,14", "Center": "0,7" }, // Q
+	"font_headline.82": { "File": "sprites/sprites_menu_fonts.png", "Rect": "286,1,15,14", "Center": "0,7" }, // R
+	"font_headline.83": { "File": "sprites/sprites_menu_fonts.png", "Rect": "302,1,14,14", "Center": "0,7" }, // S
+	"font_headline.84": { "File": "sprites/sprites_menu_fonts.png", "Rect": "317,1,15,14", "Center": "0,7" }, // T
+	"font_headline.85": { "File": "sprites/sprites_menu_fonts.png", "Rect": "333,1,14,14", "Center": "0,7" }, // U
+	"font_headline.86": { "File": "sprites/sprites_menu_fonts.png", "Rect": "348,1,14,14", "Center": "0,7" }, // V
+	"font_headline.87": { "File": "sprites/sprites_menu_fonts.png", "Rect": "363,1,15,14", "Center": "0,7" }, // W
+	"font_headline.88": { "File": "sprites/sprites_menu_fonts.png", "Rect": "379,1,16,14", "Center": "0,7" }, // X
+	"font_headline.89": { "File": "sprites/sprites_menu_fonts.png", "Rect": "396,1,15,14", "Center": "0,7" }, // Y
+	"font_headline.90": { "File": "sprites/sprites_menu_fonts.png", "Rect": "412,1,14,14", "Center": "0,7" }, // Z
+	"font_headline.48": { "File": "sprites/sprites_menu_fonts.png", "Rect": "427,1,14,14", "Center": "0,7" }, // 0
+	"font_headline.49": { "File": "sprites/sprites_menu_fonts.png", "Rect": "442,1,14,14", "Center": "0,7" }, // 1
+	"font_headline.50": { "File": "sprites/sprites_menu_fonts.png", "Rect": "457,1,14,14", "Center": "0,7" }, // 2
+	"font_headline.51": { "File": "sprites/sprites_menu_fonts.png", "Rect": "472,1,14,14", "Center": "0,7" }, // 3
+	"font_headline.52": { "File": "sprites/sprites_menu_fonts.png", "Rect": "487,1,14,14", "Center": "0,7" }, // 4
+	"font_headline.53": { "File": "sprites/sprites_menu_fonts.png", "Rect": "502,1,14,14", "Center": "0,7" }, // 5
+	"font_headline.54": { "File": "sprites/sprites_menu_fonts.png", "Rect": "517,1,14,14", "Center": "0,7" }, // 6
+	"font_headline.55": { "File": "sprites/sprites_menu_fonts.png", "Rect": "532,1,14,14", "Center": "0,7" }, // 7
+	"font_headline.56": { "File": "sprites/sprites_menu_fonts.png", "Rect": "547,1,14,14", "Center": "0,7" }, // 8
+	"font_headline.57": { "File": "sprites/sprites_menu_fonts.png", "Rect": "562,1,14,14", "Center": "0,7" }, // 9
+	"font_headline.45": { "File": "sprites/sprites_menu_fonts.png", "Rect": "577,1,15,14", "Center": "0,7" }, // :
+	"font_headline.58": { "File": "sprites/sprites_menu_fonts.png", "Rect": "593,1,14,14", "Center": "0,7" }, // -
+	"font_headline.96": { "File": "sprites/sprites_menu_fonts.png", "Rect": "608,1,15,14", "Center": "0,7" }, // '
+	"font_headline.39": { "File": "sprites/sprites_menu_fonts.png", "Rect": "624,1,15,14", "Center": "0,7" }, // `
+	"font_headline.33": { "File": "sprites/sprites_menu_fonts.png", "Rect": "640,1,15,16", "Center": "0,9" }, // !
+	"font_headline.63": { "File": "sprites/sprites_menu_fonts.png", "Rect": "656,1,15,16", "Center": "0,9" }, // ?
+	"font_headline.32": { "File": "sprites/sprites_menu_fonts.png", "Rect": "1,1,1,1", "Center": "0,0" }, // Space
+	"font_headline.42": { "File": "sprites/sprites_menu_fonts.png", "Rect": "672,1,15,14", "Center": "0,7" }, // Star
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites_sprites/sprites_menu_icons.png	 //
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Bumper select 
+	"bump_sonic_0x00":  { "File": "sprites/sprites_menu_icons.png", "Rect": "1,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x01":  { "File": "sprites/sprites_menu_icons.png", "Rect": "18,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x02":  { "File": "sprites/sprites_menu_icons.png", "Rect": "35,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x03":  { "File": "sprites/sprites_menu_icons.png", "Rect": "52,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x04":  { "File": "sprites/sprites_menu_icons.png", "Rect": "69,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x05":  { "File": "sprites/sprites_menu_icons.png", "Rect": "86,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x06":  { "File": "sprites/sprites_menu_icons.png", "Rect": "103,60,16,16", "Center": "8,8" },
+	"bump_sonic_0x07":  { "File": "sprites/sprites_menu_icons.png", "Rect": "120,60,16,16", "Center": "8,8" },
+	
+	"bump_tails_0x00":  { "File": "sprites/sprites_menu_icons.png", "Rect": "1,77,16,16", "Center": "8,8" },
+	"bump_tails_0x01":  { "File": "sprites/sprites_menu_icons.png", "Rect": "18,77,16,16", "Center": "8,8" },
+	"bump_tails_0x02":  { "File": "sprites/sprites_menu_icons.png", "Rect": "35,77,16,16", "Center": "8,8" },
+	"bump_tails_0x03":  { "File": "sprites/sprites_menu_icons.png", "Rect": "52,77,16,16", "Center": "8,8" },
+	"bump_tails_0x04":  { "File": "sprites/sprites_menu_icons.png", "Rect": "69,77,16,16", "Center": "8,8" },
+	"bump_tails_0x05":  { "File": "sprites/sprites_menu_icons.png", "Rect": "86,77,16,16", "Center": "8,8" },
+	"bump_tails_0x06":  { "File": "sprites/sprites_menu_icons.png", "Rect": "103,77,16,16", "Center": "8,8" },
+	"bump_tails_0x07":  { "File": "sprites/sprites_menu_icons.png", "Rect": "120,77,16,16", "Center": "8,8" },
+	
+	"bump_knuckles_0x00":  { "File": "sprites/sprites_menu_icons.png", "Rect": "1,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x01":  { "File": "sprites/sprites_menu_icons.png", "Rect": "18,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x02":  { "File": "sprites/sprites_menu_icons.png", "Rect": "35,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x03":  { "File": "sprites/sprites_menu_icons.png", "Rect": "52,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x04":  { "File": "sprites/sprites_menu_icons.png", "Rect": "69,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x05":  { "File": "sprites/sprites_menu_icons.png", "Rect": "86,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x06":  { "File": "sprites/sprites_menu_icons.png", "Rect": "103,94,16,16", "Center": "8,8" },
+	"bump_knuckles_0x07":  { "File": "sprites/sprites_menu_icons.png", "Rect": "120,94,16,16", "Center": "8,8" },
+	
+	// Achievement icon
+	"icon_trophy": { "File": "sprites/sprites_menu_icons.png", "Rect": "136,1,14,13", "Center": "7,6" },
+	"icon_trophy_lock": { "File": "sprites/sprites_menu_icons.png", "Rect": "121,1,14,13", "Center": "7,6" },
+	"icon_trophy_outline": { "File": "sprites/sprites_menu_icons.png", "Rect": "151,1,14,14", "Center": "7,7" },
+	
+	// Achievement tags
+	"icon_tag_none": { "File": "sprites/sprites_menu_icons.png", "Rect": "1,1,1,1", "Center": "0,0" },
+	"icon_tag_unknown": { "File": "sprites/sprites_menu_icons.png", "Rect": "1,29,41,8", "Center": "0,4" },
+	"icon_tag_common": { "File": "sprites/sprites_menu_icons.png", "Rect": "43,29,37,8", "Center": "0,4" },
+	"icon_tag_hard": { "File": "sprites/sprites_menu_icons.png", "Rect": "141,29,24,8", "Center": "0,4" },
+	"icon_tag_special": { "File": "sprites/sprites_menu_icons.png", "Rect": "106,29,34,8", "Center": "0,4" },
+	"icon_tag_unique": { "File": "sprites/sprites_menu_icons.png", "Rect": "125,38,32,8", "Center": "0,4" },
+	"icon_tag_rare": { "File": "sprites/sprites_menu_icons.png", "Rect": "81,29,24,8", "Center": "0,4" },
+	"icon_tag_superrare": { "File": "sprites/sprites_menu_icons.png", "Rect": "1,38,52,8", "Center": "0,4" },
+	"icon_tag_challenge": { "File": "sprites/sprites_menu_icons.png", "Rect": "54,38,44,8", "Center": "0,4" },
+	"icon_tag_easy": { "File": "sprites/sprites_menu_icons.png", "Rect": "99,38,25,8", "Center": "0,4" },
+	
+	// Marathon star icon (Needed Blue Sphere Plus mod)
+	"icon_marathon_lock": { "File": "sprites/sprites_menu_icons.png", "Rect": "168,17,13,13", "Center": "6,7" },
+	"icon_marathon_outline": { "File": "sprites/sprites_menu_icons.png", "Rect": "166,1,15,15", "Center": "7,8" },
+	
+	// Tooltip
+	"icon_tooltip_blue_start": { "File": "sprites/sprites_menu_icons.png", "Rect": "137,47,3,11", "Center": "3,6" },
+	"icon_tooltip_blue_front": { "File": "sprites/sprites_menu_icons.png", "Rect": "141,47,1,11", "Center": "0,6" },
+	"icon_tooltip_blue_end": { "File": "sprites/sprites_menu_icons.png", "Rect": "145,47,3,11", "Center": "0,6" },
+	"icon_tooltip_gray_start": { "File": "sprites/sprites_menu_icons.png", "Rect": "149,47,3,11", "Center": "3,6" },
+	"icon_tooltip_gray_front": { "File": "sprites/sprites_menu_icons.png", "Rect": "153,47,1,11", "Center": "0,6" },
+	"icon_tooltip_gray_end": { "File": "sprites/sprites_menu_icons.png", "Rect": "157,47,3,11", "Center": "0,6" },
+	"icon_tooltip_black_start": { "File": "sprites/sprites_menu_icons.png", "Rect": "161,47,3,10", "Center": "3,5" },
+	"icon_tooltip_black_front": { "File": "sprites/sprites_menu_icons.png", "Rect": "165,47,1,10", "Center": "0,5" },
+	"icon_tooltip_black_end": { "File": "sprites/sprites_menu_icons.png", "Rect": "169,47,3,10", "Center": "0,5" },
+	
+	// Tooltip icons
+	"icon_tooltip_trophy": { "File": "sprites/sprites_menu_icons.png", "Rect": "137,59,9,8", "Center": "0,4" },
+	"icon_tooltip_danger": { "File": "sprites/sprites_menu_icons.png", "Rect": "147,59,3,8", "Center": "-4,4" },
+	"icon_tooltip_warning": { "File": "sprites/sprites_menu_icons.png", "Rect": "151,59,3,8", "Center": "-4,4" },
+	"icon_tooltip_info": { "File": "sprites/sprites_menu_icons.png", "Rect": "155,59,3,8", "Center": "-4,4" },
+	"icon_tooltip_medal": { "File": "sprites/sprites_menu_icons.png", "Rect": "159,59,8,8", "Center": "0,4" },
+	"icon_tooltip_point": { "File": "sprites/sprites_menu_icons.png", "Rect": "137,68,7,8", "Center": "-1,4" },
+	"icon_tooltip_successful": { "File": "sprites/sprites_menu_icons.png", "Rect": "145,68,7,8", "Center": "-1,4" },
+	
+	// Copyright
+	"icon_copyright": { "File": "sprites/sprites_menu_icons.png", "Rect": "158,38,8,8", "Center": "4,4" },
+	
+	// Scroll bar
+	"icon_scrollbar": { "File": "sprites/sprites_menu_icons.png", "Rect": "182,1,7,30", "Center": "4,0" },
+	
+	// Clock icon
+	"icon_clock": { "File": "sprites/sprites_menu_icons.png", "Rect": "151,16,11,11", "Center": "0,5" },
+	
+	// Keyboard keys by egordorichev, check https://egordorichev.itch.io/key-set
+	"icon_key_x": { "File": "sprites/sprites_menu_icons.png", "Rect": "1,47,12,12", "Center": "6,6" },
+	"icon_key_y": { "File": "sprites/sprites_menu_icons.png", "Rect": "14,47,12,12", "Center": "6,6" },
+	"icon_key_a": { "File": "sprites/sprites_menu_icons.png", "Rect": "27,47,12,12", "Center": "6,6" },
+	"icon_key_b": { "File": "sprites/sprites_menu_icons.png", "Rect": "40,47,12,12", "Center": "6,6" },
+	"icon_key_up": { "File": "sprites/sprites_menu_icons.png", "Rect": "53,47,12,12", "Center": "6,6" },
+	"icon_key_left": { "File": "sprites/sprites_menu_icons.png", "Rect": "66,47,12,12", "Center": "6,6" },
+	"icon_key_down": { "File": "sprites/sprites_menu_icons.png", "Rect": "79,47,12,12", "Center": "6,6" },
+	"icon_key_right": { "File": "sprites/sprites_menu_icons.png", "Rect": "92,47,12,12", "Center": "6,6" },
+	"icon_key_start": { "File": "sprites/sprites_menu_icons.png", "Rect": "105,47,30,12", "Center": "6,6" },
+	
+	// White dot
+	"icon_whitedot": { "File": "sprites/sprites_menu_icons.png", "Rect": "0,0,1,1", "Center": "0,0" },
+	
+	// Super emeralds
+	"icon_emerald_super_0x00": { "File": "sprites/sprites_menu_icons.png", "Rect": "1,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x01": { "File": "sprites/sprites_menu_icons.png", "Rect": "31,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x02": { "File": "sprites/sprites_menu_icons.png", "Rect": "46,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x03": { "File": "sprites/sprites_menu_icons.png", "Rect": "61,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x04": { "File": "sprites/sprites_menu_icons.png", "Rect": "76,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x05": { "File": "sprites/sprites_menu_icons.png", "Rect": "91,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x06": { "File": "sprites/sprites_menu_icons.png", "Rect": "106,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x07": { "File": "sprites/sprites_menu_icons.png", "Rect": "16,1,14,13", "Center": "7,6" },
+	"icon_emerald_super_0x0a": { "File": "sprites/sprites_menu_icons.png", "Rect": "136,15,14,13", "Center": "7,6" },
+	
+	// Chaos emeralds
+	"icon_emerald_chaos_0x00": { "File": "sprites/sprites_menu_icons.png", "Rect": "1,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x01": { "File": "sprites/sprites_menu_icons.png", "Rect": "31,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x02": { "File": "sprites/sprites_menu_icons.png", "Rect": "46,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x03": { "File": "sprites/sprites_menu_icons.png", "Rect": "61,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x04": { "File": "sprites/sprites_menu_icons.png", "Rect": "76,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x05": { "File": "sprites/sprites_menu_icons.png", "Rect": "91,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x06": { "File": "sprites/sprites_menu_icons.png", "Rect": "106,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x07": { "File": "sprites/sprites_menu_icons.png", "Rect": "16,15,14,13", "Center": "7,6" },
+	"icon_emerald_chaos_0x0a": { "File": "sprites/sprites_menu_icons.png", "Rect": "121,15,14,13", "Center": "7,6" },
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites/sprites_menu_medals.png			 //
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Medals border
+	"icon_medal_borderBlock": { "File": "sprites/sprites_menu_medals.png", "Rect": "289,1,40,45", "Center": "3,20" },
+	
+	// Medals icons
+	"icon_medal_achievements_5": { "File": "sprites/sprites_menu_medals.png", "Rect": "1,1,35,40", "Center": "0,17" },
+	"icon_medal_achievements_10": { "File": "sprites/sprites_menu_medals.png", "Rect": "37,1,35,40", "Center": "0,17" },
+	"icon_medal_achievements_15": { "File": "sprites/sprites_menu_medals.png", "Rect": "73,1,35,40", "Center": "0,17" },
+	"icon_medal_achievements_20": { "File": "sprites/sprites_menu_medals.png", "Rect": "109,1,35,40", "Center": "0,17" },
+	"icon_medal_achievements_25": { "File": "sprites/sprites_menu_medals.png", "Rect": "145,1,35,40", "Center": "0,17" },
+	"icon_medal_achievements_30": { "File": "sprites/sprites_menu_medals.png", "Rect": "181,1,35,40", "Center": "0,17" },
+	"icon_medal_achievements_35": { "File": "sprites/sprites_menu_medals.png", "Rect": "217,1,35,40", "Center": "0,17" },
+	"icon_medal_longplay": { "File": "sprites/sprites_menu_medals.png", "Rect": "253,1,35,40", "Center": "0,17" },
+	
+	"icon_medal_blue_sphere": { "File": "sprites/sprites_menu_medals.png", "Rect": "1,42,35,40", "Center": "0,17" },
+	"icon_medal_oh_shiny": { "File": "sprites/sprites_menu_medals.png", "Rect": "37,42,35,40", "Center": "0,17" },
+	"icon_medal_like_jumping": { "File": "sprites/sprites_menu_medals.png", "Rect": "73,42,35,40", "Center": "0,17" },
+	"icon_medal_my_power": { "File": "sprites/sprites_menu_medals.png", "Rect": "109,42,35,40", "Center": "0,17" },
+	"icon_medal_DAGE": { "File": "sprites/sprites_menu_medals.png", "Rect": "145,42,35,40", "Center": "0,17" },
+	"icon_medal_challenger": { "File": "sprites/sprites_menu_medals.png", "Rect": "181,42,35,40", "Center": "0,17" },
+	"icon_medal_featured": { "File": "sprites/sprites_menu_medals.png", "Rect": "217,42,35,40", "Center": "0,17" },
+	
+	"icon_medal_lock": { "File": "sprites/sprites_menu_medals.png", "Rect": "253,42,35,40", "Center": "0,17" },
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites/sprites_menu_sklogo.png			  //
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Sonic & Knuckles Logo
+	"sklogo": { "File": "sprites/sprites_menu_sklogo.png", "Rect": "1,1,96,64", "Center": "48,32" },
+	"sklogo_green": { "File": "sprites/sprites_menu_sklogo.png", "Rect": "98,1,96,64", "Center": "48,32" },
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites/sprites_menu_sort_list.png			//
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Sort empty list
+	"icon_completed_miles": { "File": "sprites/sprites_menu_sort_list.png", "Rect": "1,1,69,69", "Center": "0,38" },
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// sprites/sprites_menu_overlay.png			 //
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// Menu overlay
+	"menu_dark_overlay": { "File": "sprites/sprites_menu_overlay.png", "Rect": "1,1,16,252", "Center": "8,0" }
+}

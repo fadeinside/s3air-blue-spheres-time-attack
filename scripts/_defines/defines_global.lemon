@@ -71,8 +71,12 @@ global string bluespheres.tooltip.show_next	// Sets the next text of the current
 global u16 bluespheres.tooltip.showADS	// Sets a random number that is part of the ad random range (0x00 - Not set, 0xffff - Hide/reset)
 global u8 bluespheres.tooltip.sessionADS	// Sets 0x01 if an advertisement is shown in the current session
 global string bluespheres.tooltip.icon	// Icon on the left (If left blank, the offset for the icon will not be displayed)
-global string bluespheres.tooltip.color	// Background color tooltip ("blue", "red", "gray")
+global string bluespheres.tooltip.color	// Background color tooltip ("blue", "gray", "black")
 global u8 bluespheres.tooltip.faster	// Sets 0x01 when the current tooltip should disappear faster
+
+// Secret
+global u8 bluespheres.secret.show	// Determines which image should be shown (0x10 - "Be Smiling!")
+global u8 bluespheres.secret.achievement	// Checking the correct control clicks to get the achievement (Up, Up, Up, Down, Down, Down, Srart)
 
 // Popup
 global u8 bluespheres.popup.show	// Set to 0x01 when popup is active
@@ -83,5 +87,5 @@ global u8 bluespheres.scrollbar.alpha	// Sets the scroll transparency every time
 global u8 bluespheres.scrollbar.timer	// Timer to count down the time when the user is inactive
 
 // Bumper select
-global u8 bluespheres.bumperselect.timer
-global u8 bluespheres.bumperselect.sprite
+global u8 bluespheres.bumperselect.timer	// Timer between frames (counting down)
+global u8 bluespheres.bumperselect.sprite	// Currently shown animation sprite

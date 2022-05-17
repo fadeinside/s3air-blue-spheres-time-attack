@@ -11,6 +11,43 @@ function void BlueSpheresTimer.modsCheck()
 	MOD_EXTRA_RAY_ACTIVE	= Mods.isModActive("Extra Slot Ray")
 }
 
+//? Assemble art by frames.
+function void BlueSpheresTimer.renderAssembleArt(string variant, u8 width, u8 height, u8 rows, u8 line, u8 totalFrames, u16 renderQueue, s32 px, s32 py, u8 scale)
+{
+	// Frame width and height based on scale
+	width *= scale
+	height *= scale
+	
+	// Center art
+	px -= (width * line) / 0x02
+	py -= (height * rows) / 0x02
+	
+	// Assemble and render art
+	for (u8 A = 0x00; A < totalFrames; ++A)
+	{
+		string key = stringformat("%s%d", variant, A)
+		if (Renderer.hasCustomSprite(key))
+			Renderer.drawCustomSpriteWithTransform(key, px, py, 0x00, 0x00, renderQueue, 0xffffffff, 0x10000 * s32(scale), 0x00, 0x00, 0x10000 * s32(scale)) 
+		
+		// Offset for the next frame
+		px += width
+		
+		for (u8 B = 0x00; B <= rows; ++B)
+		{
+			// Offset for the next row
+			if ((A - (line * B)) == line - 0x01)
+			{
+				px -= width * line
+				py += height
+			}
+		}
+	}
+	
+	// Render background
+	if (Renderer.hasCustomSprite(stringformat("%sbg", variant)))
+		Renderer.drawCustomSpriteWithTransform(stringformat("%sbg", variant), 0x00, 0x00, 0x00, 0x00, renderQueue, 0xffffffff, 0x10000 * s32(getScreenWidth()), 0x00, 0x00, 0x10000 * s32(getScreenWidth()))
+}
+
 //? Overload function from Sonic 3: D.A. Garden Edition..
 function void RenderSKLogoFullBG()
 {

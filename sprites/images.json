@@ -1,0 +1,44 @@
+{
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	// images/image_be_smiling.png				 //
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+	
+	// "Be Smiling!" image
+	// - About: none
+	"image_be_smiling_bg":  { "File": "images/image_be_smiling.png", "Rect": "1,1,1,1" },
+	"image_be_smiling_0":  { "File": "images/image_be_smiling.png", "Rect": "1,1,20,14" },
+	"image_be_smiling_1":  { "File": "images/image_be_smiling.png", "Rect": "1,16,20,14" },
+	"image_be_smiling_2":  { "File": "images/image_be_smiling.png", "Rect": "1,31,20,14" },
+	"image_be_smiling_3":  { "File": "images/image_be_smiling.png", "Rect": "1,46,20,14" },
+	"image_be_smiling_4":  { "File": "images/image_be_smiling.png", "Rect": "1,61,20,14" },
+	"image_be_smiling_5":  { "File": "images/image_be_smiling.png", "Rect": "1,76,20,14" },
+	"image_be_smiling_6":  { "File": "images/image_be_smiling.png", "Rect": "1,91,20,14" },
+	"image_be_smiling_7":  { "File": "images/image_be_smiling.png", "Rect": "1,106,20,14" },
+	"image_be_smiling_8":  { "File": "images/image_be_smiling.png", "Rect": "1,121,20,14" },
+	"image_be_smiling_9":  { "File": "images/image_be_smiling.png", "Rect": "1,136,20,14" },
+	"image_be_smiling_10":  { "File": "images/image_be_smiling.png", "Rect": "1,151,20,14" },
+	"image_be_smiling_11":  { "File": "images/image_be_smiling.png", "Rect": "1,166,20,14" },
+	"image_be_smiling_12":  { "File": "images/image_be_smiling.png", "Rect": "1,181,20,14" },
+	"image_be_smiling_13":  { "File": "images/image_be_smiling.png", "Rect": "1,196,20,14" },
+	"image_be_smiling_14":  { "File": "images/image_be_smiling.png", "Rect": "1,211,20,14" },
+	"image_be_smiling_15":  { "File": "images/image_be_smiling.png", "Rect": "1,226,20,14" },
+	"image_be_smiling_16":  { "File": "images/image_be_smiling.png", "Rect": "1,241,20,14" },
+	"image_be_smiling_17":  { "File": "images/image_be_smiling.png", "Rect": "1,256,20,14" },
+	"image_be_smiling_18":  { "File": "images/image_be_smiling.png", "Rect": "1,271,20,14" },
+	"image_be_smiling_19":  { "File": "images/image_be_smiling.png", "Rect": "1,286,20,14" },
+	"image_be_smiling_20":  { "File": "images/image_be_smiling.png", "Rect": "1,301,20,14" },
+	"image_be_smiling_21":  { "File": "images/image_be_smiling.png", "Rect": "1,316,20,14" },
+	"image_be_smiling_22":  { "File": "images/image_be_smiling.png", "Rect": "1,331,20,14" },
+	"image_be_smiling_23":  { "File": "images/image_be_smiling.png", "Rect": "1,346,20,14" },
+	"image_be_smiling_24":  { "File": "images/image_be_smiling.png", "Rect": "1,361,20,14" },
+	"image_be_smiling_25":  { "File": "images/image_be_smiling.png", "Rect": "1,376,20,14" },
+	"image_be_smiling_26":  { "File": "images/image_be_smiling.png", "Rect": "1,391,20,14" },
+	"image_be_smiling_27":  { "File": "images/image_be_smiling.png", "Rect": "1,406,20,14" },
+	"image_be_smiling_28":  { "File": "images/image_be_smiling.png", "Rect": "1,421,20,14" },
+	"image_be_smiling_29":  { "File": "images/image_be_smiling.png", "Rect": "1,436,20,14" },
+	"image_be_smiling_30":  { "File": "images/image_be_smiling.png", "Rect": "1,451,20,14" },
+	"image_be_smiling_31":  { "File": "images/image_be_smiling.png", "Rect": "1,466,20,14" },
+	"image_be_smiling_32":  { "File": "images/image_be_smiling.png", "Rect": "1,481,20,14" },
+	"image_be_smiling_33":  { "File": "images/image_be_smiling.png", "Rect": "1,496,20,14" },
+	"image_be_smiling_34":  { "File": "images/image_be_smiling.png", "Rect": "1,511,20,14" }
+}

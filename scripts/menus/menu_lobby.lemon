@@ -20,9 +20,12 @@ function void BlueSpheresTimer.Menu.lobby.setup()
 	if (SETTING_BS_DEFAULT_CHARACTER != 0x00 && bluespheres.character_defined != 0x01)
 	{
 		bluespheres.timeattack.characterselected = SETTING_BS_DEFAULT_CHARACTER
+		if (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES)
+			bluespheres.timeattack.knuxSelected = 0x01
 		bluespheres.character_defined = 0x01
 	}
 	bluespheres.backToLobby = 0x00
+	bluespheres.secret.show = 0x00
 	
 	// Load additional data from Shared Memory for work with Blue Sphere Plus
 	if (MOD_BS_PLUS_ACTIVE)

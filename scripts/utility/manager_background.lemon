@@ -55,7 +55,7 @@ function void BlueSpheresTimer.BackgroundManager.overlay()
 	// Draw a gradient so that the objects are more clearly visible on the background
 	u8 alpha = (SETTING_BS_MENU_BACKGROUND == 0x02) ? 0x55 : ((SETTING_BS_MENU_BACKGROUND == 0x01) ? 0xba : 0xff)
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, alpha)
+		Renderer.drawCustomSprite("menu_dark_overlay", 0x10 * A, 0x00, 0x00, 0x40, 0xf000, 0x00, alpha)
 }
 
 function void BlueSpheresTimer.BackgroundManager.stagePreview()
@@ -65,7 +65,11 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview()
 	if (bluespheres.timeattack.layoutselected)
 		A1 += 0x0130
 	
+#if GAMEAPP >= 0x22051500
+	if (MOD_DAGE_ACTIVE && System.getGlobalVariableValueByName("palette_set") >= 0x02)
+#else
 	if (MOD_DAGE_ACTIVE)
+#endif 
 		A1 += 0x2cb80e
 	
 	u32[0xffffe446] = A1

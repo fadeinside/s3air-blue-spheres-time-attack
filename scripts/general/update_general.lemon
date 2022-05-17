@@ -31,6 +31,7 @@ function void GameModeControlLoop()
 		// global.game_mode = 0x88	->	Blue Spheres Timer: Achievements menu
 		// global.game_mode = 0x89	->	Blue Spheres Timer: Lobby menu
 		// global.game_mode = 0x8a	->	Blue Spheres Timer: Medals menu
+		// global.game_mode = 0x8b	->	Blue Spheres Timer: Secret menu
 	
 		if (global.game_mode == 0x85)
 			BlueSpheresTimer.Menu.timeattack.setup()
@@ -44,6 +45,8 @@ function void GameModeControlLoop()
 			BlueSpheresTimer.Menu.lobby.setup()
 		else if (global.game_mode == 0x8a)
 			BlueSpheresTimer.Menu.medals.setup()
+		else if (global.game_mode == 0x8b)
+			BlueSpheresTimer.Menu.secret.setup()
 		else
 		{
 			D0.u16 = global.game_mode & 0x7c

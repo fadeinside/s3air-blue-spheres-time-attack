@@ -1,7 +1,7 @@
 function void BlueSpheresTimer.Menu.pause.background()
 {
 	for (u8 A = 0x00; A <= 0x01 + (getScreenWidth() / 0x10); ++A)
-		Renderer.drawCustomSprite("background_menu", 0x10 * A, 0x00, 0x00, 0x40, 0xf0e0, 0x00, 0xaa)
+		Renderer.drawCustomSprite("menu_dark_overlay", 0x10 * A, 0x00, 0x00, 0x40, 0xf0e0, 0x00, 0xaa)
 }
 
 function void BlueSpheresTimer.Menu.pause.headline()

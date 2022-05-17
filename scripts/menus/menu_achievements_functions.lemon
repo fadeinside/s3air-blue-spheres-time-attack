@@ -893,6 +893,11 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 			BlueSpheresTimer.Menu.popup.show("https://gamebanana.com/mods/297356", STRING_ACHIEVEMENTS_YOU_CAN_INSTALL, stringformat(STRING_ACHIEVEMENTS_MOD_NAME_REQUIRE, "Blue Sphere Plus"), "", STRING_CLOSE)
 		}
 	}
+	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_FIND_A_SECRET)
+	{
+		BlueSpheresTimer.Menu.popup.show(STRING_ACHIEVEMENT_BS_FIND_A_SECRET.LINE1, STRING_ACHIEVEMENT_BS_FIND_A_SECRET.LINE2, "", "", STRING_CLOSE)
+		BlueSpheresTimer.Menu.achievements.status()
+	}
 	else
 	{
 		bluespheres.popup.show = 0x00

@@ -9,6 +9,96 @@ function void Init()
 }
 
 //@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
+//# address-hook(0x04d488) end(0x04d59e)
+function void fn04d488()
+{
+	fn04d268()
+
+	D0.u16 ^= 0x55
+	D2.u16 = D0.u16
+	D0.u16 &= 0x3f
+	D1 ^= 0xaaaaaaaa
+	D1 = (D1 << 0x06) + (D1 >> 26)
+	D1 = (D1 << 0x10) + (D1 >> 0x10)
+	D3.u16 = (D1.u16 & 0xf800) >> 0x05
+	D3.u16 |= D0.u16
+	D3.u16 &= 0x07ff
+	D1 = (D1 << 0x10) + (D1 >> 0x10)
+	D1 -= 0x01234567
+	D2.u16 &= 0x40
+	if (D2.u16 != 0x00)
+	{
+		D1 += 0x07654321
+	}
+	D1 &= 0x07ffffff
+	u32[0xffffe400] = D1
+
+	A2 = 0xffffe400
+	D6 = 0x01
+	fn04d5a0()
+
+	D4.u16 &= 0x07ff
+	
+	if (D1 == 0x1240144) // Code: 9192 4068 5488
+	{
+		if (BlueSpheresTimer.Medals.isUnlocked(0x00, 0x09))
+			bluespheres.secret.show = 0x10
+		
+		// Go to the Secret menu
+		if (bluespheres.secret.show != 0x00)
+		{
+			playSound(0xaf)
+			FadeScreenToWhiteBlocking()
+			
+			global.game_mode = 0x8b
+			return
+		}
+		else
+		{
+			playSound(0xb2)
+		}
+	}
+	else if (D3.u16 != D4.u16)
+	{
+		// Entered an invalid code
+		playSound(0xb2)
+	}
+	else
+	{
+		// Code is valid
+		u8[0xffffffab] = 0x00
+		if (D2.u16 != 0x00)
+		{
+			D1 -= 0x07654321
+			D1 &= 0x07ffffff
+			u8[0xffffffab] = 0xff
+		}
+
+		bluespheregame.current_stage = D1
+		BlueSphere.setGeneratedStage(bluespheregame.current_stage)
+
+		// Only for Green Sphere game
+		if (u8[0x8e1218])
+		{
+			System.savePersistentData(0xffffffa6, "DAGE_GreenSphereGame", 0x04)
+		}
+		else
+		{
+			SRAM.save(0xffffffa6, 0x50, 0x04) // Save progress to SRAM
+			System.savePersistentData(0xffffffa6, "SRAM_BlueSphereProgress", 0x04) 
+		}
+
+		A2 = 0xfffffc00
+		fn04cb1a()
+
+		playSound(0x63)
+	}
+
+	u8[0xffffffa1] &= 0x7f
+	bluespheregame.menu_selection = 0x01
+}
+
+//@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
 function void BlueSphereGame.advanceStages(u8 numStages)
 {
 	if (bluespheres.lobby.buttonselected == 0x04 && MOD_BS_PLUS_ACTIVE)
