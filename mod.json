@@ -3,7 +3,7 @@
 	{
 		"Name": "Blue Sphere Time Attack",
 		"Author": "FadeInside",
-		"Description": "Run through exciting levels of Special Stages in Time Attack mode! Play on your favorite stages, record your time passed, collect emeralds, get achievements, and unlock some unlockable items.",
+		"Description": "Run through exciting stages of Special Stages in Time Attack mode! Play your favorite stages, record your time passed, collect emeralds, get achievements, medals, and some extra content.",
 		"URL": "https://github.com/fadeinside/s3air-blue-spheres-time-attack/",
 		"ModVersion": "v2.0",
 		"GameVersion": "21.09.28.0"
@@ -101,7 +101,7 @@
 			{
 				"Category": "Main game Special stages",
 				"InternalName": "SETTING_BS_ACHIEVEMENTS_ENABLE",
-				"DisplayName": "Achievements in Main stages:",
+				"DisplayName": "Achievements in Special stages:",
 				"Variable": "SETTING_BS_ACHIEVEMENTS_ENABLE",
 				"DefaultValue": "0",
 				"Options":
@@ -113,7 +113,7 @@
 			{
 				"Category": "Main game Special stages",
 				"InternalName": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
-				"DisplayName": "Time bonus in Main stages:",
+				"DisplayName": "Time bonus in Special stages:",
 				"Variable": "SETTING_BS_TIME_BONUSES_ON_SPECIALS",
 				"DefaultValue": "0",
 				"Options":

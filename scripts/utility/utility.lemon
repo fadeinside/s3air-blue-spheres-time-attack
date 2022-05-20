@@ -39,10 +39,15 @@ function void fn04d488()
 
 	D4.u16 &= 0x07ff
 	
-	if (D1 == 0x1240144) // Code: 9192 4068 5488
+	if (D3.u16 != D4.u16)
 	{
-		if (BlueSpheresTimer.Medals.isUnlocked(0x00, 0x09))
+		// Code: 9192 4068 5488
+		if (D1 == 0x1240144 && BlueSpheresTimer.Medals.isUnlocked(0x00, 0x09))
 			bluespheres.secret.show = 0x10
+		
+		// Code: 9192 4091 5488
+		if (D1 == 0x240dd44)
+			bluespheres.secret.show = 0x15
 		
 		// Go to the Secret menu
 		if (bluespheres.secret.show != 0x00)
@@ -55,13 +60,9 @@ function void fn04d488()
 		}
 		else
 		{
+			// Entered an invalid code
 			playSound(0xb2)
 		}
-	}
-	else if (D3.u16 != D4.u16)
-	{
-		// Entered an invalid code
-		playSound(0xb2)
 	}
 	else
 	{

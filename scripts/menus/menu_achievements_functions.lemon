@@ -291,7 +291,7 @@ function void BlueSpheresTimer.Menu.achievements.items.score(s32 px, s32 py)
 function void BlueSpheresTimer.Menu.achievements.status(s32 data, s32 target)
 {
 	s32 px = getScreenWidth() / 0x02
-	s32 py = 58 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
+	s32 py = 54 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
 	
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf0ea, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
 	
@@ -306,7 +306,7 @@ function void BlueSpheresTimer.Menu.achievements.status(s32 data, s32 target)
 function void BlueSpheresTimer.Menu.achievements.status()
 {
 	s32 px = getScreenWidth() / 0x02
-	s32 py = 58 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
+	s32 py = 54 + ((getScreenHeight() / 0x02) - bluespheres.popup.offsetDescription)
 	
 	BlueSpheresTimer.TextManager.drawText(px, py, 0xf0ea, 0x01, STRING_ACHIEVEMENTS_STATUS, 0x01)
 	

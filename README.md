@@ -1,54 +1,93 @@
-Run through exciting levels of Special Stages in Time Attack mode! Play on your favorite stages, record your time passed, collect emeralds, get achievements, and unlock all unlockable.<br><br>
+<img src="icon.png" align="right" />
 
-<font color="#6ee16c">List of features:</font><br>
-1. New 4 Custom screens that do not replace anything.<br>
-2. All records are automatically saved after the completion of the stage.<br>
-3. Collect Emeralds and unlock all Unlockable.<br>
-4. Play and get 20+ New Custom Achievements.<br><br>
+# Blue Sphere Time Attack
 
-<font color="#6ee16c">About the custom menus:</font><br>
-1. "Lobby" - A change of game mode selection between "Time Attack" и "Blue Sphere".<br>
-2. "Time Attack" - Menu for viewing the latest records, choosing a character, stage and layout to start the race. Also from here you can go to other sections, such as "Options" and "Achievements".<br>
-3. "Options" - Subsection "Time Attack". Here you can delete all saved data, only records or achievements if something from this was obtained. <b>Be careful, this action cannot be undone!</b><br>
-4. "Achievements" - Subsection "Time Attack". A list of locked and unlocked achievements. Tracking the progress of achievements and the total score.<br>
-5. "Pause menu" - During the game in the "Time Attack" mode, a custom pause menu will be used, for more convenient navigation to the "Time Attack" menu and restarting the stage.<br><br>
+Run through exciting stages of Special Stages in Time Attack mode! Play your favorite stages, record your time passed, collect emeralds, get achievements, medals, and some extra content.
 
-<font color="#6ee16c">How to play:</font><br>
-<font color="#fe4e4e">You need to unlock the secret of the "Blue Sphere" in A.I.R, as further actions are only possible through this section.</font><br>
-1. Go to the "Extras - Blue Sphere" in the A.I.R menu. A menu will open, with a choice between "Time Attack" and "Blue Sphere".<br>
-2. Go to "Time Attack". This menu will open:<br>
-<img src="https://cdn.discordapp.com/attachments/949432560935645247/949435132077547550/IMG_1646433140.png"><br>
-Menu controls: [UP] / [DOWN] - Change stage, [Y] - Change character, [A] - Switching between S3 and S&K stages, [LEFT] / [RIGHT] - Menu selection, [START] - Start, [B] - Back.<br>
-3. Configure your game, and press [START] on the appropriate button to start the race.
-4. Successfully complete the stage, and your time will be saved. Collect all the rings in the stage to get the Emerald, and then unlock some unlockable items.<br><br>
+## <font color="#6ee16c">List of features:</font>
 
-<font color="#6ee16c">Mod options:</font><br>
-1. "Default selected character" - Sets the default character: Sonic (Default), Tails "Miles" or Knuckles. Each time you enter the menu, the selected character will be used.<br>
-2. "Show stage spheres in menu" - If enabled, in the menu will display the spheres of the selected stage and layout. (May cause reduction FPS on some devices)<br>
-3. "Show hot-keys in menu" - If enabled, the control keys will be shown in the menu.<br>
-4. "Menu optimization" - If enabled, the animated ground in the menu will be replaced with a static one from the first release, and during the active popup, all rear objects will not be rendered. This is can will improve the FPS in the menu on weak devices.<br>
-5. "Show achievements toast" - If disabled, the toast will not appear when the achievement is completed, but the achievement itself will still be received.<br>
-6. "Toast position" - Sets the position of the toast on the screen: Bottom of the screen (Default), Top of the screen.<br>
-7. "Toast duration" - Sets the duration of the toast before it hides behind the screen: 128 Frames - Faster, 192 Frames - Default.<br>
-8. "Achievements in Main stages" - If enabled, achievements can be obtained at special stages of the main levels, where possible.<br>
-9. "Time bonus in Main stages" - If enabled, the timer will be shown at special stages of the main levels. After completing the stage, the current time will be converted into a Time Bonus, and will be added to the main score. You can find the Time bonuses below:<br>
-<img src="https://cdn.discordapp.com/attachments/949432560935645247/949437251727794197/IMG_0305014323.png"><br><br>
+* Records and other data are saved automatically.
 
-<font color="#6ee16c">Compatibility notes:</font><br>
-1. <a href="https://gamebanana.com/mods/54326">Yellow Emerald</a>, <a href="https://gamebanana.com/mods/34350">Mania HUD</a> can be installed in any order.<br>
-2. <a href="https://gamebanana.com/mods/333879">Mania-Styled Blue Spheres</a> should be installed above this mod so that their resources are prioritized.<br>
-3. <a href="https://gamebanana.com/mods/151029">Sonic 3: D.A. Garden Edition</a>, <a href="https://gamebanana.com/mods/336038">Extra Slot Mighty</a> should be installed below this mod so that our script can check certain things from their mods.<br><br>
+* Collect emeralds, unlock unlockable items, and some extra content.
 
-<font color="#6ee16c">Question and Answer:</font><br>
-Q. How can I get achievements?<br>
-A. Achievements can be obtained by playing special stages in the "Time Attack" mode and in special stages of the main levels, if "Achievements in Main stages" is enabled in the game options. To check the status of your achievements, go to "Extras - Blue Sphere - Time Attack - Achievements". Look in this section more often, as not all blocked achievements will be visible immediately, but only after opening some others.<br><br>
-Q. How can I access The Secret 8 special stage?<br>
-A. It's a secret. To unlock it, get all 7 chaos emeralds.<br><br>
-Q. How do I access the "Sonic and Knuckles" level layout?<br>
-A. As the Secret 8 special stage, this is secret. To unlock it, get 8 chaos emerald.<br><br>
-Q. The custom menu is lagging, what should I do?<br>
-A. Try disabling the "Show stage spheres in menu" option in the mod settings. If this does not help, then enable "Menu optimization". This will disable the animated ground, sphere rendering, and object rendering behind the popup. Unfortunately, there is no better optimization solution at the moment.<br><br>
-Q. I noticed a bug, where can I contact?<br>
-A. Contact me in the comments of Gamebanana, GitHub issues, or via Discord on the Sonic 3 A.I.R modding server. Try to describe the problem in more detail.<br><br>
+* Play and get with over 40+ custom achievements and medals.
 
-Well, you've finished the initial introduction to the mod.<br><font color="#6ee16c">Thank you</font> so much for paying attention to this mod. I hope you have fun here!
+* 7 new custom menus that don't replace anything. And a new custom pause menu for easy navigation to the menu and restart of the stage.
+
+* <font color="#6ee16c">[New!]</font> Deep integration of mods such as Blue Sphere Plus, Sonic 3: D.A. Garden Edition and more.
+
+* <font color="#6ee16c">[New!]</font> Additional features, customization options, and functions.
+
+## <font color="#6ee16c">About the custom menus:</font>
+
+* Choose the game mode between Time Attack mode and Blue Sphere game in the __Lobby menu__. <font color="#6ee16c">[New!]</font> With mods enabled Blue Sphere Plus и Sonic 3: D.A. Garden Edition, their sections will appear in the Lobby - Sonic 3K (Marathon mode) and Green Sphere game.
+
+* View the latest recorded records, total time and collected emeralds in the __Time Attack menu__. Select a character, stage, layout and press Start to start the race.
+
+* Delete all your records and achievements in the __Options menu__. <font color="#6ee16c">[New!]</font> Now you can delete all the data recorded by the mod, including emeralds, unlock items, and extra content.
+
+* A list of available and unavailable achievements. Track the progress of achievements and total score in the __Achievements menu__. <font color="#6ee16c">[New!]</font> Sort the list by completed, started, and locked achievements by pressing the [A] key.
+
+* <font color="#6ee16c">[New!]</font> List of available and unavailable medals in the __Medals menu__.
+
+## <font color="#6ee16c">How to play:</font>
+
+<font color="#fe4e4e">You need to unlock the __Blue Sphere game__ secret in Sonic 3 A.I.R, as further actions are only possible through this section.</font>
+
+1. Go to the main menu and go to the Extra menu, in the menu that opens, go to Blue Sphere.
+<img src="https://cdn.discordapp.com/attachments/950854150307061810/976628459197575208/28_20220518190910.png" />
+<img src="https://cdn.discordapp.com/attachments/950854150307061810/976628459482791976/28_20220518190913.png" />
+
+2. The __Lobby menu__ opens in front of you, select and go to Time Attack mode.
+
+3. After that you will go to __Time Attack menu__. Configure your game, and press [START] on the appropriate button to start the race.
+<img src="https://cdn.discordapp.com/attachments/950854150307061810/976629031892037682/ocr_screenshot_1652888238.png" />
+
+4. Complete the stage successfully and your time passed will be recorded. Collect all the rings to get the emerald. Good luck!
+
+## <font color="#6ee16c">Mod options:</font><br>
+
+1. __Default character__ sets the default character: Sonic (Default), Tails "Miles" or Knuckles, when you first enter the Lobby menu every game session.
+
+2. __Show menu hot-keys__ will show the control keys in the menu. Useful for beginners and streams.
+
+3. __Stage spheres in menu__ shows the spheres of the selected stage and layout if the __Menu background__ option is set to Special Stage ground.
+
+4. __Menu background__ sets the default menu background: Special Stage ground, "Sonic and Knuckles", "Get Blue Spheres" (Default).
+
+5. __Menu optimization__ sets the menu optimization level: Disabled (Default), Enable (Level 1), Enable (Level 2). With Level 1 active, any text behind the popup menu will not be rendered. When Level 2 is active, animations and animated backgrounds will be disabled..
+
+6. __Achievements in Special stages__ enables getting achievements at special stages of the main game.
+
+7. __Time bonus in Special stages__ the timer will show and you will get a time bonus on the results screen, which will be added to the main save. Check out the bonuses below.
+<img src="https://cdn.discordapp.com/attachments/949432560935645247/949437251727794197/IMG_0305014323.png">
+
+## <font color="#6ee16c">Compatibility notes:</font><br>
+1. <a href="https://gamebanana.com/mods/54326">Yellow Emerald</a>, <a href="https://gamebanana.com/mods/34350">Mania HUD</a> can be installed in any order.
+
+2. <a href="https://gamebanana.com/mods/333879">Mania-Styled Blue Spheres</a> or any Blue Sphere skin should be installed above this mod so that their resources are prioritized.
+
+3. <a href="https://gamebanana.com/mods/297356">Blue Sphere Plus</a>, <a href="https://gamebanana.com/mods/151029">Sonic 3: D.A. Garden Edition</a>, <a href="https://gamebanana.com/mods/336038">Extra Slot Mighty</a> or any Extra Character mod should be installed below this mod so that our script can check certain things from their mods.
+
+## <font color="#6ee16c">FAQ:</font><br>
+
+Q. How can I get achievements?  
+A. Achievements can be obtained while playing Blue Sphere game in Time Attack mode. Also, achievements can be obtained at Special stages of the main game if you enable the corresponding settings in the mod options.
+
+Q. Some achievements are locked and "Require a mod". How can I get them?  
+A. These achievements are not available for obtained at the moment. To unlock them, reach the available ones. For achievements "Require a mod", you need to download and activate the mod specified in the achievements popup.
+
+Q. How can I access the secret 8 Special Stage and Sonic and Knuckles layout?  
+A. These are the items to unlock. To unlock the secret 8 Special Stage, you need to get 7 chaos emeralds. To unlock the Sonic and Knuckles stage layout, get the chaos emerald in the secret 8 Special Stage.
+
+Q. What are medals and how to get them?  
+A. Medals are an additional reward system for the player. You get them as you get other achievements.
+
+Q. My menu is lagging / I have a weak device, what should I do?  
+A. If you are experiencing difficulties in the form of low fps in the menu, try activating the menu optimization setting in the mod options. This will disable some animations and reduce the quality of the menu background.
+
+Q. I noticed a bug, where can I contact?  
+A. Contact me in the comments of Gamebanana, GitHub issues, or via Discord on the Sonic 3 A.I.R modding server. Try to describe the problem in more detail.
+
+Well, you've finished the initial introduction to the mod.  
+<font color="#6ee16c">__Thank you__</font> so much for paying attention to this mod. I hope you have fun here!

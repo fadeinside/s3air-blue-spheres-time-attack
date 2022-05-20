@@ -34,6 +34,7 @@ function void BlueSpheresTimer.renderTimer(s32 px, s32 py, u16 renderQueue)
 
 function void BlueSpheresTimer.renderTimer(s32 minutes, s32 seconds, s32 centiseconds, s32 px, s32 py, u16 renderQueue)
 {
+	return
 	py -= 0x06
 	if (Game.getSetting(SETTING_EXTENDED_HUD) || bluespheres.timeattack.active) // || Use extended HUD in Time Attack mode
 	{

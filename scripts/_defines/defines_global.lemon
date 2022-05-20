@@ -75,7 +75,7 @@ global string bluespheres.tooltip.color	// Background color tooltip ("blue", "gr
 global u8 bluespheres.tooltip.faster	// Sets 0x01 when the current tooltip should disappear faster
 
 // Secret
-global u8 bluespheres.secret.show	// Determines which image should be shown (0x10 - "Be Smiling!")
+global u8 bluespheres.secret.show	// Determines which image should be shown (0x10 - "Be Smiling!", 0x15 - Thanks for playing!)
 global u8 bluespheres.secret.achievement	// Checking the correct control clicks to get the achievement (Up, Up, Up, Down, Down, Down, Srart)
 
 // Popup

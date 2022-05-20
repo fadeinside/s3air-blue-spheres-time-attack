@@ -48,10 +48,10 @@ function void BlueSpheresTimer.renderAssembleArt(string variant, u8 width, u8 he
 		Renderer.drawCustomSpriteWithTransform(stringformat("%sbg", variant), 0x00, 0x00, 0x00, 0x00, renderQueue, 0xffffffff, 0x10000 * s32(getScreenWidth()), 0x00, 0x00, 0x10000 * s32(getScreenWidth()))
 }
 
-//? Overload function from Sonic 3: D.A. Garden Edition..
+//? Overload function from Sonic 3: D.A. Garden Edition.
 function void RenderSKLogoFullBG()
 {
-	// Only for Green Spheres mode
+	// Only for Green Sphere game
 	if !(bluespheres.greenspheres.active)
 		return
 	
@@ -251,9 +251,7 @@ function string BlueSpheresTimer.getFormatTime(s32 input_minutes, s32 input_seco
 	string stringseconds = stringformat("%d", input_seconds)
 	string stringcentiseconds = stringformat("%d", input_centiseconds)
 	
-	string time = stringformat("%s'%s`%s", ((strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes), (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
-	
-	return time
+	return stringformat("%s'%s`%s", ((strlen(stringminutes) < 0x02) ? stringformat("0%d", input_minutes) : stringminutes), (strlen(stringseconds) < 0x02) ? stringformat("0%d", input_seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", input_centiseconds) : stringcentiseconds)
 }
 
 //? Returns the formatted time from the input data.
@@ -267,24 +265,24 @@ function string BlueSpheresTimer.getFormatTime(s32 input_data)
 	string stringseconds = stringformat("%d", seconds)
 	string stringcentiseconds = stringformat("%d", centiseconds)
 	
-	string time = stringformat("%s'%s`%s", ((strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes), (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
-	
-	return time
+	return stringformat("%s'%s`%s", ((strlen(stringminutes) < 0x02) ? stringformat("0%d", minutes) : stringminutes), (strlen(stringseconds) < 0x02) ? stringformat("0%d", seconds) : stringseconds, (strlen(stringcentiseconds) < 0x02) ? stringformat("0%d", centiseconds) : stringcentiseconds)
 }
 
 //? Returns true when there is a match. Used to determine the activity of unlimited time in the stages.
 function bool BlueSpheresTimer.timeUnlimited()
 {
-	bool timeUnlimited
-	
+	// Time is infinite
 	if (Game.getSetting(SETTING_INFINITE_TIME))
-		timeUnlimited = true
-	else if (bluespheres.minigame_mode)
-		timeUnlimited = true
-	else if (bluespheres.timeattack.active)
-		timeUnlimited = true
-	else
-		timeUnlimited = false
+		return true
 	
-	return timeUnlimited
+	// Is Mini-game mode
+	else if (bluespheres.minigame_mode)
+		return true
+	
+	// Is Time Attack mode
+	else if (bluespheres.timeattack.active)
+		return true
+	
+	// Default return value
+	return false
 }
