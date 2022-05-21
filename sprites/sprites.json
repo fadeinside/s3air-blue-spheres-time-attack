@@ -7,6 +7,9 @@
 	"hud_text_time_superstage": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "103,1,40,12" },
 	"hud_text_time_chaosstage": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "144,1,40,12" },
 	
+	"hud_text_s2_time_superstage": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "42,35,40,12" },
+	"hud_text_s2_time_chaosstage": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "1,35,40,12" },
+	
 	// "Time over" Display text
 	"display_text_timeover_2": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "1,1,50,16", "Center": "50,8" },
 	"display_text_timeover_3": { "File": "sprites/sprites_bluespheres_text.png", "Rect": "52,1,50,16", "Center": "0,8" },
@@ -339,7 +342,8 @@
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	
 	// Sort empty list
-	"icon_completed_miles": { "File": "sprites/sprites_menu_sort_list.png", "Rect": "1,1,69,69", "Center": "0,38" },
+	"icon_sortlist_miles_sad": { "File": "sprites/sprites_menu_sort_list.png", "Rect": "1,1,57,55", "Center": "0,23" },
+	"icon_sortlist_miles_happy": { "File": "sprites/sprites_menu_sort_list.png", "Rect": "58,1,60,58", "Center": "0,26" },
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 	// sprites/sprites_menu_overlay.png			 //

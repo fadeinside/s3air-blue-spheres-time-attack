@@ -5,8 +5,14 @@ global bool MOD_DAGE_ACTIVE	// Sets true when "Sonic 3: D.A. Garden Edition" is 
 // "Blue Sphere Plus" by Veenee, check https://gamebanana.com/mods/297356
 global bool MOD_BS_PLUS_ACTIVE	// Sets true when "Blue Sphere Plus" is active
 
-// "Extra Slot Mighty" by iCloudius, check https://gamebanana.com/mods/336038
-global bool MOD_EXTRA_MIGHTY_ACTIVE	// Sets true when "Extra Slot Mighty" is active
+// "Sonic Mania HUD" by mrgrassman14, check https://gamebanana.com/mods/34350
+global bool MOD_MANIA_HUD_ACTIVE	// Sets true when "Sonic Mania HUD" is active
 
-// "Extra Slot Ray" by iCloudius, check https://gamebanana.com/mods/336038
-global bool MOD_EXTRA_RAY_ACTIVE	// Sets true when "Extra Slot Ray" is active
+// "Accurate Sonic 2 HUD" by mcginnis03, check https://gamebanana.com/skins/173571
+global bool MOD_SONIC2_HUD_ACTIVE	// Sets true when "Accurate Sonic 2 HUD" is active
+
+// "No Blue Spheres Slowdown" by AirWay1, check https://gamebanana.com/mods/54087
+global bool MOD_NO_SPEEDUP_BS_ACTIVE	// Sets true when "No Blue Spheres Slowdown" is active
+
+// "Yellow Emerald" by Guthi, check https://gamebanana.com/mods/54326
+global bool MOD_YELLOW_EMERALD_ACTIVE	// Sets true when "Yellow Emerald" is active

@@ -28,6 +28,7 @@ global u8 bluespheres.medals.medalselected	// Selected medal in the list
 global u8 bluespheres.medals.medals.setup	// Sets the number of medals buttons in the current row
 
 // Achievements sort
+global bool bluespheres.achievements.targetsNeedUpdate	// Sets to "true" when achievements target data needs to be updated
 global bool bluespheres.achievements.sortNeedUpdate	// Sets to "true" when sorted achievements list data needs to be updated
 global u8 bluespheres.achievements.firstButton	// Sets the ID of the first button (first achievement) in a sorted achievements list
 global u8 bluespheres.achievements.lastButton	// Sets the ID of the last button (last achievement) in a sorted achievements list

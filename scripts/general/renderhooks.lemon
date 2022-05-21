@@ -88,11 +88,13 @@ function bool Standalone.onWriteToSpriteTable(s16 px, s16 py, u16 renderQueue)
 				
 				if (objA0.animation.sprite == 0x19 || objA0.animation.sprite == 0x33 || objA0.animation.sprite == 0x38)
 				{
-					u64 key
-					if !(Mods.isModActive("Sonic Mania HUD"))
-						key = isSKStage ? "hud_text_time_superstage" : "hud_text_time_chaosstage"
-					else
+					string key
+					if (MOD_MANIA_HUD_ACTIVE)
 						key = "hud_text_time"
+					else if (MOD_SONIC2_HUD_ACTIVE)
+						key = isSKStage ? "hud_text_s2_time_superstage" : "hud_text_s2_time_chaosstage"
+					else
+						key = isSKStage ? "hud_text_time_superstage" : "hud_text_time_chaosstage"
 					
 					Renderer.drawCustomSprite(key, px, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)
 					Renderer.drawCustomSprite(isSKStage ? "hud_text_bonus_superstage" : "hud_text_bonus_chaosstage", px + 0x28, py, 0x00, SPRITE_FLAG_PRIO, renderQueue)

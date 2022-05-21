@@ -84,7 +84,7 @@ function void BlueSpheresTimer.Menu.lobby.items.menu(s32 px, s32 py)
 	string total_completed = stringformat("%s - %d", STRING_ACHIEVEMENTS_SORT_COMPLETED, BlueSpheresTimer.Achievements.getValueBySort(0x01))
 	string total_started = stringformat("%s - %d", STRING_ACHIEVEMENTS_SORT_STARTED, BlueSpheresTimer.Achievements.getValueBySort(0x02))
 	string total_not_started = stringformat("%s - %d", STRING_ACHIEVEMENTS_SORT_LOCKED, BlueSpheresTimer.Achievements.getValueBySort(0x03))
-	string total_received = stringformat("%s - %d", STRING_MEDALS_RECEIVED, BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved))
+	string total_received = stringformat("%s - %d", STRING_MEDALS_RECEIVED, BlueSpheresTimer.Medals.received())
 	
 	s32 timer = (level.framecounter % 880)
 	string sign_main = (timer < 220) ? total_completed : ((timer < 440) ? total_started : ((timer < 660) ? total_not_started : ((timer < 880) ? total_received : STRING_RETRY)))
@@ -150,9 +150,11 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			VDP.Config.setActiveDisplay(false)
 			
 			// Setup tooltip
-			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xffff)
 				bluespheres.tooltip.showADS = 0xffff
-			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			
+			if (BlueSpheresTimer.Achievements.notAvailable())
+				BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c
@@ -180,9 +182,11 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			VDP.Config.setActiveDisplay(false)
 			
 			// Setup tooltip
-			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xffff)
 				bluespheres.tooltip.showADS = 0xffff
-			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			
+			if (BlueSpheresTimer.Achievements.notAvailable())
+				BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c
@@ -204,9 +208,11 @@ function void BlueSpheresTimer.Menu.lobby.updateControl()
 			VDP.Config.setActiveDisplay(false)
 			
 			// Setup tooltip
-			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xff)
+			if (bluespheres.tooltip.showADS != 0x00 && bluespheres.tooltip.showADS != 0xffff)
 				bluespheres.tooltip.showADS = 0xffff
-			BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
+			
+			if (BlueSpheresTimer.Achievements.notAvailable())
+				BlueSpheresTimer.TooltipManager.setupTooltip(0x00, "gray", "icon_tooltip_info", STRING_TOOLTIP_MINI_GAME_NOTIFY, "")
 			
 			// Go to mini-game menu
 			global.game_mode = 0x2c

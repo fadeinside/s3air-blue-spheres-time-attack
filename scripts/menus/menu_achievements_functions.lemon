@@ -125,37 +125,19 @@ function void BlueSpheresTimer.Menu.achievements.items.achievements(s32 px, s32 
 		u8 alpha = (py < 0x00) ? 48 : ((py < 16) ? 100 : ((py < 32) ? 150 : 255))
 		BlueSpheresTimer.TextManager.drawText(px - 0x06, py, 0xf000, 0x02, "*", 0x01, alpha)
 		
-		s32 completed_total
-		s32 started_total
-		s32 not_started_total
-		for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
-		{
-			if (BlueSpheresTimer.Achievements.isComplete(A))
-				completed_total += 0x01
-			else if (BlueSpheresTimer.Achievements.getValue(A) > 0x00)
-				started_total += 0x01
-			else if (BlueSpheresTimer.Achievements.getValue(A) == 0x00)
-				not_started_total += 0x01
-		}
-		
-		string achievement_sort = SortAll ? STRING_ACHIEVEMENTS_SORT_ALL : (SortCompleted ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_COMPLETED, completed_total) : (SortStarted ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_STARTED, started_total) : (SortLocked ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_LOCKED, not_started_total) : STRING_RETRY)))
+		string achievement_sort = SortAll ? STRING_ACHIEVEMENTS_SORT_ALL : (SortCompleted ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_COMPLETED, BlueSpheresTimer.Achievements.getValueBySort(0x01)) : (SortStarted ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_STARTED, BlueSpheresTimer.Achievements.getValueBySort(0x02)) : (SortLocked ? stringformat("%s (%d)", STRING_ACHIEVEMENTS_SORT_LOCKED, BlueSpheresTimer.Achievements.getValueBySort(0x03)) : STRING_RETRY)))
 		BlueSpheresTimer.TextManager.drawTextWithLine2(px + 16, py, 0xf000, 0x03, achievement_sort, 0x01, alpha)
 	}
 	
 	if (!(SortAll) && (bluespheres.achievements.totalButtons == 0x00))
 	{
 		py += (getScreenHeight() / 0x02) - 48
-		Renderer.drawCustomSprite("icon_completed_miles", px, py, 0x00, 0x40, 0xf000)
+		
+		string key = (SortCompleted || SortStarted || (SortLocked && (BlueSpheresTimer.Achievements.getValueBySort(0x02) != 0x00))) ? "icon_sortlist_miles_sad" : "icon_sortlist_miles_happy"
+		Renderer.drawCustomSprite(key, px, py, 0x00, 0x40, 0xf000)
 		
 		px += 64
-		s32 started_total
-		for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
-		{
-			if (!(BlueSpheresTimer.Achievements.isComplete(A)) && (BlueSpheresTimer.Achievements.getValue(A) > 0x00))
-				started_total += 0x01
-		}
-		
-		string sign_emptyList = SortCompleted ? STRING_ACHIEVEMENTS_SORT_EMPTY_COMPLETED : (SortStarted ? STRING_ACHIEVEMENTS_SORT_EMPTY_STARTED : (SortLocked && (started_total != 0x00) ? STRING_ACHIEVEMENTS_SORT_EMPTY_LOCKED2 : STRING_ACHIEVEMENTS_SORT_EMPTY_LOCKED))
+		string sign_emptyList = SortCompleted ? STRING_ACHIEVEMENTS_SORT_EMPTY_COMPLETED : (SortStarted ? STRING_ACHIEVEMENTS_SORT_EMPTY_STARTED : (SortLocked && (BlueSpheresTimer.Achievements.getValueBySort(0x02) != 0x00) ? STRING_ACHIEVEMENTS_SORT_EMPTY_LOCKED2 : STRING_ACHIEVEMENTS_SORT_EMPTY_LOCKED))
 		BlueSpheresTimer.TextManager.drawText(px + 16, py, 0xf000, 0x02, sign_emptyList, 0x01)
 	}
 	
@@ -743,7 +725,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 	else if (bluespheres.achievements.buttonselected >= ACHIEVEMENT_BS_DA_GARDEN_EDITION && bluespheres.achievements.buttonselected <= ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES)
 	{
-		if (Mods.isModActive("Sonic 3: D.A. Garden Edition") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
+		if (MOD_DAGE_ACTIVE || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 		{
 			if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_DA_GARDEN_EDITION)
 			{
@@ -803,7 +785,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW)
 	{
-		if (Mods.isModActive("No Blue Spheres Slowdown") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
+		if (MOD_NO_SPEEDUP_BS_ACTIVE || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 		{
 			BlueSpheresTimer.Menu.popup.show(stringformat(STRING_ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW.LINE1, "No Blue Spheres Slowdown"), STRING_ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW.LINE2, "", "", STRING_CLOSE)
 			BlueSpheresTimer.Menu.achievements.status(BlueSpheresTimer.Achievements.getValue(bluespheres.achievements.buttonselected), 0x07)
@@ -883,7 +865,7 @@ function void BlueSpheresTimer.Menu.achievements.popups()
 	}
 	else if (bluespheres.achievements.buttonselected == ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON)
 	{
-		if (Mods.isModActive("Blue Sphere Plus") || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
+		if (MOD_BS_PLUS_ACTIVE || BlueSpheresTimer.Achievements.isComplete(bluespheres.achievements.buttonselected))
 		{
 			BlueSpheresTimer.Menu.popup.show(stringformat(STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE1, "Blue Sphere Plus"), STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE2, STRING_ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON.LINE3, "", STRING_CLOSE)
 			BlueSpheresTimer.Menu.achievements.status()

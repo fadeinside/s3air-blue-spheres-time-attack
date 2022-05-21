@@ -530,7 +530,7 @@ function void fn009b62()
 			}
 			
 			// Skip the emerald if all the rings are not collected
-			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00 && !Mods.isModActive("Sonic 3: D.A. Garden Edition")))
+			if (bluespheres.rings_remaining > 0x00 && !(bluespheres.timeattack.levelselected == 0x07 && bluespheres.timeattack.layoutselected == 0x00 && !MOD_DAGE_ACTIVE))
 			{
 				// Skip "Not Enough Rings" if the option is disabled
 				if !(SETTING_BS_NOT_ENOUGH_RINGS)

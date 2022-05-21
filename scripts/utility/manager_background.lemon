@@ -125,7 +125,6 @@ function void BlueSpheresTimer.BackgroundManager.stagePreview_Spheres()
 {
 	// Main game stages
 	Kosinski.decompress(u32[0x1e4078], 0xffff0000)
-	// "Sonic 3: D.A. Garden Edition" by Thorn_SRetro, check https://gamebanana.com/mods/151029
 	if (bluespheres.timeattack.characterselected == CHARACTER_KNUCKLES && MOD_DAGE_ACTIVE && bluespheres.knuckles_layout) // Knuckles has a different level layout in DAGE
 		Kosinski.decompress(0x2d3ad0, 0xffff0000)
 	

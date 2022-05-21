@@ -53,7 +53,7 @@ function u32 BlueSpheresTimer.Records.getRecordAddress(u8 place)
 	u32 character = 0x128 * (gangMain + gangExtra)
 	u32 stage = 0x16 * (bluespheres.timeattack.levelselected + 0x01)
 	u32 layout = 0x08 * bluespheres.timeattack.layoutselected + knuxLayout
-	u32 mods = Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x10000 : 0x00
+	u32 mods = MOD_DAGE_ACTIVE ? 0x10000 : 0x00
 	
 	// Return the assembled address
 	return bluespheres.recordDataAddress + recordplace + character + stage + layout + mods

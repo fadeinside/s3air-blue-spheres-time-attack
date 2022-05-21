@@ -1,17 +1,17 @@
 function void BlueSpheresTimer.renderTimer(s32 px, s32 py, u16 renderQueue)
 {
-	// Ignore for Rolling Demo and Blue Sphere game
+	// Ignore for rolling demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
 	
 	// Ignore for Main Special stages if Time bonus or Achievements disabled
 	if ((SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 || SETTING_BS_ACHIEVEMENTS_ENABLE == 0x00) && !bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
 	{
+		// If achievements are enabled, but the timer is disabled, then you still can get achievements
 		if (SETTING_BS_ACHIEVEMENTS_ENABLE)
-		{
-			// If achievements are enabled, but the timer is disabled, then you still can get achievements
 			BlueSpheresTimer.Achievements.update()
-		}
+		
+		// Finish the function on this
 		return
 	}
 	
@@ -34,7 +34,6 @@ function void BlueSpheresTimer.renderTimer(s32 px, s32 py, u16 renderQueue)
 
 function void BlueSpheresTimer.renderTimer(s32 minutes, s32 seconds, s32 centiseconds, s32 px, s32 py, u16 renderQueue)
 {
-	return
 	py -= 0x06
 	if (Game.getSetting(SETTING_EXTENDED_HUD) || bluespheres.timeattack.active) // || Use extended HUD in Time Attack mode
 	{

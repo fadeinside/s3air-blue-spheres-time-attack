@@ -203,6 +203,8 @@ function void BlueSpheresTimer.Menu.options.popups()
 				BlueSpheresTimer.Data.reset(bluespheres.stage8Unlocked)
 				BlueSpheresTimer.Data.reset(bluespheres.skUnlocked)
 				
+				System.setupCallFrame("BlueSpheresTimer.VRAMClear", "@loadPersistentData")
+				
 				// Override selected level and layout variables
 				if (bluespheres.timeattack.levelselected == 0x07)
 					bluespheres.timeattack.levelselected = 0x06
@@ -228,6 +230,8 @@ function void BlueSpheresTimer.Menu.options.popups()
 				playSound(0x68)
 				BlueSpheresTimer.Records.reset()
 				
+				System.setupCallFrame("BlueSpheresTimer.VRAMClear", "@loadPersistentData")
+				
 				// Setup tooltip
 				BlueSpheresTimer.TooltipManager.setupTooltip(0x01, "gray", "icon_tooltip_successful", STRING_TOOLTIP_SUCCESSFULLY_DELETED, "")
 				
@@ -251,6 +255,8 @@ function void BlueSpheresTimer.Menu.options.popups()
 					BlueSpheresTimer.Emeralds.replaceAll(0x02)
 				else
 					BlueSpheresTimer.Emeralds.replaceAll(0x00)
+				
+				System.setupCallFrame("BlueSpheresTimer.VRAMClear", "@loadPersistentData")
 					
 				// Setup tooltip
 				BlueSpheresTimer.TooltipManager.setupTooltip(0x01, "gray", "icon_tooltip_successful", STRING_TOOLTIP_SUCCESSFULLY_DELETED, "")

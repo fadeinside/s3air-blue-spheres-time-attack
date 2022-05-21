@@ -12,101 +12,98 @@ function void BlueSpheresTimer.Medals.update()
 //? Returns the status (true - Unlocked, false - Locked) of the specified medal.
 function bool BlueSpheresTimer.Medals.isUnlocked(u8 category, u8 medal)
 {
-	bool medal_status
-	
 	if (category == 0x00)
 	{
 		// Complete 5 achievements
 		if (medal == 0x01)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 0x05)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 0x05)
 		// Complete 10 achievements
 		if (medal == 0x02)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 10)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 10)
 		// Complete 15 achievements
 		if (medal == 0x03)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 15)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 15)
 		// Complete 20 achievements
 		if (medal == 0x04)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 20)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 20)
 		// Complete 25 achievements
 		if (medal == 0x05)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 25)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 25)
 		// Complete 30 achievements
 		if (medal == 0x06)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 30)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 30)
 		// Complete 35 achievements
 		if (medal == 0x07)
-			medal_status = (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 35)
+			return (BlueSpheresTimer.Achievements.getValueBySort(0x01) >= 35)
 		// Complete all achievements (just all achievements)
 		if (medal == 0x08)
-			medal_status = ((BlueSpheresTimer.Achievements.getValueBySort(0x01) - 0x01) == bluespheres.achievements.total)
+			return ((BlueSpheresTimer.Achievements.getValueBySort(0x01) - 0x01) == bluespheres.achievements.total)
 		// Complete all achievements related to the get blue spheres
 		if (medal == 0x09)
-			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES))
+			return (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_100_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_300_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_600_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_1200_BLUE_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_2048_BLUE_SPHERES))
 		// Complete all the rings-related achievements
 		if (medal == 0x0a)
-			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS))
+			return (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_400_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_800_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_1200_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_2000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS))
 		// Complete all the jump-related achievements
 		if (medal == 0x0b)
-			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_50_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_200_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES))
+			return (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_15_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_45_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_USE_YELLOW_SPHERE_110_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_50_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_200_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_500_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_15_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_55_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_BOUNCE_OFF_150_TIMES))
 		// Complete the emeralds-related achievements
 		if (medal == 0x0c)
-			medal_status = BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
+			return BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ALL_CHAOS_EMERALDS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS)
 		// Complete all the DAGE-related achievements
 		if (medal == 0x0d)
-			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES))
+			return (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES))
 		// Complete all achievements that have the Challenge tag
 		if (medal == 0x0e)
-			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_50_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON))
+			return (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_ACTIVATED_SUPER_EMERALDS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_JUMP_1000_TIMES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_COLLECT_4000_RINGS) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GET_50_CONTINUES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON))
 		// Complete all achievements that require third-party mods
 		if (medal == 0x0f)
-			medal_status = (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON))
+			return (BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_DA_GARDEN_EDITION) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_GREEN_SPHERE) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_50_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_150_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_400_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_YOU_ARE_TOO_SLOW) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_PLUS_COMPLETE_MARATHON))
 	}
 	
-	// Return the value
-	return medal_status
+	// Default return value
+	return false
 }
 
 //? Returns the medal sprite.
 function string BlueSpheresTimer.Medals.getSprite(u8 category, u8 medal)
 {
-	string medal_sprite
-	
 	if (category == 0x00)
 	{
 		if (medal == 0x01)
-			medal_sprite = "icon_medal_achievements_5"
+			return "icon_medal_achievements_5"
 		else if (medal == 0x02)
-			medal_sprite = "icon_medal_achievements_10"
+			return "icon_medal_achievements_10"
 		else if (medal == 0x03)
-			medal_sprite = "icon_medal_achievements_15"
+			return "icon_medal_achievements_15"
 		else if (medal == 0x04)
-			medal_sprite = "icon_medal_achievements_20"
+			return "icon_medal_achievements_20"
 		else if (medal == 0x05)
-			medal_sprite = "icon_medal_achievements_25"
+			return "icon_medal_achievements_25"
 		else if (medal == 0x06)
-			medal_sprite = "icon_medal_achievements_30"
+			return "icon_medal_achievements_30"
 		else if (medal == 0x07)
-			medal_sprite = "icon_medal_achievements_35"
+			return "icon_medal_achievements_35"
 		else if (medal == 0x08)
-			medal_sprite = "icon_medal_longplay"
+			return "icon_medal_longplay"
 		else if (medal == 0x09)
-			medal_sprite = "icon_medal_blue_sphere"
+			return "icon_medal_blue_sphere"
 		else if (medal == 0x0a)
-			medal_sprite = "icon_medal_oh_shiny"
+			return "icon_medal_oh_shiny"
 		else if (medal == 0x0b)
-			medal_sprite = "icon_medal_like_jumping"
+			return "icon_medal_like_jumping"
 		else if (medal == 0x0c)
-			medal_sprite = "icon_medal_my_power"
+			return "icon_medal_my_power"
 		else if (medal == 0x0d)
-			medal_sprite = "icon_medal_DAGE"
+			return "icon_medal_DAGE"
 		else if (medal == 0x0e)
-			medal_sprite = "icon_medal_challenger"
+			return "icon_medal_challenger"
 		else if (medal == 0x0f)
-			medal_sprite = "icon_medal_featured"
+			return "icon_medal_featured"
 	}
 	
-	return medal_sprite
+	// Failsave value
+	return "icon_medal_lock"
 }
 
 //? Show a toast when a medal is received.
@@ -132,17 +129,10 @@ function void BlueSpheresTimer.Medals.toast()
 	// If the medal is equal to the current one shown and the state of the toast is equal to 0x04
 	if (bluespheres.toast.show == STRING_MEDALS_TOAST_RECEIVED_1 && bluespheres.toast.state == 0x04)
 	{
-		// If the medals counter is updated, then reset the shown toast
-		if (BlueSpheresTimer.Data.getValue(bluespheres.medals.lastSaved) == BlueSpheresTimer.Medals.received())
-		{
-			bluespheres.toast.show = ""
-			bluespheres.toast.state = 0x00
-		}
-		else
-		{
-			// Otherwise, update medals counter
-			BlueSpheresTimer.Data.setValue(bluespheres.medals.lastSaved, BlueSpheresTimer.Medals.received())
-		}
+		BlueSpheresTimer.Data.setValue(bluespheres.medals.lastSaved, BlueSpheresTimer.Medals.received())
+		
+		bluespheres.toast.show = ""
+		bluespheres.toast.state = 0x00
 	}
 }
 

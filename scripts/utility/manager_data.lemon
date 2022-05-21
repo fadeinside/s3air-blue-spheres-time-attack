@@ -1,7 +1,7 @@
 //? Return the assembled memory address for the specified Data address.
 function u32 BlueSpheresTimer.Data.getAddress(u32 address)
 {
-	u32 mods = (address <= bluespheres.skUnlocked) ? (Mods.isModActive("Sonic 3: D.A. Garden Edition") ? 0x100 : 0x00) : 0x00
+	u32 mods = (address <= bluespheres.skUnlocked) ? (MOD_DAGE_ACTIVE ? 0x100 : 0x00) : 0x00
 	
 	// Return the assembled address
 	return address + mods
