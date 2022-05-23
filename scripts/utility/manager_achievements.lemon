@@ -5,10 +5,8 @@ function void BlueSpheresTimer.Achievements.update()
 	if (BlueSpheresTimer.Achievements.notAvailable())
 		return
 	
-	debugLog("Available")
-	
 	// Check if you want to show the achievement toast outside of the game in a special stage (i.e. in menu). This is one of the optimization methods where we do not check the target value, but only the value for showing the toast
-	if ((global.game_mode & 0x7f) != 0x34 && !bluespheres.achievements.targetsNeedUpdate)
+	if ((global.game_mode & 0x7f) != 0x34 && !bluespheres.achievements.targetsNeedUpdate && !bluespheres.minigame_mode)
 	{
 		// Total number of Achievements
 		for (u8 A = 0x00; A <= bluespheres.achievements.total; ++A)
@@ -19,8 +17,6 @@ function void BlueSpheresTimer.Achievements.update()
 		
 		if (u8[bluespheres.medals.lastSaved] < BlueSpheresTimer.Medals.received())
 			BlueSpheresTimer.Medals.toast()
-		
-		//debugLog(stringformat("%s, %d", bluespheres.toast.show, bluespheres.toast.state))
 		
 		// Finish the function on this
 		return
@@ -303,6 +299,16 @@ function void BlueSpheresTimer.Achievements.spheresChecks()
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES, 0x01)
 		if (!BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES) && BlueSpheresTimer.Achievements.isComplete(ACHIEVEMENT_BS_CONVERT_720_GREEN_SPHERES))
 			BlueSpheresTimer.Achievements.addValue(ACHIEVEMENT_BS_CONVERT_1200_GREEN_SPHERES, 0x01)
+	}
+	
+	// Ran into red sphere
+	if (D2.u8 == 0x01)
+	{
+		D0.u16 = (bluespheres.position.x | bluespheres.position.y) & 0xe0
+		if (D0.u16 == 0x00 && u8[0xffffe433] == 0x00)
+		{
+			bluespheres.gameOver = 0x01
+		}
 	}
 }
 

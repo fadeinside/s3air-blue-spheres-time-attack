@@ -220,10 +220,10 @@ function void ChooseWhichExtraChar()
 function void BlueSpheresTimer.updateTimer()
 {
 	// Ignore for Main Special stages if this disabled
-	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && bluespheres.timeattack.active == 0x00)
+	if (SETTING_BS_TIME_BONUSES_ON_SPECIALS == 0x00 && !bluespheres.timeattack.active)
 		return
 	
-	// Ignore for Rolling Demo and Blue Sphere game
+	// Ignore for rolling demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 		return
 	

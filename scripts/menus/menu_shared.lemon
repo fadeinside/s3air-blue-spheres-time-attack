@@ -7,9 +7,14 @@ function void BlueSpheresTimer.Menu.shared.setup()
 	bluespheres.buttons.setup = 0x01
 	bluespheres.shared.buttonselected = 0x00
 	
+	// Stop any music
+	playMusic(MUSIC_CTRL_STOP)
+	
 	// Sounds
 	if (BlueSpheresTimer.Records.getRecordTime(0x01) == bluespheres.timer.currentTime)
-		playMusic(0xac) // Play Continue song when a new record
+		playMusic(0x2a) // Play Extra life song when a new record
+	else
+		playMusic(0x29) // Play Level results song
 	
 	// Screen fades
 	SetPaletteToWhite()

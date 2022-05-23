@@ -4,6 +4,16 @@ function void Init()
 	// Check the activity of mods and assign a value to globals
 	BlueSpheresTimer.modsCheck()
 	
+	if (!bluespheres.timeattack.active && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
+	{
+		// Load additional data from Shared Memory for work with Blue Sphere Plus
+		if (MOD_BS_PLUS_ACTIVE)
+			System.loadPersistentData(0x801100, "SRAM_BlueSphereProgressExt", 0x02)
+		
+		// Reset the timer
+		BlueSpheresTimer.resetTimer()
+	}
+	
 	// Call the base function
 	base.Init()
 }
@@ -332,28 +342,6 @@ function void BlueSpheresTimer.waitForNextFrame()
 	}
 }
 
-//@ Function taken from sonic3air_dev/scripts/objects/basics/giantring.lemon
-//# address-hook(0x061682) end(0x061690)
-function void GiantRing.BaseUpdate()
-{
-	// Targets:
-	// - 0x06169a	-> objA0.base_state = 0x00  -> Initialization
-	// - 0x0616e6	-> objA0.base_state = 0x02  -> Regular update
-	// - 0x0617b8	-> objA0.base_state = 0x04  -> Character jumped in
-	
-	// Reset the timer when the character jumps into a special ring
-	if (objA0.base_state == 0x04)
-	{
-		BlueSpheresTimer.resetTimer()
-		
-		// Load some Persistent Data
-		System.setupCallFrame("BlueSpheresTimer.VRAMClear", "@loadPersistentData")
-	}
-	
-	// Call the base function
-	base.GiantRing.BaseUpdate()
-}
-
 //@ Function taken from sonic3air_dev/scripts/level/special/bluespheres.lemon
 //# address-hook(0x009e88) end(0x009e9e)
 function void BlueSpheres.OnBlueSphereCollected()
@@ -408,7 +396,7 @@ function void fn009b62()
 			BlueSpheresTimer.TooltipManager.resetTooltip()
 	}
 	
-	// Ignore for Rolling Demo and Blue Sphere game
+	// Ignore for rolling demo and Blue Sphere game
 	if (global.game_mode == 0x08 || bluespheres.minigame_mode)
 	{
 		// Call the base function
