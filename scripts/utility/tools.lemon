@@ -13,6 +13,13 @@ function void BlueSpheresTimer.modsCheck()
 	MOD_YELLOW_EMERALD_ACTIVE = Mods.isModActive("Yellow Emerald")
 }
 
+//? Overload function from Sonic 3: D.A. Garden Edition.
+function void loadupCustomMenu()
+{
+	// Call the base function
+	base.loadupCustomMenu()
+}
+
 //? Assemble art by frames.
 function void BlueSpheresTimer.renderAssembleArt(string variant, u8 width, u8 height, u8 rows, u8 line, u8 totalFrames, u16 renderQueue, s32 px, s32 py, u8 scale)
 {

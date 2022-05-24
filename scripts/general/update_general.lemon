@@ -19,43 +19,77 @@ function void GameModeControlLoop()
 	{
 	@EntryPoint:
 	
-		#if STANDALONE
-			if ((global.game_mode & 0x03 || (global.game_mode & 0x7f) > 0x50) && !(global.game_mode >= 0x85 && global.game_mode <= 0xff))
-				assert(false, stringformat("Invalid game mode: 0x%02x", global.game_mode))
-		#endif
-		
-		// Custom targets:
-		// global.game_mode = 0x85	->	Blue Spheres Timer: Time Attack menu
-		// global.game_mode = 0x86	->	Blue Spheres Timer: Options menu
-		// global.game_mode = 0x87	->	Blue Spheres Timer: Shared menu
-		// global.game_mode = 0x88	->	Blue Spheres Timer: Achievements menu
-		// global.game_mode = 0x89	->	Blue Spheres Timer: Lobby menu
-		// global.game_mode = 0x8a	->	Blue Spheres Timer: Medals menu
-		// global.game_mode = 0x8b	->	Blue Spheres Timer: Secret menu
+	#if GAMEAPP
+		Game.setUnderwaterAudioEffect(0x00)
+	#endif
 	
-		if (global.game_mode == 0x85)
-			BlueSpheresTimer.Menu.timeattack.setup()
-		else if (global.game_mode == 0x86)
-			BlueSpheresTimer.Menu.options.setup()
-		else if (global.game_mode == 0x87)
-			BlueSpheresTimer.Menu.shared.setup()
-		else if (global.game_mode == 0x88)
-			BlueSpheresTimer.Menu.achievements.setup()
-		else if (global.game_mode == 0x89)
-			BlueSpheresTimer.Menu.lobby.setup()
-		else if (global.game_mode == 0x8a)
-			BlueSpheresTimer.Menu.medals.setup()
-		else if (global.game_mode == 0x8b)
-			BlueSpheresTimer.Menu.secret.setup()
+		if (GameModeControlLoop.callCustomModes())
+		{
+			GameModeControlLoop.callCustomModes()
+		}
 		else
 		{
+		#if STANDALONE
+			if (global.game_mode & 0x03 || (global.game_mode & 0x7f) > 0x50)
+			{
+				assert(false, stringformat("Invalid game mode: 0x%02x", global.game_mode))
+				global.game_mode = 0x00
+			}
+		#endif
+			
 			D0.u16 = global.game_mode & 0x7c
 			A0 = u32[0x0004c6 + D0.u16]
 			call A0
-		}
-
+			
 		#if STANDALONE
 			Game.endSkippableCutscene()
 		#endif
+		}
 	}
+}
+
+//? The function returns true when there is a function for the custom value of global.game_mode that it calls.
+function bool GameModeControlLoop.callCustomModes()
+{
+	// Blue Sphere Time Attack custom modes
+	// Custom targets:
+	// global.game_mode = 0x85	->	Blue Spheres Timer: Time Attack menu
+	// global.game_mode = 0x86	->	Blue Spheres Timer: Options menu
+	// global.game_mode = 0x87	->	Blue Spheres Timer: Shared menu
+	// global.game_mode = 0x88	->	Blue Spheres Timer: Achievements menu
+	// global.game_mode = 0x89	->	Blue Spheres Timer: Lobby menu
+	// global.game_mode = 0x8a	->	Blue Spheres Timer: Medals menu
+	// global.game_mode = 0x8b	->	Blue Spheres Timer: Secret menu
+	if (global.game_mode >= 0x85 && global.game_mode <= 0x8b)
+	{
+		if (global.game_mode == 0x85)
+			BlueSpheresTimer.Menu.timeattack.setup()
+		if (global.game_mode == 0x86)
+			BlueSpheresTimer.Menu.options.setup()
+		if (global.game_mode == 0x87)
+			BlueSpheresTimer.Menu.shared.setup()
+		if (global.game_mode == 0x88)
+			BlueSpheresTimer.Menu.achievements.setup()
+		if (global.game_mode == 0x89)
+			BlueSpheresTimer.Menu.lobby.setup()
+		if (global.game_mode == 0x8a)
+			BlueSpheresTimer.Menu.medals.setup()
+		if (global.game_mode == 0x8b)
+			BlueSpheresTimer.Menu.secret.setup()
+		
+		return true
+	}
+	
+	// DAGE custom modes
+	// Custom targets:
+	// global.game_mode = 0x54	->	Sonic 3: D.A. Garden Edition: Main menu
+	// global.game_mode = 0x58	->	Sonic 3: D.A. Garden Edition: Challenge menu
+	if (MOD_DAGE_ACTIVE && (global.game_mode == 0x54 || global.game_mode == 0x58))
+	{
+		loadupCustomMenu()
+		return true
+	}
+	
+	// Fallback value
+	return false 
 }
