@@ -20,7 +20,7 @@ Run through exciting stages of Special Stages in Time Attack mode! Play your fav
 
 ## <font color="#6ee16c">About the custom menus:</font>
 
-* Choose the game mode between Time Attack mode and Blue Sphere game in the __Lobby menu__. <font color="#6ee16c">[New!]</font> With mods enabled Blue Sphere Plus и Sonic 3: D.A. Garden Edition, their sections will appear in the Lobby - Sonic 3K (Marathon mode) and Green Sphere game.
+* Choose the game mode between Time Attack mode and Blue Sphere game in the __Lobby menu__. <font color="#6ee16c">[New!]</font> With mods enabled Blue Sphere Plus and Sonic 3: D.A. Garden Edition, their sections will appear in the Lobby - Sonic 3K (Marathon mode) and Green Sphere game.
 
 * View the latest recorded records, total time and collected emeralds in the __Time Attack menu__. Select a character, stage, layout and press Start to start the race.
 
