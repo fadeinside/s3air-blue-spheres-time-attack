@@ -89,7 +89,7 @@ function void fn04d488()
 		BlueSphere.setGeneratedStage(bluespheregame.current_stage)
 
 		// Only for Green Sphere game
-		if (u8[0x8e1218])
+		if (bluespheres.greenspheres.active)
 		{
 			System.savePersistentData(0xffffffa6, "DAGE_GreenSphereGame", 0x04)
 		}
