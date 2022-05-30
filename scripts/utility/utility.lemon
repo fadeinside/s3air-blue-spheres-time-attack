@@ -18,6 +18,22 @@ function void Init()
 	base.Init()
 }
 
+//@ Function taken from sonic3air_dev/scripts/objects/basics/giantring.lemon
+//# address-hook(0x061682) end(0x061690)
+function void GiantRing.BaseUpdate()
+{
+	// Targets:
+	// - 0x06169a	-> objA0.base_state = 0x00  -> Initialization
+	// - 0x0616e6	-> objA0.base_state = 0x02  -> Regular update
+	// - 0x0617b8	-> objA0.base_state = 0x04  -> Character jumped in
+	
+	if (objA0.base_state == 0x04)
+		BlueSpheresTimer.resetTimer()
+	
+	// Call the base function
+	base.GiantRing.BaseUpdate()
+}
+
 //@ Function taken from sonic3air_dev/scripts/general/bluesphere/bluespheregame.lemon
 //# address-hook(0x04d488) end(0x04d59e)
 function void fn04d488()
