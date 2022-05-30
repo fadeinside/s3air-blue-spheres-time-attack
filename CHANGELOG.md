@@ -2,6 +2,12 @@
 
 Follow the latest changes on GitHub: https://github.com/fadeinside/s3air-blue-spheres-time-attack
 
+## Patch v2.0.1 - The Patched 1
+
+### Fixed
+* Fixed when timer was not reset after re-entering a special stage in the main game (Found Quix64).
+* Fixed an error occurred in calling the DAGE Challenge menu (Found MicMic, solved by Thorn).
+
 ## Release v2.0 - The Release 2
 
 Today's release brings widespread improvements, bug fixes, rework, new functions and capabilities, and more.  
